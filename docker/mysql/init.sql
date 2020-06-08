@@ -1,7927 +1,5429 @@
-/*
-*********************************************************************
-http://www.mysqltutorial.org
-*********************************************************************
-Name: MySQL Sample Database classicmodels
-Link: http://www.mysqltutorial.org/mysql-sample-database.aspx
-Version 3.1
-+ changed data type from DOUBLE to DECIMAL for amount columns
-Version 3.0
-+ changed DATETIME to DATE for some colunmns
-Version 2.0
-+ changed table type from MyISAM to InnoDB
-+ added foreign keys for all tables 
-*********************************************************************
-*/
+-- MySQL dump 10.13  Distrib 8.0.19, for osx10.14 (x86_64)
+--
+-- Host: 127.0.0.1    Database: world
+-- ------------------------------------------------------
+-- Server version	8.0.19-debug
 
-
-/*!40101 SET NAMES utf8 */;
-
-/*!40101 SET SQL_MODE=''*/;
-
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
-/*Table structure for table `customers` */
-
-DROP TABLE IF EXISTS `customers`;
-
-CREATE TABLE `customers` (
-  `customerNumber` int(11) NOT NULL,
-  `customerName` varchar(50) NOT NULL,
-  `contactLastName` varchar(50) NOT NULL,
-  `contactFirstName` varchar(50) NOT NULL,
-  `phone` varchar(50) NOT NULL,
-  `addressLine1` varchar(50) NOT NULL,
-  `addressLine2` varchar(50) DEFAULT NULL,
-  `city` varchar(50) NOT NULL,
-  `state` varchar(50) DEFAULT NULL,
-  `postalCode` varchar(15) DEFAULT NULL,
-  `country` varchar(50) NOT NULL,
-  `salesRepEmployeeNumber` int(11) DEFAULT NULL,
-  `creditLimit` decimal(10,2) DEFAULT NULL,
-  PRIMARY KEY (`customerNumber`),
-  KEY `salesRepEmployeeNumber` (`salesRepEmployeeNumber`),
-  CONSTRAINT `customers_ibfk_1` FOREIGN KEY (`salesRepEmployeeNumber`) REFERENCES `employees` (`employeeNumber`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `customers` */
-
-insert  into `customers`(`customerNumber`,`customerName`,`contactLastName`,`contactFirstName`,`phone`,`addressLine1`,`addressLine2`,`city`,`state`,`postalCode`,`country`,`salesRepEmployeeNumber`,`creditLimit`) values 
-
-(103,'Atelier graphique','Schmitt','Carine ','40.32.2555','54, rue Royale',NULL,'Nantes',NULL,'44000','France',1370,'21000.00'),
-
-(112,'Signal Gift Stores','King','Jean','7025551838','8489 Strong St.',NULL,'Las Vegas','NV','83030','USA',1166,'71800.00'),
-
-(114,'Australian Collectors, Co.','Ferguson','Peter','03 9520 4555','636 St Kilda Road','Level 3','Melbourne','Victoria','3004','Australia',1611,'117300.00'),
-
-(119,'La Rochelle Gifts','Labrune','Janine ','40.67.8555','67, rue des Cinquante Otages',NULL,'Nantes',NULL,'44000','France',1370,'118200.00'),
-
-(121,'Baane Mini Imports','Bergulfsen','Jonas ','07-98 9555','Erling Skakkes gate 78',NULL,'Stavern',NULL,'4110','Norway',1504,'81700.00'),
-
-(124,'Mini Gifts Distributors Ltd.','Nelson','Susan','4155551450','5677 Strong St.',NULL,'San Rafael','CA','97562','USA',1165,'210500.00'),
-
-(125,'Havel & Zbyszek Co','Piestrzeniewicz','Zbyszek ','(26) 642-7555','ul. Filtrowa 68',NULL,'Warszawa',NULL,'01-012','Poland',NULL,'0.00'),
-
-(128,'Blauer See Auto, Co.','Keitel','Roland','+49 69 66 90 2555','Lyonerstr. 34',NULL,'Frankfurt',NULL,'60528','Germany',1504,'59700.00'),
-
-(129,'Mini Wheels Co.','Murphy','Julie','6505555787','5557 North Pendale Street',NULL,'San Francisco','CA','94217','USA',1165,'64600.00'),
-
-(131,'Land of Toys Inc.','Lee','Kwai','2125557818','897 Long Airport Avenue',NULL,'NYC','NY','10022','USA',1323,'114900.00'),
-
-(141,'Euro+ Shopping Channel','Freyre','Diego ','(91) 555 94 44','C/ Moralzarzal, 86',NULL,'Madrid',NULL,'28034','Spain',1370,'227600.00'),
-
-(144,'Volvo Model Replicas, Co','Berglund','Christina ','0921-12 3555','Berguvsvägen  8',NULL,'Luleå',NULL,'S-958 22','Sweden',1504,'53100.00'),
-
-(145,'Danish Wholesale Imports','Petersen','Jytte ','31 12 3555','Vinbæltet 34',NULL,'Kobenhavn',NULL,'1734','Denmark',1401,'83400.00'),
-
-(146,'Saveley & Henriot, Co.','Saveley','Mary ','78.32.5555','2, rue du Commerce',NULL,'Lyon',NULL,'69004','France',1337,'123900.00'),
-
-(148,'Dragon Souveniers, Ltd.','Natividad','Eric','+65 221 7555','Bronz Sok.','Bronz Apt. 3/6 Tesvikiye','Singapore',NULL,'079903','Singapore',1621,'103800.00'),
-
-(151,'Muscle Machine Inc','Young','Jeff','2125557413','4092 Furth Circle','Suite 400','NYC','NY','10022','USA',1286,'138500.00'),
-
-(157,'Diecast Classics Inc.','Leong','Kelvin','2155551555','7586 Pompton St.',NULL,'Allentown','PA','70267','USA',1216,'100600.00'),
-
-(161,'Technics Stores Inc.','Hashimoto','Juri','6505556809','9408 Furth Circle',NULL,'Burlingame','CA','94217','USA',1165,'84600.00'),
-
-(166,'Handji Gifts& Co','Victorino','Wendy','+65 224 1555','106 Linden Road Sandown','2nd Floor','Singapore',NULL,'069045','Singapore',1612,'97900.00'),
-
-(167,'Herkku Gifts','Oeztan','Veysel','+47 2267 3215','Brehmen St. 121','PR 334 Sentrum','Bergen',NULL,'N 5804','Norway  ',1504,'96800.00'),
-
-(168,'American Souvenirs Inc','Franco','Keith','2035557845','149 Spinnaker Dr.','Suite 101','New Haven','CT','97823','USA',1286,'0.00'),
-
-(169,'Porto Imports Co.','de Castro','Isabel ','(1) 356-5555','Estrada da saúde n. 58',NULL,'Lisboa',NULL,'1756','Portugal',NULL,'0.00'),
-
-(171,'Daedalus Designs Imports','Rancé','Martine ','20.16.1555','184, chaussée de Tournai',NULL,'Lille',NULL,'59000','France',1370,'82900.00'),
-
-(172,'La Corne D\'abondance, Co.','Bertrand','Marie','(1) 42.34.2555','265, boulevard Charonne',NULL,'Paris',NULL,'75012','France',1337,'84300.00'),
-
-(173,'Cambridge Collectables Co.','Tseng','Jerry','6175555555','4658 Baden Av.',NULL,'Cambridge','MA','51247','USA',1188,'43400.00'),
-
-(175,'Gift Depot Inc.','King','Julie','2035552570','25593 South Bay Ln.',NULL,'Bridgewater','CT','97562','USA',1323,'84300.00'),
-
-(177,'Osaka Souveniers Co.','Kentary','Mory','+81 06 6342 5555','1-6-20 Dojima',NULL,'Kita-ku','Osaka',' 530-0003','Japan',1621,'81200.00'),
-
-(181,'Vitachrome Inc.','Frick','Michael','2125551500','2678 Kingston Rd.','Suite 101','NYC','NY','10022','USA',1286,'76400.00'),
-
-(186,'Toys of Finland, Co.','Karttunen','Matti','90-224 8555','Keskuskatu 45',NULL,'Helsinki',NULL,'21240','Finland',1501,'96500.00'),
-
-(187,'AV Stores, Co.','Ashworth','Rachel','(171) 555-1555','Fauntleroy Circus',NULL,'Manchester',NULL,'EC2 5NT','UK',1501,'136800.00'),
-
-(189,'Clover Collections, Co.','Cassidy','Dean','+353 1862 1555','25 Maiden Lane','Floor No. 4','Dublin',NULL,'2','Ireland',1504,'69400.00'),
-
-(198,'Auto-Moto Classics Inc.','Taylor','Leslie','6175558428','16780 Pompton St.',NULL,'Brickhaven','MA','58339','USA',1216,'23000.00'),
-
-(201,'UK Collectables, Ltd.','Devon','Elizabeth','(171) 555-2282','12, Berkeley Gardens Blvd',NULL,'Liverpool',NULL,'WX1 6LT','UK',1501,'92700.00'),
-
-(202,'Canadian Gift Exchange Network','Tamuri','Yoshi ','(604) 555-3392','1900 Oak St.',NULL,'Vancouver','BC','V3F 2K1','Canada',1323,'90300.00'),
-
-(204,'Online Mini Collectables','Barajas','Miguel','6175557555','7635 Spinnaker Dr.',NULL,'Brickhaven','MA','58339','USA',1188,'68700.00'),
-
-(205,'Toys4GrownUps.com','Young','Julie','6265557265','78934 Hillside Dr.',NULL,'Pasadena','CA','90003','USA',1166,'90700.00'),
-
-(206,'Asian Shopping Network, Co','Walker','Brydey','+612 9411 1555','Suntec Tower Three','8 Temasek','Singapore',NULL,'038988','Singapore',NULL,'0.00'),
-
-(209,'Mini Caravy','Citeaux','Frédérique ','88.60.1555','24, place Kléber',NULL,'Strasbourg',NULL,'67000','France',1370,'53800.00'),
-
-(211,'King Kong Collectables, Co.','Gao','Mike','+852 2251 1555','Bank of China Tower','1 Garden Road','Central Hong Kong',NULL,NULL,'Hong Kong',1621,'58600.00'),
-
-(216,'Enaco Distributors','Saavedra','Eduardo ','(93) 203 4555','Rambla de Cataluña, 23',NULL,'Barcelona',NULL,'08022','Spain',1702,'60300.00'),
-
-(219,'Boards & Toys Co.','Young','Mary','3105552373','4097 Douglas Av.',NULL,'Glendale','CA','92561','USA',1166,'11000.00'),
-
-(223,'Natürlich Autos','Kloss','Horst ','0372-555188','Taucherstraße 10',NULL,'Cunewalde',NULL,'01307','Germany',NULL,'0.00'),
-
-(227,'Heintze Collectables','Ibsen','Palle','86 21 3555','Smagsloget 45',NULL,'Århus',NULL,'8200','Denmark',1401,'120800.00'),
-
-(233,'Québec Home Shopping Network','Fresnière','Jean ','(514) 555-8054','43 rue St. Laurent',NULL,'Montréal','Québec','H1J 1C3','Canada',1286,'48700.00'),
-
-(237,'ANG Resellers','Camino','Alejandra ','(91) 745 6555','Gran Vía, 1',NULL,'Madrid',NULL,'28001','Spain',NULL,'0.00'),
-
-(239,'Collectable Mini Designs Co.','Thompson','Valarie','7605558146','361 Furth Circle',NULL,'San Diego','CA','91217','USA',1166,'105000.00'),
-
-(240,'giftsbymail.co.uk','Bennett','Helen ','(198) 555-8888','Garden House','Crowther Way 23','Cowes','Isle of Wight','PO31 7PJ','UK',1501,'93900.00'),
-
-(242,'Alpha Cognac','Roulet','Annette ','61.77.6555','1 rue Alsace-Lorraine',NULL,'Toulouse',NULL,'31000','France',1370,'61100.00'),
-
-(247,'Messner Shopping Network','Messner','Renate ','069-0555984','Magazinweg 7',NULL,'Frankfurt',NULL,'60528','Germany',NULL,'0.00'),
-
-(249,'Amica Models & Co.','Accorti','Paolo ','011-4988555','Via Monte Bianco 34',NULL,'Torino',NULL,'10100','Italy',1401,'113000.00'),
-
-(250,'Lyon Souveniers','Da Silva','Daniel','+33 1 46 62 7555','27 rue du Colonel Pierre Avia',NULL,'Paris',NULL,'75508','France',1337,'68100.00'),
-
-(256,'Auto Associés & Cie.','Tonini','Daniel ','30.59.8555','67, avenue de l\'Europe',NULL,'Versailles',NULL,'78000','France',1370,'77900.00'),
-
-(259,'Toms Spezialitäten, Ltd','Pfalzheim','Henriette ','0221-5554327','Mehrheimerstr. 369',NULL,'Köln',NULL,'50739','Germany',1504,'120400.00'),
-
-(260,'Royal Canadian Collectables, Ltd.','Lincoln','Elizabeth ','(604) 555-4555','23 Tsawassen Blvd.',NULL,'Tsawassen','BC','T2F 8M4','Canada',1323,'89600.00'),
-
-(273,'Franken Gifts, Co','Franken','Peter ','089-0877555','Berliner Platz 43',NULL,'München',NULL,'80805','Germany',NULL,'0.00'),
-
-(276,'Anna\'s Decorations, Ltd','O\'Hara','Anna','02 9936 8555','201 Miller Street','Level 15','North Sydney','NSW','2060','Australia',1611,'107800.00'),
-
-(278,'Rovelli Gifts','Rovelli','Giovanni ','035-640555','Via Ludovico il Moro 22',NULL,'Bergamo',NULL,'24100','Italy',1401,'119600.00'),
-
-(282,'Souveniers And Things Co.','Huxley','Adrian','+61 2 9495 8555','Monitor Money Building','815 Pacific Hwy','Chatswood','NSW','2067','Australia',1611,'93300.00'),
-
-(286,'Marta\'s Replicas Co.','Hernandez','Marta','6175558555','39323 Spinnaker Dr.',NULL,'Cambridge','MA','51247','USA',1216,'123700.00'),
-
-(293,'BG&E Collectables','Harrison','Ed','+41 26 425 50 01','Rte des Arsenaux 41 ',NULL,'Fribourg',NULL,'1700','Switzerland',NULL,'0.00'),
-
-(298,'Vida Sport, Ltd','Holz','Mihael','0897-034555','Grenzacherweg 237',NULL,'Genève',NULL,'1203','Switzerland',1702,'141300.00'),
-
-(299,'Norway Gifts By Mail, Co.','Klaeboe','Jan','+47 2212 1555','Drammensveien 126A','PB 211 Sentrum','Oslo',NULL,'N 0106','Norway  ',1504,'95100.00'),
-
-(303,'Schuyler Imports','Schuyler','Bradley','+31 20 491 9555','Kingsfordweg 151',NULL,'Amsterdam',NULL,'1043 GR','Netherlands',NULL,'0.00'),
-
-(307,'Der Hund Imports','Andersen','Mel','030-0074555','Obere Str. 57',NULL,'Berlin',NULL,'12209','Germany',NULL,'0.00'),
-
-(311,'Oulu Toy Supplies, Inc.','Koskitalo','Pirkko','981-443655','Torikatu 38',NULL,'Oulu',NULL,'90110','Finland',1501,'90500.00'),
-
-(314,'Petit Auto','Dewey','Catherine ','(02) 5554 67','Rue Joseph-Bens 532',NULL,'Bruxelles',NULL,'B-1180','Belgium',1401,'79900.00'),
-
-(319,'Mini Classics','Frick','Steve','9145554562','3758 North Pendale Street',NULL,'White Plains','NY','24067','USA',1323,'102700.00'),
-
-(320,'Mini Creations Ltd.','Huang','Wing','5085559555','4575 Hillside Dr.',NULL,'New Bedford','MA','50553','USA',1188,'94500.00'),
-
-(321,'Corporate Gift Ideas Co.','Brown','Julie','6505551386','7734 Strong St.',NULL,'San Francisco','CA','94217','USA',1165,'105000.00'),
-
-(323,'Down Under Souveniers, Inc','Graham','Mike','+64 9 312 5555','162-164 Grafton Road','Level 2','Auckland  ',NULL,NULL,'New Zealand',1612,'88000.00'),
-
-(324,'Stylish Desk Decors, Co.','Brown','Ann ','(171) 555-0297','35 King George',NULL,'London',NULL,'WX3 6FW','UK',1501,'77000.00'),
-
-(328,'Tekni Collectables Inc.','Brown','William','2015559350','7476 Moss Rd.',NULL,'Newark','NJ','94019','USA',1323,'43000.00'),
-
-(333,'Australian Gift Network, Co','Calaghan','Ben','61-7-3844-6555','31 Duncan St. West End',NULL,'South Brisbane','Queensland','4101','Australia',1611,'51600.00'),
-
-(334,'Suominen Souveniers','Suominen','Kalle','+358 9 8045 555','Software Engineering Center','SEC Oy','Espoo',NULL,'FIN-02271','Finland',1501,'98800.00'),
-
-(335,'Cramer Spezialitäten, Ltd','Cramer','Philip ','0555-09555','Maubelstr. 90',NULL,'Brandenburg',NULL,'14776','Germany',NULL,'0.00'),
-
-(339,'Classic Gift Ideas, Inc','Cervantes','Francisca','2155554695','782 First Street',NULL,'Philadelphia','PA','71270','USA',1188,'81100.00'),
-
-(344,'CAF Imports','Fernandez','Jesus','+34 913 728 555','Merchants House','27-30 Merchant\'s Quay','Madrid',NULL,'28023','Spain',1702,'59600.00'),
-
-(347,'Men \'R\' US Retailers, Ltd.','Chandler','Brian','2155554369','6047 Douglas Av.',NULL,'Los Angeles','CA','91003','USA',1166,'57700.00'),
-
-(348,'Asian Treasures, Inc.','McKenna','Patricia ','2967 555','8 Johnstown Road',NULL,'Cork','Co. Cork',NULL,'Ireland',NULL,'0.00'),
-
-(350,'Marseille Mini Autos','Lebihan','Laurence ','91.24.4555','12, rue des Bouchers',NULL,'Marseille',NULL,'13008','France',1337,'65000.00'),
-
-(353,'Reims Collectables','Henriot','Paul ','26.47.1555','59 rue de l\'Abbaye',NULL,'Reims',NULL,'51100','France',1337,'81100.00'),
-
-(356,'SAR Distributors, Co','Kuger','Armand','+27 21 550 3555','1250 Pretorius Street',NULL,'Hatfield','Pretoria','0028','South Africa',NULL,'0.00'),
-
-(357,'GiftsForHim.com','MacKinlay','Wales','64-9-3763555','199 Great North Road',NULL,'Auckland',NULL,NULL,'New Zealand',1612,'77700.00'),
-
-(361,'Kommission Auto','Josephs','Karin','0251-555259','Luisenstr. 48',NULL,'Münster',NULL,'44087','Germany',NULL,'0.00'),
-
-(362,'Gifts4AllAges.com','Yoshido','Juri','6175559555','8616 Spinnaker Dr.',NULL,'Boston','MA','51003','USA',1216,'41900.00'),
-
-(363,'Online Diecast Creations Co.','Young','Dorothy','6035558647','2304 Long Airport Avenue',NULL,'Nashua','NH','62005','USA',1216,'114200.00'),
-
-(369,'Lisboa Souveniers, Inc','Rodriguez','Lino ','(1) 354-2555','Jardim das rosas n. 32',NULL,'Lisboa',NULL,'1675','Portugal',NULL,'0.00'),
-
-(376,'Precious Collectables','Urs','Braun','0452-076555','Hauptstr. 29',NULL,'Bern',NULL,'3012','Switzerland',1702,'0.00'),
-
-(379,'Collectables For Less Inc.','Nelson','Allen','6175558555','7825 Douglas Av.',NULL,'Brickhaven','MA','58339','USA',1188,'70700.00'),
-
-(381,'Royale Belge','Cartrain','Pascale ','(071) 23 67 2555','Boulevard Tirou, 255',NULL,'Charleroi',NULL,'B-6000','Belgium',1401,'23500.00'),
-
-(382,'Salzburg Collectables','Pipps','Georg ','6562-9555','Geislweg 14',NULL,'Salzburg',NULL,'5020','Austria',1401,'71700.00'),
-
-(385,'Cruz & Sons Co.','Cruz','Arnold','+63 2 555 3587','15 McCallum Street','NatWest Center #13-03','Makati City',NULL,'1227 MM','Philippines',1621,'81500.00'),
-
-(386,'L\'ordine Souveniers','Moroni','Maurizio ','0522-556555','Strada Provinciale 124',NULL,'Reggio Emilia',NULL,'42100','Italy',1401,'121400.00'),
-
-(398,'Tokyo Collectables, Ltd','Shimamura','Akiko','+81 3 3584 0555','2-2-8 Roppongi',NULL,'Minato-ku','Tokyo','106-0032','Japan',1621,'94400.00'),
-
-(406,'Auto Canal+ Petit','Perrier','Dominique','(1) 47.55.6555','25, rue Lauriston',NULL,'Paris',NULL,'75016','France',1337,'95000.00'),
-
-(409,'Stuttgart Collectable Exchange','Müller','Rita ','0711-555361','Adenauerallee 900',NULL,'Stuttgart',NULL,'70563','Germany',NULL,'0.00'),
-
-(412,'Extreme Desk Decorations, Ltd','McRoy','Sarah','04 499 9555','101 Lambton Quay','Level 11','Wellington',NULL,NULL,'New Zealand',1612,'86800.00'),
-
-(415,'Bavarian Collectables Imports, Co.','Donnermeyer','Michael',' +49 89 61 08 9555','Hansastr. 15',NULL,'Munich',NULL,'80686','Germany',1504,'77000.00'),
-
-(424,'Classic Legends Inc.','Hernandez','Maria','2125558493','5905 Pompton St.','Suite 750','NYC','NY','10022','USA',1286,'67500.00'),
-
-(443,'Feuer Online Stores, Inc','Feuer','Alexander ','0342-555176','Heerstr. 22',NULL,'Leipzig',NULL,'04179','Germany',NULL,'0.00'),
-
-(447,'Gift Ideas Corp.','Lewis','Dan','2035554407','2440 Pompton St.',NULL,'Glendale','CT','97561','USA',1323,'49700.00'),
-
-(448,'Scandinavian Gift Ideas','Larsson','Martha','0695-34 6555','Åkergatan 24',NULL,'Bräcke',NULL,'S-844 67','Sweden',1504,'116400.00'),
-
-(450,'The Sharp Gifts Warehouse','Frick','Sue','4085553659','3086 Ingle Ln.',NULL,'San Jose','CA','94217','USA',1165,'77600.00'),
-
-(452,'Mini Auto Werke','Mendel','Roland ','7675-3555','Kirchgasse 6',NULL,'Graz',NULL,'8010','Austria',1401,'45300.00'),
-
-(455,'Super Scale Inc.','Murphy','Leslie','2035559545','567 North Pendale Street',NULL,'New Haven','CT','97823','USA',1286,'95400.00'),
-
-(456,'Microscale Inc.','Choi','Yu','2125551957','5290 North Pendale Street','Suite 200','NYC','NY','10022','USA',1286,'39800.00'),
-
-(458,'Corrida Auto Replicas, Ltd','Sommer','Martín ','(91) 555 22 82','C/ Araquil, 67',NULL,'Madrid',NULL,'28023','Spain',1702,'104600.00'),
-
-(459,'Warburg Exchange','Ottlieb','Sven ','0241-039123','Walserweg 21',NULL,'Aachen',NULL,'52066','Germany',NULL,'0.00'),
-
-(462,'FunGiftIdeas.com','Benitez','Violeta','5085552555','1785 First Street',NULL,'New Bedford','MA','50553','USA',1216,'85800.00'),
-
-(465,'Anton Designs, Ltd.','Anton','Carmen','+34 913 728555','c/ Gobelas, 19-1 Urb. La Florida',NULL,'Madrid',NULL,'28023','Spain',NULL,'0.00'),
-
-(471,'Australian Collectables, Ltd','Clenahan','Sean','61-9-3844-6555','7 Allen Street',NULL,'Glen Waverly','Victoria','3150','Australia',1611,'60300.00'),
-
-(473,'Frau da Collezione','Ricotti','Franco','+39 022515555','20093 Cologno Monzese','Alessandro Volta 16','Milan',NULL,NULL,'Italy',1401,'34800.00'),
-
-(475,'West Coast Collectables Co.','Thompson','Steve','3105553722','3675 Furth Circle',NULL,'Burbank','CA','94019','USA',1166,'55400.00'),
-
-(477,'Mit Vergnügen & Co.','Moos','Hanna ','0621-08555','Forsterstr. 57',NULL,'Mannheim',NULL,'68306','Germany',NULL,'0.00'),
-
-(480,'Kremlin Collectables, Co.','Semenov','Alexander ','+7 812 293 0521','2 Pobedy Square',NULL,'Saint Petersburg',NULL,'196143','Russia',NULL,'0.00'),
-
-(481,'Raanan Stores, Inc','Altagar,G M','Raanan','+ 972 9 959 8555','3 Hagalim Blv.',NULL,'Herzlia',NULL,'47625','Israel',NULL,'0.00'),
-
-(484,'Iberia Gift Imports, Corp.','Roel','José Pedro ','(95) 555 82 82','C/ Romero, 33',NULL,'Sevilla',NULL,'41101','Spain',1702,'65700.00'),
-
-(486,'Motor Mint Distributors Inc.','Salazar','Rosa','2155559857','11328 Douglas Av.',NULL,'Philadelphia','PA','71270','USA',1323,'72600.00'),
-
-(487,'Signal Collectibles Ltd.','Taylor','Sue','4155554312','2793 Furth Circle',NULL,'Brisbane','CA','94217','USA',1165,'60300.00'),
-
-(489,'Double Decker Gift Stores, Ltd','Smith','Thomas ','(171) 555-7555','120 Hanover Sq.',NULL,'London',NULL,'WA1 1DP','UK',1501,'43300.00'),
-
-(495,'Diecast Collectables','Franco','Valarie','6175552555','6251 Ingle Ln.',NULL,'Boston','MA','51003','USA',1188,'85100.00'),
-
-(496,'Kelly\'s Gift Shop','Snowden','Tony','+64 9 5555500','Arenales 1938 3\'A\'',NULL,'Auckland  ',NULL,NULL,'New Zealand',1612,'110000.00');
-
-/*Table structure for table `employees` */
-
-DROP TABLE IF EXISTS `employees`;
-
-CREATE TABLE `employees` (
-  `employeeNumber` int(11) NOT NULL,
-  `lastName` varchar(50) NOT NULL,
-  `firstName` varchar(50) NOT NULL,
-  `extension` varchar(10) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `officeCode` varchar(10) NOT NULL,
-  `reportsTo` int(11) DEFAULT NULL,
-  `jobTitle` varchar(50) NOT NULL,
-  PRIMARY KEY (`employeeNumber`),
-  KEY `reportsTo` (`reportsTo`),
-  KEY `officeCode` (`officeCode`),
-  CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`reportsTo`) REFERENCES `employees` (`employeeNumber`),
-  CONSTRAINT `employees_ibfk_2` FOREIGN KEY (`officeCode`) REFERENCES `offices` (`officeCode`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `employees` */
-
-insert  into `employees`(`employeeNumber`,`lastName`,`firstName`,`extension`,`email`,`officeCode`,`reportsTo`,`jobTitle`) values 
-
-(1002,'Murphy','Diane','x5800','dmurphy@classicmodelcars.com','1',NULL,'President'),
-
-(1056,'Patterson','Mary','x4611','mpatterso@classicmodelcars.com','1',1002,'VP Sales'),
-
-(1076,'Firrelli','Jeff','x9273','jfirrelli@classicmodelcars.com','1',1002,'VP Marketing'),
-
-(1088,'Patterson','William','x4871','wpatterson@classicmodelcars.com','6',1056,'Sales Manager (APAC)'),
-
-(1102,'Bondur','Gerard','x5408','gbondur@classicmodelcars.com','4',1056,'Sale Manager (EMEA)'),
-
-(1143,'Bow','Anthony','x5428','abow@classicmodelcars.com','1',1056,'Sales Manager (NA)'),
-
-(1165,'Jennings','Leslie','x3291','ljennings@classicmodelcars.com','1',1143,'Sales Rep'),
-
-(1166,'Thompson','Leslie','x4065','lthompson@classicmodelcars.com','1',1143,'Sales Rep'),
-
-(1188,'Firrelli','Julie','x2173','jfirrelli@classicmodelcars.com','2',1143,'Sales Rep'),
-
-(1216,'Patterson','Steve','x4334','spatterson@classicmodelcars.com','2',1143,'Sales Rep'),
-
-(1286,'Tseng','Foon Yue','x2248','ftseng@classicmodelcars.com','3',1143,'Sales Rep'),
-
-(1323,'Vanauf','George','x4102','gvanauf@classicmodelcars.com','3',1143,'Sales Rep'),
-
-(1337,'Bondur','Loui','x6493','lbondur@classicmodelcars.com','4',1102,'Sales Rep'),
-
-(1370,'Hernandez','Gerard','x2028','ghernande@classicmodelcars.com','4',1102,'Sales Rep'),
-
-(1401,'Castillo','Pamela','x2759','pcastillo@classicmodelcars.com','4',1102,'Sales Rep'),
-
-(1501,'Bott','Larry','x2311','lbott@classicmodelcars.com','7',1102,'Sales Rep'),
-
-(1504,'Jones','Barry','x102','bjones@classicmodelcars.com','7',1102,'Sales Rep'),
-
-(1611,'Fixter','Andy','x101','afixter@classicmodelcars.com','6',1088,'Sales Rep'),
-
-(1612,'Marsh','Peter','x102','pmarsh@classicmodelcars.com','6',1088,'Sales Rep'),
-
-(1619,'King','Tom','x103','tking@classicmodelcars.com','6',1088,'Sales Rep'),
-
-(1621,'Nishi','Mami','x101','mnishi@classicmodelcars.com','5',1056,'Sales Rep'),
-
-(1625,'Kato','Yoshimi','x102','ykato@classicmodelcars.com','5',1621,'Sales Rep'),
-
-(1702,'Gerard','Martin','x2312','mgerard@classicmodelcars.com','4',1102,'Sales Rep');
-
-/*Table structure for table `offices` */
-
-DROP TABLE IF EXISTS `offices`;
-
-CREATE TABLE `offices` (
-  `officeCode` varchar(10) NOT NULL,
-  `city` varchar(50) NOT NULL,
-  `phone` varchar(50) NOT NULL,
-  `addressLine1` varchar(50) NOT NULL,
-  `addressLine2` varchar(50) DEFAULT NULL,
-  `state` varchar(50) DEFAULT NULL,
-  `country` varchar(50) NOT NULL,
-  `postalCode` varchar(15) NOT NULL,
-  `territory` varchar(10) NOT NULL,
-  PRIMARY KEY (`officeCode`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `offices` */
-
-insert  into `offices`(`officeCode`,`city`,`phone`,`addressLine1`,`addressLine2`,`state`,`country`,`postalCode`,`territory`) values 
-
-('1','San Francisco','+1 650 219 4782','100 Market Street','Suite 300','CA','USA','94080','NA'),
-
-('2','Boston','+1 215 837 0825','1550 Court Place','Suite 102','MA','USA','02107','NA'),
-
-('3','NYC','+1 212 555 3000','523 East 53rd Street','apt. 5A','NY','USA','10022','NA'),
-
-('4','Paris','+33 14 723 4404','43 Rue Jouffroy D\'abbans',NULL,NULL,'France','75017','EMEA'),
-
-('5','Tokyo','+81 33 224 5000','4-1 Kioicho',NULL,'Chiyoda-Ku','Japan','102-8578','Japan'),
-
-('6','Sydney','+61 2 9264 2451','5-11 Wentworth Avenue','Floor #2',NULL,'Australia','NSW 2010','APAC'),
-
-('7','London','+44 20 7877 2041','25 Old Broad Street','Level 7',NULL,'UK','EC2N 1HN','EMEA');
-
-/*Table structure for table `orderdetails` */
-
-DROP TABLE IF EXISTS `orderdetails`;
-
-CREATE TABLE `orderdetails` (
-  `orderNumber` int(11) NOT NULL,
-  `productCode` varchar(15) NOT NULL,
-  `quantityOrdered` int(11) NOT NULL,
-  `priceEach` decimal(10,2) NOT NULL,
-  `orderLineNumber` smallint(6) NOT NULL,
-  PRIMARY KEY (`orderNumber`,`productCode`),
-  KEY `productCode` (`productCode`),
-  CONSTRAINT `orderdetails_ibfk_1` FOREIGN KEY (`orderNumber`) REFERENCES `orders` (`orderNumber`),
-  CONSTRAINT `orderdetails_ibfk_2` FOREIGN KEY (`productCode`) REFERENCES `products` (`productCode`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `orderdetails` */
-
-insert  into `orderdetails`(`orderNumber`,`productCode`,`quantityOrdered`,`priceEach`,`orderLineNumber`) values 
-
-(10100,'S18_1749',30,'136.00',3),
-
-(10100,'S18_2248',50,'55.09',2),
-
-(10100,'S18_4409',22,'75.46',4),
-
-(10100,'S24_3969',49,'35.29',1),
-
-(10101,'S18_2325',25,'108.06',4),
-
-(10101,'S18_2795',26,'167.06',1),
-
-(10101,'S24_1937',45,'32.53',3),
-
-(10101,'S24_2022',46,'44.35',2),
-
-(10102,'S18_1342',39,'95.55',2),
-
-(10102,'S18_1367',41,'43.13',1),
-
-(10103,'S10_1949',26,'214.30',11),
-
-(10103,'S10_4962',42,'119.67',4),
-
-(10103,'S12_1666',27,'121.64',8),
-
-(10103,'S18_1097',35,'94.50',10),
-
-(10103,'S18_2432',22,'58.34',2),
-
-(10103,'S18_2949',27,'92.19',12),
-
-(10103,'S18_2957',35,'61.84',14),
-
-(10103,'S18_3136',25,'86.92',13),
-
-(10103,'S18_3320',46,'86.31',16),
-
-(10103,'S18_4600',36,'98.07',5),
-
-(10103,'S18_4668',41,'40.75',9),
-
-(10103,'S24_2300',36,'107.34',1),
-
-(10103,'S24_4258',25,'88.62',15),
-
-(10103,'S32_1268',31,'92.46',3),
-
-(10103,'S32_3522',45,'63.35',7),
-
-(10103,'S700_2824',42,'94.07',6),
-
-(10104,'S12_3148',34,'131.44',1),
-
-(10104,'S12_4473',41,'111.39',9),
-
-(10104,'S18_2238',24,'135.90',8),
-
-(10104,'S18_2319',29,'122.73',12),
-
-(10104,'S18_3232',23,'165.95',13),
-
-(10104,'S18_4027',38,'119.20',3),
-
-(10104,'S24_1444',35,'52.02',6),
-
-(10104,'S24_2840',44,'30.41',10),
-
-(10104,'S24_4048',26,'106.45',5),
-
-(10104,'S32_2509',35,'51.95',11),
-
-(10104,'S32_3207',49,'56.55',4),
-
-(10104,'S50_1392',33,'114.59',7),
-
-(10104,'S50_1514',32,'53.31',2),
-
-(10105,'S10_4757',50,'127.84',2),
-
-(10105,'S12_1108',41,'205.72',15),
-
-(10105,'S12_3891',29,'141.88',14),
-
-(10105,'S18_3140',22,'136.59',11),
-
-(10105,'S18_3259',38,'87.73',13),
-
-(10105,'S18_4522',41,'75.48',10),
-
-(10105,'S24_2011',43,'117.97',9),
-
-(10105,'S24_3151',44,'73.46',4),
-
-(10105,'S24_3816',50,'75.47',1),
-
-(10105,'S700_1138',41,'54.00',5),
-
-(10105,'S700_1938',29,'86.61',12),
-
-(10105,'S700_2610',31,'60.72',3),
-
-(10105,'S700_3505',39,'92.16',6),
-
-(10105,'S700_3962',22,'99.31',7),
-
-(10105,'S72_3212',25,'44.77',8),
-
-(10106,'S18_1662',36,'134.04',12),
-
-(10106,'S18_2581',34,'81.10',2),
-
-(10106,'S18_3029',41,'80.86',18),
-
-(10106,'S18_3856',41,'94.22',17),
-
-(10106,'S24_1785',28,'107.23',4),
-
-(10106,'S24_2841',49,'65.77',13),
-
-(10106,'S24_3420',31,'55.89',14),
-
-(10106,'S24_3949',50,'55.96',11),
-
-(10106,'S24_4278',26,'71.00',3),
-
-(10106,'S32_4289',33,'65.35',5),
-
-(10106,'S50_1341',39,'35.78',6),
-
-(10106,'S700_1691',31,'91.34',7),
-
-(10106,'S700_2047',30,'85.09',16),
-
-(10106,'S700_2466',34,'99.72',9),
-
-(10106,'S700_2834',32,'113.90',1),
-
-(10106,'S700_3167',44,'76.00',8),
-
-(10106,'S700_4002',48,'70.33',10),
-
-(10106,'S72_1253',48,'43.70',15),
-
-(10107,'S10_1678',30,'81.35',2),
-
-(10107,'S10_2016',39,'105.86',5),
-
-(10107,'S10_4698',27,'172.36',4),
-
-(10107,'S12_2823',21,'122.00',1),
-
-(10107,'S18_2625',29,'52.70',6),
-
-(10107,'S24_1578',25,'96.92',3),
-
-(10107,'S24_2000',38,'73.12',7),
-
-(10107,'S32_1374',20,'88.90',8),
-
-(10108,'S12_1099',33,'165.38',6),
-
-(10108,'S12_3380',45,'96.30',4),
-
-(10108,'S12_3990',39,'75.81',7),
-
-(10108,'S12_4675',36,'107.10',3),
-
-(10108,'S18_1889',38,'67.76',2),
-
-(10108,'S18_3278',26,'73.17',9),
-
-(10108,'S18_3482',29,'132.29',8),
-
-(10108,'S18_3782',43,'52.84',12),
-
-(10108,'S18_4721',44,'139.87',11),
-
-(10108,'S24_2360',35,'64.41',15),
-
-(10108,'S24_3371',30,'60.01',5),
-
-(10108,'S24_3856',40,'132.00',1),
-
-(10108,'S24_4620',31,'67.10',10),
-
-(10108,'S32_2206',27,'36.21',13),
-
-(10108,'S32_4485',31,'87.76',16),
-
-(10108,'S50_4713',34,'74.85',14),
-
-(10109,'S18_1129',26,'117.48',4),
-
-(10109,'S18_1984',38,'137.98',3),
-
-(10109,'S18_2870',26,'126.72',1),
-
-(10109,'S18_3232',46,'160.87',5),
-
-(10109,'S18_3685',47,'125.74',2),
-
-(10109,'S24_2972',29,'32.10',6),
-
-(10110,'S18_1589',37,'118.22',16),
-
-(10110,'S18_1749',42,'153.00',7),
-
-(10110,'S18_2248',32,'51.46',6),
-
-(10110,'S18_2325',33,'115.69',4),
-
-(10110,'S18_2795',31,'163.69',1),
-
-(10110,'S18_4409',28,'81.91',8),
-
-(10110,'S18_4933',42,'62.00',9),
-
-(10110,'S24_1046',36,'72.02',13),
-
-(10110,'S24_1628',29,'43.27',15),
-
-(10110,'S24_1937',20,'28.88',3),
-
-(10110,'S24_2022',39,'40.77',2),
-
-(10110,'S24_2766',43,'82.69',11),
-
-(10110,'S24_2887',46,'112.74',10),
-
-(10110,'S24_3191',27,'80.47',12),
-
-(10110,'S24_3432',37,'96.37',14),
-
-(10110,'S24_3969',48,'35.29',5),
-
-(10111,'S18_1342',33,'87.33',6),
-
-(10111,'S18_1367',48,'48.52',5),
-
-(10111,'S18_2957',28,'53.09',2),
-
-(10111,'S18_3136',43,'94.25',1),
-
-(10111,'S18_3320',39,'91.27',4),
-
-(10111,'S24_4258',26,'85.70',3),
-
-(10112,'S10_1949',29,'197.16',1),
-
-(10112,'S18_2949',23,'85.10',2),
-
-(10113,'S12_1666',21,'121.64',2),
-
-(10113,'S18_1097',49,'101.50',4),
-
-(10113,'S18_4668',50,'43.27',3),
-
-(10113,'S32_3522',23,'58.82',1),
-
-(10114,'S10_4962',31,'128.53',8),
-
-(10114,'S18_2319',39,'106.78',3),
-
-(10114,'S18_2432',45,'53.48',6),
-
-(10114,'S18_3232',48,'169.34',4),
-
-(10114,'S18_4600',41,'105.34',9),
-
-(10114,'S24_2300',21,'102.23',5),
-
-(10114,'S24_2840',24,'28.64',1),
-
-(10114,'S32_1268',32,'88.61',7),
-
-(10114,'S32_2509',28,'43.83',2),
-
-(10114,'S700_2824',42,'82.94',10),
-
-(10115,'S12_4473',46,'111.39',5),
-
-(10115,'S18_2238',46,'140.81',4),
-
-(10115,'S24_1444',47,'56.64',2),
-
-(10115,'S24_4048',44,'106.45',1),
-
-(10115,'S50_1392',27,'100.70',3),
-
-(10116,'S32_3207',27,'60.28',1),
-
-(10117,'S12_1108',33,'195.33',9),
-
-(10117,'S12_3148',43,'148.06',10),
-
-(10117,'S12_3891',39,'173.02',8),
-
-(10117,'S18_3140',26,'121.57',5),
-
-(10117,'S18_3259',21,'81.68',7),
-
-(10117,'S18_4027',22,'122.08',12),
-
-(10117,'S18_4522',23,'73.73',4),
-
-(10117,'S24_2011',41,'119.20',3),
-
-(10117,'S50_1514',21,'55.65',11),
-
-(10117,'S700_1938',38,'75.35',6),
-
-(10117,'S700_3962',45,'89.38',1),
-
-(10117,'S72_3212',50,'52.42',2),
-
-(10118,'S700_3505',36,'86.15',1),
-
-(10119,'S10_4757',46,'112.88',11),
-
-(10119,'S18_1662',43,'151.38',3),
-
-(10119,'S18_3029',21,'74.84',9),
-
-(10119,'S18_3856',27,'95.28',8),
-
-(10119,'S24_2841',41,'64.40',4),
-
-(10119,'S24_3151',35,'72.58',13),
-
-(10119,'S24_3420',20,'63.12',5),
-
-(10119,'S24_3816',35,'82.18',10),
-
-(10119,'S24_3949',28,'62.10',2),
-
-(10119,'S700_1138',25,'57.34',14),
-
-(10119,'S700_2047',29,'74.23',7),
-
-(10119,'S700_2610',38,'67.22',12),
-
-(10119,'S700_4002',26,'63.67',1),
-
-(10119,'S72_1253',28,'40.22',6),
-
-(10120,'S10_2016',29,'118.94',3),
-
-(10120,'S10_4698',46,'158.80',2),
-
-(10120,'S18_2581',29,'82.79',8),
-
-(10120,'S18_2625',46,'57.54',4),
-
-(10120,'S24_1578',35,'110.45',1),
-
-(10120,'S24_1785',39,'93.01',10),
-
-(10120,'S24_2000',34,'72.36',5),
-
-(10120,'S24_4278',29,'71.73',9),
-
-(10120,'S32_1374',22,'94.90',6),
-
-(10120,'S32_4289',29,'68.79',11),
-
-(10120,'S50_1341',49,'41.46',12),
-
-(10120,'S700_1691',47,'91.34',13),
-
-(10120,'S700_2466',24,'81.77',15),
-
-(10120,'S700_2834',24,'106.79',7),
-
-(10120,'S700_3167',43,'72.00',14),
-
-(10121,'S10_1678',34,'86.13',5),
-
-(10121,'S12_2823',50,'126.52',4),
-
-(10121,'S24_2360',32,'58.18',2),
-
-(10121,'S32_4485',25,'95.93',3),
-
-(10121,'S50_4713',44,'72.41',1),
-
-(10122,'S12_1099',42,'155.66',10),
-
-(10122,'S12_3380',37,'113.92',8),
-
-(10122,'S12_3990',32,'65.44',11),
-
-(10122,'S12_4675',20,'104.80',7),
-
-(10122,'S18_1129',34,'114.65',2),
-
-(10122,'S18_1889',43,'62.37',6),
-
-(10122,'S18_1984',31,'113.80',1),
-
-(10122,'S18_3232',25,'137.17',3),
-
-(10122,'S18_3278',21,'69.15',13),
-
-(10122,'S18_3482',21,'133.76',12),
-
-(10122,'S18_3782',35,'59.06',16),
-
-(10122,'S18_4721',28,'145.82',15),
-
-(10122,'S24_2972',39,'34.74',4),
-
-(10122,'S24_3371',34,'50.82',9),
-
-(10122,'S24_3856',43,'136.22',5),
-
-(10122,'S24_4620',29,'67.10',14),
-
-(10122,'S32_2206',31,'33.79',17),
-
-(10123,'S18_1589',26,'120.71',2),
-
-(10123,'S18_2870',46,'114.84',3),
-
-(10123,'S18_3685',34,'117.26',4),
-
-(10123,'S24_1628',50,'43.27',1),
-
-(10124,'S18_1749',21,'153.00',6),
-
-(10124,'S18_2248',42,'58.12',5),
-
-(10124,'S18_2325',42,'111.87',3),
-
-(10124,'S18_4409',36,'75.46',7),
-
-(10124,'S18_4933',23,'66.28',8),
-
-(10124,'S24_1046',22,'62.47',12),
-
-(10124,'S24_1937',45,'30.53',2),
-
-(10124,'S24_2022',22,'36.29',1),
-
-(10124,'S24_2766',32,'74.51',10),
-
-(10124,'S24_2887',25,'93.95',9),
-
-(10124,'S24_3191',49,'76.19',11),
-
-(10124,'S24_3432',43,'101.73',13),
-
-(10124,'S24_3969',46,'36.11',4),
-
-(10125,'S18_1342',32,'89.38',1),
-
-(10125,'S18_2795',34,'138.38',2),
-
-(10126,'S10_1949',38,'205.73',11),
-
-(10126,'S10_4962',22,'122.62',4),
-
-(10126,'S12_1666',21,'135.30',8),
-
-(10126,'S18_1097',38,'116.67',10),
-
-(10126,'S18_1367',42,'51.21',17),
-
-(10126,'S18_2432',43,'51.05',2),
-
-(10126,'S18_2949',31,'93.21',12),
-
-(10126,'S18_2957',46,'61.84',14),
-
-(10126,'S18_3136',30,'93.20',13),
-
-(10126,'S18_3320',38,'94.25',16),
-
-(10126,'S18_4600',50,'102.92',5),
-
-(10126,'S18_4668',43,'47.29',9),
-
-(10126,'S24_2300',27,'122.68',1),
-
-(10126,'S24_4258',34,'83.76',15),
-
-(10126,'S32_1268',43,'82.83',3),
-
-(10126,'S32_3522',26,'62.05',7),
-
-(10126,'S700_2824',45,'97.10',6),
-
-(10127,'S12_1108',46,'193.25',2),
-
-(10127,'S12_3148',46,'140.50',3),
-
-(10127,'S12_3891',42,'169.56',1),
-
-(10127,'S12_4473',24,'100.73',11),
-
-(10127,'S18_2238',45,'140.81',10),
-
-(10127,'S18_2319',45,'114.14',14),
-
-(10127,'S18_3232',22,'149.02',15),
-
-(10127,'S18_4027',25,'126.39',5),
-
-(10127,'S24_1444',20,'50.86',8),
-
-(10127,'S24_2840',39,'34.30',12),
-
-(10127,'S24_4048',20,'107.63',7),
-
-(10127,'S32_2509',45,'46.53',13),
-
-(10127,'S32_3207',29,'60.90',6),
-
-(10127,'S50_1392',46,'111.12',9),
-
-(10127,'S50_1514',46,'55.65',4),
-
-(10128,'S18_3140',41,'120.20',2),
-
-(10128,'S18_3259',41,'80.67',4),
-
-(10128,'S18_4522',43,'77.24',1),
-
-(10128,'S700_1938',32,'72.75',3),
-
-(10129,'S10_4757',33,'123.76',2),
-
-(10129,'S24_2011',45,'113.06',9),
-
-(10129,'S24_3151',41,'81.43',4),
-
-(10129,'S24_3816',50,'76.31',1),
-
-(10129,'S700_1138',31,'58.67',5),
-
-(10129,'S700_2610',45,'72.28',3),
-
-(10129,'S700_3505',42,'90.15',6),
-
-(10129,'S700_3962',30,'94.34',7),
-
-(10129,'S72_3212',32,'44.23',8),
-
-(10130,'S18_3029',40,'68.82',2),
-
-(10130,'S18_3856',33,'99.52',1),
-
-(10131,'S18_1662',21,'141.92',4),
-
-(10131,'S24_2841',35,'60.97',5),
-
-(10131,'S24_3420',29,'52.60',6),
-
-(10131,'S24_3949',50,'54.59',3),
-
-(10131,'S700_2047',22,'76.94',8),
-
-(10131,'S700_2466',40,'86.76',1),
-
-(10131,'S700_4002',26,'63.67',2),
-
-(10131,'S72_1253',21,'40.22',7),
-
-(10132,'S700_3167',36,'80.00',1),
-
-(10133,'S18_2581',49,'80.26',3),
-
-(10133,'S24_1785',41,'109.42',5),
-
-(10133,'S24_4278',46,'61.58',4),
-
-(10133,'S32_1374',23,'80.91',1),
-
-(10133,'S32_4289',49,'67.41',6),
-
-(10133,'S50_1341',27,'37.09',7),
-
-(10133,'S700_1691',24,'76.73',8),
-
-(10133,'S700_2834',27,'115.09',2),
-
-(10134,'S10_1678',41,'90.92',2),
-
-(10134,'S10_2016',27,'116.56',5),
-
-(10134,'S10_4698',31,'187.85',4),
-
-(10134,'S12_2823',20,'131.04',1),
-
-(10134,'S18_2625',30,'51.48',6),
-
-(10134,'S24_1578',35,'94.67',3),
-
-(10134,'S24_2000',43,'75.41',7),
-
-(10135,'S12_1099',42,'173.17',7),
-
-(10135,'S12_3380',48,'110.39',5),
-
-(10135,'S12_3990',24,'72.62',8),
-
-(10135,'S12_4675',29,'103.64',4),
-
-(10135,'S18_1889',48,'66.99',3),
-
-(10135,'S18_3278',45,'65.94',10),
-
-(10135,'S18_3482',42,'139.64',9),
-
-(10135,'S18_3782',45,'49.74',13),
-
-(10135,'S18_4721',31,'133.92',12),
-
-(10135,'S24_2360',29,'67.18',16),
-
-(10135,'S24_2972',20,'34.36',1),
-
-(10135,'S24_3371',27,'52.05',6),
-
-(10135,'S24_3856',47,'139.03',2),
-
-(10135,'S24_4620',23,'76.80',11),
-
-(10135,'S32_2206',33,'38.62',14),
-
-(10135,'S32_4485',30,'91.85',17),
-
-(10135,'S50_4713',44,'78.92',15),
-
-(10136,'S18_1129',25,'117.48',2),
-
-(10136,'S18_1984',36,'120.91',1),
-
-(10136,'S18_3232',41,'169.34',3),
-
-(10137,'S18_1589',44,'115.73',2),
-
-(10137,'S18_2870',37,'110.88',3),
-
-(10137,'S18_3685',31,'118.68',4),
-
-(10137,'S24_1628',26,'40.25',1),
-
-(10138,'S18_1749',33,'149.60',6),
-
-(10138,'S18_2248',22,'51.46',5),
-
-(10138,'S18_2325',38,'114.42',3),
-
-(10138,'S18_4409',47,'79.15',7),
-
-(10138,'S18_4933',23,'64.86',8),
-
-(10138,'S24_1046',45,'59.53',12),
-
-(10138,'S24_1937',22,'33.19',2),
-
-(10138,'S24_2022',33,'38.53',1),
-
-(10138,'S24_2766',28,'73.60',10),
-
-(10138,'S24_2887',30,'96.30',9),
-
-(10138,'S24_3191',49,'77.05',11),
-
-(10138,'S24_3432',21,'99.58',13),
-
-(10138,'S24_3969',29,'32.82',4),
-
-(10139,'S18_1342',31,'89.38',7),
-
-(10139,'S18_1367',49,'52.83',6),
-
-(10139,'S18_2795',41,'151.88',8),
-
-(10139,'S18_2949',46,'91.18',1),
-
-(10139,'S18_2957',20,'52.47',3),
-
-(10139,'S18_3136',20,'101.58',2),
-
-(10139,'S18_3320',30,'81.35',5),
-
-(10139,'S24_4258',29,'93.49',4),
-
-(10140,'S10_1949',37,'186.44',11),
-
-(10140,'S10_4962',26,'131.49',4),
-
-(10140,'S12_1666',38,'118.90',8),
-
-(10140,'S18_1097',32,'95.67',10),
-
-(10140,'S18_2432',46,'51.05',2),
-
-(10140,'S18_4600',40,'100.50',5),
-
-(10140,'S18_4668',29,'40.25',9),
-
-(10140,'S24_2300',47,'118.84',1),
-
-(10140,'S32_1268',26,'87.64',3),
-
-(10140,'S32_3522',28,'62.05',7),
-
-(10140,'S700_2824',36,'101.15',6),
-
-(10141,'S12_4473',21,'114.95',5),
-
-(10141,'S18_2238',39,'160.46',4),
-
-(10141,'S18_2319',47,'103.09',8),
-
-(10141,'S18_3232',34,'143.94',9),
-
-(10141,'S24_1444',20,'50.86',2),
-
-(10141,'S24_2840',21,'32.18',6),
-
-(10141,'S24_4048',40,'104.09',1),
-
-(10141,'S32_2509',24,'53.03',7),
-
-(10141,'S50_1392',44,'94.92',3),
-
-(10142,'S12_1108',33,'166.24',12),
-
-(10142,'S12_3148',33,'140.50',13),
-
-(10142,'S12_3891',46,'167.83',11),
-
-(10142,'S18_3140',47,'129.76',8),
-
-(10142,'S18_3259',22,'95.80',10),
-
-(10142,'S18_4027',24,'122.08',15),
-
-(10142,'S18_4522',24,'79.87',7),
-
-(10142,'S24_2011',33,'114.29',6),
-
-(10142,'S24_3151',49,'74.35',1),
-
-(10142,'S32_3207',42,'60.90',16),
-
-(10142,'S50_1514',42,'56.24',14),
-
-(10142,'S700_1138',41,'55.34',2),
-
-(10142,'S700_1938',43,'77.08',9),
-
-(10142,'S700_3505',21,'92.16',3),
-
-(10142,'S700_3962',38,'91.37',4),
-
-(10142,'S72_3212',39,'46.96',5),
-
-(10143,'S10_4757',49,'133.28',15),
-
-(10143,'S18_1662',32,'126.15',7),
-
-(10143,'S18_3029',46,'70.54',13),
-
-(10143,'S18_3856',34,'99.52',12),
-
-(10143,'S24_2841',27,'63.71',8),
-
-(10143,'S24_3420',33,'59.83',9),
-
-(10143,'S24_3816',23,'74.64',14),
-
-(10143,'S24_3949',28,'55.96',6),
-
-(10143,'S50_1341',34,'34.91',1),
-
-(10143,'S700_1691',36,'86.77',2),
-
-(10143,'S700_2047',26,'87.80',11),
-
-(10143,'S700_2466',26,'79.78',4),
-
-(10143,'S700_2610',31,'69.39',16),
-
-(10143,'S700_3167',28,'70.40',3),
-
-(10143,'S700_4002',34,'65.15',5),
-
-(10143,'S72_1253',37,'49.66',10),
-
-(10144,'S32_4289',20,'56.41',1),
-
-(10145,'S10_1678',45,'76.56',6),
-
-(10145,'S10_2016',37,'104.67',9),
-
-(10145,'S10_4698',33,'154.93',8),
-
-(10145,'S12_2823',49,'146.10',5),
-
-(10145,'S18_2581',30,'71.81',14),
-
-(10145,'S18_2625',30,'52.70',10),
-
-(10145,'S24_1578',43,'103.68',7),
-
-(10145,'S24_1785',40,'87.54',16),
-
-(10145,'S24_2000',47,'63.98',11),
-
-(10145,'S24_2360',27,'56.10',3),
-
-(10145,'S24_4278',33,'71.73',15),
-
-(10145,'S32_1374',33,'99.89',12),
-
-(10145,'S32_2206',31,'39.43',1),
-
-(10145,'S32_4485',27,'95.93',4),
-
-(10145,'S50_4713',38,'73.22',2),
-
-(10145,'S700_2834',20,'113.90',13),
-
-(10146,'S18_3782',47,'60.30',2),
-
-(10146,'S18_4721',29,'130.94',1),
-
-(10147,'S12_1099',48,'161.49',7),
-
-(10147,'S12_3380',31,'110.39',5),
-
-(10147,'S12_3990',21,'74.21',8),
-
-(10147,'S12_4675',33,'97.89',4),
-
-(10147,'S18_1889',26,'70.84',3),
-
-(10147,'S18_3278',36,'74.78',10),
-
-(10147,'S18_3482',37,'129.35',9),
-
-(10147,'S24_2972',25,'33.23',1),
-
-(10147,'S24_3371',30,'48.98',6),
-
-(10147,'S24_3856',23,'123.58',2),
-
-(10147,'S24_4620',31,'72.76',11),
-
-(10148,'S18_1129',23,'114.65',13),
-
-(10148,'S18_1589',47,'108.26',9),
-
-(10148,'S18_1984',25,'136.56',12),
-
-(10148,'S18_2870',27,'113.52',10),
-
-(10148,'S18_3232',32,'143.94',14),
-
-(10148,'S18_3685',28,'135.63',11),
-
-(10148,'S18_4409',34,'83.75',1),
-
-(10148,'S18_4933',29,'66.28',2),
-
-(10148,'S24_1046',25,'65.41',6),
-
-(10148,'S24_1628',47,'46.29',8),
-
-(10148,'S24_2766',21,'77.24',4),
-
-(10148,'S24_2887',34,'115.09',3),
-
-(10148,'S24_3191',31,'71.91',5),
-
-(10148,'S24_3432',27,'96.37',7),
-
-(10149,'S18_1342',50,'87.33',4),
-
-(10149,'S18_1367',30,'48.52',3),
-
-(10149,'S18_1749',34,'156.40',11),
-
-(10149,'S18_2248',24,'50.85',10),
-
-(10149,'S18_2325',33,'125.86',8),
-
-(10149,'S18_2795',23,'167.06',5),
-
-(10149,'S18_3320',42,'89.29',2),
-
-(10149,'S24_1937',36,'31.20',7),
-
-(10149,'S24_2022',49,'39.87',6),
-
-(10149,'S24_3969',26,'38.57',9),
-
-(10149,'S24_4258',20,'90.57',1),
-
-(10150,'S10_1949',45,'182.16',8),
-
-(10150,'S10_4962',20,'121.15',1),
-
-(10150,'S12_1666',30,'135.30',5),
-
-(10150,'S18_1097',34,'95.67',7),
-
-(10150,'S18_2949',47,'93.21',9),
-
-(10150,'S18_2957',30,'56.21',11),
-
-(10150,'S18_3136',26,'97.39',10),
-
-(10150,'S18_4600',49,'111.39',2),
-
-(10150,'S18_4668',30,'47.29',6),
-
-(10150,'S32_3522',49,'62.05',4),
-
-(10150,'S700_2824',20,'95.08',3),
-
-(10151,'S12_4473',24,'114.95',3),
-
-(10151,'S18_2238',43,'152.27',2),
-
-(10151,'S18_2319',49,'106.78',6),
-
-(10151,'S18_2432',39,'58.34',9),
-
-(10151,'S18_3232',21,'167.65',7),
-
-(10151,'S24_2300',42,'109.90',8),
-
-(10151,'S24_2840',30,'29.35',4),
-
-(10151,'S32_1268',27,'84.75',10),
-
-(10151,'S32_2509',41,'43.29',5),
-
-(10151,'S50_1392',26,'108.81',1),
-
-(10152,'S18_4027',35,'117.77',1),
-
-(10152,'S24_1444',25,'49.13',4),
-
-(10152,'S24_4048',23,'112.37',3),
-
-(10152,'S32_3207',33,'57.17',2),
-
-(10153,'S12_1108',20,'201.57',11),
-
-(10153,'S12_3148',42,'128.42',12),
-
-(10153,'S12_3891',49,'155.72',10),
-
-(10153,'S18_3140',31,'125.66',7),
-
-(10153,'S18_3259',29,'82.69',9),
-
-(10153,'S18_4522',22,'82.50',6),
-
-(10153,'S24_2011',40,'111.83',5),
-
-(10153,'S50_1514',31,'53.31',13),
-
-(10153,'S700_1138',43,'58.00',1),
-
-(10153,'S700_1938',31,'80.55',8),
-
-(10153,'S700_3505',50,'87.15',2),
-
-(10153,'S700_3962',20,'85.41',3),
-
-(10153,'S72_3212',50,'51.87',4),
-
-(10154,'S24_3151',31,'75.23',2),
-
-(10154,'S700_2610',36,'59.27',1),
-
-(10155,'S10_4757',32,'129.20',13),
-
-(10155,'S18_1662',38,'138.77',5),
-
-(10155,'S18_3029',44,'83.44',11),
-
-(10155,'S18_3856',29,'105.87',10),
-
-(10155,'S24_2841',23,'62.34',6),
-
-(10155,'S24_3420',34,'56.55',7),
-
-(10155,'S24_3816',37,'76.31',12),
-
-(10155,'S24_3949',44,'58.69',4),
-
-(10155,'S700_2047',32,'89.61',9),
-
-(10155,'S700_2466',20,'87.75',2),
-
-(10155,'S700_3167',43,'76.80',1),
-
-(10155,'S700_4002',44,'70.33',3),
-
-(10155,'S72_1253',34,'49.16',8),
-
-(10156,'S50_1341',20,'43.64',1),
-
-(10156,'S700_1691',48,'77.64',2),
-
-(10157,'S18_2581',33,'69.27',3),
-
-(10157,'S24_1785',40,'89.72',5),
-
-(10157,'S24_4278',33,'66.65',4),
-
-(10157,'S32_1374',34,'83.91',1),
-
-(10157,'S32_4289',28,'56.41',6),
-
-(10157,'S700_2834',48,'109.16',2),
-
-(10158,'S24_2000',22,'67.79',1),
-
-(10159,'S10_1678',49,'81.35',14),
-
-(10159,'S10_2016',37,'101.10',17),
-
-(10159,'S10_4698',22,'170.42',16),
-
-(10159,'S12_1099',41,'188.73',2),
-
-(10159,'S12_2823',38,'131.04',13),
-
-(10159,'S12_3990',24,'67.03',3),
-
-(10159,'S18_2625',42,'51.48',18),
-
-(10159,'S18_3278',21,'66.74',5),
-
-(10159,'S18_3482',25,'129.35',4),
-
-(10159,'S18_3782',21,'54.71',8),
-
-(10159,'S18_4721',32,'142.85',7),
-
-(10159,'S24_1578',44,'100.30',15),
-
-(10159,'S24_2360',27,'67.18',11),
-
-(10159,'S24_3371',50,'49.60',1),
-
-(10159,'S24_4620',23,'80.84',6),
-
-(10159,'S32_2206',35,'39.43',9),
-
-(10159,'S32_4485',23,'86.74',12),
-
-(10159,'S50_4713',31,'78.11',10),
-
-(10160,'S12_3380',46,'96.30',6),
-
-(10160,'S12_4675',50,'93.28',5),
-
-(10160,'S18_1889',38,'70.84',4),
-
-(10160,'S18_3232',20,'140.55',1),
-
-(10160,'S24_2972',42,'30.59',2),
-
-(10160,'S24_3856',35,'130.60',3),
-
-(10161,'S18_1129',28,'121.72',12),
-
-(10161,'S18_1589',43,'102.04',8),
-
-(10161,'S18_1984',48,'139.41',11),
-
-(10161,'S18_2870',23,'125.40',9),
-
-(10161,'S18_3685',36,'132.80',10),
-
-(10161,'S18_4933',25,'62.72',1),
-
-(10161,'S24_1046',37,'73.49',5),
-
-(10161,'S24_1628',23,'47.29',7),
-
-(10161,'S24_2766',20,'82.69',3),
-
-(10161,'S24_2887',25,'108.04',2),
-
-(10161,'S24_3191',20,'72.77',4),
-
-(10161,'S24_3432',30,'94.23',6),
-
-(10162,'S18_1342',48,'87.33',2),
-
-(10162,'S18_1367',45,'45.28',1),
-
-(10162,'S18_1749',29,'141.10',9),
-
-(10162,'S18_2248',27,'53.28',8),
-
-(10162,'S18_2325',38,'113.15',6),
-
-(10162,'S18_2795',48,'156.94',3),
-
-(10162,'S18_4409',39,'86.51',10),
-
-(10162,'S24_1937',37,'27.55',5),
-
-(10162,'S24_2022',43,'38.98',4),
-
-(10162,'S24_3969',37,'32.82',7),
-
-(10163,'S10_1949',21,'212.16',1),
-
-(10163,'S18_2949',31,'101.31',2),
-
-(10163,'S18_2957',48,'59.96',4),
-
-(10163,'S18_3136',40,'101.58',3),
-
-(10163,'S18_3320',43,'80.36',6),
-
-(10163,'S24_4258',42,'96.42',5),
-
-(10164,'S10_4962',21,'143.31',2),
-
-(10164,'S12_1666',49,'121.64',6),
-
-(10164,'S18_1097',36,'103.84',8),
-
-(10164,'S18_4600',45,'107.76',3),
-
-(10164,'S18_4668',25,'46.29',7),
-
-(10164,'S32_1268',24,'91.49',1),
-
-(10164,'S32_3522',49,'57.53',5),
-
-(10164,'S700_2824',39,'86.99',4),
-
-(10165,'S12_1108',44,'168.32',3),
-
-(10165,'S12_3148',34,'123.89',4),
-
-(10165,'S12_3891',27,'152.26',2),
-
-(10165,'S12_4473',48,'109.02',12),
-
-(10165,'S18_2238',29,'134.26',11),
-
-(10165,'S18_2319',46,'120.28',15),
-
-(10165,'S18_2432',31,'60.77',18),
-
-(10165,'S18_3232',47,'154.10',16),
-
-(10165,'S18_3259',50,'84.71',1),
-
-(10165,'S18_4027',28,'123.51',6),
-
-(10165,'S24_1444',25,'46.82',9),
-
-(10165,'S24_2300',32,'117.57',17),
-
-(10165,'S24_2840',27,'31.12',13),
-
-(10165,'S24_4048',24,'106.45',8),
-
-(10165,'S32_2509',48,'50.86',14),
-
-(10165,'S32_3207',44,'55.30',7),
-
-(10165,'S50_1392',48,'106.49',10),
-
-(10165,'S50_1514',38,'49.21',5),
-
-(10166,'S18_3140',43,'136.59',2),
-
-(10166,'S18_4522',26,'72.85',1),
-
-(10166,'S700_1938',29,'76.22',3),
-
-(10167,'S10_4757',44,'123.76',9),
-
-(10167,'S18_1662',43,'141.92',1),
-
-(10167,'S18_3029',46,'69.68',7),
-
-(10167,'S18_3856',34,'84.70',6),
-
-(10167,'S24_2011',33,'110.60',16),
-
-(10167,'S24_2841',21,'54.81',2),
-
-(10167,'S24_3151',20,'77.00',11),
-
-(10167,'S24_3420',32,'64.44',3),
-
-(10167,'S24_3816',29,'73.80',8),
-
-(10167,'S700_1138',43,'66.00',12),
-
-(10167,'S700_2047',29,'87.80',5),
-
-(10167,'S700_2610',46,'62.16',10),
-
-(10167,'S700_3505',24,'85.14',13),
-
-(10167,'S700_3962',28,'83.42',14),
-
-(10167,'S72_1253',40,'42.71',4),
-
-(10167,'S72_3212',38,'43.68',15),
-
-(10168,'S10_1678',36,'94.74',1),
-
-(10168,'S10_2016',27,'97.53',4),
-
-(10168,'S10_4698',20,'160.74',3),
-
-(10168,'S18_2581',21,'75.19',9),
-
-(10168,'S18_2625',46,'49.06',5),
-
-(10168,'S24_1578',50,'103.68',2),
-
-(10168,'S24_1785',49,'93.01',11),
-
-(10168,'S24_2000',29,'72.36',6),
-
-(10168,'S24_3949',27,'57.32',18),
-
-(10168,'S24_4278',48,'68.10',10),
-
-(10168,'S32_1374',28,'89.90',7),
-
-(10168,'S32_4289',31,'57.78',12),
-
-(10168,'S50_1341',48,'39.71',13),
-
-(10168,'S700_1691',28,'91.34',14),
-
-(10168,'S700_2466',31,'87.75',16),
-
-(10168,'S700_2834',36,'94.92',8),
-
-(10168,'S700_3167',48,'72.00',15),
-
-(10168,'S700_4002',39,'67.37',17),
-
-(10169,'S12_1099',30,'163.44',2),
-
-(10169,'S12_2823',35,'126.52',13),
-
-(10169,'S12_3990',36,'71.82',3),
-
-(10169,'S18_3278',32,'65.13',5),
-
-(10169,'S18_3482',36,'136.70',4),
-
-(10169,'S18_3782',38,'52.84',8),
-
-(10169,'S18_4721',33,'120.53',7),
-
-(10169,'S24_2360',38,'66.49',11),
-
-(10169,'S24_3371',34,'53.27',1),
-
-(10169,'S24_4620',24,'77.61',6),
-
-(10169,'S32_2206',26,'37.01',9),
-
-(10169,'S32_4485',34,'83.68',12),
-
-(10169,'S50_4713',48,'75.66',10),
-
-(10170,'S12_3380',47,'116.27',4),
-
-(10170,'S12_4675',41,'93.28',3),
-
-(10170,'S18_1889',20,'70.07',2),
-
-(10170,'S24_3856',34,'130.60',1),
-
-(10171,'S18_1129',35,'134.46',2),
-
-(10171,'S18_1984',35,'128.03',1),
-
-(10171,'S18_3232',39,'165.95',3),
-
-(10171,'S24_2972',36,'34.74',4),
-
-(10172,'S18_1589',42,'109.51',6),
-
-(10172,'S18_2870',39,'117.48',7),
-
-(10172,'S18_3685',48,'139.87',8),
-
-(10172,'S24_1046',32,'61.00',3),
-
-(10172,'S24_1628',34,'43.27',5),
-
-(10172,'S24_2766',22,'79.97',1),
-
-(10172,'S24_3191',24,'77.91',2),
-
-(10172,'S24_3432',22,'87.81',4),
-
-(10173,'S18_1342',43,'101.71',6),
-
-(10173,'S18_1367',48,'51.75',5),
-
-(10173,'S18_1749',24,'168.30',13),
-
-(10173,'S18_2248',26,'55.09',12),
-
-(10173,'S18_2325',31,'127.13',10),
-
-(10173,'S18_2795',22,'140.06',7),
-
-(10173,'S18_2957',28,'56.84',2),
-
-(10173,'S18_3136',31,'86.92',1),
-
-(10173,'S18_3320',29,'90.28',4),
-
-(10173,'S18_4409',21,'77.31',14),
-
-(10173,'S18_4933',39,'58.44',15),
-
-(10173,'S24_1937',31,'29.87',9),
-
-(10173,'S24_2022',27,'39.42',8),
-
-(10173,'S24_2887',23,'98.65',16),
-
-(10173,'S24_3969',35,'35.70',11),
-
-(10173,'S24_4258',22,'93.49',3),
-
-(10174,'S10_1949',34,'207.87',4),
-
-(10174,'S12_1666',43,'113.44',1),
-
-(10174,'S18_1097',48,'108.50',3),
-
-(10174,'S18_2949',46,'100.30',5),
-
-(10174,'S18_4668',49,'44.27',2),
-
-(10175,'S10_4962',33,'119.67',9),
-
-(10175,'S12_4473',26,'109.02',1),
-
-(10175,'S18_2319',48,'101.87',4),
-
-(10175,'S18_2432',41,'59.55',7),
-
-(10175,'S18_3232',29,'150.71',5),
-
-(10175,'S18_4600',47,'102.92',10),
-
-(10175,'S24_2300',28,'121.40',6),
-
-(10175,'S24_2840',37,'32.18',2),
-
-(10175,'S32_1268',22,'89.57',8),
-
-(10175,'S32_2509',50,'50.86',3),
-
-(10175,'S32_3522',29,'56.24',12),
-
-(10175,'S700_2824',42,'80.92',11),
-
-(10176,'S12_1108',33,'166.24',2),
-
-(10176,'S12_3148',47,'145.04',3),
-
-(10176,'S12_3891',50,'160.91',1),
-
-(10176,'S18_2238',20,'139.17',10),
-
-(10176,'S18_4027',36,'140.75',5),
-
-(10176,'S24_1444',27,'55.49',8),
-
-(10176,'S24_4048',29,'101.72',7),
-
-(10176,'S32_3207',22,'62.14',6),
-
-(10176,'S50_1392',23,'109.96',9),
-
-(10176,'S50_1514',38,'52.14',4),
-
-(10177,'S18_3140',23,'113.37',9),
-
-(10177,'S18_3259',29,'92.77',11),
-
-(10177,'S18_4522',35,'82.50',8),
-
-(10177,'S24_2011',50,'115.52',7),
-
-(10177,'S24_3151',45,'79.66',2),
-
-(10177,'S700_1138',24,'58.67',3),
-
-(10177,'S700_1938',31,'77.95',10),
-
-(10177,'S700_2610',32,'64.33',1),
-
-(10177,'S700_3505',44,'88.15',4),
-
-(10177,'S700_3962',24,'83.42',5),
-
-(10177,'S72_3212',40,'52.96',6),
-
-(10178,'S10_4757',24,'131.92',12),
-
-(10178,'S18_1662',42,'127.73',4),
-
-(10178,'S18_3029',41,'70.54',10),
-
-(10178,'S18_3856',48,'104.81',9),
-
-(10178,'S24_2841',34,'67.82',5),
-
-(10178,'S24_3420',27,'65.75',6),
-
-(10178,'S24_3816',21,'68.77',11),
-
-(10178,'S24_3949',30,'64.15',3),
-
-(10178,'S700_2047',34,'86.90',8),
-
-(10178,'S700_2466',22,'91.74',1),
-
-(10178,'S700_4002',45,'68.11',2),
-
-(10178,'S72_1253',45,'41.71',7),
-
-(10179,'S18_2581',24,'82.79',3),
-
-(10179,'S24_1785',47,'105.04',5),
-
-(10179,'S24_4278',27,'66.65',4),
-
-(10179,'S32_1374',45,'86.90',1),
-
-(10179,'S32_4289',24,'63.97',6),
-
-(10179,'S50_1341',34,'43.20',7),
-
-(10179,'S700_1691',23,'75.81',8),
-
-(10179,'S700_2834',25,'98.48',2),
-
-(10179,'S700_3167',39,'80.00',9),
-
-(10180,'S10_1678',29,'76.56',9),
-
-(10180,'S10_2016',42,'99.91',12),
-
-(10180,'S10_4698',41,'164.61',11),
-
-(10180,'S12_2823',40,'131.04',8),
-
-(10180,'S18_2625',25,'48.46',13),
-
-(10180,'S18_3782',21,'59.06',3),
-
-(10180,'S18_4721',44,'147.31',2),
-
-(10180,'S24_1578',48,'98.05',10),
-
-(10180,'S24_2000',28,'61.70',14),
-
-(10180,'S24_2360',35,'60.95',6),
-
-(10180,'S24_4620',28,'68.71',1),
-
-(10180,'S32_2206',34,'33.39',4),
-
-(10180,'S32_4485',22,'102.05',7),
-
-(10180,'S50_4713',21,'74.85',5),
-
-(10181,'S12_1099',27,'155.66',14),
-
-(10181,'S12_3380',28,'113.92',12),
-
-(10181,'S12_3990',20,'67.03',15),
-
-(10181,'S12_4675',36,'107.10',11),
-
-(10181,'S18_1129',44,'124.56',6),
-
-(10181,'S18_1589',42,'124.44',2),
-
-(10181,'S18_1889',22,'74.69',10),
-
-(10181,'S18_1984',21,'129.45',5),
-
-(10181,'S18_2870',27,'130.68',3),
-
-(10181,'S18_3232',45,'147.33',7),
-
-(10181,'S18_3278',30,'73.17',17),
-
-(10181,'S18_3482',22,'120.53',16),
-
-(10181,'S18_3685',39,'137.04',4),
-
-(10181,'S24_1628',34,'45.28',1),
-
-(10181,'S24_2972',37,'32.85',8),
-
-(10181,'S24_3371',23,'54.49',13),
-
-(10181,'S24_3856',25,'122.17',9),
-
-(10182,'S18_1342',25,'83.22',3),
-
-(10182,'S18_1367',32,'44.21',2),
-
-(10182,'S18_1749',44,'159.80',10),
-
-(10182,'S18_2248',38,'54.49',9),
-
-(10182,'S18_2325',20,'105.52',7),
-
-(10182,'S18_2795',21,'135.00',4),
-
-(10182,'S18_3320',33,'86.31',1),
-
-(10182,'S18_4409',36,'88.35',11),
-
-(10182,'S18_4933',44,'61.29',12),
-
-(10182,'S24_1046',47,'63.20',16),
-
-(10182,'S24_1937',39,'31.86',6),
-
-(10182,'S24_2022',31,'39.87',5),
-
-(10182,'S24_2766',36,'87.24',14),
-
-(10182,'S24_2887',20,'116.27',13),
-
-(10182,'S24_3191',33,'73.62',15),
-
-(10182,'S24_3432',49,'95.30',17),
-
-(10182,'S24_3969',23,'34.88',8),
-
-(10183,'S10_1949',23,'180.01',8),
-
-(10183,'S10_4962',28,'127.06',1),
-
-(10183,'S12_1666',41,'114.80',5),
-
-(10183,'S18_1097',21,'108.50',7),
-
-(10183,'S18_2949',37,'91.18',9),
-
-(10183,'S18_2957',39,'51.22',11),
-
-(10183,'S18_3136',22,'90.06',10),
-
-(10183,'S18_4600',21,'118.66',2),
-
-(10183,'S18_4668',40,'42.26',6),
-
-(10183,'S24_4258',47,'81.81',12),
-
-(10183,'S32_3522',49,'52.36',4),
-
-(10183,'S700_2824',23,'85.98',3),
-
-(10184,'S12_4473',37,'105.47',6),
-
-(10184,'S18_2238',46,'145.72',5),
-
-(10184,'S18_2319',46,'119.05',9),
-
-(10184,'S18_2432',44,'60.77',12),
-
-(10184,'S18_3232',28,'165.95',10),
-
-(10184,'S24_1444',31,'57.22',3),
-
-(10184,'S24_2300',24,'117.57',11),
-
-(10184,'S24_2840',42,'30.06',7),
-
-(10184,'S24_4048',49,'114.73',2),
-
-(10184,'S32_1268',46,'84.75',13),
-
-(10184,'S32_2509',33,'52.49',8),
-
-(10184,'S32_3207',48,'59.03',1),
-
-(10184,'S50_1392',45,'92.60',4),
-
-(10185,'S12_1108',21,'195.33',13),
-
-(10185,'S12_3148',33,'146.55',14),
-
-(10185,'S12_3891',43,'147.07',12),
-
-(10185,'S18_3140',28,'124.30',9),
-
-(10185,'S18_3259',49,'94.79',11),
-
-(10185,'S18_4027',39,'127.82',16),
-
-(10185,'S18_4522',47,'87.77',8),
-
-(10185,'S24_2011',30,'105.69',7),
-
-(10185,'S24_3151',33,'83.20',2),
-
-(10185,'S50_1514',20,'46.86',15),
-
-(10185,'S700_1138',21,'64.67',3),
-
-(10185,'S700_1938',30,'79.68',10),
-
-(10185,'S700_2610',39,'61.44',1),
-
-(10185,'S700_3505',37,'99.17',4),
-
-(10185,'S700_3962',22,'93.35',5),
-
-(10185,'S72_3212',28,'47.50',6),
-
-(10186,'S10_4757',26,'108.80',9),
-
-(10186,'S18_1662',32,'137.19',1),
-
-(10186,'S18_3029',32,'73.12',7),
-
-(10186,'S18_3856',46,'98.46',6),
-
-(10186,'S24_2841',22,'60.29',2),
-
-(10186,'S24_3420',21,'59.83',3),
-
-(10186,'S24_3816',36,'68.77',8),
-
-(10186,'S700_2047',24,'80.56',5),
-
-(10186,'S72_1253',28,'42.71',4),
-
-(10187,'S18_2581',45,'70.12',1),
-
-(10187,'S24_1785',46,'96.29',3),
-
-(10187,'S24_3949',43,'55.96',10),
-
-(10187,'S24_4278',33,'64.48',2),
-
-(10187,'S32_4289',31,'61.22',4),
-
-(10187,'S50_1341',41,'39.71',5),
-
-(10187,'S700_1691',34,'84.95',6),
-
-(10187,'S700_2466',44,'95.73',8),
-
-(10187,'S700_3167',34,'72.00',7),
-
-(10187,'S700_4002',44,'70.33',9),
-
-(10188,'S10_1678',48,'95.70',1),
-
-(10188,'S10_2016',38,'111.80',4),
-
-(10188,'S10_4698',45,'182.04',3),
-
-(10188,'S18_2625',32,'52.09',5),
-
-(10188,'S24_1578',25,'95.80',2),
-
-(10188,'S24_2000',40,'61.70',6),
-
-(10188,'S32_1374',44,'81.91',7),
-
-(10188,'S700_2834',29,'96.11',8),
-
-(10189,'S12_2823',28,'138.57',1),
-
-(10190,'S24_2360',42,'58.87',3),
-
-(10190,'S32_2206',46,'38.62',1),
-
-(10190,'S32_4485',42,'89.80',4),
-
-(10190,'S50_4713',40,'67.53',2),
-
-(10191,'S12_1099',21,'155.66',3),
-
-(10191,'S12_3380',40,'104.52',1),
-
-(10191,'S12_3990',30,'70.22',4),
-
-(10191,'S18_3278',36,'75.59',6),
-
-(10191,'S18_3482',23,'119.06',5),
-
-(10191,'S18_3782',43,'60.93',9),
-
-(10191,'S18_4721',32,'136.90',8),
-
-(10191,'S24_3371',48,'53.27',2),
-
-(10191,'S24_4620',44,'77.61',7),
-
-(10192,'S12_4675',27,'99.04',16),
-
-(10192,'S18_1129',22,'140.12',11),
-
-(10192,'S18_1589',29,'100.80',7),
-
-(10192,'S18_1889',45,'70.84',15),
-
-(10192,'S18_1984',47,'128.03',10),
-
-(10192,'S18_2870',38,'110.88',8),
-
-(10192,'S18_3232',26,'137.17',12),
-
-(10192,'S18_3685',45,'125.74',9),
-
-(10192,'S24_1046',37,'72.02',4),
-
-(10192,'S24_1628',47,'49.30',6),
-
-(10192,'S24_2766',46,'86.33',2),
-
-(10192,'S24_2887',23,'112.74',1),
-
-(10192,'S24_2972',30,'33.23',13),
-
-(10192,'S24_3191',32,'69.34',3),
-
-(10192,'S24_3432',46,'93.16',5),
-
-(10192,'S24_3856',45,'112.34',14),
-
-(10193,'S18_1342',28,'92.47',7),
-
-(10193,'S18_1367',46,'46.36',6),
-
-(10193,'S18_1749',21,'153.00',14),
-
-(10193,'S18_2248',42,'60.54',13),
-
-(10193,'S18_2325',44,'115.69',11),
-
-(10193,'S18_2795',22,'143.44',8),
-
-(10193,'S18_2949',28,'87.13',1),
-
-(10193,'S18_2957',24,'53.09',3),
-
-(10193,'S18_3136',23,'97.39',2),
-
-(10193,'S18_3320',32,'79.37',5),
-
-(10193,'S18_4409',24,'92.03',15),
-
-(10193,'S18_4933',25,'66.28',16),
-
-(10193,'S24_1937',26,'32.19',10),
-
-(10193,'S24_2022',20,'44.80',9),
-
-(10193,'S24_3969',22,'38.16',12),
-
-(10193,'S24_4258',20,'92.52',4),
-
-(10194,'S10_1949',42,'203.59',11),
-
-(10194,'S10_4962',26,'134.44',4),
-
-(10194,'S12_1666',38,'124.37',8),
-
-(10194,'S18_1097',21,'103.84',10),
-
-(10194,'S18_2432',45,'51.05',2),
-
-(10194,'S18_4600',32,'113.82',5),
-
-(10194,'S18_4668',41,'47.79',9),
-
-(10194,'S24_2300',49,'112.46',1),
-
-(10194,'S32_1268',37,'77.05',3),
-
-(10194,'S32_3522',39,'61.41',7),
-
-(10194,'S700_2824',26,'80.92',6),
-
-(10195,'S12_4473',49,'118.50',6),
-
-(10195,'S18_2238',27,'139.17',5),
-
-(10195,'S18_2319',35,'112.91',9),
-
-(10195,'S18_3232',50,'150.71',10),
-
-(10195,'S24_1444',44,'54.33',3),
-
-(10195,'S24_2840',32,'31.82',7),
-
-(10195,'S24_4048',34,'95.81',2),
-
-(10195,'S32_2509',32,'51.95',8),
-
-(10195,'S32_3207',33,'59.03',1),
-
-(10195,'S50_1392',49,'97.23',4),
-
-(10196,'S12_1108',47,'203.64',5),
-
-(10196,'S12_3148',24,'151.08',6),
-
-(10196,'S12_3891',38,'147.07',4),
-
-(10196,'S18_3140',49,'127.03',1),
-
-(10196,'S18_3259',35,'81.68',3),
-
-(10196,'S18_4027',27,'126.39',8),
-
-(10196,'S50_1514',46,'56.82',7),
-
-(10196,'S700_1938',50,'84.88',2),
-
-(10197,'S10_4757',45,'118.32',6),
-
-(10197,'S18_3029',46,'83.44',4),
-
-(10197,'S18_3856',22,'85.75',3),
-
-(10197,'S18_4522',50,'78.99',14),
-
-(10197,'S24_2011',41,'109.37',13),
-
-(10197,'S24_3151',47,'83.20',8),
-
-(10197,'S24_3816',22,'67.93',5),
-
-(10197,'S700_1138',23,'60.00',9),
-
-(10197,'S700_2047',24,'78.75',2),
-
-(10197,'S700_2610',50,'66.50',7),
-
-(10197,'S700_3505',27,'100.17',10),
-
-(10197,'S700_3962',35,'88.39',11),
-
-(10197,'S72_1253',29,'39.73',1),
-
-(10197,'S72_3212',42,'48.59',12),
-
-(10198,'S18_1662',42,'149.81',4),
-
-(10198,'S24_2841',48,'60.97',5),
-
-(10198,'S24_3420',27,'61.81',6),
-
-(10198,'S24_3949',43,'65.51',3),
-
-(10198,'S700_2466',42,'94.73',1),
-
-(10198,'S700_4002',40,'74.03',2),
-
-(10199,'S50_1341',29,'37.97',1),
-
-(10199,'S700_1691',48,'81.29',2),
-
-(10199,'S700_3167',38,'70.40',3),
-
-(10200,'S18_2581',28,'74.34',3),
-
-(10200,'S24_1785',33,'99.57',5),
-
-(10200,'S24_4278',39,'70.28',4),
-
-(10200,'S32_1374',35,'80.91',1),
-
-(10200,'S32_4289',27,'65.35',6),
-
-(10200,'S700_2834',39,'115.09',2),
-
-(10201,'S10_1678',22,'82.30',2),
-
-(10201,'S10_2016',24,'116.56',5),
-
-(10201,'S10_4698',49,'191.72',4),
-
-(10201,'S12_2823',25,'126.52',1),
-
-(10201,'S18_2625',30,'48.46',6),
-
-(10201,'S24_1578',39,'93.54',3),
-
-(10201,'S24_2000',25,'66.27',7),
-
-(10202,'S18_3782',30,'55.33',3),
-
-(10202,'S18_4721',43,'124.99',2),
-
-(10202,'S24_2360',50,'56.10',6),
-
-(10202,'S24_4620',50,'75.18',1),
-
-(10202,'S32_2206',27,'33.39',4),
-
-(10202,'S32_4485',31,'81.64',7),
-
-(10202,'S50_4713',40,'79.73',5),
-
-(10203,'S12_1099',20,'161.49',8),
-
-(10203,'S12_3380',20,'111.57',6),
-
-(10203,'S12_3990',44,'63.84',9),
-
-(10203,'S12_4675',47,'115.16',5),
-
-(10203,'S18_1889',45,'73.15',4),
-
-(10203,'S18_3232',48,'157.49',1),
-
-(10203,'S18_3278',33,'66.74',11),
-
-(10203,'S18_3482',32,'127.88',10),
-
-(10203,'S24_2972',21,'33.23',2),
-
-(10203,'S24_3371',34,'56.94',7),
-
-(10203,'S24_3856',47,'140.43',3),
-
-(10204,'S18_1129',42,'114.65',17),
-
-(10204,'S18_1589',40,'113.24',13),
-
-(10204,'S18_1749',33,'153.00',4),
-
-(10204,'S18_1984',38,'133.72',16),
-
-(10204,'S18_2248',23,'59.33',3),
-
-(10204,'S18_2325',26,'119.50',1),
-
-(10204,'S18_2870',27,'106.92',14),
-
-(10204,'S18_3685',35,'132.80',15),
-
-(10204,'S18_4409',29,'83.75',5),
-
-(10204,'S18_4933',45,'69.84',6),
-
-(10204,'S24_1046',20,'69.82',10),
-
-(10204,'S24_1628',45,'46.79',12),
-
-(10204,'S24_2766',47,'79.06',8),
-
-(10204,'S24_2887',42,'112.74',7),
-
-(10204,'S24_3191',40,'84.75',9),
-
-(10204,'S24_3432',48,'104.94',11),
-
-(10204,'S24_3969',39,'34.88',2),
-
-(10205,'S18_1342',36,'98.63',2),
-
-(10205,'S18_1367',48,'45.82',1),
-
-(10205,'S18_2795',40,'138.38',3),
-
-(10205,'S24_1937',32,'27.88',5),
-
-(10205,'S24_2022',24,'36.74',4),
-
-(10206,'S10_1949',47,'203.59',6),
-
-(10206,'S12_1666',28,'109.34',3),
-
-(10206,'S18_1097',34,'115.50',5),
-
-(10206,'S18_2949',37,'98.27',7),
-
-(10206,'S18_2957',28,'51.84',9),
-
-(10206,'S18_3136',30,'102.63',8),
-
-(10206,'S18_3320',28,'99.21',11),
-
-(10206,'S18_4668',21,'45.78',4),
-
-(10206,'S24_4258',33,'95.44',10),
-
-(10206,'S32_3522',36,'54.94',2),
-
-(10206,'S700_2824',33,'89.01',1),
-
-(10207,'S10_4962',31,'125.58',15),
-
-(10207,'S12_4473',34,'95.99',7),
-
-(10207,'S18_2238',44,'140.81',6),
-
-(10207,'S18_2319',43,'109.23',10),
-
-(10207,'S18_2432',37,'60.77',13),
-
-(10207,'S18_3232',25,'140.55',11),
-
-(10207,'S18_4027',40,'143.62',1),
-
-(10207,'S18_4600',47,'119.87',16),
-
-(10207,'S24_1444',49,'57.80',4),
-
-(10207,'S24_2300',46,'127.79',12),
-
-(10207,'S24_2840',42,'30.76',8),
-
-(10207,'S24_4048',28,'108.82',3),
-
-(10207,'S32_1268',49,'84.75',14),
-
-(10207,'S32_2509',27,'51.95',9),
-
-(10207,'S32_3207',45,'55.30',2),
-
-(10207,'S50_1392',28,'106.49',5),
-
-(10208,'S12_1108',46,'176.63',13),
-
-(10208,'S12_3148',26,'128.42',14),
-
-(10208,'S12_3891',20,'152.26',12),
-
-(10208,'S18_3140',24,'117.47',9),
-
-(10208,'S18_3259',48,'96.81',11),
-
-(10208,'S18_4522',45,'72.85',8),
-
-(10208,'S24_2011',35,'122.89',7),
-
-(10208,'S24_3151',20,'80.54',2),
-
-(10208,'S50_1514',30,'57.99',15),
-
-(10208,'S700_1138',38,'56.67',3),
-
-(10208,'S700_1938',40,'73.62',10),
-
-(10208,'S700_2610',46,'63.61',1),
-
-(10208,'S700_3505',37,'95.16',4),
-
-(10208,'S700_3962',33,'95.34',5),
-
-(10208,'S72_3212',42,'48.05',6),
-
-(10209,'S10_4757',39,'129.20',8),
-
-(10209,'S18_3029',28,'82.58',6),
-
-(10209,'S18_3856',20,'97.40',5),
-
-(10209,'S24_2841',43,'66.45',1),
-
-(10209,'S24_3420',36,'56.55',2),
-
-(10209,'S24_3816',22,'79.67',7),
-
-(10209,'S700_2047',33,'90.52',4),
-
-(10209,'S72_1253',48,'44.20',3),
-
-(10210,'S10_2016',23,'112.99',2),
-
-(10210,'S10_4698',34,'189.79',1),
-
-(10210,'S18_1662',31,'141.92',17),
-
-(10210,'S18_2581',50,'68.43',7),
-
-(10210,'S18_2625',40,'51.48',3),
-
-(10210,'S24_1785',27,'100.67',9),
-
-(10210,'S24_2000',30,'63.22',4),
-
-(10210,'S24_3949',29,'56.64',16),
-
-(10210,'S24_4278',40,'68.10',8),
-
-(10210,'S32_1374',46,'84.91',5),
-
-(10210,'S32_4289',39,'57.10',10),
-
-(10210,'S50_1341',43,'43.20',11),
-
-(10210,'S700_1691',21,'87.69',12),
-
-(10210,'S700_2466',26,'93.74',14),
-
-(10210,'S700_2834',25,'98.48',6),
-
-(10210,'S700_3167',31,'64.00',13),
-
-(10210,'S700_4002',42,'60.70',15),
-
-(10211,'S10_1678',41,'90.92',14),
-
-(10211,'S12_1099',41,'171.22',2),
-
-(10211,'S12_2823',36,'126.52',13),
-
-(10211,'S12_3990',28,'79.80',3),
-
-(10211,'S18_3278',35,'73.17',5),
-
-(10211,'S18_3482',28,'138.17',4),
-
-(10211,'S18_3782',46,'60.30',8),
-
-(10211,'S18_4721',41,'148.80',7),
-
-(10211,'S24_1578',25,'109.32',15),
-
-(10211,'S24_2360',21,'62.33',11),
-
-(10211,'S24_3371',48,'52.66',1),
-
-(10211,'S24_4620',22,'80.84',6),
-
-(10211,'S32_2206',41,'39.83',9),
-
-(10211,'S32_4485',37,'94.91',12),
-
-(10211,'S50_4713',40,'70.78',10),
-
-(10212,'S12_3380',39,'99.82',16),
-
-(10212,'S12_4675',33,'110.55',15),
-
-(10212,'S18_1129',29,'117.48',10),
-
-(10212,'S18_1589',38,'105.77',6),
-
-(10212,'S18_1889',20,'64.68',14),
-
-(10212,'S18_1984',41,'133.72',9),
-
-(10212,'S18_2870',40,'117.48',7),
-
-(10212,'S18_3232',40,'155.79',11),
-
-(10212,'S18_3685',45,'115.85',8),
-
-(10212,'S24_1046',41,'61.73',3),
-
-(10212,'S24_1628',45,'43.27',5),
-
-(10212,'S24_2766',45,'81.78',1),
-
-(10212,'S24_2972',34,'37.38',12),
-
-(10212,'S24_3191',27,'77.91',2),
-
-(10212,'S24_3432',46,'100.66',4),
-
-(10212,'S24_3856',49,'117.96',13),
-
-(10213,'S18_4409',38,'84.67',1),
-
-(10213,'S18_4933',25,'58.44',2),
-
-(10213,'S24_2887',27,'97.48',3),
-
-(10214,'S18_1749',30,'166.60',7),
-
-(10214,'S18_2248',21,'53.28',6),
-
-(10214,'S18_2325',27,'125.86',4),
-
-(10214,'S18_2795',50,'167.06',1),
-
-(10214,'S24_1937',20,'32.19',3),
-
-(10214,'S24_2022',49,'39.87',2),
-
-(10214,'S24_3969',44,'38.57',5),
-
-(10215,'S10_1949',35,'205.73',3),
-
-(10215,'S18_1097',46,'100.34',2),
-
-(10215,'S18_1342',27,'92.47',10),
-
-(10215,'S18_1367',33,'53.91',9),
-
-(10215,'S18_2949',49,'97.26',4),
-
-(10215,'S18_2957',31,'56.21',6),
-
-(10215,'S18_3136',49,'89.01',5),
-
-(10215,'S18_3320',41,'84.33',8),
-
-(10215,'S18_4668',46,'42.76',1),
-
-(10215,'S24_4258',39,'94.47',7),
-
-(10216,'S12_1666',43,'133.94',1),
-
-(10217,'S10_4962',48,'132.97',4),
-
-(10217,'S18_2432',35,'58.34',2),
-
-(10217,'S18_4600',38,'118.66',5),
-
-(10217,'S24_2300',28,'103.51',1),
-
-(10217,'S32_1268',21,'78.97',3),
-
-(10217,'S32_3522',39,'56.24',7),
-
-(10217,'S700_2824',31,'90.02',6),
-
-(10218,'S18_2319',22,'110.46',1),
-
-(10218,'S18_3232',34,'152.41',2),
-
-(10219,'S12_4473',48,'94.80',2),
-
-(10219,'S18_2238',43,'132.62',1),
-
-(10219,'S24_2840',21,'31.12',3),
-
-(10219,'S32_2509',35,'47.62',4),
-
-(10220,'S12_1108',32,'189.10',2),
-
-(10220,'S12_3148',30,'151.08',3),
-
-(10220,'S12_3891',27,'166.10',1),
-
-(10220,'S18_4027',50,'126.39',5),
-
-(10220,'S24_1444',26,'48.55',8),
-
-(10220,'S24_4048',37,'101.72',7),
-
-(10220,'S32_3207',20,'49.71',6),
-
-(10220,'S50_1392',37,'92.60',9),
-
-(10220,'S50_1514',30,'56.82',4),
-
-(10221,'S18_3140',33,'133.86',3),
-
-(10221,'S18_3259',23,'89.75',5),
-
-(10221,'S18_4522',39,'84.26',2),
-
-(10221,'S24_2011',49,'113.06',1),
-
-(10221,'S700_1938',23,'69.29',4),
-
-(10222,'S10_4757',49,'133.28',12),
-
-(10222,'S18_1662',49,'137.19',4),
-
-(10222,'S18_3029',49,'79.14',10),
-
-(10222,'S18_3856',45,'88.93',9),
-
-(10222,'S24_2841',32,'56.86',5),
-
-(10222,'S24_3151',47,'74.35',14),
-
-(10222,'S24_3420',43,'61.15',6),
-
-(10222,'S24_3816',46,'77.99',11),
-
-(10222,'S24_3949',48,'55.27',3),
-
-(10222,'S700_1138',31,'58.67',15),
-
-(10222,'S700_2047',26,'80.56',8),
-
-(10222,'S700_2466',37,'90.75',1),
-
-(10222,'S700_2610',36,'69.39',13),
-
-(10222,'S700_3505',38,'84.14',16),
-
-(10222,'S700_3962',31,'81.43',17),
-
-(10222,'S700_4002',43,'66.63',2),
-
-(10222,'S72_1253',31,'45.19',7),
-
-(10222,'S72_3212',36,'48.59',18),
-
-(10223,'S10_1678',37,'80.39',1),
-
-(10223,'S10_2016',47,'110.61',4),
-
-(10223,'S10_4698',49,'189.79',3),
-
-(10223,'S18_2581',47,'67.58',9),
-
-(10223,'S18_2625',28,'58.75',5),
-
-(10223,'S24_1578',32,'104.81',2),
-
-(10223,'S24_1785',34,'87.54',11),
-
-(10223,'S24_2000',38,'60.94',6),
-
-(10223,'S24_4278',23,'68.10',10),
-
-(10223,'S32_1374',21,'90.90',7),
-
-(10223,'S32_4289',20,'66.73',12),
-
-(10223,'S50_1341',41,'41.02',13),
-
-(10223,'S700_1691',25,'84.03',14),
-
-(10223,'S700_2834',29,'113.90',8),
-
-(10223,'S700_3167',26,'79.20',15),
-
-(10224,'S12_2823',43,'141.58',6),
-
-(10224,'S18_3782',38,'57.20',1),
-
-(10224,'S24_2360',37,'60.26',4),
-
-(10224,'S32_2206',43,'37.01',2),
-
-(10224,'S32_4485',30,'94.91',5),
-
-(10224,'S50_4713',50,'81.36',3),
-
-(10225,'S12_1099',27,'157.60',9),
-
-(10225,'S12_3380',25,'101.00',7),
-
-(10225,'S12_3990',37,'64.64',10),
-
-(10225,'S12_4675',21,'100.19',6),
-
-(10225,'S18_1129',32,'116.06',1),
-
-(10225,'S18_1889',47,'71.61',5),
-
-(10225,'S18_3232',43,'162.57',2),
-
-(10225,'S18_3278',37,'69.96',12),
-
-(10225,'S18_3482',27,'119.06',11),
-
-(10225,'S18_4721',35,'135.41',14),
-
-(10225,'S24_2972',42,'34.74',3),
-
-(10225,'S24_3371',24,'51.43',8),
-
-(10225,'S24_3856',40,'130.60',4),
-
-(10225,'S24_4620',46,'77.61',13),
-
-(10226,'S18_1589',38,'108.26',4),
-
-(10226,'S18_1984',24,'129.45',7),
-
-(10226,'S18_2870',24,'125.40',5),
-
-(10226,'S18_3685',46,'122.91',6),
-
-(10226,'S24_1046',21,'65.41',1),
-
-(10226,'S24_1628',36,'47.79',3),
-
-(10226,'S24_3432',48,'95.30',2),
-
-(10227,'S18_1342',25,'85.27',3),
-
-(10227,'S18_1367',31,'50.14',2),
-
-(10227,'S18_1749',26,'136.00',10),
-
-(10227,'S18_2248',28,'59.93',9),
-
-(10227,'S18_2325',46,'118.23',7),
-
-(10227,'S18_2795',29,'146.81',4),
-
-(10227,'S18_3320',33,'99.21',1),
-
-(10227,'S18_4409',34,'87.43',11),
-
-(10227,'S18_4933',37,'70.56',12),
-
-(10227,'S24_1937',42,'27.22',6),
-
-(10227,'S24_2022',24,'39.42',5),
-
-(10227,'S24_2766',47,'84.51',14),
-
-(10227,'S24_2887',33,'102.17',13),
-
-(10227,'S24_3191',40,'78.76',15),
-
-(10227,'S24_3969',27,'34.88',8),
-
-(10228,'S10_1949',29,'214.30',2),
-
-(10228,'S18_1097',32,'100.34',1),
-
-(10228,'S18_2949',24,'101.31',3),
-
-(10228,'S18_2957',45,'57.46',5),
-
-(10228,'S18_3136',31,'100.53',4),
-
-(10228,'S24_4258',33,'84.73',6),
-
-(10229,'S10_4962',50,'138.88',9),
-
-(10229,'S12_1666',25,'110.70',13),
-
-(10229,'S12_4473',36,'95.99',1),
-
-(10229,'S18_2319',26,'104.32',4),
-
-(10229,'S18_2432',28,'53.48',7),
-
-(10229,'S18_3232',22,'157.49',5),
-
-(10229,'S18_4600',41,'119.87',10),
-
-(10229,'S18_4668',39,'43.77',14),
-
-(10229,'S24_2300',48,'115.01',6),
-
-(10229,'S24_2840',33,'34.65',2),
-
-(10229,'S32_1268',25,'78.97',8),
-
-(10229,'S32_2509',23,'49.78',3),
-
-(10229,'S32_3522',30,'52.36',12),
-
-(10229,'S700_2824',50,'91.04',11),
-
-(10230,'S12_3148',43,'128.42',1),
-
-(10230,'S18_2238',49,'153.91',8),
-
-(10230,'S18_4027',42,'142.18',3),
-
-(10230,'S24_1444',36,'47.40',6),
-
-(10230,'S24_4048',45,'99.36',5),
-
-(10230,'S32_3207',46,'59.03',4),
-
-(10230,'S50_1392',34,'100.70',7),
-
-(10230,'S50_1514',43,'57.41',2),
-
-(10231,'S12_1108',42,'193.25',2),
-
-(10231,'S12_3891',49,'147.07',1),
-
-(10232,'S18_3140',22,'133.86',6),
-
-(10232,'S18_3259',48,'97.81',8),
-
-(10232,'S18_4522',23,'78.12',5),
-
-(10232,'S24_2011',46,'113.06',4),
-
-(10232,'S700_1938',26,'84.88',7),
-
-(10232,'S700_3505',48,'86.15',1),
-
-(10232,'S700_3962',35,'81.43',2),
-
-(10232,'S72_3212',24,'48.59',3),
-
-(10233,'S24_3151',40,'70.81',2),
-
-(10233,'S700_1138',36,'66.00',3),
-
-(10233,'S700_2610',29,'67.94',1),
-
-(10234,'S10_4757',48,'118.32',9),
-
-(10234,'S18_1662',50,'146.65',1),
-
-(10234,'S18_3029',48,'84.30',7),
-
-(10234,'S18_3856',39,'85.75',6),
-
-(10234,'S24_2841',44,'67.14',2),
-
-(10234,'S24_3420',25,'65.09',3),
-
-(10234,'S24_3816',31,'78.83',8),
-
-(10234,'S700_2047',29,'83.28',5),
-
-(10234,'S72_1253',40,'45.69',4),
-
-(10235,'S18_2581',24,'81.95',3),
-
-(10235,'S24_1785',23,'89.72',5),
-
-(10235,'S24_3949',33,'55.27',12),
-
-(10235,'S24_4278',40,'63.03',4),
-
-(10235,'S32_1374',41,'90.90',1),
-
-(10235,'S32_4289',34,'66.73',6),
-
-(10235,'S50_1341',41,'37.09',7),
-
-(10235,'S700_1691',25,'88.60',8),
-
-(10235,'S700_2466',38,'92.74',10),
-
-(10235,'S700_2834',25,'116.28',2),
-
-(10235,'S700_3167',32,'73.60',9),
-
-(10235,'S700_4002',34,'70.33',11),
-
-(10236,'S10_2016',22,'105.86',1),
-
-(10236,'S18_2625',23,'52.70',2),
-
-(10236,'S24_2000',36,'65.51',3),
-
-(10237,'S10_1678',23,'91.87',7),
-
-(10237,'S10_4698',39,'158.80',9),
-
-(10237,'S12_2823',32,'129.53',6),
-
-(10237,'S18_3782',26,'49.74',1),
-
-(10237,'S24_1578',20,'109.32',8),
-
-(10237,'S24_2360',26,'62.33',4),
-
-(10237,'S32_2206',26,'35.00',2),
-
-(10237,'S32_4485',27,'94.91',5),
-
-(10237,'S50_4713',20,'78.92',3),
-
-(10238,'S12_1099',28,'161.49',3),
-
-(10238,'S12_3380',29,'104.52',1),
-
-(10238,'S12_3990',20,'73.42',4),
-
-(10238,'S18_3278',41,'68.35',6),
-
-(10238,'S18_3482',49,'144.05',5),
-
-(10238,'S18_4721',44,'120.53',8),
-
-(10238,'S24_3371',47,'53.88',2),
-
-(10238,'S24_4620',22,'67.91',7),
-
-(10239,'S12_4675',21,'100.19',5),
-
-(10239,'S18_1889',46,'70.07',4),
-
-(10239,'S18_3232',47,'135.47',1),
-
-(10239,'S24_2972',20,'32.47',2),
-
-(10239,'S24_3856',29,'133.41',3),
-
-(10240,'S18_1129',41,'125.97',3),
-
-(10240,'S18_1984',37,'136.56',2),
-
-(10240,'S18_3685',37,'134.22',1),
-
-(10241,'S18_1589',21,'119.46',11),
-
-(10241,'S18_1749',41,'153.00',2),
-
-(10241,'S18_2248',33,'55.70',1),
-
-(10241,'S18_2870',44,'126.72',12),
-
-(10241,'S18_4409',42,'77.31',3),
-
-(10241,'S18_4933',30,'62.72',4),
-
-(10241,'S24_1046',22,'72.02',8),
-
-(10241,'S24_1628',21,'47.29',10),
-
-(10241,'S24_2766',47,'89.05',6),
-
-(10241,'S24_2887',28,'117.44',5),
-
-(10241,'S24_3191',26,'69.34',7),
-
-(10241,'S24_3432',27,'107.08',9),
-
-(10242,'S24_3969',46,'36.52',1),
-
-(10243,'S18_2325',47,'111.87',2),
-
-(10243,'S24_1937',33,'30.87',1),
-
-(10244,'S18_1342',40,'99.66',7),
-
-(10244,'S18_1367',20,'48.52',6),
-
-(10244,'S18_2795',43,'141.75',8),
-
-(10244,'S18_2949',30,'87.13',1),
-
-(10244,'S18_2957',24,'54.96',3),
-
-(10244,'S18_3136',29,'85.87',2),
-
-(10244,'S18_3320',36,'87.30',5),
-
-(10244,'S24_2022',39,'42.11',9),
-
-(10244,'S24_4258',40,'97.39',4),
-
-(10245,'S10_1949',34,'195.01',9),
-
-(10245,'S10_4962',28,'147.74',2),
-
-(10245,'S12_1666',38,'120.27',6),
-
-(10245,'S18_1097',29,'114.34',8),
-
-(10245,'S18_4600',21,'111.39',3),
-
-(10245,'S18_4668',45,'48.80',7),
-
-(10245,'S32_1268',37,'81.86',1),
-
-(10245,'S32_3522',44,'54.94',5),
-
-(10245,'S700_2824',44,'81.93',4),
-
-(10246,'S12_4473',46,'99.54',5),
-
-(10246,'S18_2238',40,'144.08',4),
-
-(10246,'S18_2319',22,'100.64',8),
-
-(10246,'S18_2432',30,'57.73',11),
-
-(10246,'S18_3232',36,'145.63',9),
-
-(10246,'S24_1444',44,'46.24',2),
-
-(10246,'S24_2300',29,'118.84',10),
-
-(10246,'S24_2840',49,'34.65',6),
-
-(10246,'S24_4048',46,'100.54',1),
-
-(10246,'S32_2509',35,'45.45',7),
-
-(10246,'S50_1392',22,'113.44',3),
-
-(10247,'S12_1108',44,'195.33',2),
-
-(10247,'S12_3148',25,'140.50',3),
-
-(10247,'S12_3891',27,'167.83',1),
-
-(10247,'S18_4027',48,'143.62',5),
-
-(10247,'S32_3207',40,'58.41',6),
-
-(10247,'S50_1514',49,'51.55',4),
-
-(10248,'S10_4757',20,'126.48',3),
-
-(10248,'S18_3029',21,'80.86',1),
-
-(10248,'S18_3140',32,'133.86',12),
-
-(10248,'S18_3259',42,'95.80',14),
-
-(10248,'S18_4522',42,'87.77',11),
-
-(10248,'S24_2011',48,'122.89',10),
-
-(10248,'S24_3151',30,'85.85',5),
-
-(10248,'S24_3816',23,'83.02',2),
-
-(10248,'S700_1138',36,'66.00',6),
-
-(10248,'S700_1938',40,'81.41',13),
-
-(10248,'S700_2610',32,'69.39',4),
-
-(10248,'S700_3505',30,'84.14',7),
-
-(10248,'S700_3962',35,'92.36',8),
-
-(10248,'S72_3212',23,'53.51',9),
-
-(10249,'S18_3856',46,'88.93',5),
-
-(10249,'S24_2841',20,'54.81',1),
-
-(10249,'S24_3420',25,'65.75',2),
-
-(10249,'S700_2047',40,'85.99',4),
-
-(10249,'S72_1253',32,'49.16',3),
-
-(10250,'S18_1662',45,'148.23',14),
-
-(10250,'S18_2581',27,'84.48',4),
-
-(10250,'S24_1785',31,'95.20',6),
-
-(10250,'S24_2000',32,'63.22',1),
-
-(10250,'S24_3949',40,'61.42',13),
-
-(10250,'S24_4278',37,'72.45',5),
-
-(10250,'S32_1374',31,'99.89',2),
-
-(10250,'S32_4289',50,'62.60',7),
-
-(10250,'S50_1341',36,'36.66',8),
-
-(10250,'S700_1691',31,'91.34',9),
-
-(10250,'S700_2466',35,'90.75',11),
-
-(10250,'S700_2834',44,'98.48',3),
-
-(10250,'S700_3167',44,'76.00',10),
-
-(10250,'S700_4002',38,'65.89',12),
-
-(10251,'S10_1678',59,'93.79',2),
-
-(10251,'S10_2016',44,'115.37',5),
-
-(10251,'S10_4698',43,'172.36',4),
-
-(10251,'S12_2823',46,'129.53',1),
-
-(10251,'S18_2625',44,'58.15',6),
-
-(10251,'S24_1578',50,'91.29',3),
-
-(10252,'S18_3278',20,'74.78',2),
-
-(10252,'S18_3482',41,'145.52',1),
-
-(10252,'S18_3782',31,'50.36',5),
-
-(10252,'S18_4721',26,'127.97',4),
-
-(10252,'S24_2360',47,'63.03',8),
-
-(10252,'S24_4620',38,'69.52',3),
-
-(10252,'S32_2206',36,'36.21',6),
-
-(10252,'S32_4485',25,'93.89',9),
-
-(10252,'S50_4713',48,'72.41',7),
-
-(10253,'S12_1099',24,'157.60',13),
-
-(10253,'S12_3380',22,'102.17',11),
-
-(10253,'S12_3990',25,'67.03',14),
-
-(10253,'S12_4675',41,'109.40',10),
-
-(10253,'S18_1129',26,'130.22',5),
-
-(10253,'S18_1589',24,'103.29',1),
-
-(10253,'S18_1889',23,'67.76',9),
-
-(10253,'S18_1984',33,'130.87',4),
-
-(10253,'S18_2870',37,'114.84',2),
-
-(10253,'S18_3232',40,'145.63',6),
-
-(10253,'S18_3685',31,'139.87',3),
-
-(10253,'S24_2972',40,'34.74',7),
-
-(10253,'S24_3371',24,'50.82',12),
-
-(10253,'S24_3856',39,'115.15',8),
-
-(10254,'S18_1749',49,'137.70',5),
-
-(10254,'S18_2248',36,'55.09',4),
-
-(10254,'S18_2325',41,'102.98',2),
-
-(10254,'S18_4409',34,'80.99',6),
-
-(10254,'S18_4933',30,'59.87',7),
-
-(10254,'S24_1046',34,'66.88',11),
-
-(10254,'S24_1628',32,'43.27',13),
-
-(10254,'S24_1937',38,'28.88',1),
-
-(10254,'S24_2766',31,'85.42',9),
-
-(10254,'S24_2887',33,'111.57',8),
-
-(10254,'S24_3191',42,'69.34',10),
-
-(10254,'S24_3432',49,'101.73',12),
-
-(10254,'S24_3969',20,'39.80',3),
-
-(10255,'S18_2795',24,'135.00',1),
-
-(10255,'S24_2022',37,'37.63',2),
-
-(10256,'S18_1342',34,'93.49',2),
-
-(10256,'S18_1367',29,'52.83',1),
-
-(10257,'S18_2949',50,'92.19',1),
-
-(10257,'S18_2957',49,'59.34',3),
-
-(10257,'S18_3136',37,'83.78',2),
-
-(10257,'S18_3320',26,'91.27',5),
-
-(10257,'S24_4258',46,'81.81',4),
-
-(10258,'S10_1949',32,'177.87',6),
-
-(10258,'S12_1666',41,'133.94',3),
-
-(10258,'S18_1097',41,'113.17',5),
-
-(10258,'S18_4668',21,'49.81',4),
-
-(10258,'S32_3522',20,'62.70',2),
-
-(10258,'S700_2824',45,'86.99',1),
-
-(10259,'S10_4962',26,'121.15',12),
-
-(10259,'S12_4473',46,'117.32',4),
-
-(10259,'S18_2238',30,'134.26',3),
-
-(10259,'S18_2319',34,'120.28',7),
-
-(10259,'S18_2432',30,'59.55',10),
-
-(10259,'S18_3232',27,'152.41',8),
-
-(10259,'S18_4600',41,'107.76',13),
-
-(10259,'S24_1444',28,'46.82',1),
-
-(10259,'S24_2300',47,'121.40',9),
-
-(10259,'S24_2840',31,'31.47',5),
-
-(10259,'S32_1268',45,'95.35',11),
-
-(10259,'S32_2509',40,'45.99',6),
-
-(10259,'S50_1392',29,'105.33',2),
-
-(10260,'S12_1108',46,'180.79',5),
-
-(10260,'S12_3148',30,'140.50',6),
-
-(10260,'S12_3891',44,'169.56',4),
-
-(10260,'S18_3140',32,'121.57',1),
-
-(10260,'S18_3259',29,'92.77',3),
-
-(10260,'S18_4027',23,'137.88',8),
-
-(10260,'S24_4048',23,'117.10',10),
-
-(10260,'S32_3207',27,'55.30',9),
-
-(10260,'S50_1514',21,'56.24',7),
-
-(10260,'S700_1938',33,'80.55',2),
-
-(10261,'S10_4757',27,'116.96',1),
-
-(10261,'S18_4522',20,'80.75',9),
-
-(10261,'S24_2011',36,'105.69',8),
-
-(10261,'S24_3151',22,'79.66',3),
-
-(10261,'S700_1138',34,'64.00',4),
-
-(10261,'S700_2610',44,'58.55',2),
-
-(10261,'S700_3505',25,'89.15',5),
-
-(10261,'S700_3962',50,'88.39',6),
-
-(10261,'S72_3212',29,'43.68',7),
-
-(10262,'S18_1662',49,'157.69',9),
-
-(10262,'S18_3029',32,'81.72',15),
-
-(10262,'S18_3856',34,'85.75',14),
-
-(10262,'S24_1785',34,'98.48',1),
-
-(10262,'S24_2841',24,'63.71',10),
-
-(10262,'S24_3420',46,'65.75',11),
-
-(10262,'S24_3816',49,'82.18',16),
-
-(10262,'S24_3949',48,'58.69',8),
-
-(10262,'S32_4289',40,'63.97',2),
-
-(10262,'S50_1341',49,'35.78',3),
-
-(10262,'S700_1691',40,'87.69',4),
-
-(10262,'S700_2047',44,'83.28',13),
-
-(10262,'S700_2466',33,'81.77',6),
-
-(10262,'S700_3167',27,'64.80',5),
-
-(10262,'S700_4002',35,'64.41',7),
-
-(10262,'S72_1253',21,'41.71',12),
-
-(10263,'S10_1678',34,'89.00',2),
-
-(10263,'S10_2016',40,'107.05',5),
-
-(10263,'S10_4698',41,'193.66',4),
-
-(10263,'S12_2823',48,'123.51',1),
-
-(10263,'S18_2581',33,'67.58',10),
-
-(10263,'S18_2625',34,'50.27',6),
-
-(10263,'S24_1578',42,'109.32',3),
-
-(10263,'S24_2000',37,'67.03',7),
-
-(10263,'S24_4278',24,'59.41',11),
-
-(10263,'S32_1374',31,'93.90',8),
-
-(10263,'S700_2834',47,'117.46',9),
-
-(10264,'S18_3782',48,'58.44',3),
-
-(10264,'S18_4721',20,'124.99',2),
-
-(10264,'S24_2360',37,'61.64',6),
-
-(10264,'S24_4620',47,'75.18',1),
-
-(10264,'S32_2206',20,'39.02',4),
-
-(10264,'S32_4485',34,'100.01',7),
-
-(10264,'S50_4713',47,'67.53',5),
-
-(10265,'S18_3278',45,'74.78',2),
-
-(10265,'S18_3482',49,'123.47',1),
-
-(10266,'S12_1099',44,'188.73',14),
-
-(10266,'S12_3380',22,'110.39',12),
-
-(10266,'S12_3990',35,'67.83',15),
-
-(10266,'S12_4675',40,'112.86',11),
-
-(10266,'S18_1129',21,'131.63',6),
-
-(10266,'S18_1589',36,'99.55',2),
-
-(10266,'S18_1889',33,'77.00',10),
-
-(10266,'S18_1984',49,'139.41',5),
-
-(10266,'S18_2870',20,'113.52',3),
-
-(10266,'S18_3232',29,'137.17',7),
-
-(10266,'S18_3685',33,'127.15',4),
-
-(10266,'S24_1628',28,'40.25',1),
-
-(10266,'S24_2972',34,'35.12',8),
-
-(10266,'S24_3371',47,'56.33',13),
-
-(10266,'S24_3856',24,'119.37',9),
-
-(10267,'S18_4933',36,'71.27',1),
-
-(10267,'S24_1046',40,'72.02',5),
-
-(10267,'S24_2766',38,'76.33',3),
-
-(10267,'S24_2887',43,'93.95',2),
-
-(10267,'S24_3191',44,'83.90',4),
-
-(10267,'S24_3432',43,'98.51',6),
-
-(10268,'S18_1342',49,'93.49',3),
-
-(10268,'S18_1367',26,'45.82',2),
-
-(10268,'S18_1749',34,'164.90',10),
-
-(10268,'S18_2248',31,'60.54',9),
-
-(10268,'S18_2325',50,'124.59',7),
-
-(10268,'S18_2795',35,'148.50',4),
-
-(10268,'S18_3320',39,'96.23',1),
-
-(10268,'S18_4409',35,'84.67',11),
-
-(10268,'S24_1937',33,'31.86',6),
-
-(10268,'S24_2022',40,'36.29',5),
-
-(10268,'S24_3969',30,'37.75',8),
-
-(10269,'S18_2957',32,'57.46',1),
-
-(10269,'S24_4258',48,'95.44',2),
-
-(10270,'S10_1949',21,'171.44',9),
-
-(10270,'S10_4962',32,'124.10',2),
-
-(10270,'S12_1666',28,'135.30',6),
-
-(10270,'S18_1097',43,'94.50',8),
-
-(10270,'S18_2949',31,'81.05',10),
-
-(10270,'S18_3136',38,'85.87',11),
-
-(10270,'S18_4600',38,'107.76',3),
-
-(10270,'S18_4668',44,'40.25',7),
-
-(10270,'S32_1268',32,'93.42',1),
-
-(10270,'S32_3522',21,'52.36',5),
-
-(10270,'S700_2824',46,'101.15',4),
-
-(10271,'S12_4473',31,'99.54',5),
-
-(10271,'S18_2238',50,'147.36',4),
-
-(10271,'S18_2319',50,'121.50',8),
-
-(10271,'S18_2432',25,'59.55',11),
-
-(10271,'S18_3232',20,'169.34',9),
-
-(10271,'S24_1444',45,'49.71',2),
-
-(10271,'S24_2300',43,'122.68',10),
-
-(10271,'S24_2840',38,'28.64',6),
-
-(10271,'S24_4048',22,'110.00',1),
-
-(10271,'S32_2509',35,'51.95',7),
-
-(10271,'S50_1392',34,'93.76',3),
-
-(10272,'S12_1108',35,'187.02',2),
-
-(10272,'S12_3148',27,'123.89',3),
-
-(10272,'S12_3891',39,'148.80',1),
-
-(10272,'S18_4027',25,'126.39',5),
-
-(10272,'S32_3207',45,'56.55',6),
-
-(10272,'S50_1514',43,'53.89',4),
-
-(10273,'S10_4757',30,'136.00',4),
-
-(10273,'S18_3029',34,'84.30',2),
-
-(10273,'S18_3140',40,'117.47',13),
-
-(10273,'S18_3259',47,'87.73',15),
-
-(10273,'S18_3856',50,'105.87',1),
-
-(10273,'S18_4522',33,'72.85',12),
-
-(10273,'S24_2011',22,'103.23',11),
-
-(10273,'S24_3151',27,'84.08',6),
-
-(10273,'S24_3816',48,'83.86',3),
-
-(10273,'S700_1138',21,'66.00',7),
-
-(10273,'S700_1938',21,'77.95',14),
-
-(10273,'S700_2610',42,'57.82',5),
-
-(10273,'S700_3505',40,'91.15',8),
-
-(10273,'S700_3962',26,'89.38',9),
-
-(10273,'S72_3212',37,'51.32',10),
-
-(10274,'S18_1662',41,'129.31',1),
-
-(10274,'S24_2841',40,'56.86',2),
-
-(10274,'S24_3420',24,'65.09',3),
-
-(10274,'S700_2047',24,'75.13',5),
-
-(10274,'S72_1253',32,'49.66',4),
-
-(10275,'S10_1678',45,'81.35',1),
-
-(10275,'S10_2016',22,'115.37',4),
-
-(10275,'S10_4698',36,'154.93',3),
-
-(10275,'S18_2581',35,'70.12',9),
-
-(10275,'S18_2625',37,'52.09',5),
-
-(10275,'S24_1578',21,'105.94',2),
-
-(10275,'S24_1785',25,'97.38',11),
-
-(10275,'S24_2000',30,'61.70',6),
-
-(10275,'S24_3949',41,'58.00',18),
-
-(10275,'S24_4278',27,'67.38',10),
-
-(10275,'S32_1374',23,'89.90',7),
-
-(10275,'S32_4289',28,'58.47',12),
-
-(10275,'S50_1341',38,'40.15',13),
-
-(10275,'S700_1691',32,'85.86',14),
-
-(10275,'S700_2466',39,'82.77',16),
-
-(10275,'S700_2834',48,'102.04',8),
-
-(10275,'S700_3167',43,'72.00',15),
-
-(10275,'S700_4002',31,'59.96',17),
-
-(10276,'S12_1099',50,'184.84',3),
-
-(10276,'S12_2823',43,'150.62',14),
-
-(10276,'S12_3380',47,'104.52',1),
-
-(10276,'S12_3990',38,'67.83',4),
-
-(10276,'S18_3278',38,'78.00',6),
-
-(10276,'S18_3482',30,'139.64',5),
-
-(10276,'S18_3782',33,'54.71',9),
-
-(10276,'S18_4721',48,'120.53',8),
-
-(10276,'S24_2360',46,'61.64',12),
-
-(10276,'S24_3371',20,'58.17',2),
-
-(10276,'S24_4620',48,'67.10',7),
-
-(10276,'S32_2206',27,'35.40',10),
-
-(10276,'S32_4485',38,'94.91',13),
-
-(10276,'S50_4713',21,'67.53',11),
-
-(10277,'S12_4675',28,'93.28',1),
-
-(10278,'S18_1129',34,'114.65',6),
-
-(10278,'S18_1589',23,'107.02',2),
-
-(10278,'S18_1889',29,'73.15',10),
-
-(10278,'S18_1984',29,'118.07',5),
-
-(10278,'S18_2870',39,'117.48',3),
-
-(10278,'S18_3232',42,'167.65',7),
-
-(10278,'S18_3685',31,'114.44',4),
-
-(10278,'S24_1628',35,'48.80',1),
-
-(10278,'S24_2972',31,'37.38',8),
-
-(10278,'S24_3856',25,'136.22',9),
-
-(10279,'S18_4933',26,'68.42',1),
-
-(10279,'S24_1046',32,'68.35',5),
-
-(10279,'S24_2766',49,'76.33',3),
-
-(10279,'S24_2887',48,'106.87',2),
-
-(10279,'S24_3191',33,'78.76',4),
-
-(10279,'S24_3432',48,'95.30',6),
-
-(10280,'S10_1949',34,'205.73',2),
-
-(10280,'S18_1097',24,'98.00',1),
-
-(10280,'S18_1342',50,'87.33',9),
-
-(10280,'S18_1367',27,'47.44',8),
-
-(10280,'S18_1749',26,'161.50',16),
-
-(10280,'S18_2248',25,'53.28',15),
-
-(10280,'S18_2325',37,'109.33',13),
-
-(10280,'S18_2795',22,'158.63',10),
-
-(10280,'S18_2949',46,'82.06',3),
-
-(10280,'S18_2957',43,'54.34',5),
-
-(10280,'S18_3136',29,'102.63',4),
-
-(10280,'S18_3320',34,'99.21',7),
-
-(10280,'S18_4409',35,'77.31',17),
-
-(10280,'S24_1937',20,'29.87',12),
-
-(10280,'S24_2022',45,'36.29',11),
-
-(10280,'S24_3969',33,'35.29',14),
-
-(10280,'S24_4258',21,'79.86',6),
-
-(10281,'S10_4962',44,'132.97',9),
-
-(10281,'S12_1666',25,'127.10',13),
-
-(10281,'S12_4473',41,'98.36',1),
-
-(10281,'S18_2319',48,'114.14',4),
-
-(10281,'S18_2432',29,'56.52',7),
-
-(10281,'S18_3232',25,'135.47',5),
-
-(10281,'S18_4600',25,'96.86',10),
-
-(10281,'S18_4668',44,'42.76',14),
-
-(10281,'S24_2300',25,'112.46',6),
-
-(10281,'S24_2840',20,'33.95',2),
-
-(10281,'S32_1268',29,'80.90',8),
-
-(10281,'S32_2509',31,'44.91',3),
-
-(10281,'S32_3522',36,'59.47',12),
-
-(10281,'S700_2824',27,'89.01',11),
-
-(10282,'S12_1108',41,'176.63',5),
-
-(10282,'S12_3148',27,'142.02',6),
-
-(10282,'S12_3891',24,'169.56',4),
-
-(10282,'S18_2238',23,'147.36',13),
-
-(10282,'S18_3140',43,'122.93',1),
-
-(10282,'S18_3259',36,'88.74',3),
-
-(10282,'S18_4027',31,'132.13',8),
-
-(10282,'S24_1444',29,'49.71',11),
-
-(10282,'S24_4048',39,'96.99',10),
-
-(10282,'S32_3207',36,'51.58',9),
-
-(10282,'S50_1392',38,'114.59',12),
-
-(10282,'S50_1514',37,'56.24',7),
-
-(10282,'S700_1938',43,'77.95',2),
-
-(10283,'S10_4757',25,'130.56',6),
-
-(10283,'S18_3029',21,'78.28',4),
-
-(10283,'S18_3856',46,'100.58',3),
-
-(10283,'S18_4522',34,'71.97',14),
-
-(10283,'S24_2011',42,'99.54',13),
-
-(10283,'S24_3151',34,'80.54',8),
-
-(10283,'S24_3816',33,'77.15',5),
-
-(10283,'S700_1138',45,'62.00',9),
-
-(10283,'S700_2047',20,'74.23',2),
-
-(10283,'S700_2610',47,'68.67',7),
-
-(10283,'S700_3505',22,'88.15',10),
-
-(10283,'S700_3962',38,'85.41',11),
-
-(10283,'S72_1253',43,'41.22',1),
-
-(10283,'S72_3212',33,'49.14',12),
-
-(10284,'S18_1662',45,'137.19',11),
-
-(10284,'S18_2581',31,'68.43',1),
-
-(10284,'S24_1785',22,'101.76',3),
-
-(10284,'S24_2841',30,'65.08',12),
-
-(10284,'S24_3420',39,'59.83',13),
-
-(10284,'S24_3949',21,'65.51',10),
-
-(10284,'S24_4278',21,'66.65',2),
-
-(10284,'S32_4289',50,'60.54',4),
-
-(10284,'S50_1341',33,'35.78',5),
-
-(10284,'S700_1691',24,'87.69',6),
-
-(10284,'S700_2466',45,'95.73',8),
-
-(10284,'S700_3167',25,'68.00',7),
-
-(10284,'S700_4002',32,'73.29',9),
-
-(10285,'S10_1678',36,'95.70',6),
-
-(10285,'S10_2016',47,'110.61',9),
-
-(10285,'S10_4698',27,'166.55',8),
-
-(10285,'S12_2823',49,'131.04',5),
-
-(10285,'S18_2625',20,'50.88',10),
-
-(10285,'S24_1578',34,'91.29',7),
-
-(10285,'S24_2000',39,'61.70',11),
-
-(10285,'S24_2360',38,'64.41',3),
-
-(10285,'S32_1374',37,'82.91',12),
-
-(10285,'S32_2206',37,'36.61',1),
-
-(10285,'S32_4485',26,'100.01',4),
-
-(10285,'S50_4713',39,'76.48',2),
-
-(10285,'S700_2834',45,'102.04',13),
-
-(10286,'S18_3782',38,'51.60',1),
-
-(10287,'S12_1099',21,'190.68',12),
-
-(10287,'S12_3380',45,'117.44',10),
-
-(10287,'S12_3990',41,'74.21',13),
-
-(10287,'S12_4675',23,'107.10',9),
-
-(10287,'S18_1129',41,'113.23',4),
-
-(10287,'S18_1889',44,'61.60',8),
-
-(10287,'S18_1984',24,'123.76',3),
-
-(10287,'S18_2870',44,'114.84',1),
-
-(10287,'S18_3232',36,'137.17',5),
-
-(10287,'S18_3278',43,'68.35',15),
-
-(10287,'S18_3482',40,'127.88',14),
-
-(10287,'S18_3685',27,'139.87',2),
-
-(10287,'S18_4721',34,'119.04',17),
-
-(10287,'S24_2972',36,'31.34',6),
-
-(10287,'S24_3371',20,'58.17',11),
-
-(10287,'S24_3856',36,'137.62',7),
-
-(10287,'S24_4620',40,'79.22',16),
-
-(10288,'S18_1589',20,'120.71',14),
-
-(10288,'S18_1749',32,'168.30',5),
-
-(10288,'S18_2248',28,'50.25',4),
-
-(10288,'S18_2325',31,'102.98',2),
-
-(10288,'S18_4409',35,'90.19',6),
-
-(10288,'S18_4933',23,'57.02',7),
-
-(10288,'S24_1046',36,'66.88',11),
-
-(10288,'S24_1628',50,'49.30',13),
-
-(10288,'S24_1937',29,'32.19',1),
-
-(10288,'S24_2766',35,'81.78',9),
-
-(10288,'S24_2887',48,'109.22',8),
-
-(10288,'S24_3191',34,'76.19',10),
-
-(10288,'S24_3432',41,'101.73',12),
-
-(10288,'S24_3969',33,'37.75',3),
-
-(10289,'S18_1342',38,'92.47',2),
-
-(10289,'S18_1367',24,'44.75',1),
-
-(10289,'S18_2795',43,'141.75',3),
-
-(10289,'S24_2022',45,'41.22',4),
-
-(10290,'S18_3320',26,'80.36',2),
-
-(10290,'S24_4258',45,'83.76',1),
-
-(10291,'S10_1949',37,'210.01',11),
-
-(10291,'S10_4962',30,'141.83',4),
-
-(10291,'S12_1666',41,'123.00',8),
-
-(10291,'S18_1097',41,'96.84',10),
-
-(10291,'S18_2432',26,'52.26',2),
-
-(10291,'S18_2949',47,'99.28',12),
-
-(10291,'S18_2957',37,'56.21',14),
-
-(10291,'S18_3136',23,'93.20',13),
-
-(10291,'S18_4600',48,'96.86',5),
-
-(10291,'S18_4668',29,'45.28',9),
-
-(10291,'S24_2300',48,'109.90',1),
-
-(10291,'S32_1268',26,'82.83',3),
-
-(10291,'S32_3522',32,'53.00',7),
-
-(10291,'S700_2824',28,'86.99',6),
-
-(10292,'S12_4473',21,'94.80',8),
-
-(10292,'S18_2238',26,'140.81',7),
-
-(10292,'S18_2319',41,'103.09',11),
-
-(10292,'S18_3232',21,'147.33',12),
-
-(10292,'S18_4027',44,'114.90',2),
-
-(10292,'S24_1444',40,'48.55',5),
-
-(10292,'S24_2840',39,'34.30',9),
-
-(10292,'S24_4048',27,'113.55',4),
-
-(10292,'S32_2509',50,'54.11',10),
-
-(10292,'S32_3207',31,'59.65',3),
-
-(10292,'S50_1392',41,'113.44',6),
-
-(10292,'S50_1514',35,'49.79',1),
-
-(10293,'S12_1108',46,'187.02',8),
-
-(10293,'S12_3148',24,'129.93',9),
-
-(10293,'S12_3891',45,'171.29',7),
-
-(10293,'S18_3140',24,'110.64',4),
-
-(10293,'S18_3259',22,'91.76',6),
-
-(10293,'S18_4522',49,'72.85',3),
-
-(10293,'S24_2011',21,'111.83',2),
-
-(10293,'S700_1938',29,'77.95',5),
-
-(10293,'S72_3212',32,'51.32',1),
-
-(10294,'S700_3962',45,'98.32',1),
-
-(10295,'S10_4757',24,'136.00',1),
-
-(10295,'S24_3151',46,'84.08',3),
-
-(10295,'S700_1138',26,'62.00',4),
-
-(10295,'S700_2610',44,'71.56',2),
-
-(10295,'S700_3505',34,'93.16',5),
-
-(10296,'S18_1662',36,'146.65',7),
-
-(10296,'S18_3029',21,'69.68',13),
-
-(10296,'S18_3856',22,'105.87',12),
-
-(10296,'S24_2841',21,'60.97',8),
-
-(10296,'S24_3420',31,'63.78',9),
-
-(10296,'S24_3816',22,'83.02',14),
-
-(10296,'S24_3949',32,'63.46',6),
-
-(10296,'S50_1341',26,'41.02',1),
-
-(10296,'S700_1691',42,'75.81',2),
-
-(10296,'S700_2047',34,'89.61',11),
-
-(10296,'S700_2466',24,'96.73',4),
-
-(10296,'S700_3167',22,'74.40',3),
-
-(10296,'S700_4002',47,'61.44',5),
-
-(10296,'S72_1253',21,'46.68',10),
-
-(10297,'S18_2581',25,'81.95',4),
-
-(10297,'S24_1785',32,'107.23',6),
-
-(10297,'S24_2000',32,'70.08',1),
-
-(10297,'S24_4278',23,'71.73',5),
-
-(10297,'S32_1374',26,'88.90',2),
-
-(10297,'S32_4289',28,'63.29',7),
-
-(10297,'S700_2834',35,'111.53',3),
-
-(10298,'S10_2016',39,'105.86',1),
-
-(10298,'S18_2625',32,'60.57',2),
-
-(10299,'S10_1678',23,'76.56',9),
-
-(10299,'S10_4698',29,'164.61',11),
-
-(10299,'S12_2823',24,'123.51',8),
-
-(10299,'S18_3782',39,'62.17',3),
-
-(10299,'S18_4721',49,'119.04',2),
-
-(10299,'S24_1578',47,'107.07',10),
-
-(10299,'S24_2360',33,'58.87',6),
-
-(10299,'S24_4620',32,'66.29',1),
-
-(10299,'S32_2206',24,'36.21',4),
-
-(10299,'S32_4485',38,'84.70',7),
-
-(10299,'S50_4713',44,'77.29',5),
-
-(10300,'S12_1099',33,'184.84',5),
-
-(10300,'S12_3380',29,'116.27',3),
-
-(10300,'S12_3990',22,'76.61',6),
-
-(10300,'S12_4675',23,'95.58',2),
-
-(10300,'S18_1889',41,'63.14',1),
-
-(10300,'S18_3278',49,'65.94',8),
-
-(10300,'S18_3482',23,'144.05',7),
-
-(10300,'S24_3371',31,'52.05',4),
-
-(10301,'S18_1129',37,'114.65',8),
-
-(10301,'S18_1589',32,'118.22',4),
-
-(10301,'S18_1984',47,'119.49',7),
-
-(10301,'S18_2870',22,'113.52',5),
-
-(10301,'S18_3232',23,'135.47',9),
-
-(10301,'S18_3685',39,'137.04',6),
-
-(10301,'S24_1046',27,'64.67',1),
-
-(10301,'S24_1628',22,'40.75',3),
-
-(10301,'S24_2972',48,'32.10',10),
-
-(10301,'S24_3432',22,'86.73',2),
-
-(10301,'S24_3856',50,'122.17',11),
-
-(10302,'S18_1749',43,'166.60',1),
-
-(10302,'S18_4409',38,'82.83',2),
-
-(10302,'S18_4933',23,'70.56',3),
-
-(10302,'S24_2766',49,'75.42',5),
-
-(10302,'S24_2887',45,'104.52',4),
-
-(10302,'S24_3191',48,'74.48',6),
-
-(10303,'S18_2248',46,'56.91',2),
-
-(10303,'S24_3969',24,'35.70',1),
-
-(10304,'S10_1949',47,'201.44',6),
-
-(10304,'S12_1666',39,'117.54',3),
-
-(10304,'S18_1097',46,'106.17',5),
-
-(10304,'S18_1342',37,'95.55',13),
-
-(10304,'S18_1367',37,'46.90',12),
-
-(10304,'S18_2325',24,'102.98',17),
-
-(10304,'S18_2795',20,'141.75',14),
-
-(10304,'S18_2949',46,'98.27',7),
-
-(10304,'S18_2957',24,'54.34',9),
-
-(10304,'S18_3136',26,'90.06',8),
-
-(10304,'S18_3320',38,'95.24',11),
-
-(10304,'S18_4668',34,'44.27',4),
-
-(10304,'S24_1937',23,'29.21',16),
-
-(10304,'S24_2022',44,'42.11',15),
-
-(10304,'S24_4258',33,'80.83',10),
-
-(10304,'S32_3522',36,'52.36',2),
-
-(10304,'S700_2824',40,'80.92',1),
-
-(10305,'S10_4962',38,'130.01',13),
-
-(10305,'S12_4473',38,'107.84',5),
-
-(10305,'S18_2238',27,'132.62',4),
-
-(10305,'S18_2319',36,'117.82',8),
-
-(10305,'S18_2432',41,'58.95',11),
-
-(10305,'S18_3232',37,'160.87',9),
-
-(10305,'S18_4600',22,'112.60',14),
-
-(10305,'S24_1444',45,'48.55',2),
-
-(10305,'S24_2300',24,'107.34',10),
-
-(10305,'S24_2840',48,'30.76',6),
-
-(10305,'S24_4048',36,'118.28',1),
-
-(10305,'S32_1268',28,'94.38',12),
-
-(10305,'S32_2509',40,'48.70',7),
-
-(10305,'S50_1392',42,'109.96',3),
-
-(10306,'S12_1108',31,'182.86',13),
-
-(10306,'S12_3148',34,'145.04',14),
-
-(10306,'S12_3891',20,'145.34',12),
-
-(10306,'S18_3140',32,'114.74',9),
-
-(10306,'S18_3259',40,'83.70',11),
-
-(10306,'S18_4027',23,'126.39',16),
-
-(10306,'S18_4522',39,'85.14',8),
-
-(10306,'S24_2011',29,'109.37',7),
-
-(10306,'S24_3151',31,'76.12',2),
-
-(10306,'S32_3207',46,'60.28',17),
-
-(10306,'S50_1514',34,'51.55',15),
-
-(10306,'S700_1138',50,'61.34',3),
-
-(10306,'S700_1938',38,'73.62',10),
-
-(10306,'S700_2610',43,'62.16',1),
-
-(10306,'S700_3505',32,'99.17',4),
-
-(10306,'S700_3962',30,'87.39',5),
-
-(10306,'S72_3212',35,'48.05',6),
-
-(10307,'S10_4757',22,'118.32',9),
-
-(10307,'S18_1662',39,'135.61',1),
-
-(10307,'S18_3029',31,'71.40',7),
-
-(10307,'S18_3856',48,'92.11',6),
-
-(10307,'S24_2841',25,'58.23',2),
-
-(10307,'S24_3420',22,'64.44',3),
-
-(10307,'S24_3816',22,'75.47',8),
-
-(10307,'S700_2047',34,'81.47',5),
-
-(10307,'S72_1253',34,'44.20',4),
-
-(10308,'S10_2016',34,'115.37',2),
-
-(10308,'S10_4698',20,'187.85',1),
-
-(10308,'S18_2581',27,'81.95',7),
-
-(10308,'S18_2625',34,'48.46',3),
-
-(10308,'S24_1785',31,'99.57',9),
-
-(10308,'S24_2000',47,'68.55',4),
-
-(10308,'S24_3949',43,'58.00',16),
-
-(10308,'S24_4278',44,'71.73',8),
-
-(10308,'S32_1374',24,'99.89',5),
-
-(10308,'S32_4289',46,'61.22',10),
-
-(10308,'S50_1341',47,'37.09',11),
-
-(10308,'S700_1691',21,'73.07',12),
-
-(10308,'S700_2466',35,'88.75',14),
-
-(10308,'S700_2834',31,'100.85',6),
-
-(10308,'S700_3167',21,'79.20',13),
-
-(10308,'S700_4002',39,'62.93',15),
-
-(10309,'S10_1678',41,'94.74',5),
-
-(10309,'S12_2823',26,'144.60',4),
-
-(10309,'S24_1578',21,'96.92',6),
-
-(10309,'S24_2360',24,'59.56',2),
-
-(10309,'S32_4485',50,'93.89',3),
-
-(10309,'S50_4713',28,'74.04',1),
-
-(10310,'S12_1099',33,'165.38',10),
-
-(10310,'S12_3380',24,'105.70',8),
-
-(10310,'S12_3990',49,'77.41',11),
-
-(10310,'S12_4675',25,'101.34',7),
-
-(10310,'S18_1129',37,'128.80',2),
-
-(10310,'S18_1889',20,'66.99',6),
-
-(10310,'S18_1984',24,'129.45',1),
-
-(10310,'S18_3232',48,'159.18',3),
-
-(10310,'S18_3278',27,'70.76',13),
-
-(10310,'S18_3482',49,'122.00',12),
-
-(10310,'S18_3782',42,'59.06',16),
-
-(10310,'S18_4721',40,'133.92',15),
-
-(10310,'S24_2972',33,'33.23',4),
-
-(10310,'S24_3371',38,'50.21',9),
-
-(10310,'S24_3856',45,'139.03',5),
-
-(10310,'S24_4620',49,'75.18',14),
-
-(10310,'S32_2206',36,'38.62',17),
-
-(10311,'S18_1589',29,'124.44',9),
-
-(10311,'S18_2870',43,'114.84',10),
-
-(10311,'S18_3685',32,'134.22',11),
-
-(10311,'S18_4409',41,'92.03',1),
-
-(10311,'S18_4933',25,'66.99',2),
-
-(10311,'S24_1046',26,'70.55',6),
-
-(10311,'S24_1628',45,'48.80',8),
-
-(10311,'S24_2766',28,'89.05',4),
-
-(10311,'S24_2887',43,'116.27',3),
-
-(10311,'S24_3191',25,'85.61',5),
-
-(10311,'S24_3432',46,'91.02',7),
-
-(10312,'S10_1949',48,'214.30',3),
-
-(10312,'S18_1097',32,'101.50',2),
-
-(10312,'S18_1342',43,'102.74',10),
-
-(10312,'S18_1367',25,'43.67',9),
-
-(10312,'S18_1749',48,'146.20',17),
-
-(10312,'S18_2248',30,'48.43',16),
-
-(10312,'S18_2325',31,'111.87',14),
-
-(10312,'S18_2795',25,'150.19',11),
-
-(10312,'S18_2949',37,'91.18',4),
-
-(10312,'S18_2957',35,'54.34',6),
-
-(10312,'S18_3136',38,'93.20',5),
-
-(10312,'S18_3320',33,'84.33',8),
-
-(10312,'S18_4668',39,'44.27',1),
-
-(10312,'S24_1937',39,'27.88',13),
-
-(10312,'S24_2022',23,'43.46',12),
-
-(10312,'S24_3969',31,'40.21',15),
-
-(10312,'S24_4258',44,'96.42',7),
-
-(10313,'S10_4962',40,'141.83',7),
-
-(10313,'S12_1666',21,'131.20',11),
-
-(10313,'S18_2319',29,'109.23',2),
-
-(10313,'S18_2432',34,'52.87',5),
-
-(10313,'S18_3232',25,'143.94',3),
-
-(10313,'S18_4600',28,'110.18',8),
-
-(10313,'S24_2300',42,'102.23',4),
-
-(10313,'S32_1268',27,'96.31',6),
-
-(10313,'S32_2509',38,'48.70',1),
-
-(10313,'S32_3522',34,'55.59',10),
-
-(10313,'S700_2824',30,'96.09',9),
-
-(10314,'S12_1108',38,'176.63',5),
-
-(10314,'S12_3148',46,'125.40',6),
-
-(10314,'S12_3891',36,'169.56',4),
-
-(10314,'S12_4473',45,'95.99',14),
-
-(10314,'S18_2238',42,'135.90',13),
-
-(10314,'S18_3140',20,'129.76',1),
-
-(10314,'S18_3259',23,'84.71',3),
-
-(10314,'S18_4027',29,'129.26',8),
-
-(10314,'S24_1444',44,'51.44',11),
-
-(10314,'S24_2840',39,'31.82',15),
-
-(10314,'S24_4048',38,'111.18',10),
-
-(10314,'S32_3207',35,'58.41',9),
-
-(10314,'S50_1392',28,'115.75',12),
-
-(10314,'S50_1514',38,'50.38',7),
-
-(10314,'S700_1938',23,'83.15',2),
-
-(10315,'S18_4522',36,'78.12',7),
-
-(10315,'S24_2011',35,'111.83',6),
-
-(10315,'S24_3151',24,'78.77',1),
-
-(10315,'S700_1138',41,'60.67',2),
-
-(10315,'S700_3505',31,'99.17',3),
-
-(10315,'S700_3962',37,'88.39',4),
-
-(10315,'S72_3212',40,'51.32',5),
-
-(10316,'S10_4757',33,'126.48',17),
-
-(10316,'S18_1662',27,'140.34',9),
-
-(10316,'S18_3029',21,'72.26',15),
-
-(10316,'S18_3856',47,'89.99',14),
-
-(10316,'S24_1785',25,'93.01',1),
-
-(10316,'S24_2841',34,'67.14',10),
-
-(10316,'S24_3420',47,'55.23',11),
-
-(10316,'S24_3816',25,'77.15',16),
-
-(10316,'S24_3949',30,'67.56',8),
-
-(10316,'S32_4289',24,'59.16',2),
-
-(10316,'S50_1341',34,'36.66',3),
-
-(10316,'S700_1691',34,'74.90',4),
-
-(10316,'S700_2047',45,'73.32',13),
-
-(10316,'S700_2466',23,'85.76',6),
-
-(10316,'S700_2610',48,'67.22',18),
-
-(10316,'S700_3167',48,'77.60',5),
-
-(10316,'S700_4002',44,'68.11',7),
-
-(10316,'S72_1253',34,'43.70',12),
-
-(10317,'S24_4278',35,'69.55',1),
-
-(10318,'S10_1678',46,'84.22',1),
-
-(10318,'S10_2016',45,'102.29',4),
-
-(10318,'S10_4698',37,'189.79',3),
-
-(10318,'S18_2581',31,'81.95',9),
-
-(10318,'S18_2625',42,'49.67',5),
-
-(10318,'S24_1578',48,'93.54',2),
-
-(10318,'S24_2000',26,'60.94',6),
-
-(10318,'S32_1374',47,'81.91',7),
-
-(10318,'S700_2834',50,'102.04',8),
-
-(10319,'S12_2823',30,'134.05',9),
-
-(10319,'S18_3278',46,'77.19',1),
-
-(10319,'S18_3782',44,'54.71',4),
-
-(10319,'S18_4721',45,'120.53',3),
-
-(10319,'S24_2360',31,'65.80',7),
-
-(10319,'S24_4620',43,'78.41',2),
-
-(10319,'S32_2206',29,'35.00',5),
-
-(10319,'S32_4485',22,'96.95',8),
-
-(10319,'S50_4713',45,'79.73',6),
-
-(10320,'S12_1099',31,'184.84',3),
-
-(10320,'S12_3380',35,'102.17',1),
-
-(10320,'S12_3990',38,'63.84',4),
-
-(10320,'S18_3482',25,'139.64',5),
-
-(10320,'S24_3371',26,'60.62',2),
-
-(10321,'S12_4675',24,'105.95',15),
-
-(10321,'S18_1129',41,'123.14',10),
-
-(10321,'S18_1589',44,'120.71',6),
-
-(10321,'S18_1889',37,'73.92',14),
-
-(10321,'S18_1984',25,'142.25',9),
-
-(10321,'S18_2870',27,'126.72',7),
-
-(10321,'S18_3232',33,'164.26',11),
-
-(10321,'S18_3685',28,'138.45',8),
-
-(10321,'S24_1046',30,'68.35',3),
-
-(10321,'S24_1628',48,'42.76',5),
-
-(10321,'S24_2766',30,'74.51',1),
-
-(10321,'S24_2972',37,'31.72',12),
-
-(10321,'S24_3191',39,'81.33',2),
-
-(10321,'S24_3432',21,'103.87',4),
-
-(10321,'S24_3856',26,'137.62',13),
-
-(10322,'S10_1949',40,'180.01',1),
-
-(10322,'S10_4962',46,'141.83',8),
-
-(10322,'S12_1666',27,'136.67',9),
-
-(10322,'S18_1097',22,'101.50',10),
-
-(10322,'S18_1342',43,'92.47',14),
-
-(10322,'S18_1367',41,'44.21',5),
-
-(10322,'S18_2325',50,'120.77',6),
-
-(10322,'S18_2432',35,'57.12',11),
-
-(10322,'S18_2795',36,'158.63',2),
-
-(10322,'S18_2949',33,'100.30',12),
-
-(10322,'S18_2957',41,'54.34',13),
-
-(10322,'S18_3136',48,'90.06',7),
-
-(10322,'S24_1937',20,'26.55',3),
-
-(10322,'S24_2022',30,'40.77',4),
-
-(10323,'S18_3320',33,'88.30',2),
-
-(10323,'S18_4600',47,'96.86',1),
-
-(10324,'S12_3148',27,'148.06',1),
-
-(10324,'S12_4473',26,'100.73',7),
-
-(10324,'S18_2238',47,'142.45',8),
-
-(10324,'S18_2319',33,'105.55',10),
-
-(10324,'S18_3232',27,'137.17',12),
-
-(10324,'S18_4027',49,'120.64',13),
-
-(10324,'S18_4668',38,'49.81',6),
-
-(10324,'S24_1444',25,'49.71',14),
-
-(10324,'S24_2300',31,'107.34',2),
-
-(10324,'S24_2840',30,'29.35',9),
-
-(10324,'S24_4258',33,'95.44',3),
-
-(10324,'S32_1268',20,'91.49',11),
-
-(10324,'S32_3522',48,'60.76',4),
-
-(10324,'S700_2824',34,'80.92',5),
-
-(10325,'S10_4757',47,'111.52',6),
-
-(10325,'S12_1108',42,'193.25',8),
-
-(10325,'S12_3891',24,'166.10',1),
-
-(10325,'S18_3140',24,'114.74',9),
-
-(10325,'S24_4048',44,'114.73',5),
-
-(10325,'S32_2509',38,'44.37',3),
-
-(10325,'S32_3207',28,'55.30',2),
-
-(10325,'S50_1392',38,'99.55',4),
-
-(10325,'S50_1514',44,'56.24',7),
-
-(10326,'S18_3259',32,'94.79',6),
-
-(10326,'S18_4522',50,'73.73',5),
-
-(10326,'S24_2011',41,'120.43',4),
-
-(10326,'S24_3151',41,'86.74',3),
-
-(10326,'S24_3816',20,'81.34',2),
-
-(10326,'S700_1138',39,'60.67',1),
-
-(10327,'S18_1662',25,'154.54',6),
-
-(10327,'S18_2581',45,'74.34',8),
-
-(10327,'S18_3029',25,'74.84',5),
-
-(10327,'S700_1938',20,'79.68',7),
-
-(10327,'S700_2610',21,'65.05',1),
-
-(10327,'S700_3505',43,'85.14',2),
-
-(10327,'S700_3962',37,'83.42',3),
-
-(10327,'S72_3212',37,'48.05',4),
-
-(10328,'S18_3856',34,'104.81',6),
-
-(10328,'S24_1785',47,'87.54',14),
-
-(10328,'S24_2841',48,'67.82',1),
-
-(10328,'S24_3420',20,'56.55',2),
-
-(10328,'S24_3949',35,'55.96',3),
-
-(10328,'S24_4278',43,'69.55',4),
-
-(10328,'S32_4289',24,'57.10',5),
-
-(10328,'S50_1341',34,'42.33',7),
-
-(10328,'S700_1691',27,'84.03',8),
-
-(10328,'S700_2047',41,'75.13',9),
-
-(10328,'S700_2466',37,'95.73',10),
-
-(10328,'S700_2834',33,'117.46',11),
-
-(10328,'S700_3167',33,'71.20',13),
-
-(10328,'S700_4002',39,'69.59',12),
-
-(10329,'S10_1678',42,'80.39',1),
-
-(10329,'S10_2016',20,'109.42',2),
-
-(10329,'S10_4698',26,'164.61',3),
-
-(10329,'S12_1099',41,'182.90',5),
-
-(10329,'S12_2823',24,'128.03',6),
-
-(10329,'S12_3380',46,'117.44',13),
-
-(10329,'S12_3990',33,'74.21',14),
-
-(10329,'S12_4675',39,'102.49',15),
-
-(10329,'S18_1889',29,'66.22',9),
-
-(10329,'S18_2625',38,'55.72',12),
-
-(10329,'S18_3278',38,'65.13',10),
-
-(10329,'S24_1578',30,'104.81',7),
-
-(10329,'S24_2000',37,'71.60',4),
-
-(10329,'S32_1374',45,'80.91',11),
-
-(10329,'S72_1253',44,'41.22',8),
-
-(10330,'S18_3482',37,'136.70',3),
-
-(10330,'S18_3782',29,'59.06',2),
-
-(10330,'S18_4721',50,'133.92',4),
-
-(10330,'S24_2360',42,'56.10',1),
-
-(10331,'S18_1129',46,'120.31',6),
-
-(10331,'S18_1589',44,'99.55',14),
-
-(10331,'S18_1749',44,'154.70',7),
-
-(10331,'S18_1984',30,'135.14',8),
-
-(10331,'S18_2870',26,'130.68',10),
-
-(10331,'S18_3232',27,'169.34',11),
-
-(10331,'S18_3685',26,'132.80',12),
-
-(10331,'S24_2972',27,'37.00',13),
-
-(10331,'S24_3371',25,'55.11',9),
-
-(10331,'S24_3856',21,'139.03',1),
-
-(10331,'S24_4620',41,'70.33',2),
-
-(10331,'S32_2206',28,'33.39',3),
-
-(10331,'S32_4485',32,'100.01',4),
-
-(10331,'S50_4713',20,'74.04',5),
-
-(10332,'S18_1342',46,'89.38',15),
-
-(10332,'S18_1367',27,'51.21',16),
-
-(10332,'S18_2248',38,'53.88',9),
-
-(10332,'S18_2325',35,'116.96',8),
-
-(10332,'S18_2795',24,'138.38',1),
-
-(10332,'S18_2957',26,'53.09',17),
-
-(10332,'S18_3136',40,'100.53',18),
-
-(10332,'S18_4409',50,'92.03',2),
-
-(10332,'S18_4933',21,'70.56',3),
-
-(10332,'S24_1046',23,'61.73',4),
-
-(10332,'S24_1628',20,'47.29',5),
-
-(10332,'S24_1937',45,'29.87',6),
-
-(10332,'S24_2022',26,'43.01',10),
-
-(10332,'S24_2766',39,'84.51',7),
-
-(10332,'S24_2887',44,'108.04',11),
-
-(10332,'S24_3191',45,'77.91',12),
-
-(10332,'S24_3432',31,'94.23',13),
-
-(10332,'S24_3969',41,'34.47',14),
-
-(10333,'S10_1949',26,'188.58',3),
-
-(10333,'S12_1666',33,'121.64',6),
-
-(10333,'S18_1097',29,'110.84',7),
-
-(10333,'S18_2949',31,'95.23',5),
-
-(10333,'S18_3320',46,'95.24',2),
-
-(10333,'S18_4668',24,'42.26',8),
-
-(10333,'S24_4258',39,'95.44',1),
-
-(10333,'S32_3522',33,'62.05',4),
-
-(10334,'S10_4962',26,'130.01',2),
-
-(10334,'S18_2319',46,'108.00',6),
-
-(10334,'S18_2432',34,'52.87',1),
-
-(10334,'S18_3232',20,'147.33',3),
-
-(10334,'S18_4600',49,'101.71',4),
-
-(10334,'S24_2300',42,'117.57',5),
-
-(10335,'S24_2840',33,'32.88',2),
-
-(10335,'S32_1268',44,'77.05',1),
-
-(10335,'S32_2509',40,'49.78',3),
-
-(10336,'S12_1108',33,'176.63',10),
-
-(10336,'S12_3148',33,'126.91',11),
-
-(10336,'S12_3891',49,'141.88',1),
-
-(10336,'S12_4473',38,'95.99',3),
-
-(10336,'S18_2238',49,'153.91',6),
-
-(10336,'S18_3140',48,'135.22',12),
-
-(10336,'S18_3259',21,'100.84',7),
-
-(10336,'S24_1444',45,'49.71',4),
-
-(10336,'S24_4048',31,'113.55',5),
-
-(10336,'S32_3207',31,'59.03',9),
-
-(10336,'S50_1392',23,'109.96',8),
-
-(10336,'S700_2824',46,'94.07',2),
-
-(10337,'S10_4757',25,'131.92',8),
-
-(10337,'S18_4027',36,'140.75',3),
-
-(10337,'S18_4522',29,'76.36',2),
-
-(10337,'S24_2011',29,'119.20',4),
-
-(10337,'S50_1514',21,'54.48',6),
-
-(10337,'S700_1938',36,'73.62',9),
-
-(10337,'S700_3505',31,'84.14',1),
-
-(10337,'S700_3962',36,'83.42',7),
-
-(10337,'S72_3212',42,'49.14',5),
-
-(10338,'S18_1662',41,'137.19',1),
-
-(10338,'S18_3029',28,'80.86',3),
-
-(10338,'S18_3856',45,'93.17',2),
-
-(10339,'S10_2016',40,'117.75',4),
-
-(10339,'S10_4698',39,'178.17',3),
-
-(10339,'S18_2581',27,'79.41',2),
-
-(10339,'S18_2625',30,'48.46',1),
-
-(10339,'S24_1578',27,'96.92',10),
-
-(10339,'S24_1785',21,'106.14',7),
-
-(10339,'S24_2841',55,'67.82',12),
-
-(10339,'S24_3151',55,'73.46',13),
-
-(10339,'S24_3420',29,'57.86',14),
-
-(10339,'S24_3816',42,'72.96',16),
-
-(10339,'S24_3949',45,'57.32',11),
-
-(10339,'S700_1138',22,'53.34',5),
-
-(10339,'S700_2047',55,'86.90',15),
-
-(10339,'S700_2610',50,'62.16',9),
-
-(10339,'S700_4002',50,'66.63',8),
-
-(10339,'S72_1253',27,'49.66',6),
-
-(10340,'S24_2000',55,'62.46',8),
-
-(10340,'S24_4278',40,'63.76',1),
-
-(10340,'S32_1374',55,'95.89',2),
-
-(10340,'S32_4289',39,'67.41',3),
-
-(10340,'S50_1341',40,'37.09',4),
-
-(10340,'S700_1691',30,'73.99',5),
-
-(10340,'S700_2466',55,'81.77',7),
-
-(10340,'S700_2834',29,'98.48',6),
-
-(10341,'S10_1678',41,'84.22',9),
-
-(10341,'S12_1099',45,'192.62',2),
-
-(10341,'S12_2823',55,'120.50',8),
-
-(10341,'S12_3380',44,'111.57',1),
-
-(10341,'S12_3990',36,'77.41',10),
-
-(10341,'S12_4675',55,'109.40',7),
-
-(10341,'S24_2360',32,'63.03',6),
-
-(10341,'S32_4485',31,'95.93',4),
-
-(10341,'S50_4713',38,'78.11',3),
-
-(10341,'S700_3167',34,'70.40',5),
-
-(10342,'S18_1129',40,'118.89',2),
-
-(10342,'S18_1889',55,'63.14',1),
-
-(10342,'S18_1984',22,'115.22',3),
-
-(10342,'S18_3232',30,'167.65',4),
-
-(10342,'S18_3278',25,'76.39',5),
-
-(10342,'S18_3482',55,'136.70',7),
-
-(10342,'S18_3782',26,'57.82',8),
-
-(10342,'S18_4721',38,'124.99',11),
-
-(10342,'S24_2972',39,'30.59',9),
-
-(10342,'S24_3371',48,'60.01',10),
-
-(10342,'S24_3856',42,'112.34',6),
-
-(10343,'S18_1589',36,'109.51',4),
-
-(10343,'S18_2870',25,'118.80',3),
-
-(10343,'S18_3685',44,'127.15',2),
-
-(10343,'S24_1628',27,'44.78',6),
-
-(10343,'S24_4620',30,'76.80',1),
-
-(10343,'S32_2206',29,'37.41',5),
-
-(10344,'S18_1749',45,'168.30',1),
-
-(10344,'S18_2248',40,'49.04',2),
-
-(10344,'S18_2325',30,'118.23',3),
-
-(10344,'S18_4409',21,'80.99',4),
-
-(10344,'S18_4933',26,'68.42',5),
-
-(10344,'S24_1046',29,'61.00',7),
-
-(10344,'S24_1937',20,'27.88',6),
-
-(10345,'S24_2022',43,'38.98',1),
-
-(10346,'S18_1342',42,'88.36',3),
-
-(10346,'S24_2766',25,'87.24',1),
-
-(10346,'S24_2887',24,'117.44',5),
-
-(10346,'S24_3191',24,'80.47',2),
-
-(10346,'S24_3432',26,'103.87',6),
-
-(10346,'S24_3969',22,'38.57',4),
-
-(10347,'S10_1949',30,'188.58',1),
-
-(10347,'S10_4962',27,'132.97',2),
-
-(10347,'S12_1666',29,'132.57',3),
-
-(10347,'S18_1097',42,'113.17',5),
-
-(10347,'S18_1367',21,'46.36',7),
-
-(10347,'S18_2432',50,'51.05',8),
-
-(10347,'S18_2795',21,'136.69',6),
-
-(10347,'S18_2949',48,'84.09',9),
-
-(10347,'S18_2957',34,'60.59',10),
-
-(10347,'S18_3136',45,'95.30',11),
-
-(10347,'S18_3320',26,'84.33',12),
-
-(10347,'S18_4600',45,'115.03',4),
-
-(10348,'S12_1108',48,'207.80',8),
-
-(10348,'S12_3148',47,'122.37',4),
-
-(10348,'S18_4668',29,'43.77',6),
-
-(10348,'S24_2300',37,'107.34',1),
-
-(10348,'S24_4258',39,'82.78',2),
-
-(10348,'S32_1268',42,'90.53',3),
-
-(10348,'S32_3522',31,'62.70',5),
-
-(10348,'S700_2824',32,'100.14',7),
-
-(10349,'S12_3891',26,'166.10',10),
-
-(10349,'S12_4473',48,'114.95',9),
-
-(10349,'S18_2238',38,'142.45',8),
-
-(10349,'S18_2319',38,'117.82',7),
-
-(10349,'S18_3232',48,'164.26',6),
-
-(10349,'S18_4027',34,'140.75',5),
-
-(10349,'S24_1444',48,'50.29',4),
-
-(10349,'S24_2840',36,'31.47',3),
-
-(10349,'S24_4048',23,'111.18',2),
-
-(10349,'S32_2509',33,'44.37',1),
-
-(10350,'S10_4757',26,'110.16',5),
-
-(10350,'S18_3029',43,'84.30',6),
-
-(10350,'S18_3140',44,'135.22',1),
-
-(10350,'S18_3259',41,'94.79',2),
-
-(10350,'S18_4522',30,'70.22',3),
-
-(10350,'S24_2011',34,'98.31',7),
-
-(10350,'S24_3151',30,'86.74',9),
-
-(10350,'S24_3816',25,'77.15',10),
-
-(10350,'S32_3207',27,'61.52',14),
-
-(10350,'S50_1392',31,'104.18',8),
-
-(10350,'S50_1514',44,'56.82',17),
-
-(10350,'S700_1138',46,'56.00',11),
-
-(10350,'S700_1938',28,'76.22',4),
-
-(10350,'S700_2610',29,'68.67',12),
-
-(10350,'S700_3505',31,'87.15',13),
-
-(10350,'S700_3962',25,'97.32',16),
-
-(10350,'S72_3212',20,'48.05',15),
-
-(10351,'S18_1662',39,'143.50',1),
-
-(10351,'S18_3856',20,'104.81',2),
-
-(10351,'S24_2841',25,'64.40',5),
-
-(10351,'S24_3420',38,'53.92',4),
-
-(10351,'S24_3949',34,'68.24',3),
-
-(10352,'S700_2047',23,'75.13',3),
-
-(10352,'S700_2466',49,'87.75',2),
-
-(10352,'S700_4002',22,'62.19',1),
-
-(10352,'S72_1253',49,'46.18',4),
-
-(10353,'S18_2581',27,'71.81',1),
-
-(10353,'S24_1785',28,'107.23',2),
-
-(10353,'S24_4278',35,'69.55',3),
-
-(10353,'S32_1374',46,'86.90',5),
-
-(10353,'S32_4289',40,'68.10',7),
-
-(10353,'S50_1341',40,'35.78',8),
-
-(10353,'S700_1691',39,'73.07',9),
-
-(10353,'S700_2834',48,'98.48',4),
-
-(10353,'S700_3167',43,'74.40',6),
-
-(10354,'S10_1678',42,'84.22',6),
-
-(10354,'S10_2016',20,'95.15',2),
-
-(10354,'S10_4698',42,'178.17',3),
-
-(10354,'S12_1099',31,'157.60',9),
-
-(10354,'S12_2823',35,'141.58',4),
-
-(10354,'S12_3380',29,'98.65',11),
-
-(10354,'S12_3990',23,'76.61',12),
-
-(10354,'S12_4675',28,'100.19',13),
-
-(10354,'S18_1889',21,'76.23',8),
-
-(10354,'S18_2625',28,'49.06',10),
-
-(10354,'S18_3278',36,'69.15',7),
-
-(10354,'S24_1578',21,'96.92',5),
-
-(10354,'S24_2000',28,'62.46',1),
-
-(10355,'S18_3482',23,'117.59',7),
-
-(10355,'S18_3782',31,'60.30',1),
-
-(10355,'S18_4721',25,'124.99',2),
-
-(10355,'S24_2360',41,'56.10',3),
-
-(10355,'S24_2972',36,'37.38',4),
-
-(10355,'S24_3371',44,'60.62',6),
-
-(10355,'S24_3856',32,'137.62',8),
-
-(10355,'S24_4620',28,'75.18',9),
-
-(10355,'S32_2206',38,'32.99',10),
-
-(10355,'S32_4485',40,'93.89',5),
-
-(10356,'S18_1129',43,'120.31',8),
-
-(10356,'S18_1342',50,'82.19',9),
-
-(10356,'S18_1367',22,'44.75',6),
-
-(10356,'S18_1984',27,'130.87',2),
-
-(10356,'S18_2325',29,'106.79',3),
-
-(10356,'S18_2795',30,'158.63',1),
-
-(10356,'S24_1937',48,'31.86',5),
-
-(10356,'S24_2022',26,'42.11',7),
-
-(10356,'S50_4713',26,'78.11',4),
-
-(10357,'S10_1949',32,'199.30',10),
-
-(10357,'S10_4962',43,'135.92',9),
-
-(10357,'S12_1666',49,'109.34',8),
-
-(10357,'S18_1097',39,'112.00',1),
-
-(10357,'S18_2432',41,'58.95',7),
-
-(10357,'S18_2949',41,'91.18',6),
-
-(10357,'S18_2957',49,'59.34',5),
-
-(10357,'S18_3136',44,'104.72',4),
-
-(10357,'S18_3320',25,'84.33',3),
-
-(10357,'S18_4600',28,'105.34',2),
-
-(10358,'S12_3148',49,'129.93',5),
-
-(10358,'S12_4473',42,'98.36',9),
-
-(10358,'S18_2238',20,'142.45',10),
-
-(10358,'S18_2319',20,'99.41',11),
-
-(10358,'S18_3232',32,'137.17',12),
-
-(10358,'S18_4027',25,'117.77',13),
-
-(10358,'S18_4668',30,'46.29',8),
-
-(10358,'S24_1444',44,'56.07',14),
-
-(10358,'S24_2300',41,'127.79',7),
-
-(10358,'S24_2840',36,'33.59',4),
-
-(10358,'S24_4258',41,'88.62',6),
-
-(10358,'S32_1268',41,'82.83',1),
-
-(10358,'S32_3522',36,'51.71',2),
-
-(10358,'S700_2824',27,'85.98',3),
-
-(10359,'S10_4757',48,'122.40',6),
-
-(10359,'S12_1108',42,'180.79',8),
-
-(10359,'S12_3891',49,'162.64',5),
-
-(10359,'S24_4048',22,'108.82',7),
-
-(10359,'S32_2509',36,'45.45',3),
-
-(10359,'S32_3207',22,'62.14',1),
-
-(10359,'S50_1392',46,'99.55',2),
-
-(10359,'S50_1514',25,'47.45',4),
-
-(10360,'S18_1662',50,'126.15',12),
-
-(10360,'S18_2581',41,'68.43',13),
-
-(10360,'S18_3029',46,'71.40',14),
-
-(10360,'S18_3140',29,'122.93',8),
-
-(10360,'S18_3259',29,'94.79',18),
-
-(10360,'S18_3856',40,'101.64',15),
-
-(10360,'S18_4522',40,'76.36',1),
-
-(10360,'S24_1785',22,'106.14',17),
-
-(10360,'S24_2011',31,'100.77',2),
-
-(10360,'S24_2841',49,'55.49',16),
-
-(10360,'S24_3151',36,'70.81',3),
-
-(10360,'S24_3816',22,'78.83',4),
-
-(10360,'S700_1138',32,'64.67',5),
-
-(10360,'S700_1938',26,'86.61',6),
-
-(10360,'S700_2610',30,'70.11',7),
-
-(10360,'S700_3505',35,'83.14',9),
-
-(10360,'S700_3962',31,'92.36',10),
-
-(10360,'S72_3212',31,'54.05',11),
-
-(10361,'S10_1678',20,'92.83',13),
-
-(10361,'S10_2016',26,'114.18',8),
-
-(10361,'S24_3420',34,'62.46',6),
-
-(10361,'S24_3949',26,'61.42',7),
-
-(10361,'S24_4278',25,'68.83',1),
-
-(10361,'S32_4289',49,'56.41',2),
-
-(10361,'S50_1341',33,'35.78',3),
-
-(10361,'S700_1691',20,'88.60',4),
-
-(10361,'S700_2047',24,'85.99',14),
-
-(10361,'S700_2466',26,'91.74',9),
-
-(10361,'S700_2834',44,'107.97',5),
-
-(10361,'S700_3167',44,'76.80',10),
-
-(10361,'S700_4002',35,'62.19',11),
-
-(10361,'S72_1253',23,'47.67',12),
-
-(10362,'S10_4698',22,'182.04',4),
-
-(10362,'S12_2823',22,'131.04',1),
-
-(10362,'S18_2625',23,'53.91',3),
-
-(10362,'S24_1578',50,'91.29',2),
-
-(10363,'S12_1099',33,'180.95',3),
-
-(10363,'S12_3380',34,'106.87',4),
-
-(10363,'S12_3990',34,'68.63',5),
-
-(10363,'S12_4675',46,'103.64',6),
-
-(10363,'S18_1889',22,'61.60',7),
-
-(10363,'S18_3278',46,'69.15',10),
-
-(10363,'S18_3482',24,'124.94',11),
-
-(10363,'S18_3782',32,'52.22',12),
-
-(10363,'S18_4721',28,'123.50',13),
-
-(10363,'S24_2000',21,'70.08',8),
-
-(10363,'S24_2360',43,'56.10',14),
-
-(10363,'S24_3371',21,'52.05',15),
-
-(10363,'S24_3856',31,'113.75',1),
-
-(10363,'S24_4620',43,'75.99',9),
-
-(10363,'S32_1374',50,'92.90',2),
-
-(10364,'S32_2206',48,'38.22',1),
-
-(10365,'S18_1129',30,'116.06',1),
-
-(10365,'S32_4485',22,'82.66',3),
-
-(10365,'S50_4713',44,'68.34',2),
-
-(10366,'S18_1984',34,'116.65',3),
-
-(10366,'S18_2870',49,'105.60',2),
-
-(10366,'S18_3232',34,'154.10',1),
-
-(10367,'S18_1589',49,'105.77',1),
-
-(10367,'S18_1749',37,'144.50',3),
-
-(10367,'S18_2248',45,'50.25',4),
-
-(10367,'S18_2325',27,'124.59',5),
-
-(10367,'S18_2795',32,'140.06',7),
-
-(10367,'S18_3685',46,'131.39',6),
-
-(10367,'S18_4409',43,'77.31',8),
-
-(10367,'S18_4933',44,'66.99',9),
-
-(10367,'S24_1046',21,'72.76',10),
-
-(10367,'S24_1628',38,'50.31',11),
-
-(10367,'S24_1937',23,'29.54',13),
-
-(10367,'S24_2022',28,'43.01',12),
-
-(10367,'S24_2972',36,'36.25',2),
-
-(10368,'S24_2766',40,'73.60',2),
-
-(10368,'S24_2887',31,'115.09',5),
-
-(10368,'S24_3191',46,'83.04',1),
-
-(10368,'S24_3432',20,'93.16',4),
-
-(10368,'S24_3969',46,'36.52',3),
-
-(10369,'S10_1949',41,'195.01',2),
-
-(10369,'S18_1342',44,'89.38',8),
-
-(10369,'S18_1367',32,'46.36',7),
-
-(10369,'S18_2949',42,'100.30',1),
-
-(10369,'S18_2957',28,'51.84',6),
-
-(10369,'S18_3136',21,'90.06',5),
-
-(10369,'S18_3320',45,'80.36',4),
-
-(10369,'S24_4258',40,'93.49',3),
-
-(10370,'S10_4962',35,'128.53',4),
-
-(10370,'S12_1666',49,'128.47',8),
-
-(10370,'S18_1097',27,'100.34',1),
-
-(10370,'S18_2319',22,'101.87',5),
-
-(10370,'S18_2432',22,'60.16',7),
-
-(10370,'S18_3232',27,'167.65',9),
-
-(10370,'S18_4600',29,'105.34',6),
-
-(10370,'S18_4668',20,'41.76',2),
-
-(10370,'S32_3522',25,'63.99',3),
-
-(10371,'S12_1108',32,'178.71',6),
-
-(10371,'S12_4473',49,'104.28',4),
-
-(10371,'S18_2238',25,'160.46',7),
-
-(10371,'S24_1444',25,'53.75',12),
-
-(10371,'S24_2300',20,'126.51',5),
-
-(10371,'S24_2840',45,'35.01',8),
-
-(10371,'S24_4048',28,'95.81',9),
-
-(10371,'S32_1268',26,'82.83',1),
-
-(10371,'S32_2509',20,'44.37',2),
-
-(10371,'S32_3207',30,'53.44',11),
-
-(10371,'S50_1392',48,'97.23',10),
-
-(10371,'S700_2824',34,'83.95',3),
-
-(10372,'S12_3148',40,'146.55',4),
-
-(10372,'S12_3891',34,'140.15',1),
-
-(10372,'S18_3140',28,'131.13',3),
-
-(10372,'S18_3259',25,'91.76',5),
-
-(10372,'S18_4027',48,'119.20',6),
-
-(10372,'S18_4522',41,'78.99',7),
-
-(10372,'S24_2011',37,'102.00',8),
-
-(10372,'S50_1514',24,'56.82',9),
-
-(10372,'S700_1938',44,'74.48',2),
-
-(10373,'S10_4757',39,'118.32',3),
-
-(10373,'S18_1662',28,'143.50',4),
-
-(10373,'S18_3029',22,'75.70',5),
-
-(10373,'S18_3856',50,'99.52',6),
-
-(10373,'S24_2841',38,'58.92',7),
-
-(10373,'S24_3151',33,'82.31',12),
-
-(10373,'S24_3420',46,'53.92',11),
-
-(10373,'S24_3816',23,'83.86',10),
-
-(10373,'S24_3949',39,'62.10',13),
-
-(10373,'S700_1138',44,'58.00',14),
-
-(10373,'S700_2047',32,'76.94',15),
-
-(10373,'S700_2610',41,'69.39',16),
-
-(10373,'S700_3505',34,'94.16',2),
-
-(10373,'S700_3962',37,'83.42',8),
-
-(10373,'S700_4002',45,'68.11',17),
-
-(10373,'S72_1253',25,'44.20',9),
-
-(10373,'S72_3212',29,'48.05',1),
-
-(10374,'S10_2016',39,'115.37',5),
-
-(10374,'S10_4698',22,'158.80',1),
-
-(10374,'S18_2581',42,'75.19',2),
-
-(10374,'S18_2625',22,'48.46',4),
-
-(10374,'S24_1578',38,'112.70',6),
-
-(10374,'S24_1785',46,'107.23',3),
-
-(10375,'S10_1678',21,'76.56',12),
-
-(10375,'S12_1099',45,'184.84',7),
-
-(10375,'S12_2823',49,'150.62',13),
-
-(10375,'S24_2000',23,'67.03',9),
-
-(10375,'S24_2360',20,'60.26',14),
-
-(10375,'S24_4278',43,'60.13',2),
-
-(10375,'S32_1374',37,'87.90',3),
-
-(10375,'S32_4289',44,'59.85',4),
-
-(10375,'S32_4485',41,'96.95',15),
-
-(10375,'S50_1341',49,'36.22',5),
-
-(10375,'S50_4713',49,'69.16',8),
-
-(10375,'S700_1691',37,'86.77',6),
-
-(10375,'S700_2466',33,'94.73',1),
-
-(10375,'S700_2834',25,'98.48',10),
-
-(10375,'S700_3167',44,'69.60',11),
-
-(10376,'S12_3380',35,'98.65',1),
-
-(10377,'S12_3990',24,'65.44',5),
-
-(10377,'S12_4675',50,'112.86',1),
-
-(10377,'S18_1129',35,'124.56',2),
-
-(10377,'S18_1889',31,'61.60',4),
-
-(10377,'S18_1984',36,'125.18',6),
-
-(10377,'S18_3232',39,'143.94',3),
-
-(10378,'S18_1589',34,'121.95',5),
-
-(10378,'S18_3278',22,'66.74',4),
-
-(10378,'S18_3482',43,'146.99',10),
-
-(10378,'S18_3782',28,'60.30',9),
-
-(10378,'S18_4721',49,'122.02',8),
-
-(10378,'S24_2972',41,'30.59',7),
-
-(10378,'S24_3371',46,'52.66',6),
-
-(10378,'S24_3856',33,'129.20',3),
-
-(10378,'S24_4620',41,'80.84',2),
-
-(10378,'S32_2206',40,'35.80',1),
-
-(10379,'S18_1749',39,'156.40',2),
-
-(10379,'S18_2248',27,'50.85',1),
-
-(10379,'S18_2870',29,'113.52',5),
-
-(10379,'S18_3685',32,'134.22',4),
-
-(10379,'S24_1628',32,'48.80',3),
-
-(10380,'S18_1342',27,'88.36',13),
-
-(10380,'S18_2325',40,'119.50',10),
-
-(10380,'S18_2795',21,'156.94',8),
-
-(10380,'S18_4409',32,'78.23',1),
-
-(10380,'S18_4933',24,'66.99',2),
-
-(10380,'S24_1046',34,'66.88',3),
-
-(10380,'S24_1937',32,'29.87',4),
-
-(10380,'S24_2022',27,'37.63',5),
-
-(10380,'S24_2766',36,'77.24',6),
-
-(10380,'S24_2887',44,'111.57',7),
-
-(10380,'S24_3191',44,'77.05',9),
-
-(10380,'S24_3432',34,'91.02',11),
-
-(10380,'S24_3969',43,'32.82',12),
-
-(10381,'S10_1949',36,'182.16',3),
-
-(10381,'S10_4962',37,'138.88',6),
-
-(10381,'S12_1666',20,'132.57',1),
-
-(10381,'S18_1097',48,'114.34',2),
-
-(10381,'S18_1367',25,'49.60',9),
-
-(10381,'S18_2432',35,'60.77',7),
-
-(10381,'S18_2949',41,'100.30',8),
-
-(10381,'S18_2957',40,'51.22',4),
-
-(10381,'S18_3136',35,'93.20',5),
-
-(10382,'S12_1108',34,'166.24',10),
-
-(10382,'S12_3148',37,'145.04',11),
-
-(10382,'S12_3891',34,'143.61',12),
-
-(10382,'S12_4473',32,'103.10',13),
-
-(10382,'S18_2238',25,'160.46',5),
-
-(10382,'S18_3320',50,'84.33',7),
-
-(10382,'S18_4600',39,'115.03',1),
-
-(10382,'S18_4668',39,'46.29',2),
-
-(10382,'S24_2300',20,'120.12',3),
-
-(10382,'S24_4258',33,'97.39',4),
-
-(10382,'S32_1268',26,'85.72',6),
-
-(10382,'S32_3522',48,'57.53',8),
-
-(10382,'S700_2824',34,'101.15',9),
-
-(10383,'S18_2319',27,'119.05',11),
-
-(10383,'S18_3140',24,'125.66',9),
-
-(10383,'S18_3232',47,'155.79',6),
-
-(10383,'S18_3259',26,'83.70',12),
-
-(10383,'S18_4027',38,'137.88',1),
-
-(10383,'S18_4522',28,'77.24',7),
-
-(10383,'S24_1444',22,'52.60',2),
-
-(10383,'S24_2840',40,'33.24',3),
-
-(10383,'S24_4048',21,'117.10',4),
-
-(10383,'S32_2509',32,'53.57',5),
-
-(10383,'S32_3207',44,'55.93',8),
-
-(10383,'S50_1392',29,'94.92',13),
-
-(10383,'S50_1514',38,'48.62',10),
-
-(10384,'S10_4757',34,'129.20',4),
-
-(10384,'S24_2011',28,'114.29',3),
-
-(10384,'S24_3151',43,'71.69',2),
-
-(10384,'S700_1938',49,'71.02',1),
-
-(10385,'S24_3816',37,'78.83',2),
-
-(10385,'S700_1138',25,'62.00',1),
-
-(10386,'S18_1662',25,'130.88',7),
-
-(10386,'S18_2581',21,'72.65',18),
-
-(10386,'S18_3029',37,'73.12',5),
-
-(10386,'S18_3856',22,'100.58',6),
-
-(10386,'S24_1785',33,'101.76',11),
-
-(10386,'S24_2841',39,'56.86',1),
-
-(10386,'S24_3420',35,'54.57',9),
-
-(10386,'S24_3949',41,'55.96',12),
-
-(10386,'S24_4278',50,'71.73',8),
-
-(10386,'S700_2047',29,'85.09',13),
-
-(10386,'S700_2466',37,'90.75',14),
-
-(10386,'S700_2610',37,'67.22',10),
-
-(10386,'S700_3167',32,'68.00',17),
-
-(10386,'S700_3505',45,'83.14',2),
-
-(10386,'S700_3962',30,'80.44',3),
-
-(10386,'S700_4002',44,'59.22',15),
-
-(10386,'S72_1253',50,'47.67',16),
-
-(10386,'S72_3212',43,'52.42',4),
-
-(10387,'S32_1374',44,'79.91',1),
-
-(10388,'S10_1678',42,'80.39',4),
-
-(10388,'S10_2016',50,'118.94',5),
-
-(10388,'S10_4698',21,'156.86',7),
-
-(10388,'S12_2823',44,'125.01',6),
-
-(10388,'S32_4289',35,'58.47',8),
-
-(10388,'S50_1341',27,'41.02',1),
-
-(10388,'S700_1691',46,'74.90',2),
-
-(10388,'S700_2834',50,'111.53',3),
-
-(10389,'S12_1099',26,'182.90',4),
-
-(10389,'S12_3380',25,'95.13',6),
-
-(10389,'S12_3990',36,'76.61',7),
-
-(10389,'S12_4675',47,'102.49',8),
-
-(10389,'S18_1889',49,'63.91',3),
-
-(10389,'S18_2625',39,'52.09',5),
-
-(10389,'S24_1578',45,'112.70',1),
-
-(10389,'S24_2000',49,'61.70',2),
-
-(10390,'S18_1129',36,'117.48',14),
-
-(10390,'S18_1984',34,'132.29',15),
-
-(10390,'S18_2325',31,'102.98',16),
-
-(10390,'S18_2795',26,'162.00',7),
-
-(10390,'S18_3278',40,'75.59',9),
-
-(10390,'S18_3482',50,'135.23',1),
-
-(10390,'S18_3782',36,'54.09',2),
-
-(10390,'S18_4721',49,'122.02',3),
-
-(10390,'S24_2360',35,'67.87',4),
-
-(10390,'S24_2972',37,'35.87',5),
-
-(10390,'S24_3371',46,'51.43',6),
-
-(10390,'S24_3856',45,'134.81',8),
-
-(10390,'S24_4620',30,'66.29',10),
-
-(10390,'S32_2206',41,'39.02',11),
-
-(10390,'S32_4485',45,'101.03',12),
-
-(10390,'S50_4713',22,'81.36',13),
-
-(10391,'S10_1949',24,'195.01',4),
-
-(10391,'S10_4962',37,'121.15',7),
-
-(10391,'S12_1666',39,'110.70',9),
-
-(10391,'S18_1097',29,'114.34',10),
-
-(10391,'S18_1342',35,'102.74',2),
-
-(10391,'S18_1367',42,'47.44',3),
-
-(10391,'S18_2432',44,'57.73',5),
-
-(10391,'S18_2949',32,'99.28',6),
-
-(10391,'S24_1937',33,'26.55',8),
-
-(10391,'S24_2022',24,'36.29',1),
-
-(10392,'S18_2957',37,'61.21',3),
-
-(10392,'S18_3136',29,'103.67',2),
-
-(10392,'S18_3320',36,'98.22',1),
-
-(10393,'S12_3148',35,'145.04',8),
-
-(10393,'S12_4473',32,'99.54',10),
-
-(10393,'S18_2238',20,'137.53',11),
-
-(10393,'S18_2319',38,'104.32',7),
-
-(10393,'S18_4600',30,'106.55',9),
-
-(10393,'S18_4668',44,'41.76',1),
-
-(10393,'S24_2300',33,'112.46',2),
-
-(10393,'S24_4258',33,'88.62',3),
-
-(10393,'S32_1268',38,'84.75',4),
-
-(10393,'S32_3522',31,'63.35',5),
-
-(10393,'S700_2824',21,'83.95',6),
-
-(10394,'S18_3232',22,'135.47',5),
-
-(10394,'S18_4027',37,'124.95',1),
-
-(10394,'S24_1444',31,'53.18',2),
-
-(10394,'S24_2840',46,'35.36',6),
-
-(10394,'S24_4048',37,'104.09',7),
-
-(10394,'S32_2509',36,'47.08',3),
-
-(10394,'S32_3207',30,'55.93',4),
-
-(10395,'S10_4757',32,'125.12',2),
-
-(10395,'S12_1108',33,'205.72',1),
-
-(10395,'S50_1392',46,'98.39',4),
-
-(10395,'S50_1514',45,'57.99',3),
-
-(10396,'S12_3891',33,'155.72',3),
-
-(10396,'S18_3140',33,'129.76',2),
-
-(10396,'S18_3259',24,'91.76',4),
-
-(10396,'S18_4522',45,'83.38',5),
-
-(10396,'S24_2011',49,'100.77',6),
-
-(10396,'S24_3151',27,'77.00',7),
-
-(10396,'S24_3816',37,'77.99',8),
-
-(10396,'S700_1138',39,'62.00',1),
-
-(10397,'S700_1938',32,'69.29',5),
-
-(10397,'S700_2610',22,'62.88',4),
-
-(10397,'S700_3505',48,'86.15',3),
-
-(10397,'S700_3962',36,'80.44',2),
-
-(10397,'S72_3212',34,'52.96',1),
-
-(10398,'S18_1662',33,'130.88',11),
-
-(10398,'S18_2581',34,'82.79',15),
-
-(10398,'S18_3029',28,'70.54',18),
-
-(10398,'S18_3856',45,'92.11',17),
-
-(10398,'S24_1785',43,'100.67',16),
-
-(10398,'S24_2841',28,'60.29',3),
-
-(10398,'S24_3420',34,'61.15',13),
-
-(10398,'S24_3949',41,'56.64',2),
-
-(10398,'S24_4278',45,'65.93',14),
-
-(10398,'S32_4289',22,'60.54',4),
-
-(10398,'S50_1341',49,'38.84',5),
-
-(10398,'S700_1691',47,'78.55',6),
-
-(10398,'S700_2047',36,'75.13',7),
-
-(10398,'S700_2466',22,'98.72',8),
-
-(10398,'S700_2834',23,'102.04',9),
-
-(10398,'S700_3167',29,'76.80',10),
-
-(10398,'S700_4002',36,'62.19',12),
-
-(10398,'S72_1253',34,'41.22',1),
-
-(10399,'S10_1678',40,'77.52',8),
-
-(10399,'S10_2016',51,'99.91',7),
-
-(10399,'S10_4698',22,'156.86',6),
-
-(10399,'S12_2823',29,'123.51',5),
-
-(10399,'S18_2625',30,'51.48',4),
-
-(10399,'S24_1578',57,'104.81',3),
-
-(10399,'S24_2000',58,'75.41',2),
-
-(10399,'S32_1374',32,'97.89',1),
-
-(10400,'S10_4757',64,'134.64',9),
-
-(10400,'S18_1662',34,'129.31',1),
-
-(10400,'S18_3029',30,'74.84',7),
-
-(10400,'S18_3856',58,'88.93',6),
-
-(10400,'S24_2841',24,'55.49',2),
-
-(10400,'S24_3420',38,'59.18',3),
-
-(10400,'S24_3816',42,'74.64',8),
-
-(10400,'S700_2047',46,'82.37',5),
-
-(10400,'S72_1253',20,'41.71',4),
-
-(10401,'S18_2581',42,'75.19',3),
-
-(10401,'S24_1785',38,'87.54',5),
-
-(10401,'S24_3949',64,'59.37',12),
-
-(10401,'S24_4278',52,'65.93',4),
-
-(10401,'S32_1374',49,'81.91',1),
-
-(10401,'S32_4289',62,'62.60',6),
-
-(10401,'S50_1341',56,'41.46',7),
-
-(10401,'S700_1691',11,'77.64',8),
-
-(10401,'S700_2466',85,'98.72',10),
-
-(10401,'S700_2834',21,'96.11',2),
-
-(10401,'S700_3167',77,'73.60',9),
-
-(10401,'S700_4002',40,'66.63',11),
-
-(10402,'S10_2016',45,'118.94',1),
-
-(10402,'S18_2625',55,'58.15',2),
-
-(10402,'S24_2000',59,'61.70',3),
-
-(10403,'S10_1678',24,'85.17',7),
-
-(10403,'S10_4698',66,'174.29',9),
-
-(10403,'S12_2823',66,'122.00',6),
-
-(10403,'S18_3782',36,'55.33',1),
-
-(10403,'S24_1578',46,'109.32',8),
-
-(10403,'S24_2360',27,'57.49',4),
-
-(10403,'S32_2206',30,'35.80',2),
-
-(10403,'S32_4485',45,'88.78',5),
-
-(10403,'S50_4713',31,'65.09',3),
-
-(10404,'S12_1099',64,'163.44',3),
-
-(10404,'S12_3380',43,'102.17',1),
-
-(10404,'S12_3990',77,'67.03',4),
-
-(10404,'S18_3278',90,'67.54',6),
-
-(10404,'S18_3482',28,'127.88',5),
-
-(10404,'S18_4721',48,'124.99',8),
-
-(10404,'S24_3371',49,'53.27',2),
-
-(10404,'S24_4620',48,'65.48',7),
-
-(10405,'S12_4675',97,'115.16',5),
-
-(10405,'S18_1889',61,'72.38',4),
-
-(10405,'S18_3232',55,'147.33',1),
-
-(10405,'S24_2972',47,'37.38',2),
-
-(10405,'S24_3856',76,'127.79',3),
-
-(10406,'S18_1129',61,'124.56',3),
-
-(10406,'S18_1984',48,'133.72',2),
-
-(10406,'S18_3685',65,'117.26',1),
-
-(10407,'S18_1589',59,'114.48',11),
-
-(10407,'S18_1749',76,'141.10',2),
-
-(10407,'S18_2248',42,'58.12',1),
-
-(10407,'S18_2870',41,'132.00',12),
-
-(10407,'S18_4409',6,'91.11',3),
-
-(10407,'S18_4933',66,'64.14',4),
-
-(10407,'S24_1046',26,'68.35',8),
-
-(10407,'S24_1628',64,'45.78',10),
-
-(10407,'S24_2766',76,'81.78',6),
-
-(10407,'S24_2887',59,'98.65',5),
-
-(10407,'S24_3191',13,'77.05',7),
-
-(10407,'S24_3432',43,'101.73',9),
-
-(10408,'S24_3969',15,'41.03',1),
-
-(10409,'S18_2325',6,'104.25',2),
-
-(10409,'S24_1937',61,'27.88',1),
-
-(10410,'S18_1342',65,'99.66',7),
-
-(10410,'S18_1367',44,'51.21',6),
-
-(10410,'S18_2795',56,'145.13',8),
-
-(10410,'S18_2949',47,'93.21',1),
-
-(10410,'S18_2957',53,'49.97',3),
-
-(10410,'S18_3136',34,'84.82',2),
-
-(10410,'S18_3320',44,'81.35',5),
-
-(10410,'S24_2022',31,'42.56',9),
-
-(10410,'S24_4258',50,'95.44',4),
-
-(10411,'S10_1949',23,'205.73',9),
-
-(10411,'S10_4962',27,'144.79',2),
-
-(10411,'S12_1666',40,'110.70',6),
-
-(10411,'S18_1097',27,'109.67',8),
-
-(10411,'S18_4600',46,'106.55',3),
-
-(10411,'S18_4668',35,'41.25',7),
-
-(10411,'S32_1268',26,'78.01',1),
-
-(10411,'S32_3522',27,'60.76',5),
-
-(10411,'S700_2824',34,'89.01',4),
-
-(10412,'S12_4473',54,'100.73',5),
-
-(10412,'S18_2238',41,'150.63',4),
-
-(10412,'S18_2319',56,'120.28',8),
-
-(10412,'S18_2432',47,'49.83',11),
-
-(10412,'S18_3232',60,'157.49',9),
-
-(10412,'S24_1444',21,'47.40',2),
-
-(10412,'S24_2300',70,'109.90',10),
-
-(10412,'S24_2840',30,'32.88',6),
-
-(10412,'S24_4048',31,'108.82',1),
-
-(10412,'S32_2509',19,'50.86',7),
-
-(10412,'S50_1392',26,'105.33',3),
-
-(10413,'S12_1108',36,'201.57',2),
-
-(10413,'S12_3148',47,'145.04',3),
-
-(10413,'S12_3891',22,'173.02',1),
-
-(10413,'S18_4027',49,'133.57',5),
-
-(10413,'S32_3207',24,'56.55',6),
-
-(10413,'S50_1514',51,'53.31',4),
-
-(10414,'S10_4757',49,'114.24',3),
-
-(10414,'S18_3029',44,'77.42',1),
-
-(10414,'S18_3140',41,'128.39',12),
-
-(10414,'S18_3259',48,'85.71',14),
-
-(10414,'S18_4522',56,'83.38',11),
-
-(10414,'S24_2011',43,'108.14',10),
-
-(10414,'S24_3151',60,'72.58',5),
-
-(10414,'S24_3816',51,'72.96',2),
-
-(10414,'S700_1138',37,'62.00',6),
-
-(10414,'S700_1938',34,'74.48',13),
-
-(10414,'S700_2610',31,'61.44',4),
-
-(10414,'S700_3505',28,'84.14',7),
-
-(10414,'S700_3962',40,'84.41',8),
-
-(10414,'S72_3212',47,'54.60',9),
-
-(10415,'S18_3856',51,'86.81',5),
-
-(10415,'S24_2841',21,'60.97',1),
-
-(10415,'S24_3420',18,'59.83',2),
-
-(10415,'S700_2047',32,'73.32',4),
-
-(10415,'S72_1253',42,'43.20',3),
-
-(10416,'S18_1662',24,'129.31',14),
-
-(10416,'S18_2581',15,'70.96',4),
-
-(10416,'S24_1785',47,'90.82',6),
-
-(10416,'S24_2000',32,'62.46',1),
-
-(10416,'S24_3949',18,'64.83',13),
-
-(10416,'S24_4278',48,'70.28',5),
-
-(10416,'S32_1374',45,'86.90',2),
-
-(10416,'S32_4289',26,'68.10',7),
-
-(10416,'S50_1341',37,'39.71',8),
-
-(10416,'S700_1691',23,'88.60',9),
-
-(10416,'S700_2466',22,'84.76',11),
-
-(10416,'S700_2834',41,'98.48',3),
-
-(10416,'S700_3167',39,'65.60',10),
-
-(10416,'S700_4002',43,'63.67',12),
-
-(10417,'S10_1678',66,'79.43',2),
-
-(10417,'S10_2016',45,'116.56',5),
-
-(10417,'S10_4698',56,'162.67',4),
-
-(10417,'S12_2823',21,'144.60',1),
-
-(10417,'S18_2625',36,'58.75',6),
-
-(10417,'S24_1578',35,'109.32',3),
-
-(10418,'S18_3278',16,'70.76',2),
-
-(10418,'S18_3482',27,'139.64',1),
-
-(10418,'S18_3782',33,'56.57',5),
-
-(10418,'S18_4721',28,'120.53',4),
-
-(10418,'S24_2360',52,'64.41',8),
-
-(10418,'S24_4620',10,'66.29',3),
-
-(10418,'S32_2206',43,'36.61',6),
-
-(10418,'S32_4485',50,'100.01',9),
-
-(10418,'S50_4713',40,'72.41',7),
-
-(10419,'S12_1099',12,'182.90',13),
-
-(10419,'S12_3380',10,'111.57',11),
-
-(10419,'S12_3990',34,'64.64',14),
-
-(10419,'S12_4675',32,'99.04',10),
-
-(10419,'S18_1129',38,'117.48',5),
-
-(10419,'S18_1589',37,'100.80',1),
-
-(10419,'S18_1889',39,'67.76',9),
-
-(10419,'S18_1984',34,'133.72',4),
-
-(10419,'S18_2870',55,'116.16',2),
-
-(10419,'S18_3232',35,'165.95',6),
-
-(10419,'S18_3685',43,'114.44',3),
-
-(10419,'S24_2972',15,'32.10',7),
-
-(10419,'S24_3371',55,'52.66',12),
-
-(10419,'S24_3856',70,'112.34',8),
-
-(10420,'S18_1749',37,'153.00',5),
-
-(10420,'S18_2248',36,'52.06',4),
-
-(10420,'S18_2325',45,'116.96',2),
-
-(10420,'S18_4409',66,'73.62',6),
-
-(10420,'S18_4933',36,'68.42',7),
-
-(10420,'S24_1046',60,'60.26',11),
-
-(10420,'S24_1628',37,'48.80',13),
-
-(10420,'S24_1937',45,'32.19',1),
-
-(10420,'S24_2766',39,'76.33',9),
-
-(10420,'S24_2887',55,'115.09',8),
-
-(10420,'S24_3191',35,'77.05',10),
-
-(10420,'S24_3432',26,'104.94',12),
-
-(10420,'S24_3969',15,'35.29',3),
-
-(10421,'S18_2795',35,'167.06',1),
-
-(10421,'S24_2022',40,'44.80',2),
-
-(10422,'S18_1342',51,'91.44',2),
-
-(10422,'S18_1367',25,'47.44',1),
-
-(10423,'S18_2949',10,'89.15',1),
-
-(10423,'S18_2957',31,'56.21',3),
-
-(10423,'S18_3136',21,'98.44',2),
-
-(10423,'S18_3320',21,'80.36',5),
-
-(10423,'S24_4258',28,'78.89',4),
-
-(10424,'S10_1949',50,'201.44',6),
-
-(10424,'S12_1666',49,'121.64',3),
-
-(10424,'S18_1097',54,'108.50',5),
-
-(10424,'S18_4668',26,'40.25',4),
-
-(10424,'S32_3522',44,'54.94',2),
-
-(10424,'S700_2824',46,'85.98',1),
-
-(10425,'S10_4962',38,'131.49',12),
-
-(10425,'S12_4473',33,'95.99',4),
-
-(10425,'S18_2238',28,'147.36',3),
-
-(10425,'S18_2319',38,'117.82',7),
-
-(10425,'S18_2432',19,'48.62',10),
-
-(10425,'S18_3232',28,'140.55',8),
-
-(10425,'S18_4600',38,'107.76',13),
-
-(10425,'S24_1444',55,'53.75',1),
-
-(10425,'S24_2300',49,'127.79',9),
-
-(10425,'S24_2840',31,'31.82',5),
-
-(10425,'S32_1268',41,'83.79',11),
-
-(10425,'S32_2509',11,'50.32',6),
-
-(10425,'S50_1392',18,'94.92',2);
-
-/*Table structure for table `orders` */
-
-DROP TABLE IF EXISTS `orders`;
-
-CREATE TABLE `orders` (
-  `orderNumber` int(11) NOT NULL,
-  `orderDate` date NOT NULL,
-  `requiredDate` date NOT NULL,
-  `shippedDate` date DEFAULT NULL,
-  `status` varchar(15) NOT NULL,
-  `comments` text,
-  `customerNumber` int(11) NOT NULL,
-  PRIMARY KEY (`orderNumber`),
-  KEY `customerNumber` (`customerNumber`),
-  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customerNumber`) REFERENCES `customers` (`customerNumber`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `orders` */
-
-insert  into `orders`(`orderNumber`,`orderDate`,`requiredDate`,`shippedDate`,`status`,`comments`,`customerNumber`) values 
-
-(10100,'2003-01-06','2003-01-13','2003-01-10','Shipped',NULL,363),
-
-(10101,'2003-01-09','2003-01-18','2003-01-11','Shipped','Check on availability.',128),
-
-(10102,'2003-01-10','2003-01-18','2003-01-14','Shipped',NULL,181),
-
-(10103,'2003-01-29','2003-02-07','2003-02-02','Shipped',NULL,121),
-
-(10104,'2003-01-31','2003-02-09','2003-02-01','Shipped',NULL,141),
-
-(10105,'2003-02-11','2003-02-21','2003-02-12','Shipped',NULL,145),
-
-(10106,'2003-02-17','2003-02-24','2003-02-21','Shipped',NULL,278),
-
-(10107,'2003-02-24','2003-03-03','2003-02-26','Shipped','Difficult to negotiate with customer. We need more marketing materials',131),
-
-(10108,'2003-03-03','2003-03-12','2003-03-08','Shipped',NULL,385),
-
-(10109,'2003-03-10','2003-03-19','2003-03-11','Shipped','Customer requested that FedEx Ground is used for this shipping',486),
-
-(10110,'2003-03-18','2003-03-24','2003-03-20','Shipped',NULL,187),
-
-(10111,'2003-03-25','2003-03-31','2003-03-30','Shipped',NULL,129),
-
-(10112,'2003-03-24','2003-04-03','2003-03-29','Shipped','Customer requested that ad materials (such as posters, pamphlets) be included in the shippment',144),
-
-(10113,'2003-03-26','2003-04-02','2003-03-27','Shipped',NULL,124),
-
-(10114,'2003-04-01','2003-04-07','2003-04-02','Shipped',NULL,172),
-
-(10115,'2003-04-04','2003-04-12','2003-04-07','Shipped',NULL,424),
-
-(10116,'2003-04-11','2003-04-19','2003-04-13','Shipped',NULL,381),
-
-(10117,'2003-04-16','2003-04-24','2003-04-17','Shipped',NULL,148),
-
-(10118,'2003-04-21','2003-04-29','2003-04-26','Shipped','Customer has worked with some of our vendors in the past and is aware of their MSRP',216),
-
-(10119,'2003-04-28','2003-05-05','2003-05-02','Shipped',NULL,382),
-
-(10120,'2003-04-29','2003-05-08','2003-05-01','Shipped',NULL,114),
-
-(10121,'2003-05-07','2003-05-13','2003-05-13','Shipped',NULL,353),
-
-(10122,'2003-05-08','2003-05-16','2003-05-13','Shipped',NULL,350),
-
-(10123,'2003-05-20','2003-05-29','2003-05-22','Shipped',NULL,103),
-
-(10124,'2003-05-21','2003-05-29','2003-05-25','Shipped','Customer very concerned about the exact color of the models. There is high risk that he may dispute the order because there is a slight color mismatch',112),
-
-(10125,'2003-05-21','2003-05-27','2003-05-24','Shipped',NULL,114),
-
-(10126,'2003-05-28','2003-06-07','2003-06-02','Shipped',NULL,458),
-
-(10127,'2003-06-03','2003-06-09','2003-06-06','Shipped','Customer requested special shippment. The instructions were passed along to the warehouse',151),
-
-(10128,'2003-06-06','2003-06-12','2003-06-11','Shipped',NULL,141),
-
-(10129,'2003-06-12','2003-06-18','2003-06-14','Shipped',NULL,324),
-
-(10130,'2003-06-16','2003-06-24','2003-06-21','Shipped',NULL,198),
-
-(10131,'2003-06-16','2003-06-25','2003-06-21','Shipped',NULL,447),
-
-(10132,'2003-06-25','2003-07-01','2003-06-28','Shipped',NULL,323),
-
-(10133,'2003-06-27','2003-07-04','2003-07-03','Shipped',NULL,141),
-
-(10134,'2003-07-01','2003-07-10','2003-07-05','Shipped',NULL,250),
-
-(10135,'2003-07-02','2003-07-12','2003-07-03','Shipped',NULL,124),
-
-(10136,'2003-07-04','2003-07-14','2003-07-06','Shipped','Customer is interested in buying more Ferrari models',242),
-
-(10137,'2003-07-10','2003-07-20','2003-07-14','Shipped',NULL,353),
-
-(10138,'2003-07-07','2003-07-16','2003-07-13','Shipped',NULL,496),
-
-(10139,'2003-07-16','2003-07-23','2003-07-21','Shipped',NULL,282),
-
-(10140,'2003-07-24','2003-08-02','2003-07-30','Shipped',NULL,161),
-
-(10141,'2003-08-01','2003-08-09','2003-08-04','Shipped',NULL,334),
-
-(10142,'2003-08-08','2003-08-16','2003-08-13','Shipped',NULL,124),
-
-(10143,'2003-08-10','2003-08-18','2003-08-12','Shipped','Can we deliver the new Ford Mustang models by end-of-quarter?',320),
-
-(10144,'2003-08-13','2003-08-21','2003-08-14','Shipped',NULL,381),
-
-(10145,'2003-08-25','2003-09-02','2003-08-31','Shipped',NULL,205),
-
-(10146,'2003-09-03','2003-09-13','2003-09-06','Shipped',NULL,447),
-
-(10147,'2003-09-05','2003-09-12','2003-09-09','Shipped',NULL,379),
-
-(10148,'2003-09-11','2003-09-21','2003-09-15','Shipped','They want to reevaluate their terms agreement with Finance.',276),
-
-(10149,'2003-09-12','2003-09-18','2003-09-17','Shipped',NULL,487),
-
-(10150,'2003-09-19','2003-09-27','2003-09-21','Shipped','They want to reevaluate their terms agreement with Finance.',148),
-
-(10151,'2003-09-21','2003-09-30','2003-09-24','Shipped',NULL,311),
-
-(10152,'2003-09-25','2003-10-03','2003-10-01','Shipped',NULL,333),
-
-(10153,'2003-09-28','2003-10-05','2003-10-03','Shipped',NULL,141),
-
-(10154,'2003-10-02','2003-10-12','2003-10-08','Shipped',NULL,219),
-
-(10155,'2003-10-06','2003-10-13','2003-10-07','Shipped',NULL,186),
-
-(10156,'2003-10-08','2003-10-17','2003-10-11','Shipped',NULL,141),
-
-(10157,'2003-10-09','2003-10-15','2003-10-14','Shipped',NULL,473),
-
-(10158,'2003-10-10','2003-10-18','2003-10-15','Shipped',NULL,121),
-
-(10159,'2003-10-10','2003-10-19','2003-10-16','Shipped',NULL,321),
-
-(10160,'2003-10-11','2003-10-17','2003-10-17','Shipped',NULL,347),
-
-(10161,'2003-10-17','2003-10-25','2003-10-20','Shipped',NULL,227),
-
-(10162,'2003-10-18','2003-10-26','2003-10-19','Shipped',NULL,321),
-
-(10163,'2003-10-20','2003-10-27','2003-10-24','Shipped',NULL,424),
-
-(10164,'2003-10-21','2003-10-30','2003-10-23','Resolved','This order was disputed, but resolved on 11/1/2003; Customer doesn\'t like the colors and precision of the models.',452),
-
-(10165,'2003-10-22','2003-10-31','2003-12-26','Shipped','This order was on hold because customers\'s credit limit had been exceeded. Order will ship when payment is received',148),
-
-(10166,'2003-10-21','2003-10-30','2003-10-27','Shipped',NULL,462),
-
-(10167,'2003-10-23','2003-10-30',NULL,'Cancelled','Customer called to cancel. The warehouse was notified in time and the order didn\'t ship. They have a new VP of Sales and are shifting their sales model. Our VP of Sales should contact them.',448),
-
-(10168,'2003-10-28','2003-11-03','2003-11-01','Shipped',NULL,161),
-
-(10169,'2003-11-04','2003-11-14','2003-11-09','Shipped',NULL,276),
-
-(10170,'2003-11-04','2003-11-12','2003-11-07','Shipped',NULL,452),
-
-(10171,'2003-11-05','2003-11-13','2003-11-07','Shipped',NULL,233),
-
-(10172,'2003-11-05','2003-11-14','2003-11-11','Shipped',NULL,175),
-
-(10173,'2003-11-05','2003-11-15','2003-11-09','Shipped','Cautious optimism. We have happy customers here, if we can keep them well stocked.  I need all the information I can get on the planned shippments of Porches',278),
-
-(10174,'2003-11-06','2003-11-15','2003-11-10','Shipped',NULL,333),
-
-(10175,'2003-11-06','2003-11-14','2003-11-09','Shipped',NULL,324),
-
-(10176,'2003-11-06','2003-11-15','2003-11-12','Shipped',NULL,386),
-
-(10177,'2003-11-07','2003-11-17','2003-11-12','Shipped',NULL,344),
-
-(10178,'2003-11-08','2003-11-16','2003-11-10','Shipped','Custom shipping instructions sent to warehouse',242),
-
-(10179,'2003-11-11','2003-11-17','2003-11-13','Cancelled','Customer cancelled due to urgent budgeting issues. Must be cautious when dealing with them in the future. Since order shipped already we must discuss who would cover the shipping charges.',496),
-
-(10180,'2003-11-11','2003-11-19','2003-11-14','Shipped',NULL,171),
-
-(10181,'2003-11-12','2003-11-19','2003-11-15','Shipped',NULL,167),
-
-(10182,'2003-11-12','2003-11-21','2003-11-18','Shipped',NULL,124),
-
-(10183,'2003-11-13','2003-11-22','2003-11-15','Shipped','We need to keep in close contact with their Marketing VP. He is the decision maker for all their purchases.',339),
-
-(10184,'2003-11-14','2003-11-22','2003-11-20','Shipped',NULL,484),
-
-(10185,'2003-11-14','2003-11-21','2003-11-20','Shipped',NULL,320),
-
-(10186,'2003-11-14','2003-11-20','2003-11-18','Shipped','They want to reevaluate their terms agreement with the VP of Sales',489),
-
-(10187,'2003-11-15','2003-11-24','2003-11-16','Shipped',NULL,211),
-
-(10188,'2003-11-18','2003-11-26','2003-11-24','Shipped',NULL,167),
-
-(10189,'2003-11-18','2003-11-25','2003-11-24','Shipped','They want to reevaluate their terms agreement with Finance.',205),
-
-(10190,'2003-11-19','2003-11-29','2003-11-20','Shipped',NULL,141),
-
-(10191,'2003-11-20','2003-11-30','2003-11-24','Shipped','We must be cautions with this customer. Their VP of Sales resigned. Company may be heading down.',259),
-
-(10192,'2003-11-20','2003-11-29','2003-11-25','Shipped',NULL,363),
-
-(10193,'2003-11-21','2003-11-28','2003-11-27','Shipped',NULL,471),
-
-(10194,'2003-11-25','2003-12-02','2003-11-26','Shipped',NULL,146),
-
-(10195,'2003-11-25','2003-12-01','2003-11-28','Shipped',NULL,319),
-
-(10196,'2003-11-26','2003-12-03','2003-12-01','Shipped',NULL,455),
-
-(10197,'2003-11-26','2003-12-02','2003-12-01','Shipped','Customer inquired about remote controlled models and gold models.',216),
-
-(10198,'2003-11-27','2003-12-06','2003-12-03','Shipped',NULL,385),
-
-(10199,'2003-12-01','2003-12-10','2003-12-06','Shipped',NULL,475),
-
-(10200,'2003-12-01','2003-12-09','2003-12-06','Shipped',NULL,211),
-
-(10201,'2003-12-01','2003-12-11','2003-12-02','Shipped',NULL,129),
-
-(10202,'2003-12-02','2003-12-09','2003-12-06','Shipped',NULL,357),
-
-(10203,'2003-12-02','2003-12-11','2003-12-07','Shipped',NULL,141),
-
-(10204,'2003-12-02','2003-12-10','2003-12-04','Shipped',NULL,151),
-
-(10205,'2003-12-03','2003-12-09','2003-12-07','Shipped',' I need all the information I can get on our competitors.',141),
-
-(10206,'2003-12-05','2003-12-13','2003-12-08','Shipped','Can we renegotiate this one?',202),
-
-(10207,'2003-12-09','2003-12-17','2003-12-11','Shipped','Check on availability.',495),
-
-(10208,'2004-01-02','2004-01-11','2004-01-04','Shipped',NULL,146),
-
-(10209,'2004-01-09','2004-01-15','2004-01-12','Shipped',NULL,347),
-
-(10210,'2004-01-12','2004-01-22','2004-01-20','Shipped',NULL,177),
-
-(10211,'2004-01-15','2004-01-25','2004-01-18','Shipped',NULL,406),
-
-(10212,'2004-01-16','2004-01-24','2004-01-18','Shipped',NULL,141),
-
-(10213,'2004-01-22','2004-01-28','2004-01-27','Shipped','Difficult to negotiate with customer. We need more marketing materials',489),
-
-(10214,'2004-01-26','2004-02-04','2004-01-29','Shipped',NULL,458),
-
-(10215,'2004-01-29','2004-02-08','2004-02-01','Shipped','Customer requested that FedEx Ground is used for this shipping',475),
-
-(10216,'2004-02-02','2004-02-10','2004-02-04','Shipped',NULL,256),
-
-(10217,'2004-02-04','2004-02-14','2004-02-06','Shipped',NULL,166),
-
-(10218,'2004-02-09','2004-02-16','2004-02-11','Shipped','Customer requested that ad materials (such as posters, pamphlets) be included in the shippment',473),
-
-(10219,'2004-02-10','2004-02-17','2004-02-12','Shipped',NULL,487),
-
-(10220,'2004-02-12','2004-02-19','2004-02-16','Shipped',NULL,189),
-
-(10221,'2004-02-18','2004-02-26','2004-02-19','Shipped',NULL,314),
-
-(10222,'2004-02-19','2004-02-27','2004-02-20','Shipped',NULL,239),
-
-(10223,'2004-02-20','2004-02-29','2004-02-24','Shipped',NULL,114),
-
-(10224,'2004-02-21','2004-03-02','2004-02-26','Shipped','Customer has worked with some of our vendors in the past and is aware of their MSRP',171),
-
-(10225,'2004-02-22','2004-03-01','2004-02-24','Shipped',NULL,298),
-
-(10226,'2004-02-26','2004-03-06','2004-03-02','Shipped',NULL,239),
-
-(10227,'2004-03-02','2004-03-12','2004-03-08','Shipped',NULL,146),
-
-(10228,'2004-03-10','2004-03-18','2004-03-13','Shipped',NULL,173),
-
-(10229,'2004-03-11','2004-03-20','2004-03-12','Shipped',NULL,124),
-
-(10230,'2004-03-15','2004-03-24','2004-03-20','Shipped','Customer very concerned about the exact color of the models. There is high risk that he may dispute the order because there is a slight color mismatch',128),
-
-(10231,'2004-03-19','2004-03-26','2004-03-25','Shipped',NULL,344),
-
-(10232,'2004-03-20','2004-03-30','2004-03-25','Shipped',NULL,240),
-
-(10233,'2004-03-29','2004-04-04','2004-04-02','Shipped','Customer requested special shippment. The instructions were passed along to the warehouse',328),
-
-(10234,'2004-03-30','2004-04-05','2004-04-02','Shipped',NULL,412),
-
-(10235,'2004-04-02','2004-04-12','2004-04-06','Shipped',NULL,260),
-
-(10236,'2004-04-03','2004-04-11','2004-04-08','Shipped',NULL,486),
-
-(10237,'2004-04-05','2004-04-12','2004-04-10','Shipped',NULL,181),
-
-(10238,'2004-04-09','2004-04-16','2004-04-10','Shipped',NULL,145),
-
-(10239,'2004-04-12','2004-04-21','2004-04-17','Shipped',NULL,311),
-
-(10240,'2004-04-13','2004-04-20','2004-04-20','Shipped',NULL,177),
-
-(10241,'2004-04-13','2004-04-20','2004-04-19','Shipped',NULL,209),
-
-(10242,'2004-04-20','2004-04-28','2004-04-25','Shipped','Customer is interested in buying more Ferrari models',456),
-
-(10243,'2004-04-26','2004-05-03','2004-04-28','Shipped',NULL,495),
-
-(10244,'2004-04-29','2004-05-09','2004-05-04','Shipped',NULL,141),
-
-(10245,'2004-05-04','2004-05-12','2004-05-09','Shipped',NULL,455),
-
-(10246,'2004-05-05','2004-05-13','2004-05-06','Shipped',NULL,141),
-
-(10247,'2004-05-05','2004-05-11','2004-05-08','Shipped',NULL,334),
-
-(10248,'2004-05-07','2004-05-14',NULL,'Cancelled','Order was mistakenly placed. The warehouse noticed the lack of documentation.',131),
-
-(10249,'2004-05-08','2004-05-17','2004-05-11','Shipped','Can we deliver the new Ford Mustang models by end-of-quarter?',173),
-
-(10250,'2004-05-11','2004-05-19','2004-05-15','Shipped',NULL,450),
-
-(10251,'2004-05-18','2004-05-24','2004-05-24','Shipped',NULL,328),
-
-(10252,'2004-05-26','2004-06-04','2004-05-29','Shipped',NULL,406),
-
-(10253,'2004-06-01','2004-06-09','2004-06-02','Cancelled','Customer disputed the order and we agreed to cancel it. We must be more cautions with this customer going forward, since they are very hard to please. We must cover the shipping fees.',201),
-
-(10254,'2004-06-03','2004-06-13','2004-06-04','Shipped','Customer requested that DHL is used for this shipping',323),
-
-(10255,'2004-06-04','2004-06-12','2004-06-09','Shipped',NULL,209),
-
-(10256,'2004-06-08','2004-06-16','2004-06-10','Shipped',NULL,145),
-
-(10257,'2004-06-14','2004-06-24','2004-06-15','Shipped',NULL,450),
-
-(10258,'2004-06-15','2004-06-25','2004-06-23','Shipped',NULL,398),
-
-(10259,'2004-06-15','2004-06-22','2004-06-17','Shipped',NULL,166),
-
-(10260,'2004-06-16','2004-06-22',NULL,'Cancelled','Customer heard complaints from their customers and called to cancel this order. Will notify the Sales Manager.',357),
-
-(10261,'2004-06-17','2004-06-25','2004-06-22','Shipped',NULL,233),
-
-(10262,'2004-06-24','2004-07-01',NULL,'Cancelled','This customer found a better offer from one of our competitors. Will call back to renegotiate.',141),
-
-(10263,'2004-06-28','2004-07-04','2004-07-02','Shipped',NULL,175),
-
-(10264,'2004-06-30','2004-07-06','2004-07-01','Shipped','Customer will send a truck to our local warehouse on 7/1/2004',362),
-
-(10265,'2004-07-02','2004-07-09','2004-07-07','Shipped',NULL,471),
-
-(10266,'2004-07-06','2004-07-14','2004-07-10','Shipped',NULL,386),
-
-(10267,'2004-07-07','2004-07-17','2004-07-09','Shipped',NULL,151),
-
-(10268,'2004-07-12','2004-07-18','2004-07-14','Shipped',NULL,412),
-
-(10269,'2004-07-16','2004-07-22','2004-07-18','Shipped',NULL,382),
-
-(10270,'2004-07-19','2004-07-27','2004-07-24','Shipped','Can we renegotiate this one?',282),
-
-(10271,'2004-07-20','2004-07-29','2004-07-23','Shipped',NULL,124),
-
-(10272,'2004-07-20','2004-07-26','2004-07-22','Shipped',NULL,157),
-
-(10273,'2004-07-21','2004-07-28','2004-07-22','Shipped',NULL,314),
-
-(10274,'2004-07-21','2004-07-29','2004-07-22','Shipped',NULL,379),
-
-(10275,'2004-07-23','2004-08-02','2004-07-29','Shipped',NULL,119),
-
-(10276,'2004-08-02','2004-08-11','2004-08-08','Shipped',NULL,204),
-
-(10277,'2004-08-04','2004-08-12','2004-08-05','Shipped',NULL,148),
-
-(10278,'2004-08-06','2004-08-16','2004-08-09','Shipped',NULL,112),
-
-(10279,'2004-08-09','2004-08-19','2004-08-15','Shipped','Cautious optimism. We have happy customers here, if we can keep them well stocked.  I need all the information I can get on the planned shippments of Porches',141),
-
-(10280,'2004-08-17','2004-08-27','2004-08-19','Shipped',NULL,249),
-
-(10281,'2004-08-19','2004-08-28','2004-08-23','Shipped',NULL,157),
-
-(10282,'2004-08-20','2004-08-26','2004-08-22','Shipped',NULL,124),
-
-(10283,'2004-08-20','2004-08-30','2004-08-23','Shipped',NULL,260),
-
-(10284,'2004-08-21','2004-08-29','2004-08-26','Shipped','Custom shipping instructions sent to warehouse',299),
-
-(10285,'2004-08-27','2004-09-04','2004-08-31','Shipped',NULL,286),
-
-(10286,'2004-08-28','2004-09-06','2004-09-01','Shipped',NULL,172),
-
-(10287,'2004-08-30','2004-09-06','2004-09-01','Shipped',NULL,298),
-
-(10288,'2004-09-01','2004-09-11','2004-09-05','Shipped',NULL,166),
-
-(10289,'2004-09-03','2004-09-13','2004-09-04','Shipped','We need to keep in close contact with their Marketing VP. He is the decision maker for all their purchases.',167),
-
-(10290,'2004-09-07','2004-09-15','2004-09-13','Shipped',NULL,198),
-
-(10291,'2004-09-08','2004-09-17','2004-09-14','Shipped',NULL,448),
-
-(10292,'2004-09-08','2004-09-18','2004-09-11','Shipped','They want to reevaluate their terms agreement with Finance.',131),
-
-(10293,'2004-09-09','2004-09-18','2004-09-14','Shipped',NULL,249),
-
-(10294,'2004-09-10','2004-09-17','2004-09-14','Shipped',NULL,204),
-
-(10295,'2004-09-10','2004-09-17','2004-09-14','Shipped','They want to reevaluate their terms agreement with Finance.',362),
-
-(10296,'2004-09-15','2004-09-22','2004-09-16','Shipped',NULL,415),
-
-(10297,'2004-09-16','2004-09-22','2004-09-21','Shipped','We must be cautions with this customer. Their VP of Sales resigned. Company may be heading down.',189),
-
-(10298,'2004-09-27','2004-10-05','2004-10-01','Shipped',NULL,103),
-
-(10299,'2004-09-30','2004-10-10','2004-10-01','Shipped',NULL,186),
-
-(10300,'2003-10-04','2003-10-13','2003-10-09','Shipped',NULL,128),
-
-(10301,'2003-10-05','2003-10-15','2003-10-08','Shipped',NULL,299),
-
-(10302,'2003-10-06','2003-10-16','2003-10-07','Shipped',NULL,201),
-
-(10303,'2004-10-06','2004-10-14','2004-10-09','Shipped','Customer inquired about remote controlled models and gold models.',484),
-
-(10304,'2004-10-11','2004-10-20','2004-10-17','Shipped',NULL,256),
-
-(10305,'2004-10-13','2004-10-22','2004-10-15','Shipped','Check on availability.',286),
-
-(10306,'2004-10-14','2004-10-21','2004-10-17','Shipped',NULL,187),
-
-(10307,'2004-10-14','2004-10-23','2004-10-20','Shipped',NULL,339),
-
-(10308,'2004-10-15','2004-10-24','2004-10-20','Shipped','Customer requested that FedEx Ground is used for this shipping',319),
-
-(10309,'2004-10-15','2004-10-24','2004-10-18','Shipped',NULL,121),
-
-(10310,'2004-10-16','2004-10-24','2004-10-18','Shipped',NULL,259),
-
-(10311,'2004-10-16','2004-10-23','2004-10-20','Shipped','Difficult to negotiate with customer. We need more marketing materials',141),
-
-(10312,'2004-10-21','2004-10-27','2004-10-23','Shipped',NULL,124),
-
-(10313,'2004-10-22','2004-10-28','2004-10-25','Shipped','Customer requested that FedEx Ground is used for this shipping',202),
-
-(10314,'2004-10-22','2004-11-01','2004-10-23','Shipped',NULL,227),
-
-(10315,'2004-10-29','2004-11-08','2004-10-30','Shipped',NULL,119),
-
-(10316,'2004-11-01','2004-11-09','2004-11-07','Shipped','Customer requested that ad materials (such as posters, pamphlets) be included in the shippment',240),
-
-(10317,'2004-11-02','2004-11-12','2004-11-08','Shipped',NULL,161),
-
-(10318,'2004-11-02','2004-11-09','2004-11-07','Shipped',NULL,157),
-
-(10319,'2004-11-03','2004-11-11','2004-11-06','Shipped','Customer requested that DHL is used for this shipping',456),
-
-(10320,'2004-11-03','2004-11-13','2004-11-07','Shipped',NULL,144),
-
-(10321,'2004-11-04','2004-11-12','2004-11-07','Shipped',NULL,462),
-
-(10322,'2004-11-04','2004-11-12','2004-11-10','Shipped','Customer has worked with some of our vendors in the past and is aware of their MSRP',363),
-
-(10323,'2004-11-05','2004-11-12','2004-11-09','Shipped',NULL,128),
-
-(10324,'2004-11-05','2004-11-11','2004-11-08','Shipped',NULL,181),
-
-(10325,'2004-11-05','2004-11-13','2004-11-08','Shipped',NULL,121),
-
-(10326,'2004-11-09','2004-11-16','2004-11-10','Shipped',NULL,144),
-
-(10327,'2004-11-10','2004-11-19','2004-11-13','Resolved','Order was disputed and resolved on 12/1/04. The Sales Manager was involved. Customer claims the scales of the models don\'t match what was discussed.',145),
-
-(10328,'2004-11-12','2004-11-21','2004-11-18','Shipped','Customer very concerned about the exact color of the models. There is high risk that he may dispute the order because there is a slight color mismatch',278),
-
-(10329,'2004-11-15','2004-11-24','2004-11-16','Shipped',NULL,131),
-
-(10330,'2004-11-16','2004-11-25','2004-11-21','Shipped',NULL,385),
-
-(10331,'2004-11-17','2004-11-23','2004-11-23','Shipped','Customer requested special shippment. The instructions were passed along to the warehouse',486),
-
-(10332,'2004-11-17','2004-11-25','2004-11-18','Shipped',NULL,187),
-
-(10333,'2004-11-18','2004-11-27','2004-11-20','Shipped',NULL,129),
-
-(10334,'2004-11-19','2004-11-28',NULL,'On Hold','The outstaniding balance for this customer exceeds their credit limit. Order will be shipped when a payment is received.',144),
-
-(10335,'2004-11-19','2004-11-29','2004-11-23','Shipped',NULL,124),
-
-(10336,'2004-11-20','2004-11-26','2004-11-24','Shipped','Customer requested that DHL is used for this shipping',172),
-
-(10337,'2004-11-21','2004-11-30','2004-11-26','Shipped',NULL,424),
-
-(10338,'2004-11-22','2004-12-02','2004-11-27','Shipped',NULL,381),
-
-(10339,'2004-11-23','2004-11-30','2004-11-30','Shipped',NULL,398),
-
-(10340,'2004-11-24','2004-12-01','2004-11-25','Shipped','Customer is interested in buying more Ferrari models',216),
-
-(10341,'2004-11-24','2004-12-01','2004-11-29','Shipped',NULL,382),
-
-(10342,'2004-11-24','2004-12-01','2004-11-29','Shipped',NULL,114),
-
-(10343,'2004-11-24','2004-12-01','2004-11-26','Shipped',NULL,353),
-
-(10344,'2004-11-25','2004-12-02','2004-11-29','Shipped',NULL,350),
-
-(10345,'2004-11-25','2004-12-01','2004-11-26','Shipped',NULL,103),
-
-(10346,'2004-11-29','2004-12-05','2004-11-30','Shipped',NULL,112),
-
-(10347,'2004-11-29','2004-12-07','2004-11-30','Shipped','Can we deliver the new Ford Mustang models by end-of-quarter?',114),
-
-(10348,'2004-11-01','2004-11-08','2004-11-05','Shipped',NULL,458),
-
-(10349,'2004-12-01','2004-12-07','2004-12-03','Shipped',NULL,151),
-
-(10350,'2004-12-02','2004-12-08','2004-12-05','Shipped',NULL,141),
-
-(10351,'2004-12-03','2004-12-11','2004-12-07','Shipped',NULL,324),
-
-(10352,'2004-12-03','2004-12-12','2004-12-09','Shipped',NULL,198),
-
-(10353,'2004-12-04','2004-12-11','2004-12-05','Shipped',NULL,447),
-
-(10354,'2004-12-04','2004-12-10','2004-12-05','Shipped',NULL,323),
-
-(10355,'2004-12-07','2004-12-14','2004-12-13','Shipped',NULL,141),
-
-(10356,'2004-12-09','2004-12-15','2004-12-12','Shipped',NULL,250),
-
-(10357,'2004-12-10','2004-12-16','2004-12-14','Shipped',NULL,124),
-
-(10358,'2004-12-10','2004-12-16','2004-12-16','Shipped','Customer requested that DHL is used for this shipping',141),
-
-(10359,'2004-12-15','2004-12-23','2004-12-18','Shipped',NULL,353),
-
-(10360,'2004-12-16','2004-12-22','2004-12-18','Shipped',NULL,496),
-
-(10361,'2004-12-17','2004-12-24','2004-12-20','Shipped',NULL,282),
-
-(10362,'2005-01-05','2005-01-16','2005-01-10','Shipped',NULL,161),
-
-(10363,'2005-01-06','2005-01-12','2005-01-10','Shipped',NULL,334),
-
-(10364,'2005-01-06','2005-01-17','2005-01-09','Shipped',NULL,350),
-
-(10365,'2005-01-07','2005-01-18','2005-01-11','Shipped',NULL,320),
-
-(10366,'2005-01-10','2005-01-19','2005-01-12','Shipped',NULL,381),
-
-(10367,'2005-01-12','2005-01-21','2005-01-16','Resolved','This order was disputed and resolved on 2/1/2005. Customer claimed that container with shipment was damaged. FedEx\'s investigation proved this wrong.',205),
-
-(10368,'2005-01-19','2005-01-27','2005-01-24','Shipped','Can we renegotiate this one?',124),
-
-(10369,'2005-01-20','2005-01-28','2005-01-24','Shipped',NULL,379),
-
-(10370,'2005-01-20','2005-02-01','2005-01-25','Shipped',NULL,276),
-
-(10371,'2005-01-23','2005-02-03','2005-01-25','Shipped',NULL,124),
-
-(10372,'2005-01-26','2005-02-05','2005-01-28','Shipped',NULL,398),
-
-(10373,'2005-01-31','2005-02-08','2005-02-06','Shipped',NULL,311),
-
-(10374,'2005-02-02','2005-02-09','2005-02-03','Shipped',NULL,333),
-
-(10375,'2005-02-03','2005-02-10','2005-02-06','Shipped',NULL,119),
-
-(10376,'2005-02-08','2005-02-18','2005-02-13','Shipped',NULL,219),
-
-(10377,'2005-02-09','2005-02-21','2005-02-12','Shipped','Cautious optimism. We have happy customers here, if we can keep them well stocked.  I need all the information I can get on the planned shippments of Porches',186),
-
-(10378,'2005-02-10','2005-02-18','2005-02-11','Shipped',NULL,141),
-
-(10379,'2005-02-10','2005-02-18','2005-02-11','Shipped',NULL,141),
-
-(10380,'2005-02-16','2005-02-24','2005-02-18','Shipped',NULL,141),
-
-(10381,'2005-02-17','2005-02-25','2005-02-18','Shipped',NULL,321),
-
-(10382,'2005-02-17','2005-02-23','2005-02-18','Shipped','Custom shipping instructions sent to warehouse',124),
-
-(10383,'2005-02-22','2005-03-02','2005-02-25','Shipped',NULL,141),
-
-(10384,'2005-02-23','2005-03-06','2005-02-27','Shipped',NULL,321),
-
-(10385,'2005-02-28','2005-03-09','2005-03-01','Shipped',NULL,124),
-
-(10386,'2005-03-01','2005-03-09','2005-03-06','Resolved','Disputed then Resolved on 3/15/2005. Customer doesn\'t like the craftsmaship of the models.',141),
-
-(10387,'2005-03-02','2005-03-09','2005-03-06','Shipped','We need to keep in close contact with their Marketing VP. He is the decision maker for all their purchases.',148),
-
-(10388,'2005-03-03','2005-03-11','2005-03-09','Shipped',NULL,462),
-
-(10389,'2005-03-03','2005-03-09','2005-03-08','Shipped',NULL,448),
-
-(10390,'2005-03-04','2005-03-11','2005-03-07','Shipped','They want to reevaluate their terms agreement with Finance.',124),
-
-(10391,'2005-03-09','2005-03-20','2005-03-15','Shipped',NULL,276),
-
-(10392,'2005-03-10','2005-03-18','2005-03-12','Shipped',NULL,452),
-
-(10393,'2005-03-11','2005-03-22','2005-03-14','Shipped','They want to reevaluate their terms agreement with Finance.',323),
-
-(10394,'2005-03-15','2005-03-25','2005-03-19','Shipped',NULL,141),
-
-(10395,'2005-03-17','2005-03-24','2005-03-23','Shipped','We must be cautions with this customer. Their VP of Sales resigned. Company may be heading down.',250),
-
-(10396,'2005-03-23','2005-04-02','2005-03-28','Shipped',NULL,124),
-
-(10397,'2005-03-28','2005-04-09','2005-04-01','Shipped',NULL,242),
-
-(10398,'2005-03-30','2005-04-09','2005-03-31','Shipped',NULL,353),
-
-(10399,'2005-04-01','2005-04-12','2005-04-03','Shipped',NULL,496),
-
-(10400,'2005-04-01','2005-04-11','2005-04-04','Shipped','Customer requested that DHL is used for this shipping',450),
-
-(10401,'2005-04-03','2005-04-14',NULL,'On Hold','Customer credit limit exceeded. Will ship when a payment is received.',328),
-
-(10402,'2005-04-07','2005-04-14','2005-04-12','Shipped',NULL,406),
-
-(10403,'2005-04-08','2005-04-18','2005-04-11','Shipped',NULL,201),
-
-(10404,'2005-04-08','2005-04-14','2005-04-11','Shipped',NULL,323),
-
-(10405,'2005-04-14','2005-04-24','2005-04-20','Shipped',NULL,209),
-
-(10406,'2005-04-15','2005-04-25','2005-04-21','Disputed','Customer claims container with shipment was damaged during shipping and some items were missing. I am talking to FedEx about this.',145),
-
-(10407,'2005-04-22','2005-05-04',NULL,'On Hold','Customer credit limit exceeded. Will ship when a payment is received.',450),
-
-(10408,'2005-04-22','2005-04-29','2005-04-27','Shipped',NULL,398),
-
-(10409,'2005-04-23','2005-05-05','2005-04-24','Shipped',NULL,166),
-
-(10410,'2005-04-29','2005-05-10','2005-04-30','Shipped',NULL,357),
-
-(10411,'2005-05-01','2005-05-08','2005-05-06','Shipped',NULL,233),
-
-(10412,'2005-05-03','2005-05-13','2005-05-05','Shipped',NULL,141),
-
-(10413,'2005-05-05','2005-05-14','2005-05-09','Shipped','Customer requested that DHL is used for this shipping',175),
-
-(10414,'2005-05-06','2005-05-13',NULL,'On Hold','Customer credit limit exceeded. Will ship when a payment is received.',362),
-
-(10415,'2005-05-09','2005-05-20','2005-05-12','Disputed','Customer claims the scales of the models don\'t match what was discussed. I keep all the paperwork though to prove otherwise',471),
-
-(10416,'2005-05-10','2005-05-16','2005-05-14','Shipped',NULL,386),
-
-(10417,'2005-05-13','2005-05-19','2005-05-19','Disputed','Customer doesn\'t like the colors and precision of the models.',141),
-
-(10418,'2005-05-16','2005-05-24','2005-05-20','Shipped',NULL,412),
-
-(10419,'2005-05-17','2005-05-28','2005-05-19','Shipped',NULL,382),
-
-(10420,'2005-05-29','2005-06-07',NULL,'In Process',NULL,282),
-
-(10421,'2005-05-29','2005-06-06',NULL,'In Process','Custom shipping instructions were sent to warehouse',124),
-
-(10422,'2005-05-30','2005-06-11',NULL,'In Process',NULL,157),
-
-(10423,'2005-05-30','2005-06-05',NULL,'In Process',NULL,314),
-
-(10424,'2005-05-31','2005-06-08',NULL,'In Process',NULL,141),
-
-(10425,'2005-05-31','2005-06-07',NULL,'In Process',NULL,119);
-
-/*Table structure for table `payments` */
-
-DROP TABLE IF EXISTS `payments`;
-
-CREATE TABLE `payments` (
-  `customerNumber` int(11) NOT NULL,
-  `checkNumber` varchar(50) NOT NULL,
-  `paymentDate` date NOT NULL,
-  `amount` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`customerNumber`,`checkNumber`),
-  CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`customerNumber`) REFERENCES `customers` (`customerNumber`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `payments` */
-
-insert  into `payments`(`customerNumber`,`checkNumber`,`paymentDate`,`amount`) values 
-
-(103,'HQ336336','2004-10-19','6066.78'),
-
-(103,'JM555205','2003-06-05','14571.44'),
-
-(103,'OM314933','2004-12-18','1676.14'),
-
-(112,'BO864823','2004-12-17','14191.12'),
-
-(112,'HQ55022','2003-06-06','32641.98'),
-
-(112,'ND748579','2004-08-20','33347.88'),
-
-(114,'GG31455','2003-05-20','45864.03'),
-
-(114,'MA765515','2004-12-15','82261.22'),
-
-(114,'NP603840','2003-05-31','7565.08'),
-
-(114,'NR27552','2004-03-10','44894.74'),
-
-(119,'DB933704','2004-11-14','19501.82'),
-
-(119,'LN373447','2004-08-08','47924.19'),
-
-(119,'NG94694','2005-02-22','49523.67'),
-
-(121,'DB889831','2003-02-16','50218.95'),
-
-(121,'FD317790','2003-10-28','1491.38'),
-
-(121,'KI831359','2004-11-04','17876.32'),
-
-(121,'MA302151','2004-11-28','34638.14'),
-
-(124,'AE215433','2005-03-05','101244.59'),
-
-(124,'BG255406','2004-08-28','85410.87'),
-
-(124,'CQ287967','2003-04-11','11044.30'),
-
-(124,'ET64396','2005-04-16','83598.04'),
-
-(124,'HI366474','2004-12-27','47142.70'),
-
-(124,'HR86578','2004-11-02','55639.66'),
-
-(124,'KI131716','2003-08-15','111654.40'),
-
-(124,'LF217299','2004-03-26','43369.30'),
-
-(124,'NT141748','2003-11-25','45084.38'),
-
-(128,'DI925118','2003-01-28','10549.01'),
-
-(128,'FA465482','2003-10-18','24101.81'),
-
-(128,'FH668230','2004-03-24','33820.62'),
-
-(128,'IP383901','2004-11-18','7466.32'),
-
-(129,'DM826140','2004-12-08','26248.78'),
-
-(129,'ID449593','2003-12-11','23923.93'),
-
-(129,'PI42991','2003-04-09','16537.85'),
-
-(131,'CL442705','2003-03-12','22292.62'),
-
-(131,'MA724562','2004-12-02','50025.35'),
-
-(131,'NB445135','2004-09-11','35321.97'),
-
-(141,'AU364101','2003-07-19','36251.03'),
-
-(141,'DB583216','2004-11-01','36140.38'),
-
-(141,'DL460618','2005-05-19','46895.48'),
-
-(141,'HJ32686','2004-01-30','59830.55'),
-
-(141,'ID10962','2004-12-31','116208.40'),
-
-(141,'IN446258','2005-03-25','65071.26'),
-
-(141,'JE105477','2005-03-18','120166.58'),
-
-(141,'JN355280','2003-10-26','49539.37'),
-
-(141,'JN722010','2003-02-25','40206.20'),
-
-(141,'KT52578','2003-12-09','63843.55'),
-
-(141,'MC46946','2004-07-09','35420.74'),
-
-(141,'MF629602','2004-08-16','20009.53'),
-
-(141,'NU627706','2004-05-17','26155.91'),
-
-(144,'IR846303','2004-12-12','36005.71'),
-
-(144,'LA685678','2003-04-09','7674.94'),
-
-(145,'CN328545','2004-07-03','4710.73'),
-
-(145,'ED39322','2004-04-26','28211.70'),
-
-(145,'HR182688','2004-12-01','20564.86'),
-
-(145,'JJ246391','2003-02-20','53959.21'),
-
-(146,'FP549817','2004-03-18','40978.53'),
-
-(146,'FU793410','2004-01-16','49614.72'),
-
-(146,'LJ160635','2003-12-10','39712.10'),
-
-(148,'BI507030','2003-04-22','44380.15'),
-
-(148,'DD635282','2004-08-11','2611.84'),
-
-(148,'KM172879','2003-12-26','105743.00'),
-
-(148,'ME497970','2005-03-27','3516.04'),
-
-(151,'BF686658','2003-12-22','58793.53'),
-
-(151,'GB852215','2004-07-26','20314.44'),
-
-(151,'IP568906','2003-06-18','58841.35'),
-
-(151,'KI884577','2004-12-14','39964.63'),
-
-(157,'HI618861','2004-11-19','35152.12'),
-
-(157,'NN711988','2004-09-07','63357.13'),
-
-(161,'BR352384','2004-11-14','2434.25'),
-
-(161,'BR478494','2003-11-18','50743.65'),
-
-(161,'KG644125','2005-02-02','12692.19'),
-
-(161,'NI908214','2003-08-05','38675.13'),
-
-(166,'BQ327613','2004-09-16','38785.48'),
-
-(166,'DC979307','2004-07-07','44160.92'),
-
-(166,'LA318629','2004-02-28','22474.17'),
-
-(167,'ED743615','2004-09-19','12538.01'),
-
-(167,'GN228846','2003-12-03','85024.46'),
-
-(171,'GB878038','2004-03-15','18997.89'),
-
-(171,'IL104425','2003-11-22','42783.81'),
-
-(172,'AD832091','2004-09-09','1960.80'),
-
-(172,'CE51751','2004-12-04','51209.58'),
-
-(172,'EH208589','2003-04-20','33383.14'),
-
-(173,'GP545698','2004-05-13','11843.45'),
-
-(173,'IG462397','2004-03-29','20355.24'),
-
-(175,'CITI3434344','2005-05-19','28500.78'),
-
-(175,'IO448913','2003-11-19','24879.08'),
-
-(175,'PI15215','2004-07-10','42044.77'),
-
-(177,'AU750837','2004-04-17','15183.63'),
-
-(177,'CI381435','2004-01-19','47177.59'),
-
-(181,'CM564612','2004-04-25','22602.36'),
-
-(181,'GQ132144','2003-01-30','5494.78'),
-
-(181,'OH367219','2004-11-16','44400.50'),
-
-(186,'AE192287','2005-03-10','23602.90'),
-
-(186,'AK412714','2003-10-27','37602.48'),
-
-(186,'KA602407','2004-10-21','34341.08'),
-
-(187,'AM968797','2004-11-03','52825.29'),
-
-(187,'BQ39062','2004-12-08','47159.11'),
-
-(187,'KL124726','2003-03-27','48425.69'),
-
-(189,'BO711618','2004-10-03','17359.53'),
-
-(189,'NM916675','2004-03-01','32538.74'),
-
-(198,'FI192930','2004-12-06','9658.74'),
-
-(198,'HQ920205','2003-07-06','6036.96'),
-
-(198,'IS946883','2004-09-21','5858.56'),
-
-(201,'DP677013','2003-10-20','23908.24'),
-
-(201,'OO846801','2004-06-15','37258.94'),
-
-(202,'HI358554','2003-12-18','36527.61'),
-
-(202,'IQ627690','2004-11-08','33594.58'),
-
-(204,'GC697638','2004-08-13','51152.86'),
-
-(204,'IS150005','2004-09-24','4424.40'),
-
-(205,'GL756480','2003-12-04','3879.96'),
-
-(205,'LL562733','2003-09-05','50342.74'),
-
-(205,'NM739638','2005-02-06','39580.60'),
-
-(209,'BOAF82044','2005-05-03','35157.75'),
-
-(209,'ED520529','2004-06-21','4632.31'),
-
-(209,'PH785937','2004-05-04','36069.26'),
-
-(211,'BJ535230','2003-12-09','45480.79'),
-
-(216,'BG407567','2003-05-09','3101.40'),
-
-(216,'ML780814','2004-12-06','24945.21'),
-
-(216,'MM342086','2003-12-14','40473.86'),
-
-(219,'BN17870','2005-03-02','3452.75'),
-
-(219,'BR941480','2003-10-18','4465.85'),
-
-(227,'MQ413968','2003-10-31','36164.46'),
-
-(227,'NU21326','2004-11-02','53745.34'),
-
-(233,'BOFA23232','2005-05-20','29070.38'),
-
-(233,'II180006','2004-07-01','22997.45'),
-
-(233,'JG981190','2003-11-18','16909.84'),
-
-(239,'NQ865547','2004-03-15','80375.24'),
-
-(240,'IF245157','2004-11-16','46788.14'),
-
-(240,'JO719695','2004-03-28','24995.61'),
-
-(242,'AF40894','2003-11-22','33818.34'),
-
-(242,'HR224331','2005-06-03','12432.32'),
-
-(242,'KI744716','2003-07-21','14232.70'),
-
-(249,'IJ399820','2004-09-19','33924.24'),
-
-(249,'NE404084','2004-09-04','48298.99'),
-
-(250,'EQ12267','2005-05-17','17928.09'),
-
-(250,'HD284647','2004-12-30','26311.63'),
-
-(250,'HN114306','2003-07-18','23419.47'),
-
-(256,'EP227123','2004-02-10','5759.42'),
-
-(256,'HE84936','2004-10-22','53116.99'),
-
-(259,'EU280955','2004-11-06','61234.67'),
-
-(259,'GB361972','2003-12-07','27988.47'),
-
-(260,'IO164641','2004-08-30','37527.58'),
-
-(260,'NH776924','2004-04-24','29284.42'),
-
-(276,'EM979878','2005-02-09','27083.78'),
-
-(276,'KM841847','2003-11-13','38547.19'),
-
-(276,'LE432182','2003-09-28','41554.73'),
-
-(276,'OJ819725','2005-04-30','29848.52'),
-
-(278,'BJ483870','2004-12-05','37654.09'),
-
-(278,'GP636783','2003-03-02','52151.81'),
-
-(278,'NI983021','2003-11-24','37723.79'),
-
-(282,'IA793562','2003-08-03','24013.52'),
-
-(282,'JT819493','2004-08-02','35806.73'),
-
-(282,'OD327378','2005-01-03','31835.36'),
-
-(286,'DR578578','2004-10-28','47411.33'),
-
-(286,'KH910279','2004-09-05','43134.04'),
-
-(298,'AJ574927','2004-03-13','47375.92'),
-
-(298,'LF501133','2004-09-18','61402.00'),
-
-(299,'AD304085','2003-10-24','36798.88'),
-
-(299,'NR157385','2004-09-05','32260.16'),
-
-(311,'DG336041','2005-02-15','46770.52'),
-
-(311,'FA728475','2003-10-06','32723.04'),
-
-(311,'NQ966143','2004-04-25','16212.59'),
-
-(314,'LQ244073','2004-08-09','45352.47'),
-
-(314,'MD809704','2004-03-03','16901.38'),
-
-(319,'HL685576','2004-11-06','42339.76'),
-
-(319,'OM548174','2003-12-07','36092.40'),
-
-(320,'GJ597719','2005-01-18','8307.28'),
-
-(320,'HO576374','2003-08-20','41016.75'),
-
-(320,'MU817160','2003-11-24','52548.49'),
-
-(321,'DJ15149','2003-11-03','85559.12'),
-
-(321,'LA556321','2005-03-15','46781.66'),
-
-(323,'AL493079','2005-05-23','75020.13'),
-
-(323,'ES347491','2004-06-24','37281.36'),
-
-(323,'HG738664','2003-07-05','2880.00'),
-
-(323,'PQ803830','2004-12-24','39440.59'),
-
-(324,'DQ409197','2004-12-13','13671.82'),
-
-(324,'FP443161','2003-07-07','29429.14'),
-
-(324,'HB150714','2003-11-23','37455.77'),
-
-(328,'EN930356','2004-04-16','7178.66'),
-
-(328,'NR631421','2004-05-30','31102.85'),
-
-(333,'HL209210','2003-11-15','23936.53'),
-
-(333,'JK479662','2003-10-17','9821.32'),
-
-(333,'NF959653','2005-03-01','21432.31'),
-
-(334,'CS435306','2005-01-27','45785.34'),
-
-(334,'HH517378','2003-08-16','29716.86'),
-
-(334,'LF737277','2004-05-22','28394.54'),
-
-(339,'AP286625','2004-10-24','23333.06'),
-
-(339,'DA98827','2003-11-28','34606.28'),
-
-(344,'AF246722','2003-11-24','31428.21'),
-
-(344,'NJ906924','2004-04-02','15322.93'),
-
-(347,'DG700707','2004-01-18','21053.69'),
-
-(347,'LG808674','2003-10-24','20452.50'),
-
-(350,'BQ602907','2004-12-11','18888.31'),
-
-(350,'CI471510','2003-05-25','50824.66'),
-
-(350,'OB648482','2005-01-29','1834.56'),
-
-(353,'CO351193','2005-01-10','49705.52'),
-
-(353,'ED878227','2003-07-21','13920.26'),
-
-(353,'GT878649','2003-05-21','16700.47'),
-
-(353,'HJ618252','2005-06-09','46656.94'),
-
-(357,'AG240323','2003-12-16','20220.04'),
-
-(357,'NB291497','2004-05-15','36442.34'),
-
-(362,'FP170292','2004-07-11','18473.71'),
-
-(362,'OG208861','2004-09-21','15059.76'),
-
-(363,'HL575273','2004-11-17','50799.69'),
-
-(363,'IS232033','2003-01-16','10223.83'),
-
-(363,'PN238558','2003-12-05','55425.77'),
-
-(379,'CA762595','2005-02-12','28322.83'),
-
-(379,'FR499138','2003-09-16','32680.31'),
-
-(379,'GB890854','2004-08-02','12530.51'),
-
-(381,'BC726082','2004-12-03','12081.52'),
-
-(381,'CC475233','2003-04-19','1627.56'),
-
-(381,'GB117430','2005-02-03','14379.90'),
-
-(381,'MS154481','2003-08-22','1128.20'),
-
-(382,'CC871084','2003-05-12','35826.33'),
-
-(382,'CT821147','2004-08-01','6419.84'),
-
-(382,'PH29054','2004-11-27','42813.83'),
-
-(385,'BN347084','2003-12-02','20644.24'),
-
-(385,'CP804873','2004-11-19','15822.84'),
-
-(385,'EK785462','2003-03-09','51001.22'),
-
-(386,'DO106109','2003-11-18','38524.29'),
-
-(386,'HG438769','2004-07-18','51619.02'),
-
-(398,'AJ478695','2005-02-14','33967.73'),
-
-(398,'DO787644','2004-06-21','22037.91'),
-
-(398,'JPMR4544','2005-05-18','615.45'),
-
-(398,'KB54275','2004-11-29','48927.64'),
-
-(406,'BJMPR4545','2005-04-23','12190.85'),
-
-(406,'HJ217687','2004-01-28','49165.16'),
-
-(406,'NA197101','2004-06-17','25080.96'),
-
-(412,'GH197075','2004-07-25','35034.57'),
-
-(412,'PJ434867','2004-04-14','31670.37'),
-
-(415,'ER54537','2004-09-28','31310.09'),
-
-(424,'KF480160','2004-12-07','25505.98'),
-
-(424,'LM271923','2003-04-16','21665.98'),
-
-(424,'OA595449','2003-10-31','22042.37'),
-
-(447,'AO757239','2003-09-15','6631.36'),
-
-(447,'ER615123','2003-06-25','17032.29'),
-
-(447,'OU516561','2004-12-17','26304.13'),
-
-(448,'FS299615','2005-04-18','27966.54'),
-
-(448,'KR822727','2004-09-30','48809.90'),
-
-(450,'EF485824','2004-06-21','59551.38'),
-
-(452,'ED473873','2003-11-15','27121.90'),
-
-(452,'FN640986','2003-11-20','15130.97'),
-
-(452,'HG635467','2005-05-03','8807.12'),
-
-(455,'HA777606','2003-12-05','38139.18'),
-
-(455,'IR662429','2004-05-12','32239.47'),
-
-(456,'GJ715659','2004-11-13','27550.51'),
-
-(456,'MO743231','2004-04-30','1679.92'),
-
-(458,'DD995006','2004-11-15','33145.56'),
-
-(458,'NA377824','2004-02-06','22162.61'),
-
-(458,'OO606861','2003-06-13','57131.92'),
-
-(462,'ED203908','2005-04-15','30293.77'),
-
-(462,'GC60330','2003-11-08','9977.85'),
-
-(462,'PE176846','2004-11-27','48355.87'),
-
-(471,'AB661578','2004-07-28','9415.13'),
-
-(471,'CO645196','2003-12-10','35505.63'),
-
-(473,'LL427009','2004-02-17','7612.06'),
-
-(473,'PC688499','2003-10-27','17746.26'),
-
-(475,'JP113227','2003-12-09','7678.25'),
-
-(475,'PB951268','2004-02-13','36070.47'),
-
-(484,'GK294076','2004-10-26','3474.66'),
-
-(484,'JH546765','2003-11-29','47513.19'),
-
-(486,'BL66528','2004-04-14','5899.38'),
-
-(486,'HS86661','2004-11-23','45994.07'),
-
-(486,'JB117768','2003-03-20','25833.14'),
-
-(487,'AH612904','2003-09-28','29997.09'),
-
-(487,'PT550181','2004-02-29','12573.28'),
-
-(489,'OC773849','2003-12-04','22275.73'),
-
-(489,'PO860906','2004-01-31','7310.42'),
-
-(495,'BH167026','2003-12-26','59265.14'),
-
-(495,'FN155234','2004-05-14','6276.60'),
-
-(496,'EU531600','2005-05-25','30253.75'),
-
-(496,'MB342426','2003-07-16','32077.44'),
-
-(496,'MN89921','2004-12-31','52166.00');
-
-/*Table structure for table `productlines` */
-
-DROP TABLE IF EXISTS `productlines`;
-
-CREATE TABLE `productlines` (
-  `productLine` varchar(50) NOT NULL,
-  `textDescription` varchar(4000) DEFAULT NULL,
-  `htmlDescription` mediumtext,
-  `image` mediumblob,
-  PRIMARY KEY (`productLine`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `productlines` */
-
-insert  into `productlines`(`productLine`,`textDescription`,`htmlDescription`,`image`) values 
-
-('Classic Cars','Attention car enthusiasts: Make your wildest car ownership dreams come true. Whether you are looking for classic muscle cars, dream sports cars or movie-inspired miniatures, you will find great choices in this category. These replicas feature superb attention to detail and craftsmanship and offer features such as working steering system, opening forward compartment, opening rear trunk with removable spare wheel, 4-wheel independent spring suspension, and so on. The models range in size from 1:10 to 1:24 scale and include numerous limited edition and several out-of-production vehicles. All models include a certificate of authenticity from their manufacturers and come fully assembled and ready for display in the home or office.',NULL,NULL),
-
-('Motorcycles','Our motorcycles are state of the art replicas of classic as well as contemporary motorcycle legends such as Harley Davidson, Ducati and Vespa. Models contain stunning details such as official logos, rotating wheels, working kickstand, front suspension, gear-shift lever, footbrake lever, and drive chain. Materials used include diecast and plastic. The models range in size from 1:10 to 1:50 scale and include numerous limited edition and several out-of-production vehicles. All models come fully assembled and ready for display in the home or office. Most include a certificate of authenticity.',NULL,NULL),
-
-('Planes','Unique, diecast airplane and helicopter replicas suitable for collections, as well as home, office or classroom decorations. Models contain stunning details such as official logos and insignias, rotating jet engines and propellers, retractable wheels, and so on. Most come fully assembled and with a certificate of authenticity from their manufacturers.',NULL,NULL),
-
-('Ships','The perfect holiday or anniversary gift for executives, clients, friends, and family. These handcrafted model ships are unique, stunning works of art that will be treasured for generations! They come fully assembled and ready for display in the home or office. We guarantee the highest quality, and best value.',NULL,NULL),
-
-('Trains','Model trains are a rewarding hobby for enthusiasts of all ages. Whether you\'re looking for collectible wooden trains, electric streetcars or locomotives, you\'ll find a number of great choices for any budget within this category. The interactive aspect of trains makes toy trains perfect for young children. The wooden train sets are ideal for children under the age of 5.',NULL,NULL),
-
-('Trucks and Buses','The Truck and Bus models are realistic replicas of buses and specialized trucks produced from the early 1920s to present. The models range in size from 1:12 to 1:50 scale and include numerous limited edition and several out-of-production vehicles. Materials used include tin, diecast and plastic. All models include a certificate of authenticity from their manufacturers and are a perfect ornament for the home and office.',NULL,NULL),
-
-('Vintage Cars','Our Vintage Car models realistically portray automobiles produced from the early 1900s through the 1940s. Materials used include Bakelite, diecast, plastic and wood. Most of the replicas are in the 1:18 and 1:24 scale sizes, which provide the optimum in detail and accuracy. Prices range from $30.00 up to $180.00 for some special limited edition replicas. All models include a certificate of authenticity from their manufacturers and come fully assembled and ready for display in the home or office.',NULL,NULL);
-
-/*Table structure for table `products` */
-
-DROP TABLE IF EXISTS `products`;
-
-CREATE TABLE `products` (
-  `productCode` varchar(15) NOT NULL,
-  `productName` varchar(70) NOT NULL,
-  `productLine` varchar(50) NOT NULL,
-  `productScale` varchar(10) NOT NULL,
-  `productVendor` varchar(50) NOT NULL,
-  `productDescription` text NOT NULL,
-  `quantityInStock` smallint(6) NOT NULL,
-  `buyPrice` decimal(10,2) NOT NULL,
-  `MSRP` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`productCode`),
-  KEY `productLine` (`productLine`),
-  CONSTRAINT `products_ibfk_1` FOREIGN KEY (`productLine`) REFERENCES `productlines` (`productLine`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `products` */
-
-insert  into `products`(`productCode`,`productName`,`productLine`,`productScale`,`productVendor`,`productDescription`,`quantityInStock`,`buyPrice`,`MSRP`) values 
-
-('S10_1678','1969 Harley Davidson Ultimate Chopper','Motorcycles','1:10','Min Lin Diecast','This replica features working kickstand, front suspension, gear-shift lever, footbrake lever, drive chain, wheels and steering. All parts are particularly delicate due to their precise scale and require special care and attention.',7933,'48.81','95.70'),
-
-('S10_1949','1952 Alpine Renault 1300','Classic Cars','1:10','Classic Metal Creations','Turnable front wheels; steering function; detailed interior; detailed engine; opening hood; opening trunk; opening doors; and detailed chassis.',7305,'98.58','214.30'),
-
-('S10_2016','1996 Moto Guzzi 1100i','Motorcycles','1:10','Highway 66 Mini Classics','Official Moto Guzzi logos and insignias, saddle bags located on side of motorcycle, detailed engine, working steering, working suspension, two leather seats, luggage rack, dual exhaust pipes, small saddle bag located on handle bars, two-tone paint with chrome accents, superior die-cast detail , rotating wheels , working kick stand, diecast metal with plastic parts and baked enamel finish.',6625,'68.99','118.94'),
-
-('S10_4698','2003 Harley-Davidson Eagle Drag Bike','Motorcycles','1:10','Red Start Diecast','Model features, official Harley Davidson logos and insignias, detachable rear wheelie bar, heavy diecast metal with resin parts, authentic multi-color tampo-printed graphics, separate engine drive belts, free-turning front fork, rotating tires and rear racing slick, certificate of authenticity, detailed engine, display stand\r\n, precision diecast replica, baked enamel finish, 1:10 scale model, removable fender, seat and tank cover piece for displaying the superior detail of the v-twin engine',5582,'91.02','193.66'),
-
-('S10_4757','1972 Alfa Romeo GTA','Classic Cars','1:10','Motor City Art Classics','Features include: Turnable front wheels; steering function; detailed interior; detailed engine; opening hood; opening trunk; opening doors; and detailed chassis.',3252,'85.68','136.00'),
-
-('S10_4962','1962 LanciaA Delta 16V','Classic Cars','1:10','Second Gear Diecast','Features include: Turnable front wheels; steering function; detailed interior; detailed engine; opening hood; opening trunk; opening doors; and detailed chassis.',6791,'103.42','147.74'),
-
-('S12_1099','1968 Ford Mustang','Classic Cars','1:12','Autoart Studio Design','Hood, doors and trunk all open to reveal highly detailed interior features. Steering wheel actually turns the front wheels. Color dark green.',68,'95.34','194.57'),
-
-('S12_1108','2001 Ferrari Enzo','Classic Cars','1:12','Second Gear Diecast','Turnable front wheels; steering function; detailed interior; detailed engine; opening hood; opening trunk; opening doors; and detailed chassis.',3619,'95.59','207.80'),
-
-('S12_1666','1958 Setra Bus','Trucks and Buses','1:12','Welly Diecast Productions','Model features 30 windows, skylights & glare resistant glass, working steering system, original logos',1579,'77.90','136.67'),
-
-('S12_2823','2002 Suzuki XREO','Motorcycles','1:12','Unimax Art Galleries','Official logos and insignias, saddle bags located on side of motorcycle, detailed engine, working steering, working suspension, two leather seats, luggage rack, dual exhaust pipes, small saddle bag located on handle bars, two-tone paint with chrome accents, superior die-cast detail , rotating wheels , working kick stand, diecast metal with plastic parts and baked enamel finish.',9997,'66.27','150.62'),
-
-('S12_3148','1969 Corvair Monza','Classic Cars','1:18','Welly Diecast Productions','1:18 scale die-cast about 10\" long doors open, hood opens, trunk opens and wheels roll',6906,'89.14','151.08'),
-
-('S12_3380','1968 Dodge Charger','Classic Cars','1:12','Welly Diecast Productions','1:12 scale model of a 1968 Dodge Charger. Hood, doors and trunk all open to reveal highly detailed interior features. Steering wheel actually turns the front wheels. Color black',9123,'75.16','117.44'),
-
-('S12_3891','1969 Ford Falcon','Classic Cars','1:12','Second Gear Diecast','Turnable front wheels; steering function; detailed interior; detailed engine; opening hood; opening trunk; opening doors; and detailed chassis.',1049,'83.05','173.02'),
-
-('S12_3990','1970 Plymouth Hemi Cuda','Classic Cars','1:12','Studio M Art Models','Very detailed 1970 Plymouth Cuda model in 1:12 scale. The Cuda is generally accepted as one of the fastest original muscle cars from the 1970s. This model is a reproduction of one of the orginal 652 cars built in 1970. Red color.',5663,'31.92','79.80'),
-
-('S12_4473','1957 Chevy Pickup','Trucks and Buses','1:12','Exoto Designs','1:12 scale die-cast about 20\" long Hood opens, Rubber wheels',6125,'55.70','118.50'),
-
-('S12_4675','1969 Dodge Charger','Classic Cars','1:12','Welly Diecast Productions','Detailed model of the 1969 Dodge Charger. This model includes finely detailed interior and exterior features. Painted in red and white.',7323,'58.73','115.16'),
-
-('S18_1097','1940 Ford Pickup Truck','Trucks and Buses','1:18','Studio M Art Models','This model features soft rubber tires, working steering, rubber mud guards, authentic Ford logos, detailed undercarriage, opening doors and hood,  removable split rear gate, full size spare mounted in bed, detailed interior with opening glove box',2613,'58.33','116.67'),
-
-('S18_1129','1993 Mazda RX-7','Classic Cars','1:18','Highway 66 Mini Classics','This model features, opening hood, opening doors, detailed engine, rear spoiler, opening trunk, working steering, tinted windows, baked enamel finish. Color red.',3975,'83.51','141.54'),
-
-('S18_1342','1937 Lincoln Berline','Vintage Cars','1:18','Motor City Art Classics','Features opening engine cover, doors, trunk, and fuel filler cap. Color black',8693,'60.62','102.74'),
-
-('S18_1367','1936 Mercedes-Benz 500K Special Roadster','Vintage Cars','1:18','Studio M Art Models','This 1:18 scale replica is constructed of heavy die-cast metal and has all the features of the original: working doors and rumble seat, independent spring suspension, detailed interior, working steering system, and a bifold hood that reveals an engine so accurate that it even includes the wiring. All this is topped off with a baked enamel finish. Color white.',8635,'24.26','53.91'),
-
-('S18_1589','1965 Aston Martin DB5','Classic Cars','1:18','Classic Metal Creations','Die-cast model of the silver 1965 Aston Martin DB5 in silver. This model includes full wire wheels and doors that open with fully detailed passenger compartment. In 1:18 scale, this model measures approximately 10 inches/20 cm long.',9042,'65.96','124.44'),
-
-('S18_1662','1980s Black Hawk Helicopter','Planes','1:18','Red Start Diecast','1:18 scale replica of actual Army\'s UH-60L BLACK HAWK Helicopter. 100% hand-assembled. Features rotating rotor blades, propeller blades and rubber wheels.',5330,'77.27','157.69'),
-
-('S18_1749','1917 Grand Touring Sedan','Vintage Cars','1:18','Welly Diecast Productions','This 1:18 scale replica of the 1917 Grand Touring car has all the features you would expect from museum quality reproductions: all four doors and bi-fold hood opening, detailed engine and instrument panel, chrome-look trim, and tufted upholstery, all topped off with a factory baked-enamel finish.',2724,'86.70','170.00'),
-
-('S18_1889','1948 Porsche 356-A Roadster','Classic Cars','1:18','Gearbox Collectibles','This precision die-cast replica features opening doors, superb detail and craftsmanship, working steering system, opening forward compartment, opening rear trunk with removable spare, 4 wheel independent spring suspension as well as factory baked enamel finish.',8826,'53.90','77.00'),
-
-('S18_1984','1995 Honda Civic','Classic Cars','1:18','Min Lin Diecast','This model features, opening hood, opening doors, detailed engine, rear spoiler, opening trunk, working steering, tinted windows, baked enamel finish. Color yellow.',9772,'93.89','142.25'),
-
-('S18_2238','1998 Chrysler Plymouth Prowler','Classic Cars','1:18','Gearbox Collectibles','Turnable front wheels; steering function; detailed interior; detailed engine; opening hood; opening trunk; opening doors; and detailed chassis.',4724,'101.51','163.73'),
-
-('S18_2248','1911 Ford Town Car','Vintage Cars','1:18','Motor City Art Classics','Features opening hood, opening doors, opening trunk, wide white wall tires, front door arm rests, working steering system.',540,'33.30','60.54'),
-
-('S18_2319','1964 Mercedes Tour Bus','Trucks and Buses','1:18','Unimax Art Galleries','Exact replica. 100+ parts. working steering system, original logos',8258,'74.86','122.73'),
-
-('S18_2325','1932 Model A Ford J-Coupe','Vintage Cars','1:18','Autoart Studio Design','This model features grille-mounted chrome horn, lift-up louvered hood, fold-down rumble seat, working steering system, chrome-covered spare, opening doors, detailed and wired engine',9354,'58.48','127.13'),
-
-('S18_2432','1926 Ford Fire Engine','Trucks and Buses','1:18','Carousel DieCast Legends','Gleaming red handsome appearance. Everything is here the fire hoses, ladder, axes, bells, lanterns, ready to fight any inferno.',2018,'24.92','60.77'),
-
-('S18_2581','P-51-D Mustang','Planes','1:72','Gearbox Collectibles','Has retractable wheels and comes with a stand',992,'49.00','84.48'),
-
-('S18_2625','1936 Harley Davidson El Knucklehead','Motorcycles','1:18','Welly Diecast Productions','Intricately detailed with chrome accents and trim, official die-struck logos and baked enamel finish.',4357,'24.23','60.57'),
-
-('S18_2795','1928 Mercedes-Benz SSK','Vintage Cars','1:18','Gearbox Collectibles','This 1:18 replica features grille-mounted chrome horn, lift-up louvered hood, fold-down rumble seat, working steering system, chrome-covered spare, opening doors, detailed and wired engine. Color black.',548,'72.56','168.75'),
-
-('S18_2870','1999 Indy 500 Monte Carlo SS','Classic Cars','1:18','Red Start Diecast','Features include opening and closing doors. Color: Red',8164,'56.76','132.00'),
-
-('S18_2949','1913 Ford Model T Speedster','Vintage Cars','1:18','Carousel DieCast Legends','This 250 part reproduction includes moving handbrakes, clutch, throttle and foot pedals, squeezable horn, detailed wired engine, removable water, gas, and oil cans, pivoting monocle windshield, all topped with a baked enamel red finish. Each replica comes with an Owners Title and Certificate of Authenticity. Color red.',4189,'60.78','101.31'),
-
-('S18_2957','1934 Ford V8 Coupe','Vintage Cars','1:18','Min Lin Diecast','Chrome Trim, Chrome Grille, Opening Hood, Opening Doors, Opening Trunk, Detailed Engine, Working Steering System',5649,'34.35','62.46'),
-
-('S18_3029','1999 Yamaha Speed Boat','Ships','1:18','Min Lin Diecast','Exact replica. Wood and Metal. Many extras including rigging, long boats, pilot house, anchors, etc. Comes with three masts, all square-rigged.',4259,'51.61','86.02'),
-
-('S18_3136','18th Century Vintage Horse Carriage','Vintage Cars','1:18','Red Start Diecast','Hand crafted diecast-like metal horse carriage is re-created in about 1:18 scale of antique horse carriage. This antique style metal Stagecoach is all hand-assembled with many different parts.\r\n\r\nThis collectible metal horse carriage is painted in classic Red, and features turning steering wheel and is entirely hand-finished.',5992,'60.74','104.72'),
-
-('S18_3140','1903 Ford Model A','Vintage Cars','1:18','Unimax Art Galleries','Features opening trunk,  working steering system',3913,'68.30','136.59'),
-
-('S18_3232','1992 Ferrari 360 Spider red','Classic Cars','1:18','Unimax Art Galleries','his replica features opening doors, superb detail and craftsmanship, working steering system, opening forward compartment, opening rear trunk with removable spare, 4 wheel independent spring suspension as well as factory baked enamel finish.',8347,'77.90','169.34'),
-
-('S18_3233','1985 Toyota Supra','Classic Cars','1:18','Highway 66 Mini Classics','This model features soft rubber tires, working steering, rubber mud guards, authentic Ford logos, detailed undercarriage, opening doors and hood, removable split rear gate, full size spare mounted in bed, detailed interior with opening glove box',7733,'57.01','107.57'),
-
-('S18_3259','Collectable Wooden Train','Trains','1:18','Carousel DieCast Legends','Hand crafted wooden toy train set is in about 1:18 scale, 25 inches in total length including 2 additional carts, of actual vintage train. This antique style wooden toy train model set is all hand-assembled with 100% wood.',6450,'67.56','100.84'),
-
-('S18_3278','1969 Dodge Super Bee','Classic Cars','1:18','Min Lin Diecast','This replica features opening doors, superb detail and craftsmanship, working steering system, opening forward compartment, opening rear trunk with removable spare, 4 wheel independent spring suspension as well as factory baked enamel finish.',1917,'49.05','80.41'),
-
-('S18_3320','1917 Maxwell Touring Car','Vintage Cars','1:18','Exoto Designs','Features Gold Trim, Full Size Spare Tire, Chrome Trim, Chrome Grille, Opening Hood, Opening Doors, Opening Trunk, Detailed Engine, Working Steering System',7913,'57.54','99.21'),
-
-('S18_3482','1976 Ford Gran Torino','Classic Cars','1:18','Gearbox Collectibles','Highly detailed 1976 Ford Gran Torino \"Starsky and Hutch\" diecast model. Very well constructed and painted in red and white patterns.',9127,'73.49','146.99'),
-
-('S18_3685','1948 Porsche Type 356 Roadster','Classic Cars','1:18','Gearbox Collectibles','This model features working front and rear suspension on accurately replicated and actuating shock absorbers as well as opening engine cover, rear stabilizer flap,  and 4 opening doors.',8990,'62.16','141.28'),
-
-('S18_3782','1957 Vespa GS150','Motorcycles','1:18','Studio M Art Models','Features rotating wheels , working kick stand. Comes with stand.',7689,'32.95','62.17'),
-
-('S18_3856','1941 Chevrolet Special Deluxe Cabriolet','Vintage Cars','1:18','Exoto Designs','Features opening hood, opening doors, opening trunk, wide white wall tires, front door arm rests, working steering system, leather upholstery. Color black.',2378,'64.58','105.87'),
-
-('S18_4027','1970 Triumph Spitfire','Classic Cars','1:18','Min Lin Diecast','Features include opening and closing doors. Color: White.',5545,'91.92','143.62'),
-
-('S18_4409','1932 Alfa Romeo 8C2300 Spider Sport','Vintage Cars','1:18','Exoto Designs','This 1:18 scale precision die cast replica features the 6 front headlights of the original, plus a detailed version of the 142 horsepower straight 8 engine, dual spares and their famous comprehensive dashboard. Color black.',6553,'43.26','92.03'),
-
-('S18_4522','1904 Buick Runabout','Vintage Cars','1:18','Exoto Designs','Features opening trunk,  working steering system',8290,'52.66','87.77'),
-
-('S18_4600','1940s Ford truck','Trucks and Buses','1:18','Motor City Art Classics','This 1940s Ford Pick-Up truck is re-created in 1:18 scale of original 1940s Ford truck. This antique style metal 1940s Ford Flatbed truck is all hand-assembled. This collectible 1940\'s Pick-Up truck is painted in classic dark green color, and features rotating wheels.',3128,'84.76','121.08'),
-
-('S18_4668','1939 Cadillac Limousine','Vintage Cars','1:18','Studio M Art Models','Features completely detailed interior including Velvet flocked drapes,deluxe wood grain floor, and a wood grain casket with seperate chrome handles',6645,'23.14','50.31'),
-
-('S18_4721','1957 Corvette Convertible','Classic Cars','1:18','Classic Metal Creations','1957 die cast Corvette Convertible in Roman Red with white sides and whitewall tires. 1:18 scale quality die-cast with detailed engine and underbvody. Now you can own The Classic Corvette.',1249,'69.93','148.80'),
-
-('S18_4933','1957 Ford Thunderbird','Classic Cars','1:18','Studio M Art Models','This 1:18 scale precision die-cast replica, with its optional porthole hardtop and factory baked-enamel Thunderbird Bronze finish, is a 100% accurate rendition of this American classic.',3209,'34.21','71.27'),
-
-('S24_1046','1970 Chevy Chevelle SS 454','Classic Cars','1:24','Unimax Art Galleries','This model features rotating wheels, working streering system and opening doors. All parts are particularly delicate due to their precise scale and require special care and attention. It should not be picked up by the doors, roof, hood or trunk.',1005,'49.24','73.49'),
-
-('S24_1444','1970 Dodge Coronet','Classic Cars','1:24','Highway 66 Mini Classics','1:24 scale die-cast about 18\" long doors open, hood opens and rubber wheels',4074,'32.37','57.80'),
-
-('S24_1578','1997 BMW R 1100 S','Motorcycles','1:24','Autoart Studio Design','Detailed scale replica with working suspension and constructed from over 70 parts',7003,'60.86','112.70'),
-
-('S24_1628','1966 Shelby Cobra 427 S/C','Classic Cars','1:24','Carousel DieCast Legends','This diecast model of the 1966 Shelby Cobra 427 S/C includes many authentic details and operating parts. The 1:24 scale model of this iconic lighweight sports car from the 1960s comes in silver and it\'s own display case.',8197,'29.18','50.31'),
-
-('S24_1785','1928 British Royal Navy Airplane','Planes','1:24','Classic Metal Creations','Official logos and insignias',3627,'66.74','109.42'),
-
-('S24_1937','1939 Chevrolet Deluxe Coupe','Vintage Cars','1:24','Motor City Art Classics','This 1:24 scale die-cast replica of the 1939 Chevrolet Deluxe Coupe has the same classy look as the original. Features opening trunk, hood and doors and a showroom quality baked enamel finish.',7332,'22.57','33.19'),
-
-('S24_2000','1960 BSA Gold Star DBD34','Motorcycles','1:24','Highway 66 Mini Classics','Detailed scale replica with working suspension and constructed from over 70 parts',15,'37.32','76.17'),
-
-('S24_2011','18th century schooner','Ships','1:24','Carousel DieCast Legends','All wood with canvas sails. Many extras including rigging, long boats, pilot house, anchors, etc. Comes with 4 masts, all square-rigged.',1898,'82.34','122.89'),
-
-('S24_2022','1938 Cadillac V-16 Presidential Limousine','Vintage Cars','1:24','Classic Metal Creations','This 1:24 scale precision die cast replica of the 1938 Cadillac V-16 Presidential Limousine has all the details of the original, from the flags on the front to an opening back seat compartment complete with telephone and rifle. Features factory baked-enamel black finish, hood goddess ornament, working jump seats.',2847,'20.61','44.80'),
-
-('S24_2300','1962 Volkswagen Microbus','Trucks and Buses','1:24','Autoart Studio Design','This 1:18 scale die cast replica of the 1962 Microbus is loaded with features: A working steering system, opening front doors and tailgate, and famous two-tone factory baked enamel finish, are all topped of by the sliding, real fabric, sunroof.',2327,'61.34','127.79'),
-
-('S24_2360','1982 Ducati 900 Monster','Motorcycles','1:24','Highway 66 Mini Classics','Features two-tone paint with chrome accents, superior die-cast detail , rotating wheels , working kick stand',6840,'47.10','69.26'),
-
-('S24_2766','1949 Jaguar XK 120','Classic Cars','1:24','Classic Metal Creations','Precision-engineered from original Jaguar specification in perfect scale ratio. Features opening doors, superb detail and craftsmanship, working steering system, opening forward compartment, opening rear trunk with removable spare, 4 wheel independent spring suspension as well as factory baked enamel finish.',2350,'47.25','90.87'),
-
-('S24_2840','1958 Chevy Corvette Limited Edition','Classic Cars','1:24','Carousel DieCast Legends','The operating parts of this 1958 Chevy Corvette Limited Edition are particularly delicate due to their precise scale and require special care and attention. Features rotating wheels, working streering, opening doors and trunk. Color dark green.',2542,'15.91','35.36'),
-
-('S24_2841','1900s Vintage Bi-Plane','Planes','1:24','Autoart Studio Design','Hand crafted diecast-like metal bi-plane is re-created in about 1:24 scale of antique pioneer airplane. All hand-assembled with many different parts. Hand-painted in classic yellow and features correct markings of original airplane.',5942,'34.25','68.51'),
-
-('S24_2887','1952 Citroen-15CV','Classic Cars','1:24','Exoto Designs','Precision crafted hand-assembled 1:18 scale reproduction of the 1952 15CV, with its independent spring suspension, working steering system, opening doors and hood, detailed engine and instrument panel, all topped of with a factory fresh baked enamel finish.',1452,'72.82','117.44'),
-
-('S24_2972','1982 Lamborghini Diablo','Classic Cars','1:24','Second Gear Diecast','This replica features opening doors, superb detail and craftsmanship, working steering system, opening forward compartment, opening rear trunk with removable spare, 4 wheel independent spring suspension as well as factory baked enamel finish.',7723,'16.24','37.76'),
-
-('S24_3151','1912 Ford Model T Delivery Wagon','Vintage Cars','1:24','Min Lin Diecast','This model features chrome trim and grille, opening hood, opening doors, opening trunk, detailed engine, working steering system. Color white.',9173,'46.91','88.51'),
-
-('S24_3191','1969 Chevrolet Camaro Z28','Classic Cars','1:24','Exoto Designs','1969 Z/28 Chevy Camaro 1:24 scale replica. The operating parts of this limited edition 1:24 scale diecast model car 1969 Chevy Camaro Z28- hood, trunk, wheels, streering, suspension and doors- are particularly delicate due to their precise scale and require special care and attention.',4695,'50.51','85.61'),
-
-('S24_3371','1971 Alpine Renault 1600s','Classic Cars','1:24','Welly Diecast Productions','This 1971 Alpine Renault 1600s replica Features opening doors, superb detail and craftsmanship, working steering system, opening forward compartment, opening rear trunk with removable spare, 4 wheel independent spring suspension as well as factory baked enamel finish.',7995,'38.58','61.23'),
-
-('S24_3420','1937 Horch 930V Limousine','Vintage Cars','1:24','Autoart Studio Design','Features opening hood, opening doors, opening trunk, wide white wall tires, front door arm rests, working steering system',2902,'26.30','65.75'),
-
-('S24_3432','2002 Chevy Corvette','Classic Cars','1:24','Gearbox Collectibles','The operating parts of this limited edition Diecast 2002 Chevy Corvette 50th Anniversary Pace car Limited Edition are particularly delicate due to their precise scale and require special care and attention. Features rotating wheels, poseable streering, opening doors and trunk.',9446,'62.11','107.08'),
-
-('S24_3816','1940 Ford Delivery Sedan','Vintage Cars','1:24','Carousel DieCast Legends','Chrome Trim, Chrome Grille, Opening Hood, Opening Doors, Opening Trunk, Detailed Engine, Working Steering System. Color black.',6621,'48.64','83.86'),
-
-('S24_3856','1956 Porsche 356A Coupe','Classic Cars','1:18','Classic Metal Creations','Features include: Turnable front wheels; steering function; detailed interior; detailed engine; opening hood; opening trunk; opening doors; and detailed chassis.',6600,'98.30','140.43'),
-
-('S24_3949','Corsair F4U ( Bird Cage)','Planes','1:24','Second Gear Diecast','Has retractable wheels and comes with a stand. Official logos and insignias.',6812,'29.34','68.24'),
-
-('S24_3969','1936 Mercedes Benz 500k Roadster','Vintage Cars','1:24','Red Start Diecast','This model features grille-mounted chrome horn, lift-up louvered hood, fold-down rumble seat, working steering system and rubber wheels. Color black.',2081,'21.75','41.03'),
-
-('S24_4048','1992 Porsche Cayenne Turbo Silver','Classic Cars','1:24','Exoto Designs','This replica features opening doors, superb detail and craftsmanship, working steering system, opening forward compartment, opening rear trunk with removable spare, 4 wheel independent spring suspension as well as factory baked enamel finish.',6582,'69.78','118.28'),
-
-('S24_4258','1936 Chrysler Airflow','Vintage Cars','1:24','Second Gear Diecast','Features opening trunk,  working steering system. Color dark green.',4710,'57.46','97.39'),
-
-('S24_4278','1900s Vintage Tri-Plane','Planes','1:24','Unimax Art Galleries','Hand crafted diecast-like metal Triplane is Re-created in about 1:24 scale of antique pioneer airplane. This antique style metal triplane is all hand-assembled with many different parts.',2756,'36.23','72.45'),
-
-('S24_4620','1961 Chevrolet Impala','Classic Cars','1:18','Classic Metal Creations','This 1:18 scale precision die-cast reproduction of the 1961 Chevrolet Impala has all the features-doors, hood and trunk that open; detailed 409 cubic-inch engine; chrome dashboard and stick shift, two-tone interior; working steering system; all topped of with a factory baked-enamel finish.',7869,'32.33','80.84'),
-
-('S32_1268','1980’s GM Manhattan Express','Trucks and Buses','1:32','Motor City Art Classics','This 1980’s era new look Manhattan express is still active, running from the Bronx to mid-town Manhattan. Has 35 opeining windows and working lights. Needs a battery.',5099,'53.93','96.31'),
-
-('S32_1374','1997 BMW F650 ST','Motorcycles','1:32','Exoto Designs','Features official die-struck logos and baked enamel finish. Comes with stand.',178,'66.92','99.89'),
-
-('S32_2206','1982 Ducati 996 R','Motorcycles','1:32','Gearbox Collectibles','Features rotating wheels , working kick stand. Comes with stand.',9241,'24.14','40.23'),
-
-('S32_2509','1954 Greyhound Scenicruiser','Trucks and Buses','1:32','Classic Metal Creations','Model features bi-level seating, 50 windows, skylights & glare resistant glass, working steering system, original logos',2874,'25.98','54.11'),
-
-('S32_3207','1950\'s Chicago Surface Lines Streetcar','Trains','1:32','Gearbox Collectibles','This streetcar is a joy to see. It has 80 separate windows, electric wire guides, detailed interiors with seats, poles and drivers controls, rolling and turning wheel assemblies, plus authentic factory baked-enamel finishes (Green Hornet for Chicago and Cream and Crimson for Boston).',8601,'26.72','62.14'),
-
-('S32_3522','1996 Peterbilt 379 Stake Bed with Outrigger','Trucks and Buses','1:32','Red Start Diecast','This model features, opening doors, detailed engine, working steering, tinted windows, detailed interior, die-struck logos, removable stakes operating outriggers, detachable second trailer, functioning 360-degree self loader, precision molded resin trailer and trim, baked enamel finish on cab',814,'33.61','64.64'),
-
-('S32_4289','1928 Ford Phaeton Deluxe','Vintage Cars','1:32','Highway 66 Mini Classics','This model features grille-mounted chrome horn, lift-up louvered hood, fold-down rumble seat, working steering system',136,'33.02','68.79'),
-
-('S32_4485','1974 Ducati 350 Mk3 Desmo','Motorcycles','1:32','Second Gear Diecast','This model features two-tone paint with chrome accents, superior die-cast detail , rotating wheels , working kick stand',3341,'56.13','102.05'),
-
-('S50_1341','1930 Buick Marquette Phaeton','Vintage Cars','1:50','Studio M Art Models','Features opening trunk,  working steering system',7062,'27.06','43.64'),
-
-('S50_1392','Diamond T620 Semi-Skirted Tanker','Trucks and Buses','1:50','Highway 66 Mini Classics','This limited edition model is licensed and perfectly scaled for Lionel Trains. The Diamond T620 has been produced in solid precision diecast and painted with a fire baked enamel finish. It comes with a removable tanker and is a perfect model to add authenticity to your static train or car layout or to just have on display.',1016,'68.29','115.75'),
-
-('S50_1514','1962 City of Detroit Streetcar','Trains','1:50','Classic Metal Creations','This streetcar is a joy to see. It has 99 separate windows, electric wire guides, detailed interiors with seats, poles and drivers controls, rolling and turning wheel assemblies, plus authentic factory baked-enamel finishes (Green Hornet for Chicago and Cream and Crimson for Boston).',1645,'37.49','58.58'),
-
-('S50_4713','2002 Yamaha YZR M1','Motorcycles','1:50','Autoart Studio Design','Features rotating wheels , working kick stand. Comes with stand.',600,'34.17','81.36'),
-
-('S700_1138','The Schooner Bluenose','Ships','1:700','Autoart Studio Design','All wood with canvas sails. Measures 31 1/2 inches in Length, 22 inches High and 4 3/4 inches Wide. Many extras.\r\nThe schooner Bluenose was built in Nova Scotia in 1921 to fish the rough waters off the coast of Newfoundland. Because of the Bluenose racing prowess she became the pride of all Canadians. Still featured on stamps and the Canadian dime, the Bluenose was lost off Haiti in 1946.',1897,'34.00','66.67'),
-
-('S700_1691','American Airlines: B767-300','Planes','1:700','Min Lin Diecast','Exact replia with official logos and insignias and retractable wheels',5841,'51.15','91.34'),
-
-('S700_1938','The Mayflower','Ships','1:700','Studio M Art Models','Measures 31 1/2 inches Long x 25 1/2 inches High x 10 5/8 inches Wide\r\nAll wood with canvas sail. Extras include long boats, rigging, ladders, railing, anchors, side cannons, hand painted, etc.',737,'43.30','86.61'),
-
-('S700_2047','HMS Bounty','Ships','1:700','Unimax Art Galleries','Measures 30 inches Long x 27 1/2 inches High x 4 3/4 inches Wide. \r\nMany extras including rigging, long boats, pilot house, anchors, etc. Comes with three masts, all square-rigged.',3501,'39.83','90.52'),
-
-('S700_2466','America West Airlines B757-200','Planes','1:700','Motor City Art Classics','Official logos and insignias. Working steering system. Rotating jet engines',9653,'68.80','99.72'),
-
-('S700_2610','The USS Constitution Ship','Ships','1:700','Red Start Diecast','All wood with canvas sails. Measures 31 1/2\" Length x 22 3/8\" High x 8 1/4\" Width. Extras include 4 boats on deck, sea sprite on bow, anchors, copper railing, pilot houses, etc.',7083,'33.97','72.28'),
-
-('S700_2824','1982 Camaro Z28','Classic Cars','1:18','Carousel DieCast Legends','Features include opening and closing doors. Color: White. \r\nMeasures approximately 9 1/2\" Long.',6934,'46.53','101.15'),
-
-('S700_2834','ATA: B757-300','Planes','1:700','Highway 66 Mini Classics','Exact replia with official logos and insignias and retractable wheels',7106,'59.33','118.65'),
-
-('S700_3167','F/A 18 Hornet 1/72','Planes','1:72','Motor City Art Classics','10\" Wingspan with retractable landing gears.Comes with pilot',551,'54.40','80.00'),
-
-('S700_3505','The Titanic','Ships','1:700','Carousel DieCast Legends','Completed model measures 19 1/2 inches long, 9 inches high, 3inches wide and is in barn red/black. All wood and metal.',1956,'51.09','100.17'),
-
-('S700_3962','The Queen Mary','Ships','1:700','Welly Diecast Productions','Exact replica. Wood and Metal. Many extras including rigging, long boats, pilot house, anchors, etc. Comes with three masts, all square-rigged.',5088,'53.63','99.31'),
-
-('S700_4002','American Airlines: MD-11S','Planes','1:700','Second Gear Diecast','Polished finish. Exact replia with official logos and insignias and retractable wheels',8820,'36.27','74.03'),
-
-('S72_1253','Boeing X-32A JSF','Planes','1:72','Motor City Art Classics','10\" Wingspan with retractable landing gears.Comes with pilot',4857,'32.77','49.66'),
-
-('S72_3212','Pont Yacht','Ships','1:72','Unimax Art Galleries','Measures 38 inches Long x 33 3/4 inches High. Includes a stand.\r\nMany extras including rigging, long boats, pilot house, anchors, etc. Comes with 2 masts, all square-rigged',414,'33.30','54.60');
+SET @old_autocommit=@@autocommit;
+
+USE `explain_training`
+
+--
+-- Table structure for table `city`
+--
+
+DROP TABLE IF EXISTS `city`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `city` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `Name` char(35) NOT NULL DEFAULT '',
+  `CountryCode` char(3) NOT NULL DEFAULT '',
+  `District` char(20) NOT NULL DEFAULT '',
+  `Population` int NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ID`),
+  KEY `CountryCode` (`CountryCode`),
+  CONSTRAINT `city_ibfk_1` FOREIGN KEY (`CountryCode`) REFERENCES `country` (`Code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `city`
+--
+-- ORDER BY:  `ID`
+
+set autocommit=0;
+INSERT INTO `city` VALUES (1,'Kabul','AFG','Kabol',1780000);
+INSERT INTO `city` VALUES (2,'Qandahar','AFG','Qandahar',237500);
+INSERT INTO `city` VALUES (3,'Herat','AFG','Herat',186800);
+INSERT INTO `city` VALUES (4,'Mazar-e-Sharif','AFG','Balkh',127800);
+INSERT INTO `city` VALUES (5,'Amsterdam','NLD','Noord-Holland',731200);
+INSERT INTO `city` VALUES (6,'Rotterdam','NLD','Zuid-Holland',593321);
+INSERT INTO `city` VALUES (7,'Haag','NLD','Zuid-Holland',440900);
+INSERT INTO `city` VALUES (8,'Utrecht','NLD','Utrecht',234323);
+INSERT INTO `city` VALUES (9,'Eindhoven','NLD','Noord-Brabant',201843);
+INSERT INTO `city` VALUES (10,'Tilburg','NLD','Noord-Brabant',193238);
+INSERT INTO `city` VALUES (11,'Groningen','NLD','Groningen',172701);
+INSERT INTO `city` VALUES (12,'Breda','NLD','Noord-Brabant',160398);
+INSERT INTO `city` VALUES (13,'Apeldoorn','NLD','Gelderland',153491);
+INSERT INTO `city` VALUES (14,'Nijmegen','NLD','Gelderland',152463);
+INSERT INTO `city` VALUES (15,'Enschede','NLD','Overijssel',149544);
+INSERT INTO `city` VALUES (16,'Haarlem','NLD','Noord-Holland',148772);
+INSERT INTO `city` VALUES (17,'Almere','NLD','Flevoland',142465);
+INSERT INTO `city` VALUES (18,'Arnhem','NLD','Gelderland',138020);
+INSERT INTO `city` VALUES (19,'Zaanstad','NLD','Noord-Holland',135621);
+INSERT INTO `city` VALUES (20,'´s-Hertogenbosch','NLD','Noord-Brabant',129170);
+INSERT INTO `city` VALUES (21,'Amersfoort','NLD','Utrecht',126270);
+INSERT INTO `city` VALUES (22,'Maastricht','NLD','Limburg',122087);
+INSERT INTO `city` VALUES (23,'Dordrecht','NLD','Zuid-Holland',119811);
+INSERT INTO `city` VALUES (24,'Leiden','NLD','Zuid-Holland',117196);
+INSERT INTO `city` VALUES (25,'Haarlemmermeer','NLD','Noord-Holland',110722);
+INSERT INTO `city` VALUES (26,'Zoetermeer','NLD','Zuid-Holland',110214);
+INSERT INTO `city` VALUES (27,'Emmen','NLD','Drenthe',105853);
+INSERT INTO `city` VALUES (28,'Zwolle','NLD','Overijssel',105819);
+INSERT INTO `city` VALUES (29,'Ede','NLD','Gelderland',101574);
+INSERT INTO `city` VALUES (30,'Delft','NLD','Zuid-Holland',95268);
+INSERT INTO `city` VALUES (31,'Heerlen','NLD','Limburg',95052);
+INSERT INTO `city` VALUES (32,'Alkmaar','NLD','Noord-Holland',92713);
+INSERT INTO `city` VALUES (33,'Willemstad','ANT','Curaçao',2345);
+INSERT INTO `city` VALUES (34,'Tirana','ALB','Tirana',270000);
+INSERT INTO `city` VALUES (35,'Alger','DZA','Alger',2168000);
+INSERT INTO `city` VALUES (36,'Oran','DZA','Oran',609823);
+INSERT INTO `city` VALUES (37,'Constantine','DZA','Constantine',443727);
+INSERT INTO `city` VALUES (38,'Annaba','DZA','Annaba',222518);
+INSERT INTO `city` VALUES (39,'Batna','DZA','Batna',183377);
+INSERT INTO `city` VALUES (40,'Sétif','DZA','Sétif',179055);
+INSERT INTO `city` VALUES (41,'Sidi Bel Abbès','DZA','Sidi Bel Abbès',153106);
+INSERT INTO `city` VALUES (42,'Skikda','DZA','Skikda',128747);
+INSERT INTO `city` VALUES (43,'Biskra','DZA','Biskra',128281);
+INSERT INTO `city` VALUES (44,'Blida (el-Boulaida)','DZA','Blida',127284);
+INSERT INTO `city` VALUES (45,'Béjaïa','DZA','Béjaïa',117162);
+INSERT INTO `city` VALUES (46,'Mostaganem','DZA','Mostaganem',115212);
+INSERT INTO `city` VALUES (47,'Tébessa','DZA','Tébessa',112007);
+INSERT INTO `city` VALUES (48,'Tlemcen (Tilimsen)','DZA','Tlemcen',110242);
+INSERT INTO `city` VALUES (49,'Béchar','DZA','Béchar',107311);
+INSERT INTO `city` VALUES (50,'Tiaret','DZA','Tiaret',100118);
+INSERT INTO `city` VALUES (51,'Ech-Chleff (el-Asnam)','DZA','Chlef',96794);
+INSERT INTO `city` VALUES (52,'Ghardaïa','DZA','Ghardaïa',89415);
+INSERT INTO `city` VALUES (53,'Tafuna','ASM','Tutuila',5200);
+INSERT INTO `city` VALUES (54,'Fagatogo','ASM','Tutuila',2323);
+INSERT INTO `city` VALUES (55,'Andorra la Vella','AND','Andorra la Vella',21189);
+INSERT INTO `city` VALUES (56,'Luanda','AGO','Luanda',2022000);
+INSERT INTO `city` VALUES (57,'Huambo','AGO','Huambo',163100);
+INSERT INTO `city` VALUES (58,'Lobito','AGO','Benguela',130000);
+INSERT INTO `city` VALUES (59,'Benguela','AGO','Benguela',128300);
+INSERT INTO `city` VALUES (60,'Namibe','AGO','Namibe',118200);
+INSERT INTO `city` VALUES (61,'South Hill','AIA','–',961);
+INSERT INTO `city` VALUES (62,'The Valley','AIA','–',595);
+INSERT INTO `city` VALUES (63,'Saint John´s','ATG','St John',24000);
+INSERT INTO `city` VALUES (64,'Dubai','ARE','Dubai',669181);
+INSERT INTO `city` VALUES (65,'Abu Dhabi','ARE','Abu Dhabi',398695);
+INSERT INTO `city` VALUES (66,'Sharja','ARE','Sharja',320095);
+INSERT INTO `city` VALUES (67,'al-Ayn','ARE','Abu Dhabi',225970);
+INSERT INTO `city` VALUES (68,'Ajman','ARE','Ajman',114395);
+INSERT INTO `city` VALUES (69,'Buenos Aires','ARG','Distrito Federal',2982146);
+INSERT INTO `city` VALUES (70,'La Matanza','ARG','Buenos Aires',1266461);
+INSERT INTO `city` VALUES (71,'Córdoba','ARG','Córdoba',1157507);
+INSERT INTO `city` VALUES (72,'Rosario','ARG','Santa Fé',907718);
+INSERT INTO `city` VALUES (73,'Lomas de Zamora','ARG','Buenos Aires',622013);
+INSERT INTO `city` VALUES (74,'Quilmes','ARG','Buenos Aires',559249);
+INSERT INTO `city` VALUES (75,'Almirante Brown','ARG','Buenos Aires',538918);
+INSERT INTO `city` VALUES (76,'La Plata','ARG','Buenos Aires',521936);
+INSERT INTO `city` VALUES (77,'Mar del Plata','ARG','Buenos Aires',512880);
+INSERT INTO `city` VALUES (78,'San Miguel de Tucumán','ARG','Tucumán',470809);
+INSERT INTO `city` VALUES (79,'Lanús','ARG','Buenos Aires',469735);
+INSERT INTO `city` VALUES (80,'Merlo','ARG','Buenos Aires',463846);
+INSERT INTO `city` VALUES (81,'General San Martín','ARG','Buenos Aires',422542);
+INSERT INTO `city` VALUES (82,'Salta','ARG','Salta',367550);
+INSERT INTO `city` VALUES (83,'Moreno','ARG','Buenos Aires',356993);
+INSERT INTO `city` VALUES (84,'Santa Fé','ARG','Santa Fé',353063);
+INSERT INTO `city` VALUES (85,'Avellaneda','ARG','Buenos Aires',353046);
+INSERT INTO `city` VALUES (86,'Tres de Febrero','ARG','Buenos Aires',352311);
+INSERT INTO `city` VALUES (87,'Morón','ARG','Buenos Aires',349246);
+INSERT INTO `city` VALUES (88,'Florencio Varela','ARG','Buenos Aires',315432);
+INSERT INTO `city` VALUES (89,'San Isidro','ARG','Buenos Aires',306341);
+INSERT INTO `city` VALUES (90,'Tigre','ARG','Buenos Aires',296226);
+INSERT INTO `city` VALUES (91,'Malvinas Argentinas','ARG','Buenos Aires',290335);
+INSERT INTO `city` VALUES (92,'Vicente López','ARG','Buenos Aires',288341);
+INSERT INTO `city` VALUES (93,'Berazategui','ARG','Buenos Aires',276916);
+INSERT INTO `city` VALUES (94,'Corrientes','ARG','Corrientes',258103);
+INSERT INTO `city` VALUES (95,'San Miguel','ARG','Buenos Aires',248700);
+INSERT INTO `city` VALUES (96,'Bahía Blanca','ARG','Buenos Aires',239810);
+INSERT INTO `city` VALUES (97,'Esteban Echeverría','ARG','Buenos Aires',235760);
+INSERT INTO `city` VALUES (98,'Resistencia','ARG','Chaco',229212);
+INSERT INTO `city` VALUES (99,'José C. Paz','ARG','Buenos Aires',221754);
+INSERT INTO `city` VALUES (100,'Paraná','ARG','Entre Rios',207041);
+INSERT INTO `city` VALUES (101,'Godoy Cruz','ARG','Mendoza',206998);
+INSERT INTO `city` VALUES (102,'Posadas','ARG','Misiones',201273);
+INSERT INTO `city` VALUES (103,'Guaymallén','ARG','Mendoza',200595);
+INSERT INTO `city` VALUES (104,'Santiago del Estero','ARG','Santiago del Estero',189947);
+INSERT INTO `city` VALUES (105,'San Salvador de Jujuy','ARG','Jujuy',178748);
+INSERT INTO `city` VALUES (106,'Hurlingham','ARG','Buenos Aires',170028);
+INSERT INTO `city` VALUES (107,'Neuquén','ARG','Neuquén',167296);
+INSERT INTO `city` VALUES (108,'Ituzaingó','ARG','Buenos Aires',158197);
+INSERT INTO `city` VALUES (109,'San Fernando','ARG','Buenos Aires',153036);
+INSERT INTO `city` VALUES (110,'Formosa','ARG','Formosa',147636);
+INSERT INTO `city` VALUES (111,'Las Heras','ARG','Mendoza',145823);
+INSERT INTO `city` VALUES (112,'La Rioja','ARG','La Rioja',138117);
+INSERT INTO `city` VALUES (113,'San Fernando del Valle de Cata','ARG','Catamarca',134935);
+INSERT INTO `city` VALUES (114,'Río Cuarto','ARG','Córdoba',134355);
+INSERT INTO `city` VALUES (115,'Comodoro Rivadavia','ARG','Chubut',124104);
+INSERT INTO `city` VALUES (116,'Mendoza','ARG','Mendoza',123027);
+INSERT INTO `city` VALUES (117,'San Nicolás de los Arroyos','ARG','Buenos Aires',119302);
+INSERT INTO `city` VALUES (118,'San Juan','ARG','San Juan',119152);
+INSERT INTO `city` VALUES (119,'Escobar','ARG','Buenos Aires',116675);
+INSERT INTO `city` VALUES (120,'Concordia','ARG','Entre Rios',116485);
+INSERT INTO `city` VALUES (121,'Pilar','ARG','Buenos Aires',113428);
+INSERT INTO `city` VALUES (122,'San Luis','ARG','San Luis',110136);
+INSERT INTO `city` VALUES (123,'Ezeiza','ARG','Buenos Aires',99578);
+INSERT INTO `city` VALUES (124,'San Rafael','ARG','Mendoza',94651);
+INSERT INTO `city` VALUES (125,'Tandil','ARG','Buenos Aires',91101);
+INSERT INTO `city` VALUES (126,'Yerevan','ARM','Yerevan',1248700);
+INSERT INTO `city` VALUES (127,'Gjumri','ARM','Širak',211700);
+INSERT INTO `city` VALUES (128,'Vanadzor','ARM','Lori',172700);
+INSERT INTO `city` VALUES (129,'Oranjestad','ABW','–',29034);
+INSERT INTO `city` VALUES (130,'Sydney','AUS','New South Wales',3276207);
+INSERT INTO `city` VALUES (131,'Melbourne','AUS','Victoria',2865329);
+INSERT INTO `city` VALUES (132,'Brisbane','AUS','Queensland',1291117);
+INSERT INTO `city` VALUES (133,'Perth','AUS','West Australia',1096829);
+INSERT INTO `city` VALUES (134,'Adelaide','AUS','South Australia',978100);
+INSERT INTO `city` VALUES (135,'Canberra','AUS','Capital Region',322723);
+INSERT INTO `city` VALUES (136,'Gold Coast','AUS','Queensland',311932);
+INSERT INTO `city` VALUES (137,'Newcastle','AUS','New South Wales',270324);
+INSERT INTO `city` VALUES (138,'Central Coast','AUS','New South Wales',227657);
+INSERT INTO `city` VALUES (139,'Wollongong','AUS','New South Wales',219761);
+INSERT INTO `city` VALUES (140,'Hobart','AUS','Tasmania',126118);
+INSERT INTO `city` VALUES (141,'Geelong','AUS','Victoria',125382);
+INSERT INTO `city` VALUES (142,'Townsville','AUS','Queensland',109914);
+INSERT INTO `city` VALUES (143,'Cairns','AUS','Queensland',92273);
+INSERT INTO `city` VALUES (144,'Baku','AZE','Baki',1787800);
+INSERT INTO `city` VALUES (145,'Gäncä','AZE','Gäncä',299300);
+INSERT INTO `city` VALUES (146,'Sumqayit','AZE','Sumqayit',283000);
+INSERT INTO `city` VALUES (147,'Mingäçevir','AZE','Mingäçevir',93900);
+INSERT INTO `city` VALUES (148,'Nassau','BHS','New Providence',172000);
+INSERT INTO `city` VALUES (149,'al-Manama','BHR','al-Manama',148000);
+INSERT INTO `city` VALUES (150,'Dhaka','BGD','Dhaka',3612850);
+INSERT INTO `city` VALUES (151,'Chittagong','BGD','Chittagong',1392860);
+INSERT INTO `city` VALUES (152,'Khulna','BGD','Khulna',663340);
+INSERT INTO `city` VALUES (153,'Rajshahi','BGD','Rajshahi',294056);
+INSERT INTO `city` VALUES (154,'Narayanganj','BGD','Dhaka',202134);
+INSERT INTO `city` VALUES (155,'Rangpur','BGD','Rajshahi',191398);
+INSERT INTO `city` VALUES (156,'Mymensingh','BGD','Dhaka',188713);
+INSERT INTO `city` VALUES (157,'Barisal','BGD','Barisal',170232);
+INSERT INTO `city` VALUES (158,'Tungi','BGD','Dhaka',168702);
+INSERT INTO `city` VALUES (159,'Jessore','BGD','Khulna',139710);
+INSERT INTO `city` VALUES (160,'Comilla','BGD','Chittagong',135313);
+INSERT INTO `city` VALUES (161,'Nawabganj','BGD','Rajshahi',130577);
+INSERT INTO `city` VALUES (162,'Dinajpur','BGD','Rajshahi',127815);
+INSERT INTO `city` VALUES (163,'Bogra','BGD','Rajshahi',120170);
+INSERT INTO `city` VALUES (164,'Sylhet','BGD','Sylhet',117396);
+INSERT INTO `city` VALUES (165,'Brahmanbaria','BGD','Chittagong',109032);
+INSERT INTO `city` VALUES (166,'Tangail','BGD','Dhaka',106004);
+INSERT INTO `city` VALUES (167,'Jamalpur','BGD','Dhaka',103556);
+INSERT INTO `city` VALUES (168,'Pabna','BGD','Rajshahi',103277);
+INSERT INTO `city` VALUES (169,'Naogaon','BGD','Rajshahi',101266);
+INSERT INTO `city` VALUES (170,'Sirajganj','BGD','Rajshahi',99669);
+INSERT INTO `city` VALUES (171,'Narsinghdi','BGD','Dhaka',98342);
+INSERT INTO `city` VALUES (172,'Saidpur','BGD','Rajshahi',96777);
+INSERT INTO `city` VALUES (173,'Gazipur','BGD','Dhaka',96717);
+INSERT INTO `city` VALUES (174,'Bridgetown','BRB','St Michael',6070);
+INSERT INTO `city` VALUES (175,'Antwerpen','BEL','Antwerpen',446525);
+INSERT INTO `city` VALUES (176,'Gent','BEL','East Flanderi',224180);
+INSERT INTO `city` VALUES (177,'Charleroi','BEL','Hainaut',200827);
+INSERT INTO `city` VALUES (178,'Liège','BEL','Liège',185639);
+INSERT INTO `city` VALUES (179,'Bruxelles [Brussel]','BEL','Bryssel',133859);
+INSERT INTO `city` VALUES (180,'Brugge','BEL','West Flanderi',116246);
+INSERT INTO `city` VALUES (181,'Schaerbeek','BEL','Bryssel',105692);
+INSERT INTO `city` VALUES (182,'Namur','BEL','Namur',105419);
+INSERT INTO `city` VALUES (183,'Mons','BEL','Hainaut',90935);
+INSERT INTO `city` VALUES (184,'Belize City','BLZ','Belize City',55810);
+INSERT INTO `city` VALUES (185,'Belmopan','BLZ','Cayo',7105);
+INSERT INTO `city` VALUES (186,'Cotonou','BEN','Atlantique',536827);
+INSERT INTO `city` VALUES (187,'Porto-Novo','BEN','Ouémé',194000);
+INSERT INTO `city` VALUES (188,'Djougou','BEN','Atacora',134099);
+INSERT INTO `city` VALUES (189,'Parakou','BEN','Borgou',103577);
+INSERT INTO `city` VALUES (190,'Saint George','BMU','Saint George´s',1800);
+INSERT INTO `city` VALUES (191,'Hamilton','BMU','Hamilton',1200);
+INSERT INTO `city` VALUES (192,'Thimphu','BTN','Thimphu',22000);
+INSERT INTO `city` VALUES (193,'Santa Cruz de la Sierra','BOL','Santa Cruz',935361);
+INSERT INTO `city` VALUES (194,'La Paz','BOL','La Paz',758141);
+INSERT INTO `city` VALUES (195,'El Alto','BOL','La Paz',534466);
+INSERT INTO `city` VALUES (196,'Cochabamba','BOL','Cochabamba',482800);
+INSERT INTO `city` VALUES (197,'Oruro','BOL','Oruro',223553);
+INSERT INTO `city` VALUES (198,'Sucre','BOL','Chuquisaca',178426);
+INSERT INTO `city` VALUES (199,'Potosí','BOL','Potosí',140642);
+INSERT INTO `city` VALUES (200,'Tarija','BOL','Tarija',125255);
+INSERT INTO `city` VALUES (201,'Sarajevo','BIH','Federaatio',360000);
+INSERT INTO `city` VALUES (202,'Banja Luka','BIH','Republika Srpska',143079);
+INSERT INTO `city` VALUES (203,'Zenica','BIH','Federaatio',96027);
+INSERT INTO `city` VALUES (204,'Gaborone','BWA','Gaborone',213017);
+INSERT INTO `city` VALUES (205,'Francistown','BWA','Francistown',101805);
+INSERT INTO `city` VALUES (206,'São Paulo','BRA','São Paulo',9968485);
+INSERT INTO `city` VALUES (207,'Rio de Janeiro','BRA','Rio de Janeiro',5598953);
+INSERT INTO `city` VALUES (208,'Salvador','BRA','Bahia',2302832);
+INSERT INTO `city` VALUES (209,'Belo Horizonte','BRA','Minas Gerais',2139125);
+INSERT INTO `city` VALUES (210,'Fortaleza','BRA','Ceará',2097757);
+INSERT INTO `city` VALUES (211,'Brasília','BRA','Distrito Federal',1969868);
+INSERT INTO `city` VALUES (212,'Curitiba','BRA','Paraná',1584232);
+INSERT INTO `city` VALUES (213,'Recife','BRA','Pernambuco',1378087);
+INSERT INTO `city` VALUES (214,'Porto Alegre','BRA','Rio Grande do Sul',1314032);
+INSERT INTO `city` VALUES (215,'Manaus','BRA','Amazonas',1255049);
+INSERT INTO `city` VALUES (216,'Belém','BRA','Pará',1186926);
+INSERT INTO `city` VALUES (217,'Guarulhos','BRA','São Paulo',1095874);
+INSERT INTO `city` VALUES (218,'Goiânia','BRA','Goiás',1056330);
+INSERT INTO `city` VALUES (219,'Campinas','BRA','São Paulo',950043);
+INSERT INTO `city` VALUES (220,'São Gonçalo','BRA','Rio de Janeiro',869254);
+INSERT INTO `city` VALUES (221,'Nova Iguaçu','BRA','Rio de Janeiro',862225);
+INSERT INTO `city` VALUES (222,'São Luís','BRA','Maranhão',837588);
+INSERT INTO `city` VALUES (223,'Maceió','BRA','Alagoas',786288);
+INSERT INTO `city` VALUES (224,'Duque de Caxias','BRA','Rio de Janeiro',746758);
+INSERT INTO `city` VALUES (225,'São Bernardo do Campo','BRA','São Paulo',723132);
+INSERT INTO `city` VALUES (226,'Teresina','BRA','Piauí',691942);
+INSERT INTO `city` VALUES (227,'Natal','BRA','Rio Grande do Norte',688955);
+INSERT INTO `city` VALUES (228,'Osasco','BRA','São Paulo',659604);
+INSERT INTO `city` VALUES (229,'Campo Grande','BRA','Mato Grosso do Sul',649593);
+INSERT INTO `city` VALUES (230,'Santo André','BRA','São Paulo',630073);
+INSERT INTO `city` VALUES (231,'João Pessoa','BRA','Paraíba',584029);
+INSERT INTO `city` VALUES (232,'Jaboatão dos Guararapes','BRA','Pernambuco',558680);
+INSERT INTO `city` VALUES (233,'Contagem','BRA','Minas Gerais',520801);
+INSERT INTO `city` VALUES (234,'São José dos Campos','BRA','São Paulo',515553);
+INSERT INTO `city` VALUES (235,'Uberlândia','BRA','Minas Gerais',487222);
+INSERT INTO `city` VALUES (236,'Feira de Santana','BRA','Bahia',479992);
+INSERT INTO `city` VALUES (237,'Ribeirão Preto','BRA','São Paulo',473276);
+INSERT INTO `city` VALUES (238,'Sorocaba','BRA','São Paulo',466823);
+INSERT INTO `city` VALUES (239,'Niterói','BRA','Rio de Janeiro',459884);
+INSERT INTO `city` VALUES (240,'Cuiabá','BRA','Mato Grosso',453813);
+INSERT INTO `city` VALUES (241,'Juiz de Fora','BRA','Minas Gerais',450288);
+INSERT INTO `city` VALUES (242,'Aracaju','BRA','Sergipe',445555);
+INSERT INTO `city` VALUES (243,'São João de Meriti','BRA','Rio de Janeiro',440052);
+INSERT INTO `city` VALUES (244,'Londrina','BRA','Paraná',432257);
+INSERT INTO `city` VALUES (245,'Joinville','BRA','Santa Catarina',428011);
+INSERT INTO `city` VALUES (246,'Belford Roxo','BRA','Rio de Janeiro',425194);
+INSERT INTO `city` VALUES (247,'Santos','BRA','São Paulo',408748);
+INSERT INTO `city` VALUES (248,'Ananindeua','BRA','Pará',400940);
+INSERT INTO `city` VALUES (249,'Campos dos Goytacazes','BRA','Rio de Janeiro',398418);
+INSERT INTO `city` VALUES (250,'Mauá','BRA','São Paulo',375055);
+INSERT INTO `city` VALUES (251,'Carapicuíba','BRA','São Paulo',357552);
+INSERT INTO `city` VALUES (252,'Olinda','BRA','Pernambuco',354732);
+INSERT INTO `city` VALUES (253,'Campina Grande','BRA','Paraíba',352497);
+INSERT INTO `city` VALUES (254,'São José do Rio Preto','BRA','São Paulo',351944);
+INSERT INTO `city` VALUES (255,'Caxias do Sul','BRA','Rio Grande do Sul',349581);
+INSERT INTO `city` VALUES (256,'Moji das Cruzes','BRA','São Paulo',339194);
+INSERT INTO `city` VALUES (257,'Diadema','BRA','São Paulo',335078);
+INSERT INTO `city` VALUES (258,'Aparecida de Goiânia','BRA','Goiás',324662);
+INSERT INTO `city` VALUES (259,'Piracicaba','BRA','São Paulo',319104);
+INSERT INTO `city` VALUES (260,'Cariacica','BRA','Espírito Santo',319033);
+INSERT INTO `city` VALUES (261,'Vila Velha','BRA','Espírito Santo',318758);
+INSERT INTO `city` VALUES (262,'Pelotas','BRA','Rio Grande do Sul',315415);
+INSERT INTO `city` VALUES (263,'Bauru','BRA','São Paulo',313670);
+INSERT INTO `city` VALUES (264,'Porto Velho','BRA','Rondônia',309750);
+INSERT INTO `city` VALUES (265,'Serra','BRA','Espírito Santo',302666);
+INSERT INTO `city` VALUES (266,'Betim','BRA','Minas Gerais',302108);
+INSERT INTO `city` VALUES (267,'Jundíaí','BRA','São Paulo',296127);
+INSERT INTO `city` VALUES (268,'Canoas','BRA','Rio Grande do Sul',294125);
+INSERT INTO `city` VALUES (269,'Franca','BRA','São Paulo',290139);
+INSERT INTO `city` VALUES (270,'São Vicente','BRA','São Paulo',286848);
+INSERT INTO `city` VALUES (271,'Maringá','BRA','Paraná',286461);
+INSERT INTO `city` VALUES (272,'Montes Claros','BRA','Minas Gerais',286058);
+INSERT INTO `city` VALUES (273,'Anápolis','BRA','Goiás',282197);
+INSERT INTO `city` VALUES (274,'Florianópolis','BRA','Santa Catarina',281928);
+INSERT INTO `city` VALUES (275,'Petrópolis','BRA','Rio de Janeiro',279183);
+INSERT INTO `city` VALUES (276,'Itaquaquecetuba','BRA','São Paulo',270874);
+INSERT INTO `city` VALUES (277,'Vitória','BRA','Espírito Santo',270626);
+INSERT INTO `city` VALUES (278,'Ponta Grossa','BRA','Paraná',268013);
+INSERT INTO `city` VALUES (279,'Rio Branco','BRA','Acre',259537);
+INSERT INTO `city` VALUES (280,'Foz do Iguaçu','BRA','Paraná',259425);
+INSERT INTO `city` VALUES (281,'Macapá','BRA','Amapá',256033);
+INSERT INTO `city` VALUES (282,'Ilhéus','BRA','Bahia',254970);
+INSERT INTO `city` VALUES (283,'Vitória da Conquista','BRA','Bahia',253587);
+INSERT INTO `city` VALUES (284,'Uberaba','BRA','Minas Gerais',249225);
+INSERT INTO `city` VALUES (285,'Paulista','BRA','Pernambuco',248473);
+INSERT INTO `city` VALUES (286,'Limeira','BRA','São Paulo',245497);
+INSERT INTO `city` VALUES (287,'Blumenau','BRA','Santa Catarina',244379);
+INSERT INTO `city` VALUES (288,'Caruaru','BRA','Pernambuco',244247);
+INSERT INTO `city` VALUES (289,'Santarém','BRA','Pará',241771);
+INSERT INTO `city` VALUES (290,'Volta Redonda','BRA','Rio de Janeiro',240315);
+INSERT INTO `city` VALUES (291,'Novo Hamburgo','BRA','Rio Grande do Sul',239940);
+INSERT INTO `city` VALUES (292,'Caucaia','BRA','Ceará',238738);
+INSERT INTO `city` VALUES (293,'Santa Maria','BRA','Rio Grande do Sul',238473);
+INSERT INTO `city` VALUES (294,'Cascavel','BRA','Paraná',237510);
+INSERT INTO `city` VALUES (295,'Guarujá','BRA','São Paulo',237206);
+INSERT INTO `city` VALUES (296,'Ribeirão das Neves','BRA','Minas Gerais',232685);
+INSERT INTO `city` VALUES (297,'Governador Valadares','BRA','Minas Gerais',231724);
+INSERT INTO `city` VALUES (298,'Taubaté','BRA','São Paulo',229130);
+INSERT INTO `city` VALUES (299,'Imperatriz','BRA','Maranhão',224564);
+INSERT INTO `city` VALUES (300,'Gravataí','BRA','Rio Grande do Sul',223011);
+INSERT INTO `city` VALUES (301,'Embu','BRA','São Paulo',222223);
+INSERT INTO `city` VALUES (302,'Mossoró','BRA','Rio Grande do Norte',214901);
+INSERT INTO `city` VALUES (303,'Várzea Grande','BRA','Mato Grosso',214435);
+INSERT INTO `city` VALUES (304,'Petrolina','BRA','Pernambuco',210540);
+INSERT INTO `city` VALUES (305,'Barueri','BRA','São Paulo',208426);
+INSERT INTO `city` VALUES (306,'Viamão','BRA','Rio Grande do Sul',207557);
+INSERT INTO `city` VALUES (307,'Ipatinga','BRA','Minas Gerais',206338);
+INSERT INTO `city` VALUES (308,'Juazeiro','BRA','Bahia',201073);
+INSERT INTO `city` VALUES (309,'Juazeiro do Norte','BRA','Ceará',199636);
+INSERT INTO `city` VALUES (310,'Taboão da Serra','BRA','São Paulo',197550);
+INSERT INTO `city` VALUES (311,'São José dos Pinhais','BRA','Paraná',196884);
+INSERT INTO `city` VALUES (312,'Magé','BRA','Rio de Janeiro',196147);
+INSERT INTO `city` VALUES (313,'Suzano','BRA','São Paulo',195434);
+INSERT INTO `city` VALUES (314,'São Leopoldo','BRA','Rio Grande do Sul',189258);
+INSERT INTO `city` VALUES (315,'Marília','BRA','São Paulo',188691);
+INSERT INTO `city` VALUES (316,'São Carlos','BRA','São Paulo',187122);
+INSERT INTO `city` VALUES (317,'Sumaré','BRA','São Paulo',186205);
+INSERT INTO `city` VALUES (318,'Presidente Prudente','BRA','São Paulo',185340);
+INSERT INTO `city` VALUES (319,'Divinópolis','BRA','Minas Gerais',185047);
+INSERT INTO `city` VALUES (320,'Sete Lagoas','BRA','Minas Gerais',182984);
+INSERT INTO `city` VALUES (321,'Rio Grande','BRA','Rio Grande do Sul',182222);
+INSERT INTO `city` VALUES (322,'Itabuna','BRA','Bahia',182148);
+INSERT INTO `city` VALUES (323,'Jequié','BRA','Bahia',179128);
+INSERT INTO `city` VALUES (324,'Arapiraca','BRA','Alagoas',178988);
+INSERT INTO `city` VALUES (325,'Colombo','BRA','Paraná',177764);
+INSERT INTO `city` VALUES (326,'Americana','BRA','São Paulo',177409);
+INSERT INTO `city` VALUES (327,'Alvorada','BRA','Rio Grande do Sul',175574);
+INSERT INTO `city` VALUES (328,'Araraquara','BRA','São Paulo',174381);
+INSERT INTO `city` VALUES (329,'Itaboraí','BRA','Rio de Janeiro',173977);
+INSERT INTO `city` VALUES (330,'Santa Bárbara d´Oeste','BRA','São Paulo',171657);
+INSERT INTO `city` VALUES (331,'Nova Friburgo','BRA','Rio de Janeiro',170697);
+INSERT INTO `city` VALUES (332,'Jacareí','BRA','São Paulo',170356);
+INSERT INTO `city` VALUES (333,'Araçatuba','BRA','São Paulo',169303);
+INSERT INTO `city` VALUES (334,'Barra Mansa','BRA','Rio de Janeiro',168953);
+INSERT INTO `city` VALUES (335,'Praia Grande','BRA','São Paulo',168434);
+INSERT INTO `city` VALUES (336,'Marabá','BRA','Pará',167795);
+INSERT INTO `city` VALUES (337,'Criciúma','BRA','Santa Catarina',167661);
+INSERT INTO `city` VALUES (338,'Boa Vista','BRA','Roraima',167185);
+INSERT INTO `city` VALUES (339,'Passo Fundo','BRA','Rio Grande do Sul',166343);
+INSERT INTO `city` VALUES (340,'Dourados','BRA','Mato Grosso do Sul',164716);
+INSERT INTO `city` VALUES (341,'Santa Luzia','BRA','Minas Gerais',164704);
+INSERT INTO `city` VALUES (342,'Rio Claro','BRA','São Paulo',163551);
+INSERT INTO `city` VALUES (343,'Maracanaú','BRA','Ceará',162022);
+INSERT INTO `city` VALUES (344,'Guarapuava','BRA','Paraná',160510);
+INSERT INTO `city` VALUES (345,'Rondonópolis','BRA','Mato Grosso',155115);
+INSERT INTO `city` VALUES (346,'São José','BRA','Santa Catarina',155105);
+INSERT INTO `city` VALUES (347,'Cachoeiro de Itapemirim','BRA','Espírito Santo',155024);
+INSERT INTO `city` VALUES (348,'Nilópolis','BRA','Rio de Janeiro',153383);
+INSERT INTO `city` VALUES (349,'Itapevi','BRA','São Paulo',150664);
+INSERT INTO `city` VALUES (350,'Cabo de Santo Agostinho','BRA','Pernambuco',149964);
+INSERT INTO `city` VALUES (351,'Camaçari','BRA','Bahia',149146);
+INSERT INTO `city` VALUES (352,'Sobral','BRA','Ceará',146005);
+INSERT INTO `city` VALUES (353,'Itajaí','BRA','Santa Catarina',145197);
+INSERT INTO `city` VALUES (354,'Chapecó','BRA','Santa Catarina',144158);
+INSERT INTO `city` VALUES (355,'Cotia','BRA','São Paulo',140042);
+INSERT INTO `city` VALUES (356,'Lages','BRA','Santa Catarina',139570);
+INSERT INTO `city` VALUES (357,'Ferraz de Vasconcelos','BRA','São Paulo',139283);
+INSERT INTO `city` VALUES (358,'Indaiatuba','BRA','São Paulo',135968);
+INSERT INTO `city` VALUES (359,'Hortolândia','BRA','São Paulo',135755);
+INSERT INTO `city` VALUES (360,'Caxias','BRA','Maranhão',133980);
+INSERT INTO `city` VALUES (361,'São Caetano do Sul','BRA','São Paulo',133321);
+INSERT INTO `city` VALUES (362,'Itu','BRA','São Paulo',132736);
+INSERT INTO `city` VALUES (363,'Nossa Senhora do Socorro','BRA','Sergipe',131351);
+INSERT INTO `city` VALUES (364,'Parnaíba','BRA','Piauí',129756);
+INSERT INTO `city` VALUES (365,'Poços de Caldas','BRA','Minas Gerais',129683);
+INSERT INTO `city` VALUES (366,'Teresópolis','BRA','Rio de Janeiro',128079);
+INSERT INTO `city` VALUES (367,'Barreiras','BRA','Bahia',127801);
+INSERT INTO `city` VALUES (368,'Castanhal','BRA','Pará',127634);
+INSERT INTO `city` VALUES (369,'Alagoinhas','BRA','Bahia',126820);
+INSERT INTO `city` VALUES (370,'Itapecerica da Serra','BRA','São Paulo',126672);
+INSERT INTO `city` VALUES (371,'Uruguaiana','BRA','Rio Grande do Sul',126305);
+INSERT INTO `city` VALUES (372,'Paranaguá','BRA','Paraná',126076);
+INSERT INTO `city` VALUES (373,'Ibirité','BRA','Minas Gerais',125982);
+INSERT INTO `city` VALUES (374,'Timon','BRA','Maranhão',125812);
+INSERT INTO `city` VALUES (375,'Luziânia','BRA','Goiás',125597);
+INSERT INTO `city` VALUES (376,'Macaé','BRA','Rio de Janeiro',125597);
+INSERT INTO `city` VALUES (377,'Teófilo Otoni','BRA','Minas Gerais',124489);
+INSERT INTO `city` VALUES (378,'Moji-Guaçu','BRA','São Paulo',123782);
+INSERT INTO `city` VALUES (379,'Palmas','BRA','Tocantins',121919);
+INSERT INTO `city` VALUES (380,'Pindamonhangaba','BRA','São Paulo',121904);
+INSERT INTO `city` VALUES (381,'Francisco Morato','BRA','São Paulo',121197);
+INSERT INTO `city` VALUES (382,'Bagé','BRA','Rio Grande do Sul',120793);
+INSERT INTO `city` VALUES (383,'Sapucaia do Sul','BRA','Rio Grande do Sul',120217);
+INSERT INTO `city` VALUES (384,'Cabo Frio','BRA','Rio de Janeiro',119503);
+INSERT INTO `city` VALUES (385,'Itapetininga','BRA','São Paulo',119391);
+INSERT INTO `city` VALUES (386,'Patos de Minas','BRA','Minas Gerais',119262);
+INSERT INTO `city` VALUES (387,'Camaragibe','BRA','Pernambuco',118968);
+INSERT INTO `city` VALUES (388,'Bragança Paulista','BRA','São Paulo',116929);
+INSERT INTO `city` VALUES (389,'Queimados','BRA','Rio de Janeiro',115020);
+INSERT INTO `city` VALUES (390,'Araguaína','BRA','Tocantins',114948);
+INSERT INTO `city` VALUES (391,'Garanhuns','BRA','Pernambuco',114603);
+INSERT INTO `city` VALUES (392,'Vitória de Santo Antão','BRA','Pernambuco',113595);
+INSERT INTO `city` VALUES (393,'Santa Rita','BRA','Paraíba',113135);
+INSERT INTO `city` VALUES (394,'Barbacena','BRA','Minas Gerais',113079);
+INSERT INTO `city` VALUES (395,'Abaetetuba','BRA','Pará',111258);
+INSERT INTO `city` VALUES (396,'Jaú','BRA','São Paulo',109965);
+INSERT INTO `city` VALUES (397,'Lauro de Freitas','BRA','Bahia',109236);
+INSERT INTO `city` VALUES (398,'Franco da Rocha','BRA','São Paulo',108964);
+INSERT INTO `city` VALUES (399,'Teixeira de Freitas','BRA','Bahia',108441);
+INSERT INTO `city` VALUES (400,'Varginha','BRA','Minas Gerais',108314);
+INSERT INTO `city` VALUES (401,'Ribeirão Pires','BRA','São Paulo',108121);
+INSERT INTO `city` VALUES (402,'Sabará','BRA','Minas Gerais',107781);
+INSERT INTO `city` VALUES (403,'Catanduva','BRA','São Paulo',107761);
+INSERT INTO `city` VALUES (404,'Rio Verde','BRA','Goiás',107755);
+INSERT INTO `city` VALUES (405,'Botucatu','BRA','São Paulo',107663);
+INSERT INTO `city` VALUES (406,'Colatina','BRA','Espírito Santo',107354);
+INSERT INTO `city` VALUES (407,'Santa Cruz do Sul','BRA','Rio Grande do Sul',106734);
+INSERT INTO `city` VALUES (408,'Linhares','BRA','Espírito Santo',106278);
+INSERT INTO `city` VALUES (409,'Apucarana','BRA','Paraná',105114);
+INSERT INTO `city` VALUES (410,'Barretos','BRA','São Paulo',104156);
+INSERT INTO `city` VALUES (411,'Guaratinguetá','BRA','São Paulo',103433);
+INSERT INTO `city` VALUES (412,'Cachoeirinha','BRA','Rio Grande do Sul',103240);
+INSERT INTO `city` VALUES (413,'Codó','BRA','Maranhão',103153);
+INSERT INTO `city` VALUES (414,'Jaraguá do Sul','BRA','Santa Catarina',102580);
+INSERT INTO `city` VALUES (415,'Cubatão','BRA','São Paulo',102372);
+INSERT INTO `city` VALUES (416,'Itabira','BRA','Minas Gerais',102217);
+INSERT INTO `city` VALUES (417,'Itaituba','BRA','Pará',101320);
+INSERT INTO `city` VALUES (418,'Araras','BRA','São Paulo',101046);
+INSERT INTO `city` VALUES (419,'Resende','BRA','Rio de Janeiro',100627);
+INSERT INTO `city` VALUES (420,'Atibaia','BRA','São Paulo',100356);
+INSERT INTO `city` VALUES (421,'Pouso Alegre','BRA','Minas Gerais',100028);
+INSERT INTO `city` VALUES (422,'Toledo','BRA','Paraná',99387);
+INSERT INTO `city` VALUES (423,'Crato','BRA','Ceará',98965);
+INSERT INTO `city` VALUES (424,'Passos','BRA','Minas Gerais',98570);
+INSERT INTO `city` VALUES (425,'Araguari','BRA','Minas Gerais',98399);
+INSERT INTO `city` VALUES (426,'São José de Ribamar','BRA','Maranhão',98318);
+INSERT INTO `city` VALUES (427,'Pinhais','BRA','Paraná',98198);
+INSERT INTO `city` VALUES (428,'Sertãozinho','BRA','São Paulo',98140);
+INSERT INTO `city` VALUES (429,'Conselheiro Lafaiete','BRA','Minas Gerais',97507);
+INSERT INTO `city` VALUES (430,'Paulo Afonso','BRA','Bahia',97291);
+INSERT INTO `city` VALUES (431,'Angra dos Reis','BRA','Rio de Janeiro',96864);
+INSERT INTO `city` VALUES (432,'Eunápolis','BRA','Bahia',96610);
+INSERT INTO `city` VALUES (433,'Salto','BRA','São Paulo',96348);
+INSERT INTO `city` VALUES (434,'Ourinhos','BRA','São Paulo',96291);
+INSERT INTO `city` VALUES (435,'Parnamirim','BRA','Rio Grande do Norte',96210);
+INSERT INTO `city` VALUES (436,'Jacobina','BRA','Bahia',96131);
+INSERT INTO `city` VALUES (437,'Coronel Fabriciano','BRA','Minas Gerais',95933);
+INSERT INTO `city` VALUES (438,'Birigui','BRA','São Paulo',94685);
+INSERT INTO `city` VALUES (439,'Tatuí','BRA','São Paulo',93897);
+INSERT INTO `city` VALUES (440,'Ji-Paraná','BRA','Rondônia',93346);
+INSERT INTO `city` VALUES (441,'Bacabal','BRA','Maranhão',93121);
+INSERT INTO `city` VALUES (442,'Cametá','BRA','Pará',92779);
+INSERT INTO `city` VALUES (443,'Guaíba','BRA','Rio Grande do Sul',92224);
+INSERT INTO `city` VALUES (444,'São Lourenço da Mata','BRA','Pernambuco',91999);
+INSERT INTO `city` VALUES (445,'Santana do Livramento','BRA','Rio Grande do Sul',91779);
+INSERT INTO `city` VALUES (446,'Votorantim','BRA','São Paulo',91777);
+INSERT INTO `city` VALUES (447,'Campo Largo','BRA','Paraná',91203);
+INSERT INTO `city` VALUES (448,'Patos','BRA','Paraíba',90519);
+INSERT INTO `city` VALUES (449,'Ituiutaba','BRA','Minas Gerais',90507);
+INSERT INTO `city` VALUES (450,'Corumbá','BRA','Mato Grosso do Sul',90111);
+INSERT INTO `city` VALUES (451,'Palhoça','BRA','Santa Catarina',89465);
+INSERT INTO `city` VALUES (452,'Barra do Piraí','BRA','Rio de Janeiro',89388);
+INSERT INTO `city` VALUES (453,'Bento Gonçalves','BRA','Rio Grande do Sul',89254);
+INSERT INTO `city` VALUES (454,'Poá','BRA','São Paulo',89236);
+INSERT INTO `city` VALUES (455,'Águas Lindas de Goiás','BRA','Goiás',89200);
+INSERT INTO `city` VALUES (456,'London','GBR','England',7285000);
+INSERT INTO `city` VALUES (457,'Birmingham','GBR','England',1013000);
+INSERT INTO `city` VALUES (458,'Glasgow','GBR','Scotland',619680);
+INSERT INTO `city` VALUES (459,'Liverpool','GBR','England',461000);
+INSERT INTO `city` VALUES (460,'Edinburgh','GBR','Scotland',450180);
+INSERT INTO `city` VALUES (461,'Sheffield','GBR','England',431607);
+INSERT INTO `city` VALUES (462,'Manchester','GBR','England',430000);
+INSERT INTO `city` VALUES (463,'Leeds','GBR','England',424194);
+INSERT INTO `city` VALUES (464,'Bristol','GBR','England',402000);
+INSERT INTO `city` VALUES (465,'Cardiff','GBR','Wales',321000);
+INSERT INTO `city` VALUES (466,'Coventry','GBR','England',304000);
+INSERT INTO `city` VALUES (467,'Leicester','GBR','England',294000);
+INSERT INTO `city` VALUES (468,'Bradford','GBR','England',289376);
+INSERT INTO `city` VALUES (469,'Belfast','GBR','North Ireland',287500);
+INSERT INTO `city` VALUES (470,'Nottingham','GBR','England',287000);
+INSERT INTO `city` VALUES (471,'Kingston upon Hull','GBR','England',262000);
+INSERT INTO `city` VALUES (472,'Plymouth','GBR','England',253000);
+INSERT INTO `city` VALUES (473,'Stoke-on-Trent','GBR','England',252000);
+INSERT INTO `city` VALUES (474,'Wolverhampton','GBR','England',242000);
+INSERT INTO `city` VALUES (475,'Derby','GBR','England',236000);
+INSERT INTO `city` VALUES (476,'Swansea','GBR','Wales',230000);
+INSERT INTO `city` VALUES (477,'Southampton','GBR','England',216000);
+INSERT INTO `city` VALUES (478,'Aberdeen','GBR','Scotland',213070);
+INSERT INTO `city` VALUES (479,'Northampton','GBR','England',196000);
+INSERT INTO `city` VALUES (480,'Dudley','GBR','England',192171);
+INSERT INTO `city` VALUES (481,'Portsmouth','GBR','England',190000);
+INSERT INTO `city` VALUES (482,'Newcastle upon Tyne','GBR','England',189150);
+INSERT INTO `city` VALUES (483,'Sunderland','GBR','England',183310);
+INSERT INTO `city` VALUES (484,'Luton','GBR','England',183000);
+INSERT INTO `city` VALUES (485,'Swindon','GBR','England',180000);
+INSERT INTO `city` VALUES (486,'Southend-on-Sea','GBR','England',176000);
+INSERT INTO `city` VALUES (487,'Walsall','GBR','England',174739);
+INSERT INTO `city` VALUES (488,'Bournemouth','GBR','England',162000);
+INSERT INTO `city` VALUES (489,'Peterborough','GBR','England',156000);
+INSERT INTO `city` VALUES (490,'Brighton','GBR','England',156124);
+INSERT INTO `city` VALUES (491,'Blackpool','GBR','England',151000);
+INSERT INTO `city` VALUES (492,'Dundee','GBR','Scotland',146690);
+INSERT INTO `city` VALUES (493,'West Bromwich','GBR','England',146386);
+INSERT INTO `city` VALUES (494,'Reading','GBR','England',148000);
+INSERT INTO `city` VALUES (495,'Oldbury/Smethwick (Warley)','GBR','England',145542);
+INSERT INTO `city` VALUES (496,'Middlesbrough','GBR','England',145000);
+INSERT INTO `city` VALUES (497,'Huddersfield','GBR','England',143726);
+INSERT INTO `city` VALUES (498,'Oxford','GBR','England',144000);
+INSERT INTO `city` VALUES (499,'Poole','GBR','England',141000);
+INSERT INTO `city` VALUES (500,'Bolton','GBR','England',139020);
+INSERT INTO `city` VALUES (501,'Blackburn','GBR','England',140000);
+INSERT INTO `city` VALUES (502,'Newport','GBR','Wales',139000);
+INSERT INTO `city` VALUES (503,'Preston','GBR','England',135000);
+INSERT INTO `city` VALUES (504,'Stockport','GBR','England',132813);
+INSERT INTO `city` VALUES (505,'Norwich','GBR','England',124000);
+INSERT INTO `city` VALUES (506,'Rotherham','GBR','England',121380);
+INSERT INTO `city` VALUES (507,'Cambridge','GBR','England',121000);
+INSERT INTO `city` VALUES (508,'Watford','GBR','England',113080);
+INSERT INTO `city` VALUES (509,'Ipswich','GBR','England',114000);
+INSERT INTO `city` VALUES (510,'Slough','GBR','England',112000);
+INSERT INTO `city` VALUES (511,'Exeter','GBR','England',111000);
+INSERT INTO `city` VALUES (512,'Cheltenham','GBR','England',106000);
+INSERT INTO `city` VALUES (513,'Gloucester','GBR','England',107000);
+INSERT INTO `city` VALUES (514,'Saint Helens','GBR','England',106293);
+INSERT INTO `city` VALUES (515,'Sutton Coldfield','GBR','England',106001);
+INSERT INTO `city` VALUES (516,'York','GBR','England',104425);
+INSERT INTO `city` VALUES (517,'Oldham','GBR','England',103931);
+INSERT INTO `city` VALUES (518,'Basildon','GBR','England',100924);
+INSERT INTO `city` VALUES (519,'Worthing','GBR','England',100000);
+INSERT INTO `city` VALUES (520,'Chelmsford','GBR','England',97451);
+INSERT INTO `city` VALUES (521,'Colchester','GBR','England',96063);
+INSERT INTO `city` VALUES (522,'Crawley','GBR','England',97000);
+INSERT INTO `city` VALUES (523,'Gillingham','GBR','England',92000);
+INSERT INTO `city` VALUES (524,'Solihull','GBR','England',94531);
+INSERT INTO `city` VALUES (525,'Rochdale','GBR','England',94313);
+INSERT INTO `city` VALUES (526,'Birkenhead','GBR','England',93087);
+INSERT INTO `city` VALUES (527,'Worcester','GBR','England',95000);
+INSERT INTO `city` VALUES (528,'Hartlepool','GBR','England',92000);
+INSERT INTO `city` VALUES (529,'Halifax','GBR','England',91069);
+INSERT INTO `city` VALUES (530,'Woking/Byfleet','GBR','England',92000);
+INSERT INTO `city` VALUES (531,'Southport','GBR','England',90959);
+INSERT INTO `city` VALUES (532,'Maidstone','GBR','England',90878);
+INSERT INTO `city` VALUES (533,'Eastbourne','GBR','England',90000);
+INSERT INTO `city` VALUES (534,'Grimsby','GBR','England',89000);
+INSERT INTO `city` VALUES (535,'Saint Helier','GBR','Jersey',27523);
+INSERT INTO `city` VALUES (536,'Douglas','GBR','–',23487);
+INSERT INTO `city` VALUES (537,'Road Town','VGB','Tortola',8000);
+INSERT INTO `city` VALUES (538,'Bandar Seri Begawan','BRN','Brunei and Muara',21484);
+INSERT INTO `city` VALUES (539,'Sofija','BGR','Grad Sofija',1122302);
+INSERT INTO `city` VALUES (540,'Plovdiv','BGR','Plovdiv',342584);
+INSERT INTO `city` VALUES (541,'Varna','BGR','Varna',299801);
+INSERT INTO `city` VALUES (542,'Burgas','BGR','Burgas',195255);
+INSERT INTO `city` VALUES (543,'Ruse','BGR','Ruse',166467);
+INSERT INTO `city` VALUES (544,'Stara Zagora','BGR','Haskovo',147939);
+INSERT INTO `city` VALUES (545,'Pleven','BGR','Lovec',121952);
+INSERT INTO `city` VALUES (546,'Sliven','BGR','Burgas',105530);
+INSERT INTO `city` VALUES (547,'Dobric','BGR','Varna',100399);
+INSERT INTO `city` VALUES (548,'Šumen','BGR','Varna',94686);
+INSERT INTO `city` VALUES (549,'Ouagadougou','BFA','Kadiogo',824000);
+INSERT INTO `city` VALUES (550,'Bobo-Dioulasso','BFA','Houet',300000);
+INSERT INTO `city` VALUES (551,'Koudougou','BFA','Boulkiemdé',105000);
+INSERT INTO `city` VALUES (552,'Bujumbura','BDI','Bujumbura',300000);
+INSERT INTO `city` VALUES (553,'George Town','CYM','Grand Cayman',19600);
+INSERT INTO `city` VALUES (554,'Santiago de Chile','CHL','Santiago',4703954);
+INSERT INTO `city` VALUES (555,'Puente Alto','CHL','Santiago',386236);
+INSERT INTO `city` VALUES (556,'Viña del Mar','CHL','Valparaíso',312493);
+INSERT INTO `city` VALUES (557,'Valparaíso','CHL','Valparaíso',293800);
+INSERT INTO `city` VALUES (558,'Talcahuano','CHL','Bíobío',277752);
+INSERT INTO `city` VALUES (559,'Antofagasta','CHL','Antofagasta',251429);
+INSERT INTO `city` VALUES (560,'San Bernardo','CHL','Santiago',241910);
+INSERT INTO `city` VALUES (561,'Temuco','CHL','La Araucanía',233041);
+INSERT INTO `city` VALUES (562,'Concepción','CHL','Bíobío',217664);
+INSERT INTO `city` VALUES (563,'Rancagua','CHL','O´Higgins',212977);
+INSERT INTO `city` VALUES (564,'Arica','CHL','Tarapacá',189036);
+INSERT INTO `city` VALUES (565,'Talca','CHL','Maule',187557);
+INSERT INTO `city` VALUES (566,'Chillán','CHL','Bíobío',178182);
+INSERT INTO `city` VALUES (567,'Iquique','CHL','Tarapacá',177892);
+INSERT INTO `city` VALUES (568,'Los Angeles','CHL','Bíobío',158215);
+INSERT INTO `city` VALUES (569,'Puerto Montt','CHL','Los Lagos',152194);
+INSERT INTO `city` VALUES (570,'Coquimbo','CHL','Coquimbo',143353);
+INSERT INTO `city` VALUES (571,'Osorno','CHL','Los Lagos',141468);
+INSERT INTO `city` VALUES (572,'La Serena','CHL','Coquimbo',137409);
+INSERT INTO `city` VALUES (573,'Calama','CHL','Antofagasta',137265);
+INSERT INTO `city` VALUES (574,'Valdivia','CHL','Los Lagos',133106);
+INSERT INTO `city` VALUES (575,'Punta Arenas','CHL','Magallanes',125631);
+INSERT INTO `city` VALUES (576,'Copiapó','CHL','Atacama',120128);
+INSERT INTO `city` VALUES (577,'Quilpué','CHL','Valparaíso',118857);
+INSERT INTO `city` VALUES (578,'Curicó','CHL','Maule',115766);
+INSERT INTO `city` VALUES (579,'Ovalle','CHL','Coquimbo',94854);
+INSERT INTO `city` VALUES (580,'Coronel','CHL','Bíobío',93061);
+INSERT INTO `city` VALUES (581,'San Pedro de la Paz','CHL','Bíobío',91684);
+INSERT INTO `city` VALUES (582,'Melipilla','CHL','Santiago',91056);
+INSERT INTO `city` VALUES (583,'Avarua','COK','Rarotonga',11900);
+INSERT INTO `city` VALUES (584,'San José','CRI','San José',339131);
+INSERT INTO `city` VALUES (585,'Djibouti','DJI','Djibouti',383000);
+INSERT INTO `city` VALUES (586,'Roseau','DMA','St George',16243);
+INSERT INTO `city` VALUES (587,'Santo Domingo de Guzmán','DOM','Distrito Nacional',1609966);
+INSERT INTO `city` VALUES (588,'Santiago de los Caballeros','DOM','Santiago',365463);
+INSERT INTO `city` VALUES (589,'La Romana','DOM','La Romana',140204);
+INSERT INTO `city` VALUES (590,'San Pedro de Macorís','DOM','San Pedro de Macorís',124735);
+INSERT INTO `city` VALUES (591,'San Francisco de Macorís','DOM','Duarte',108485);
+INSERT INTO `city` VALUES (592,'San Felipe de Puerto Plata','DOM','Puerto Plata',89423);
+INSERT INTO `city` VALUES (593,'Guayaquil','ECU','Guayas',2070040);
+INSERT INTO `city` VALUES (594,'Quito','ECU','Pichincha',1573458);
+INSERT INTO `city` VALUES (595,'Cuenca','ECU','Azuay',270353);
+INSERT INTO `city` VALUES (596,'Machala','ECU','El Oro',210368);
+INSERT INTO `city` VALUES (597,'Santo Domingo de los Colorados','ECU','Pichincha',202111);
+INSERT INTO `city` VALUES (598,'Portoviejo','ECU','Manabí',176413);
+INSERT INTO `city` VALUES (599,'Ambato','ECU','Tungurahua',169612);
+INSERT INTO `city` VALUES (600,'Manta','ECU','Manabí',164739);
+INSERT INTO `city` VALUES (601,'Duran [Eloy Alfaro]','ECU','Guayas',152514);
+INSERT INTO `city` VALUES (602,'Ibarra','ECU','Imbabura',130643);
+INSERT INTO `city` VALUES (603,'Quevedo','ECU','Los Ríos',129631);
+INSERT INTO `city` VALUES (604,'Milagro','ECU','Guayas',124177);
+INSERT INTO `city` VALUES (605,'Loja','ECU','Loja',123875);
+INSERT INTO `city` VALUES (606,'Ríobamba','ECU','Chimborazo',123163);
+INSERT INTO `city` VALUES (607,'Esmeraldas','ECU','Esmeraldas',123045);
+INSERT INTO `city` VALUES (608,'Cairo','EGY','Kairo',6789479);
+INSERT INTO `city` VALUES (609,'Alexandria','EGY','Aleksandria',3328196);
+INSERT INTO `city` VALUES (610,'Giza','EGY','Giza',2221868);
+INSERT INTO `city` VALUES (611,'Shubra al-Khayma','EGY','al-Qalyubiya',870716);
+INSERT INTO `city` VALUES (612,'Port Said','EGY','Port Said',469533);
+INSERT INTO `city` VALUES (613,'Suez','EGY','Suez',417610);
+INSERT INTO `city` VALUES (614,'al-Mahallat al-Kubra','EGY','al-Gharbiya',395402);
+INSERT INTO `city` VALUES (615,'Tanta','EGY','al-Gharbiya',371010);
+INSERT INTO `city` VALUES (616,'al-Mansura','EGY','al-Daqahliya',369621);
+INSERT INTO `city` VALUES (617,'Luxor','EGY','Luxor',360503);
+INSERT INTO `city` VALUES (618,'Asyut','EGY','Asyut',343498);
+INSERT INTO `city` VALUES (619,'Bahtim','EGY','al-Qalyubiya',275807);
+INSERT INTO `city` VALUES (620,'Zagazig','EGY','al-Sharqiya',267351);
+INSERT INTO `city` VALUES (621,'al-Faiyum','EGY','al-Faiyum',260964);
+INSERT INTO `city` VALUES (622,'Ismailia','EGY','Ismailia',254477);
+INSERT INTO `city` VALUES (623,'Kafr al-Dawwar','EGY','al-Buhayra',231978);
+INSERT INTO `city` VALUES (624,'Assuan','EGY','Assuan',219017);
+INSERT INTO `city` VALUES (625,'Damanhur','EGY','al-Buhayra',212203);
+INSERT INTO `city` VALUES (626,'al-Minya','EGY','al-Minya',201360);
+INSERT INTO `city` VALUES (627,'Bani Suwayf','EGY','Bani Suwayf',172032);
+INSERT INTO `city` VALUES (628,'Qina','EGY','Qina',171275);
+INSERT INTO `city` VALUES (629,'Sawhaj','EGY','Sawhaj',170125);
+INSERT INTO `city` VALUES (630,'Shibin al-Kawm','EGY','al-Minufiya',159909);
+INSERT INTO `city` VALUES (631,'Bulaq al-Dakrur','EGY','Giza',148787);
+INSERT INTO `city` VALUES (632,'Banha','EGY','al-Qalyubiya',145792);
+INSERT INTO `city` VALUES (633,'Warraq al-Arab','EGY','Giza',127108);
+INSERT INTO `city` VALUES (634,'Kafr al-Shaykh','EGY','Kafr al-Shaykh',124819);
+INSERT INTO `city` VALUES (635,'Mallawi','EGY','al-Minya',119283);
+INSERT INTO `city` VALUES (636,'Bilbays','EGY','al-Sharqiya',113608);
+INSERT INTO `city` VALUES (637,'Mit Ghamr','EGY','al-Daqahliya',101801);
+INSERT INTO `city` VALUES (638,'al-Arish','EGY','Shamal Sina',100447);
+INSERT INTO `city` VALUES (639,'Talkha','EGY','al-Daqahliya',97700);
+INSERT INTO `city` VALUES (640,'Qalyub','EGY','al-Qalyubiya',97200);
+INSERT INTO `city` VALUES (641,'Jirja','EGY','Sawhaj',95400);
+INSERT INTO `city` VALUES (642,'Idfu','EGY','Qina',94200);
+INSERT INTO `city` VALUES (643,'al-Hawamidiya','EGY','Giza',91700);
+INSERT INTO `city` VALUES (644,'Disuq','EGY','Kafr al-Shaykh',91300);
+INSERT INTO `city` VALUES (645,'San Salvador','SLV','San Salvador',415346);
+INSERT INTO `city` VALUES (646,'Santa Ana','SLV','Santa Ana',139389);
+INSERT INTO `city` VALUES (647,'Mejicanos','SLV','San Salvador',138800);
+INSERT INTO `city` VALUES (648,'Soyapango','SLV','San Salvador',129800);
+INSERT INTO `city` VALUES (649,'San Miguel','SLV','San Miguel',127696);
+INSERT INTO `city` VALUES (650,'Nueva San Salvador','SLV','La Libertad',98400);
+INSERT INTO `city` VALUES (651,'Apopa','SLV','San Salvador',88800);
+INSERT INTO `city` VALUES (652,'Asmara','ERI','Maekel',431000);
+INSERT INTO `city` VALUES (653,'Madrid','ESP','Madrid',2879052);
+INSERT INTO `city` VALUES (654,'Barcelona','ESP','Katalonia',1503451);
+INSERT INTO `city` VALUES (655,'Valencia','ESP','Valencia',739412);
+INSERT INTO `city` VALUES (656,'Sevilla','ESP','Andalusia',701927);
+INSERT INTO `city` VALUES (657,'Zaragoza','ESP','Aragonia',603367);
+INSERT INTO `city` VALUES (658,'Málaga','ESP','Andalusia',530553);
+INSERT INTO `city` VALUES (659,'Bilbao','ESP','Baskimaa',357589);
+INSERT INTO `city` VALUES (660,'Las Palmas de Gran Canaria','ESP','Canary Islands',354757);
+INSERT INTO `city` VALUES (661,'Murcia','ESP','Murcia',353504);
+INSERT INTO `city` VALUES (662,'Palma de Mallorca','ESP','Balears',326993);
+INSERT INTO `city` VALUES (663,'Valladolid','ESP','Castilla and León',319998);
+INSERT INTO `city` VALUES (664,'Córdoba','ESP','Andalusia',311708);
+INSERT INTO `city` VALUES (665,'Vigo','ESP','Galicia',283670);
+INSERT INTO `city` VALUES (666,'Alicante [Alacant]','ESP','Valencia',272432);
+INSERT INTO `city` VALUES (667,'Gijón','ESP','Asturia',267980);
+INSERT INTO `city` VALUES (668,'L´Hospitalet de Llobregat','ESP','Katalonia',247986);
+INSERT INTO `city` VALUES (669,'Granada','ESP','Andalusia',244767);
+INSERT INTO `city` VALUES (670,'A Coruña (La Coruña)','ESP','Galicia',243402);
+INSERT INTO `city` VALUES (671,'Vitoria-Gasteiz','ESP','Baskimaa',217154);
+INSERT INTO `city` VALUES (672,'Santa Cruz de Tenerife','ESP','Canary Islands',213050);
+INSERT INTO `city` VALUES (673,'Badalona','ESP','Katalonia',209635);
+INSERT INTO `city` VALUES (674,'Oviedo','ESP','Asturia',200453);
+INSERT INTO `city` VALUES (675,'Móstoles','ESP','Madrid',195351);
+INSERT INTO `city` VALUES (676,'Elche [Elx]','ESP','Valencia',193174);
+INSERT INTO `city` VALUES (677,'Sabadell','ESP','Katalonia',184859);
+INSERT INTO `city` VALUES (678,'Santander','ESP','Cantabria',184165);
+INSERT INTO `city` VALUES (679,'Jerez de la Frontera','ESP','Andalusia',182660);
+INSERT INTO `city` VALUES (680,'Pamplona [Iruña]','ESP','Navarra',180483);
+INSERT INTO `city` VALUES (681,'Donostia-San Sebastián','ESP','Baskimaa',179208);
+INSERT INTO `city` VALUES (682,'Cartagena','ESP','Murcia',177709);
+INSERT INTO `city` VALUES (683,'Leganés','ESP','Madrid',173163);
+INSERT INTO `city` VALUES (684,'Fuenlabrada','ESP','Madrid',171173);
+INSERT INTO `city` VALUES (685,'Almería','ESP','Andalusia',169027);
+INSERT INTO `city` VALUES (686,'Terrassa','ESP','Katalonia',168695);
+INSERT INTO `city` VALUES (687,'Alcalá de Henares','ESP','Madrid',164463);
+INSERT INTO `city` VALUES (688,'Burgos','ESP','Castilla and León',162802);
+INSERT INTO `city` VALUES (689,'Salamanca','ESP','Castilla and León',158720);
+INSERT INTO `city` VALUES (690,'Albacete','ESP','Kastilia-La Mancha',147527);
+INSERT INTO `city` VALUES (691,'Getafe','ESP','Madrid',145371);
+INSERT INTO `city` VALUES (692,'Cádiz','ESP','Andalusia',142449);
+INSERT INTO `city` VALUES (693,'Alcorcón','ESP','Madrid',142048);
+INSERT INTO `city` VALUES (694,'Huelva','ESP','Andalusia',140583);
+INSERT INTO `city` VALUES (695,'León','ESP','Castilla and León',139809);
+INSERT INTO `city` VALUES (696,'Castellón de la Plana [Castell','ESP','Valencia',139712);
+INSERT INTO `city` VALUES (697,'Badajoz','ESP','Extremadura',136613);
+INSERT INTO `city` VALUES (698,'[San Cristóbal de] la Laguna','ESP','Canary Islands',127945);
+INSERT INTO `city` VALUES (699,'Logroño','ESP','La Rioja',127093);
+INSERT INTO `city` VALUES (700,'Santa Coloma de Gramenet','ESP','Katalonia',120802);
+INSERT INTO `city` VALUES (701,'Tarragona','ESP','Katalonia',113016);
+INSERT INTO `city` VALUES (702,'Lleida (Lérida)','ESP','Katalonia',112207);
+INSERT INTO `city` VALUES (703,'Jaén','ESP','Andalusia',109247);
+INSERT INTO `city` VALUES (704,'Ourense (Orense)','ESP','Galicia',109120);
+INSERT INTO `city` VALUES (705,'Mataró','ESP','Katalonia',104095);
+INSERT INTO `city` VALUES (706,'Algeciras','ESP','Andalusia',103106);
+INSERT INTO `city` VALUES (707,'Marbella','ESP','Andalusia',101144);
+INSERT INTO `city` VALUES (708,'Barakaldo','ESP','Baskimaa',98212);
+INSERT INTO `city` VALUES (709,'Dos Hermanas','ESP','Andalusia',94591);
+INSERT INTO `city` VALUES (710,'Santiago de Compostela','ESP','Galicia',93745);
+INSERT INTO `city` VALUES (711,'Torrejón de Ardoz','ESP','Madrid',92262);
+INSERT INTO `city` VALUES (712,'Cape Town','ZAF','Western Cape',2352121);
+INSERT INTO `city` VALUES (713,'Soweto','ZAF','Gauteng',904165);
+INSERT INTO `city` VALUES (714,'Johannesburg','ZAF','Gauteng',756653);
+INSERT INTO `city` VALUES (715,'Port Elizabeth','ZAF','Eastern Cape',752319);
+INSERT INTO `city` VALUES (716,'Pretoria','ZAF','Gauteng',658630);
+INSERT INTO `city` VALUES (717,'Inanda','ZAF','KwaZulu-Natal',634065);
+INSERT INTO `city` VALUES (718,'Durban','ZAF','KwaZulu-Natal',566120);
+INSERT INTO `city` VALUES (719,'Vanderbijlpark','ZAF','Gauteng',468931);
+INSERT INTO `city` VALUES (720,'Kempton Park','ZAF','Gauteng',442633);
+INSERT INTO `city` VALUES (721,'Alberton','ZAF','Gauteng',410102);
+INSERT INTO `city` VALUES (722,'Pinetown','ZAF','KwaZulu-Natal',378810);
+INSERT INTO `city` VALUES (723,'Pietermaritzburg','ZAF','KwaZulu-Natal',370190);
+INSERT INTO `city` VALUES (724,'Benoni','ZAF','Gauteng',365467);
+INSERT INTO `city` VALUES (725,'Randburg','ZAF','Gauteng',341288);
+INSERT INTO `city` VALUES (726,'Umlazi','ZAF','KwaZulu-Natal',339233);
+INSERT INTO `city` VALUES (727,'Bloemfontein','ZAF','Free State',334341);
+INSERT INTO `city` VALUES (728,'Vereeniging','ZAF','Gauteng',328535);
+INSERT INTO `city` VALUES (729,'Wonderboom','ZAF','Gauteng',283289);
+INSERT INTO `city` VALUES (730,'Roodepoort','ZAF','Gauteng',279340);
+INSERT INTO `city` VALUES (731,'Boksburg','ZAF','Gauteng',262648);
+INSERT INTO `city` VALUES (732,'Klerksdorp','ZAF','North West',261911);
+INSERT INTO `city` VALUES (733,'Soshanguve','ZAF','Gauteng',242727);
+INSERT INTO `city` VALUES (734,'Newcastle','ZAF','KwaZulu-Natal',222993);
+INSERT INTO `city` VALUES (735,'East London','ZAF','Eastern Cape',221047);
+INSERT INTO `city` VALUES (736,'Welkom','ZAF','Free State',203296);
+INSERT INTO `city` VALUES (737,'Kimberley','ZAF','Northern Cape',197254);
+INSERT INTO `city` VALUES (738,'Uitenhage','ZAF','Eastern Cape',192120);
+INSERT INTO `city` VALUES (739,'Chatsworth','ZAF','KwaZulu-Natal',189885);
+INSERT INTO `city` VALUES (740,'Mdantsane','ZAF','Eastern Cape',182639);
+INSERT INTO `city` VALUES (741,'Krugersdorp','ZAF','Gauteng',181503);
+INSERT INTO `city` VALUES (742,'Botshabelo','ZAF','Free State',177971);
+INSERT INTO `city` VALUES (743,'Brakpan','ZAF','Gauteng',171363);
+INSERT INTO `city` VALUES (744,'Witbank','ZAF','Mpumalanga',167183);
+INSERT INTO `city` VALUES (745,'Oberholzer','ZAF','Gauteng',164367);
+INSERT INTO `city` VALUES (746,'Germiston','ZAF','Gauteng',164252);
+INSERT INTO `city` VALUES (747,'Springs','ZAF','Gauteng',162072);
+INSERT INTO `city` VALUES (748,'Westonaria','ZAF','Gauteng',159632);
+INSERT INTO `city` VALUES (749,'Randfontein','ZAF','Gauteng',120838);
+INSERT INTO `city` VALUES (750,'Paarl','ZAF','Western Cape',105768);
+INSERT INTO `city` VALUES (751,'Potchefstroom','ZAF','North West',101817);
+INSERT INTO `city` VALUES (752,'Rustenburg','ZAF','North West',97008);
+INSERT INTO `city` VALUES (753,'Nigel','ZAF','Gauteng',96734);
+INSERT INTO `city` VALUES (754,'George','ZAF','Western Cape',93818);
+INSERT INTO `city` VALUES (755,'Ladysmith','ZAF','KwaZulu-Natal',89292);
+INSERT INTO `city` VALUES (756,'Addis Abeba','ETH','Addis Abeba',2495000);
+INSERT INTO `city` VALUES (757,'Dire Dawa','ETH','Dire Dawa',164851);
+INSERT INTO `city` VALUES (758,'Nazret','ETH','Oromia',127842);
+INSERT INTO `city` VALUES (759,'Gonder','ETH','Amhara',112249);
+INSERT INTO `city` VALUES (760,'Dese','ETH','Amhara',97314);
+INSERT INTO `city` VALUES (761,'Mekele','ETH','Tigray',96938);
+INSERT INTO `city` VALUES (762,'Bahir Dar','ETH','Amhara',96140);
+INSERT INTO `city` VALUES (763,'Stanley','FLK','East Falkland',1636);
+INSERT INTO `city` VALUES (764,'Suva','FJI','Central',77366);
+INSERT INTO `city` VALUES (765,'Quezon','PHL','National Capital Reg',2173831);
+INSERT INTO `city` VALUES (766,'Manila','PHL','National Capital Reg',1581082);
+INSERT INTO `city` VALUES (767,'Kalookan','PHL','National Capital Reg',1177604);
+INSERT INTO `city` VALUES (768,'Davao','PHL','Southern Mindanao',1147116);
+INSERT INTO `city` VALUES (769,'Cebu','PHL','Central Visayas',718821);
+INSERT INTO `city` VALUES (770,'Zamboanga','PHL','Western Mindanao',601794);
+INSERT INTO `city` VALUES (771,'Pasig','PHL','National Capital Reg',505058);
+INSERT INTO `city` VALUES (772,'Valenzuela','PHL','National Capital Reg',485433);
+INSERT INTO `city` VALUES (773,'Las Piñas','PHL','National Capital Reg',472780);
+INSERT INTO `city` VALUES (774,'Antipolo','PHL','Southern Tagalog',470866);
+INSERT INTO `city` VALUES (775,'Taguig','PHL','National Capital Reg',467375);
+INSERT INTO `city` VALUES (776,'Cagayan de Oro','PHL','Northern Mindanao',461877);
+INSERT INTO `city` VALUES (777,'Parañaque','PHL','National Capital Reg',449811);
+INSERT INTO `city` VALUES (778,'Makati','PHL','National Capital Reg',444867);
+INSERT INTO `city` VALUES (779,'Bacolod','PHL','Western Visayas',429076);
+INSERT INTO `city` VALUES (780,'General Santos','PHL','Southern Mindanao',411822);
+INSERT INTO `city` VALUES (781,'Marikina','PHL','National Capital Reg',391170);
+INSERT INTO `city` VALUES (782,'Dasmariñas','PHL','Southern Tagalog',379520);
+INSERT INTO `city` VALUES (783,'Muntinlupa','PHL','National Capital Reg',379310);
+INSERT INTO `city` VALUES (784,'Iloilo','PHL','Western Visayas',365820);
+INSERT INTO `city` VALUES (785,'Pasay','PHL','National Capital Reg',354908);
+INSERT INTO `city` VALUES (786,'Malabon','PHL','National Capital Reg',338855);
+INSERT INTO `city` VALUES (787,'San José del Monte','PHL','Central Luzon',315807);
+INSERT INTO `city` VALUES (788,'Bacoor','PHL','Southern Tagalog',305699);
+INSERT INTO `city` VALUES (789,'Iligan','PHL','Central Mindanao',285061);
+INSERT INTO `city` VALUES (790,'Calamba','PHL','Southern Tagalog',281146);
+INSERT INTO `city` VALUES (791,'Mandaluyong','PHL','National Capital Reg',278474);
+INSERT INTO `city` VALUES (792,'Butuan','PHL','Caraga',267279);
+INSERT INTO `city` VALUES (793,'Angeles','PHL','Central Luzon',263971);
+INSERT INTO `city` VALUES (794,'Tarlac','PHL','Central Luzon',262481);
+INSERT INTO `city` VALUES (795,'Mandaue','PHL','Central Visayas',259728);
+INSERT INTO `city` VALUES (796,'Baguio','PHL','CAR',252386);
+INSERT INTO `city` VALUES (797,'Batangas','PHL','Southern Tagalog',247588);
+INSERT INTO `city` VALUES (798,'Cainta','PHL','Southern Tagalog',242511);
+INSERT INTO `city` VALUES (799,'San Pedro','PHL','Southern Tagalog',231403);
+INSERT INTO `city` VALUES (800,'Navotas','PHL','National Capital Reg',230403);
+INSERT INTO `city` VALUES (801,'Cabanatuan','PHL','Central Luzon',222859);
+INSERT INTO `city` VALUES (802,'San Fernando','PHL','Central Luzon',221857);
+INSERT INTO `city` VALUES (803,'Lipa','PHL','Southern Tagalog',218447);
+INSERT INTO `city` VALUES (804,'Lapu-Lapu','PHL','Central Visayas',217019);
+INSERT INTO `city` VALUES (805,'San Pablo','PHL','Southern Tagalog',207927);
+INSERT INTO `city` VALUES (806,'Biñan','PHL','Southern Tagalog',201186);
+INSERT INTO `city` VALUES (807,'Taytay','PHL','Southern Tagalog',198183);
+INSERT INTO `city` VALUES (808,'Lucena','PHL','Southern Tagalog',196075);
+INSERT INTO `city` VALUES (809,'Imus','PHL','Southern Tagalog',195482);
+INSERT INTO `city` VALUES (810,'Olongapo','PHL','Central Luzon',194260);
+INSERT INTO `city` VALUES (811,'Binangonan','PHL','Southern Tagalog',187691);
+INSERT INTO `city` VALUES (812,'Santa Rosa','PHL','Southern Tagalog',185633);
+INSERT INTO `city` VALUES (813,'Tagum','PHL','Southern Mindanao',179531);
+INSERT INTO `city` VALUES (814,'Tacloban','PHL','Eastern Visayas',178639);
+INSERT INTO `city` VALUES (815,'Malolos','PHL','Central Luzon',175291);
+INSERT INTO `city` VALUES (816,'Mabalacat','PHL','Central Luzon',171045);
+INSERT INTO `city` VALUES (817,'Cotabato','PHL','Central Mindanao',163849);
+INSERT INTO `city` VALUES (818,'Meycauayan','PHL','Central Luzon',163037);
+INSERT INTO `city` VALUES (819,'Puerto Princesa','PHL','Southern Tagalog',161912);
+INSERT INTO `city` VALUES (820,'Legazpi','PHL','Bicol',157010);
+INSERT INTO `city` VALUES (821,'Silang','PHL','Southern Tagalog',156137);
+INSERT INTO `city` VALUES (822,'Ormoc','PHL','Eastern Visayas',154297);
+INSERT INTO `city` VALUES (823,'San Carlos','PHL','Ilocos',154264);
+INSERT INTO `city` VALUES (824,'Kabankalan','PHL','Western Visayas',149769);
+INSERT INTO `city` VALUES (825,'Talisay','PHL','Central Visayas',148110);
+INSERT INTO `city` VALUES (826,'Valencia','PHL','Northern Mindanao',147924);
+INSERT INTO `city` VALUES (827,'Calbayog','PHL','Eastern Visayas',147187);
+INSERT INTO `city` VALUES (828,'Santa Maria','PHL','Central Luzon',144282);
+INSERT INTO `city` VALUES (829,'Pagadian','PHL','Western Mindanao',142515);
+INSERT INTO `city` VALUES (830,'Cadiz','PHL','Western Visayas',141954);
+INSERT INTO `city` VALUES (831,'Bago','PHL','Western Visayas',141721);
+INSERT INTO `city` VALUES (832,'Toledo','PHL','Central Visayas',141174);
+INSERT INTO `city` VALUES (833,'Naga','PHL','Bicol',137810);
+INSERT INTO `city` VALUES (834,'San Mateo','PHL','Southern Tagalog',135603);
+INSERT INTO `city` VALUES (835,'Panabo','PHL','Southern Mindanao',133950);
+INSERT INTO `city` VALUES (836,'Koronadal','PHL','Southern Mindanao',133786);
+INSERT INTO `city` VALUES (837,'Marawi','PHL','Central Mindanao',131090);
+INSERT INTO `city` VALUES (838,'Dagupan','PHL','Ilocos',130328);
+INSERT INTO `city` VALUES (839,'Sagay','PHL','Western Visayas',129765);
+INSERT INTO `city` VALUES (840,'Roxas','PHL','Western Visayas',126352);
+INSERT INTO `city` VALUES (841,'Lubao','PHL','Central Luzon',125699);
+INSERT INTO `city` VALUES (842,'Digos','PHL','Southern Mindanao',125171);
+INSERT INTO `city` VALUES (843,'San Miguel','PHL','Central Luzon',123824);
+INSERT INTO `city` VALUES (844,'Malaybalay','PHL','Northern Mindanao',123672);
+INSERT INTO `city` VALUES (845,'Tuguegarao','PHL','Cagayan Valley',120645);
+INSERT INTO `city` VALUES (846,'Ilagan','PHL','Cagayan Valley',119990);
+INSERT INTO `city` VALUES (847,'Baliuag','PHL','Central Luzon',119675);
+INSERT INTO `city` VALUES (848,'Surigao','PHL','Caraga',118534);
+INSERT INTO `city` VALUES (849,'San Carlos','PHL','Western Visayas',118259);
+INSERT INTO `city` VALUES (850,'San Juan del Monte','PHL','National Capital Reg',117680);
+INSERT INTO `city` VALUES (851,'Tanauan','PHL','Southern Tagalog',117539);
+INSERT INTO `city` VALUES (852,'Concepcion','PHL','Central Luzon',115171);
+INSERT INTO `city` VALUES (853,'Rodriguez (Montalban)','PHL','Southern Tagalog',115167);
+INSERT INTO `city` VALUES (854,'Sariaya','PHL','Southern Tagalog',114568);
+INSERT INTO `city` VALUES (855,'Malasiqui','PHL','Ilocos',113190);
+INSERT INTO `city` VALUES (856,'General Mariano Alvarez','PHL','Southern Tagalog',112446);
+INSERT INTO `city` VALUES (857,'Urdaneta','PHL','Ilocos',111582);
+INSERT INTO `city` VALUES (858,'Hagonoy','PHL','Central Luzon',111425);
+INSERT INTO `city` VALUES (859,'San Jose','PHL','Southern Tagalog',111009);
+INSERT INTO `city` VALUES (860,'Polomolok','PHL','Southern Mindanao',110709);
+INSERT INTO `city` VALUES (861,'Santiago','PHL','Cagayan Valley',110531);
+INSERT INTO `city` VALUES (862,'Tanza','PHL','Southern Tagalog',110517);
+INSERT INTO `city` VALUES (863,'Ozamis','PHL','Northern Mindanao',110420);
+INSERT INTO `city` VALUES (864,'Mexico','PHL','Central Luzon',109481);
+INSERT INTO `city` VALUES (865,'San Jose','PHL','Central Luzon',108254);
+INSERT INTO `city` VALUES (866,'Silay','PHL','Western Visayas',107722);
+INSERT INTO `city` VALUES (867,'General Trias','PHL','Southern Tagalog',107691);
+INSERT INTO `city` VALUES (868,'Tabaco','PHL','Bicol',107166);
+INSERT INTO `city` VALUES (869,'Cabuyao','PHL','Southern Tagalog',106630);
+INSERT INTO `city` VALUES (870,'Calapan','PHL','Southern Tagalog',105910);
+INSERT INTO `city` VALUES (871,'Mati','PHL','Southern Mindanao',105908);
+INSERT INTO `city` VALUES (872,'Midsayap','PHL','Central Mindanao',105760);
+INSERT INTO `city` VALUES (873,'Cauayan','PHL','Cagayan Valley',103952);
+INSERT INTO `city` VALUES (874,'Gingoog','PHL','Northern Mindanao',102379);
+INSERT INTO `city` VALUES (875,'Dumaguete','PHL','Central Visayas',102265);
+INSERT INTO `city` VALUES (876,'San Fernando','PHL','Ilocos',102082);
+INSERT INTO `city` VALUES (877,'Arayat','PHL','Central Luzon',101792);
+INSERT INTO `city` VALUES (878,'Bayawan (Tulong)','PHL','Central Visayas',101391);
+INSERT INTO `city` VALUES (879,'Kidapawan','PHL','Central Mindanao',101205);
+INSERT INTO `city` VALUES (880,'Daraga (Locsin)','PHL','Bicol',101031);
+INSERT INTO `city` VALUES (881,'Marilao','PHL','Central Luzon',101017);
+INSERT INTO `city` VALUES (882,'Malita','PHL','Southern Mindanao',100000);
+INSERT INTO `city` VALUES (883,'Dipolog','PHL','Western Mindanao',99862);
+INSERT INTO `city` VALUES (884,'Cavite','PHL','Southern Tagalog',99367);
+INSERT INTO `city` VALUES (885,'Danao','PHL','Central Visayas',98781);
+INSERT INTO `city` VALUES (886,'Bislig','PHL','Caraga',97860);
+INSERT INTO `city` VALUES (887,'Talavera','PHL','Central Luzon',97329);
+INSERT INTO `city` VALUES (888,'Guagua','PHL','Central Luzon',96858);
+INSERT INTO `city` VALUES (889,'Bayambang','PHL','Ilocos',96609);
+INSERT INTO `city` VALUES (890,'Nasugbu','PHL','Southern Tagalog',96113);
+INSERT INTO `city` VALUES (891,'Baybay','PHL','Eastern Visayas',95630);
+INSERT INTO `city` VALUES (892,'Capas','PHL','Central Luzon',95219);
+INSERT INTO `city` VALUES (893,'Sultan Kudarat','PHL','ARMM',94861);
+INSERT INTO `city` VALUES (894,'Laoag','PHL','Ilocos',94466);
+INSERT INTO `city` VALUES (895,'Bayugan','PHL','Caraga',93623);
+INSERT INTO `city` VALUES (896,'Malungon','PHL','Southern Mindanao',93232);
+INSERT INTO `city` VALUES (897,'Santa Cruz','PHL','Southern Tagalog',92694);
+INSERT INTO `city` VALUES (898,'Sorsogon','PHL','Bicol',92512);
+INSERT INTO `city` VALUES (899,'Candelaria','PHL','Southern Tagalog',92429);
+INSERT INTO `city` VALUES (900,'Ligao','PHL','Bicol',90603);
+INSERT INTO `city` VALUES (901,'Tórshavn','FRO','Streymoyar',14542);
+INSERT INTO `city` VALUES (902,'Libreville','GAB','Estuaire',419000);
+INSERT INTO `city` VALUES (903,'Serekunda','GMB','Kombo St Mary',102600);
+INSERT INTO `city` VALUES (904,'Banjul','GMB','Banjul',42326);
+INSERT INTO `city` VALUES (905,'Tbilisi','GEO','Tbilisi',1235200);
+INSERT INTO `city` VALUES (906,'Kutaisi','GEO','Imereti',240900);
+INSERT INTO `city` VALUES (907,'Rustavi','GEO','Kvemo Kartli',155400);
+INSERT INTO `city` VALUES (908,'Batumi','GEO','Adzaria [Atšara]',137700);
+INSERT INTO `city` VALUES (909,'Sohumi','GEO','Abhasia [Aphazeti]',111700);
+INSERT INTO `city` VALUES (910,'Accra','GHA','Greater Accra',1070000);
+INSERT INTO `city` VALUES (911,'Kumasi','GHA','Ashanti',385192);
+INSERT INTO `city` VALUES (912,'Tamale','GHA','Northern',151069);
+INSERT INTO `city` VALUES (913,'Tema','GHA','Greater Accra',109975);
+INSERT INTO `city` VALUES (914,'Sekondi-Takoradi','GHA','Western',103653);
+INSERT INTO `city` VALUES (915,'Gibraltar','GIB','–',27025);
+INSERT INTO `city` VALUES (916,'Saint George´s','GRD','St George',4621);
+INSERT INTO `city` VALUES (917,'Nuuk','GRL','Kitaa',13445);
+INSERT INTO `city` VALUES (918,'Les Abymes','GLP','Grande-Terre',62947);
+INSERT INTO `city` VALUES (919,'Basse-Terre','GLP','Basse-Terre',12433);
+INSERT INTO `city` VALUES (920,'Tamuning','GUM','–',9500);
+INSERT INTO `city` VALUES (921,'Agaña','GUM','–',1139);
+INSERT INTO `city` VALUES (922,'Ciudad de Guatemala','GTM','Guatemala',823301);
+INSERT INTO `city` VALUES (923,'Mixco','GTM','Guatemala',209791);
+INSERT INTO `city` VALUES (924,'Villa Nueva','GTM','Guatemala',101295);
+INSERT INTO `city` VALUES (925,'Quetzaltenango','GTM','Quetzaltenango',90801);
+INSERT INTO `city` VALUES (926,'Conakry','GIN','Conakry',1090610);
+INSERT INTO `city` VALUES (927,'Bissau','GNB','Bissau',241000);
+INSERT INTO `city` VALUES (928,'Georgetown','GUY','Georgetown',254000);
+INSERT INTO `city` VALUES (929,'Port-au-Prince','HTI','Ouest',884472);
+INSERT INTO `city` VALUES (930,'Carrefour','HTI','Ouest',290204);
+INSERT INTO `city` VALUES (931,'Delmas','HTI','Ouest',240429);
+INSERT INTO `city` VALUES (932,'Le-Cap-Haïtien','HTI','Nord',102233);
+INSERT INTO `city` VALUES (933,'Tegucigalpa','HND','Distrito Central',813900);
+INSERT INTO `city` VALUES (934,'San Pedro Sula','HND','Cortés',383900);
+INSERT INTO `city` VALUES (935,'La Ceiba','HND','Atlántida',89200);
+INSERT INTO `city` VALUES (936,'Kowloon and New Kowloon','HKG','Kowloon and New Kowl',1987996);
+INSERT INTO `city` VALUES (937,'Victoria','HKG','Hongkong',1312637);
+INSERT INTO `city` VALUES (938,'Longyearbyen','SJM','Länsimaa',1438);
+INSERT INTO `city` VALUES (939,'Jakarta','IDN','Jakarta Raya',9604900);
+INSERT INTO `city` VALUES (940,'Surabaya','IDN','East Java',2663820);
+INSERT INTO `city` VALUES (941,'Bandung','IDN','West Java',2429000);
+INSERT INTO `city` VALUES (942,'Medan','IDN','Sumatera Utara',1843919);
+INSERT INTO `city` VALUES (943,'Palembang','IDN','Sumatera Selatan',1222764);
+INSERT INTO `city` VALUES (944,'Tangerang','IDN','West Java',1198300);
+INSERT INTO `city` VALUES (945,'Semarang','IDN','Central Java',1104405);
+INSERT INTO `city` VALUES (946,'Ujung Pandang','IDN','Sulawesi Selatan',1060257);
+INSERT INTO `city` VALUES (947,'Malang','IDN','East Java',716862);
+INSERT INTO `city` VALUES (948,'Bandar Lampung','IDN','Lampung',680332);
+INSERT INTO `city` VALUES (949,'Bekasi','IDN','West Java',644300);
+INSERT INTO `city` VALUES (950,'Padang','IDN','Sumatera Barat',534474);
+INSERT INTO `city` VALUES (951,'Surakarta','IDN','Central Java',518600);
+INSERT INTO `city` VALUES (952,'Banjarmasin','IDN','Kalimantan Selatan',482931);
+INSERT INTO `city` VALUES (953,'Pekan Baru','IDN','Riau',438638);
+INSERT INTO `city` VALUES (954,'Denpasar','IDN','Bali',435000);
+INSERT INTO `city` VALUES (955,'Yogyakarta','IDN','Yogyakarta',418944);
+INSERT INTO `city` VALUES (956,'Pontianak','IDN','Kalimantan Barat',409632);
+INSERT INTO `city` VALUES (957,'Samarinda','IDN','Kalimantan Timur',399175);
+INSERT INTO `city` VALUES (958,'Jambi','IDN','Jambi',385201);
+INSERT INTO `city` VALUES (959,'Depok','IDN','West Java',365200);
+INSERT INTO `city` VALUES (960,'Cimahi','IDN','West Java',344600);
+INSERT INTO `city` VALUES (961,'Balikpapan','IDN','Kalimantan Timur',338752);
+INSERT INTO `city` VALUES (962,'Manado','IDN','Sulawesi Utara',332288);
+INSERT INTO `city` VALUES (963,'Mataram','IDN','Nusa Tenggara Barat',306600);
+INSERT INTO `city` VALUES (964,'Pekalongan','IDN','Central Java',301504);
+INSERT INTO `city` VALUES (965,'Tegal','IDN','Central Java',289744);
+INSERT INTO `city` VALUES (966,'Bogor','IDN','West Java',285114);
+INSERT INTO `city` VALUES (967,'Ciputat','IDN','West Java',270800);
+INSERT INTO `city` VALUES (968,'Pondokgede','IDN','West Java',263200);
+INSERT INTO `city` VALUES (969,'Cirebon','IDN','West Java',254406);
+INSERT INTO `city` VALUES (970,'Kediri','IDN','East Java',253760);
+INSERT INTO `city` VALUES (971,'Ambon','IDN','Molukit',249312);
+INSERT INTO `city` VALUES (972,'Jember','IDN','East Java',218500);
+INSERT INTO `city` VALUES (973,'Cilacap','IDN','Central Java',206900);
+INSERT INTO `city` VALUES (974,'Cimanggis','IDN','West Java',205100);
+INSERT INTO `city` VALUES (975,'Pematang Siantar','IDN','Sumatera Utara',203056);
+INSERT INTO `city` VALUES (976,'Purwokerto','IDN','Central Java',202500);
+INSERT INTO `city` VALUES (977,'Ciomas','IDN','West Java',187400);
+INSERT INTO `city` VALUES (978,'Tasikmalaya','IDN','West Java',179800);
+INSERT INTO `city` VALUES (979,'Madiun','IDN','East Java',171532);
+INSERT INTO `city` VALUES (980,'Bengkulu','IDN','Bengkulu',146439);
+INSERT INTO `city` VALUES (981,'Karawang','IDN','West Java',145000);
+INSERT INTO `city` VALUES (982,'Banda Aceh','IDN','Aceh',143409);
+INSERT INTO `city` VALUES (983,'Palu','IDN','Sulawesi Tengah',142800);
+INSERT INTO `city` VALUES (984,'Pasuruan','IDN','East Java',134019);
+INSERT INTO `city` VALUES (985,'Kupang','IDN','Nusa Tenggara Timur',129300);
+INSERT INTO `city` VALUES (986,'Tebing Tinggi','IDN','Sumatera Utara',129300);
+INSERT INTO `city` VALUES (987,'Percut Sei Tuan','IDN','Sumatera Utara',129000);
+INSERT INTO `city` VALUES (988,'Binjai','IDN','Sumatera Utara',127222);
+INSERT INTO `city` VALUES (989,'Sukabumi','IDN','West Java',125766);
+INSERT INTO `city` VALUES (990,'Waru','IDN','East Java',124300);
+INSERT INTO `city` VALUES (991,'Pangkal Pinang','IDN','Sumatera Selatan',124000);
+INSERT INTO `city` VALUES (992,'Magelang','IDN','Central Java',123800);
+INSERT INTO `city` VALUES (993,'Blitar','IDN','East Java',122600);
+INSERT INTO `city` VALUES (994,'Serang','IDN','West Java',122400);
+INSERT INTO `city` VALUES (995,'Probolinggo','IDN','East Java',120770);
+INSERT INTO `city` VALUES (996,'Cilegon','IDN','West Java',117000);
+INSERT INTO `city` VALUES (997,'Cianjur','IDN','West Java',114300);
+INSERT INTO `city` VALUES (998,'Ciparay','IDN','West Java',111500);
+INSERT INTO `city` VALUES (999,'Lhokseumawe','IDN','Aceh',109600);
+INSERT INTO `city` VALUES (1000,'Taman','IDN','East Java',107000);
+INSERT INTO `city` VALUES (1001,'Depok','IDN','Yogyakarta',106800);
+INSERT INTO `city` VALUES (1002,'Citeureup','IDN','West Java',105100);
+INSERT INTO `city` VALUES (1003,'Pemalang','IDN','Central Java',103500);
+INSERT INTO `city` VALUES (1004,'Klaten','IDN','Central Java',103300);
+INSERT INTO `city` VALUES (1005,'Salatiga','IDN','Central Java',103000);
+INSERT INTO `city` VALUES (1006,'Cibinong','IDN','West Java',101300);
+INSERT INTO `city` VALUES (1007,'Palangka Raya','IDN','Kalimantan Tengah',99693);
+INSERT INTO `city` VALUES (1008,'Mojokerto','IDN','East Java',96626);
+INSERT INTO `city` VALUES (1009,'Purwakarta','IDN','West Java',95900);
+INSERT INTO `city` VALUES (1010,'Garut','IDN','West Java',95800);
+INSERT INTO `city` VALUES (1011,'Kudus','IDN','Central Java',95300);
+INSERT INTO `city` VALUES (1012,'Kendari','IDN','Sulawesi Tenggara',94800);
+INSERT INTO `city` VALUES (1013,'Jaya Pura','IDN','West Irian',94700);
+INSERT INTO `city` VALUES (1014,'Gorontalo','IDN','Sulawesi Utara',94058);
+INSERT INTO `city` VALUES (1015,'Majalaya','IDN','West Java',93200);
+INSERT INTO `city` VALUES (1016,'Pondok Aren','IDN','West Java',92700);
+INSERT INTO `city` VALUES (1017,'Jombang','IDN','East Java',92600);
+INSERT INTO `city` VALUES (1018,'Sunggal','IDN','Sumatera Utara',92300);
+INSERT INTO `city` VALUES (1019,'Batam','IDN','Riau',91871);
+INSERT INTO `city` VALUES (1020,'Padang Sidempuan','IDN','Sumatera Utara',91200);
+INSERT INTO `city` VALUES (1021,'Sawangan','IDN','West Java',91100);
+INSERT INTO `city` VALUES (1022,'Banyuwangi','IDN','East Java',89900);
+INSERT INTO `city` VALUES (1023,'Tanjung Pinang','IDN','Riau',89900);
+INSERT INTO `city` VALUES (1024,'Mumbai (Bombay)','IND','Maharashtra',10500000);
+INSERT INTO `city` VALUES (1025,'Delhi','IND','Delhi',7206704);
+INSERT INTO `city` VALUES (1026,'Calcutta [Kolkata]','IND','West Bengali',4399819);
+INSERT INTO `city` VALUES (1027,'Chennai (Madras)','IND','Tamil Nadu',3841396);
+INSERT INTO `city` VALUES (1028,'Hyderabad','IND','Andhra Pradesh',2964638);
+INSERT INTO `city` VALUES (1029,'Ahmedabad','IND','Gujarat',2876710);
+INSERT INTO `city` VALUES (1030,'Bangalore','IND','Karnataka',2660088);
+INSERT INTO `city` VALUES (1031,'Kanpur','IND','Uttar Pradesh',1874409);
+INSERT INTO `city` VALUES (1032,'Nagpur','IND','Maharashtra',1624752);
+INSERT INTO `city` VALUES (1033,'Lucknow','IND','Uttar Pradesh',1619115);
+INSERT INTO `city` VALUES (1034,'Pune','IND','Maharashtra',1566651);
+INSERT INTO `city` VALUES (1035,'Surat','IND','Gujarat',1498817);
+INSERT INTO `city` VALUES (1036,'Jaipur','IND','Rajasthan',1458483);
+INSERT INTO `city` VALUES (1037,'Indore','IND','Madhya Pradesh',1091674);
+INSERT INTO `city` VALUES (1038,'Bhopal','IND','Madhya Pradesh',1062771);
+INSERT INTO `city` VALUES (1039,'Ludhiana','IND','Punjab',1042740);
+INSERT INTO `city` VALUES (1040,'Vadodara (Baroda)','IND','Gujarat',1031346);
+INSERT INTO `city` VALUES (1041,'Kalyan','IND','Maharashtra',1014557);
+INSERT INTO `city` VALUES (1042,'Madurai','IND','Tamil Nadu',977856);
+INSERT INTO `city` VALUES (1043,'Haora (Howrah)','IND','West Bengali',950435);
+INSERT INTO `city` VALUES (1044,'Varanasi (Benares)','IND','Uttar Pradesh',929270);
+INSERT INTO `city` VALUES (1045,'Patna','IND','Bihar',917243);
+INSERT INTO `city` VALUES (1046,'Srinagar','IND','Jammu and Kashmir',892506);
+INSERT INTO `city` VALUES (1047,'Agra','IND','Uttar Pradesh',891790);
+INSERT INTO `city` VALUES (1048,'Coimbatore','IND','Tamil Nadu',816321);
+INSERT INTO `city` VALUES (1049,'Thane (Thana)','IND','Maharashtra',803389);
+INSERT INTO `city` VALUES (1050,'Allahabad','IND','Uttar Pradesh',792858);
+INSERT INTO `city` VALUES (1051,'Meerut','IND','Uttar Pradesh',753778);
+INSERT INTO `city` VALUES (1052,'Vishakhapatnam','IND','Andhra Pradesh',752037);
+INSERT INTO `city` VALUES (1053,'Jabalpur','IND','Madhya Pradesh',741927);
+INSERT INTO `city` VALUES (1054,'Amritsar','IND','Punjab',708835);
+INSERT INTO `city` VALUES (1055,'Faridabad','IND','Haryana',703592);
+INSERT INTO `city` VALUES (1056,'Vijayawada','IND','Andhra Pradesh',701827);
+INSERT INTO `city` VALUES (1057,'Gwalior','IND','Madhya Pradesh',690765);
+INSERT INTO `city` VALUES (1058,'Jodhpur','IND','Rajasthan',666279);
+INSERT INTO `city` VALUES (1059,'Nashik (Nasik)','IND','Maharashtra',656925);
+INSERT INTO `city` VALUES (1060,'Hubli-Dharwad','IND','Karnataka',648298);
+INSERT INTO `city` VALUES (1061,'Solapur (Sholapur)','IND','Maharashtra',604215);
+INSERT INTO `city` VALUES (1062,'Ranchi','IND','Jharkhand',599306);
+INSERT INTO `city` VALUES (1063,'Bareilly','IND','Uttar Pradesh',587211);
+INSERT INTO `city` VALUES (1064,'Guwahati (Gauhati)','IND','Assam',584342);
+INSERT INTO `city` VALUES (1065,'Shambajinagar (Aurangabad)','IND','Maharashtra',573272);
+INSERT INTO `city` VALUES (1066,'Cochin (Kochi)','IND','Kerala',564589);
+INSERT INTO `city` VALUES (1067,'Rajkot','IND','Gujarat',559407);
+INSERT INTO `city` VALUES (1068,'Kota','IND','Rajasthan',537371);
+INSERT INTO `city` VALUES (1069,'Thiruvananthapuram (Trivandrum','IND','Kerala',524006);
+INSERT INTO `city` VALUES (1070,'Pimpri-Chinchwad','IND','Maharashtra',517083);
+INSERT INTO `city` VALUES (1071,'Jalandhar (Jullundur)','IND','Punjab',509510);
+INSERT INTO `city` VALUES (1072,'Gorakhpur','IND','Uttar Pradesh',505566);
+INSERT INTO `city` VALUES (1073,'Chandigarh','IND','Chandigarh',504094);
+INSERT INTO `city` VALUES (1074,'Mysore','IND','Karnataka',480692);
+INSERT INTO `city` VALUES (1075,'Aligarh','IND','Uttar Pradesh',480520);
+INSERT INTO `city` VALUES (1076,'Guntur','IND','Andhra Pradesh',471051);
+INSERT INTO `city` VALUES (1077,'Jamshedpur','IND','Jharkhand',460577);
+INSERT INTO `city` VALUES (1078,'Ghaziabad','IND','Uttar Pradesh',454156);
+INSERT INTO `city` VALUES (1079,'Warangal','IND','Andhra Pradesh',447657);
+INSERT INTO `city` VALUES (1080,'Raipur','IND','Chhatisgarh',438639);
+INSERT INTO `city` VALUES (1081,'Moradabad','IND','Uttar Pradesh',429214);
+INSERT INTO `city` VALUES (1082,'Durgapur','IND','West Bengali',425836);
+INSERT INTO `city` VALUES (1083,'Amravati','IND','Maharashtra',421576);
+INSERT INTO `city` VALUES (1084,'Calicut (Kozhikode)','IND','Kerala',419831);
+INSERT INTO `city` VALUES (1085,'Bikaner','IND','Rajasthan',416289);
+INSERT INTO `city` VALUES (1086,'Bhubaneswar','IND','Orissa',411542);
+INSERT INTO `city` VALUES (1087,'Kolhapur','IND','Maharashtra',406370);
+INSERT INTO `city` VALUES (1088,'Kataka (Cuttack)','IND','Orissa',403418);
+INSERT INTO `city` VALUES (1089,'Ajmer','IND','Rajasthan',402700);
+INSERT INTO `city` VALUES (1090,'Bhavnagar','IND','Gujarat',402338);
+INSERT INTO `city` VALUES (1091,'Tiruchirapalli','IND','Tamil Nadu',387223);
+INSERT INTO `city` VALUES (1092,'Bhilai','IND','Chhatisgarh',386159);
+INSERT INTO `city` VALUES (1093,'Bhiwandi','IND','Maharashtra',379070);
+INSERT INTO `city` VALUES (1094,'Saharanpur','IND','Uttar Pradesh',374945);
+INSERT INTO `city` VALUES (1095,'Ulhasnagar','IND','Maharashtra',369077);
+INSERT INTO `city` VALUES (1096,'Salem','IND','Tamil Nadu',366712);
+INSERT INTO `city` VALUES (1097,'Ujjain','IND','Madhya Pradesh',362266);
+INSERT INTO `city` VALUES (1098,'Malegaon','IND','Maharashtra',342595);
+INSERT INTO `city` VALUES (1099,'Jamnagar','IND','Gujarat',341637);
+INSERT INTO `city` VALUES (1100,'Bokaro Steel City','IND','Jharkhand',333683);
+INSERT INTO `city` VALUES (1101,'Akola','IND','Maharashtra',328034);
+INSERT INTO `city` VALUES (1102,'Belgaum','IND','Karnataka',326399);
+INSERT INTO `city` VALUES (1103,'Rajahmundry','IND','Andhra Pradesh',324851);
+INSERT INTO `city` VALUES (1104,'Nellore','IND','Andhra Pradesh',316606);
+INSERT INTO `city` VALUES (1105,'Udaipur','IND','Rajasthan',308571);
+INSERT INTO `city` VALUES (1106,'New Bombay','IND','Maharashtra',307297);
+INSERT INTO `city` VALUES (1107,'Bhatpara','IND','West Bengali',304952);
+INSERT INTO `city` VALUES (1108,'Gulbarga','IND','Karnataka',304099);
+INSERT INTO `city` VALUES (1109,'New Delhi','IND','Delhi',301297);
+INSERT INTO `city` VALUES (1110,'Jhansi','IND','Uttar Pradesh',300850);
+INSERT INTO `city` VALUES (1111,'Gaya','IND','Bihar',291675);
+INSERT INTO `city` VALUES (1112,'Kakinada','IND','Andhra Pradesh',279980);
+INSERT INTO `city` VALUES (1113,'Dhule (Dhulia)','IND','Maharashtra',278317);
+INSERT INTO `city` VALUES (1114,'Panihati','IND','West Bengali',275990);
+INSERT INTO `city` VALUES (1115,'Nanded (Nander)','IND','Maharashtra',275083);
+INSERT INTO `city` VALUES (1116,'Mangalore','IND','Karnataka',273304);
+INSERT INTO `city` VALUES (1117,'Dehra Dun','IND','Uttaranchal',270159);
+INSERT INTO `city` VALUES (1118,'Kamarhati','IND','West Bengali',266889);
+INSERT INTO `city` VALUES (1119,'Davangere','IND','Karnataka',266082);
+INSERT INTO `city` VALUES (1120,'Asansol','IND','West Bengali',262188);
+INSERT INTO `city` VALUES (1121,'Bhagalpur','IND','Bihar',253225);
+INSERT INTO `city` VALUES (1122,'Bellary','IND','Karnataka',245391);
+INSERT INTO `city` VALUES (1123,'Barddhaman (Burdwan)','IND','West Bengali',245079);
+INSERT INTO `city` VALUES (1124,'Rampur','IND','Uttar Pradesh',243742);
+INSERT INTO `city` VALUES (1125,'Jalgaon','IND','Maharashtra',242193);
+INSERT INTO `city` VALUES (1126,'Muzaffarpur','IND','Bihar',241107);
+INSERT INTO `city` VALUES (1127,'Nizamabad','IND','Andhra Pradesh',241034);
+INSERT INTO `city` VALUES (1128,'Muzaffarnagar','IND','Uttar Pradesh',240609);
+INSERT INTO `city` VALUES (1129,'Patiala','IND','Punjab',238368);
+INSERT INTO `city` VALUES (1130,'Shahjahanpur','IND','Uttar Pradesh',237713);
+INSERT INTO `city` VALUES (1131,'Kurnool','IND','Andhra Pradesh',236800);
+INSERT INTO `city` VALUES (1132,'Tiruppur (Tirupper)','IND','Tamil Nadu',235661);
+INSERT INTO `city` VALUES (1133,'Rohtak','IND','Haryana',233400);
+INSERT INTO `city` VALUES (1134,'South Dum Dum','IND','West Bengali',232811);
+INSERT INTO `city` VALUES (1135,'Mathura','IND','Uttar Pradesh',226691);
+INSERT INTO `city` VALUES (1136,'Chandrapur','IND','Maharashtra',226105);
+INSERT INTO `city` VALUES (1137,'Barahanagar (Baranagar)','IND','West Bengali',224821);
+INSERT INTO `city` VALUES (1138,'Darbhanga','IND','Bihar',218391);
+INSERT INTO `city` VALUES (1139,'Siliguri (Shiliguri)','IND','West Bengali',216950);
+INSERT INTO `city` VALUES (1140,'Raurkela','IND','Orissa',215489);
+INSERT INTO `city` VALUES (1141,'Ambattur','IND','Tamil Nadu',215424);
+INSERT INTO `city` VALUES (1142,'Panipat','IND','Haryana',215218);
+INSERT INTO `city` VALUES (1143,'Firozabad','IND','Uttar Pradesh',215128);
+INSERT INTO `city` VALUES (1144,'Ichalkaranji','IND','Maharashtra',214950);
+INSERT INTO `city` VALUES (1145,'Jammu','IND','Jammu and Kashmir',214737);
+INSERT INTO `city` VALUES (1146,'Ramagundam','IND','Andhra Pradesh',214384);
+INSERT INTO `city` VALUES (1147,'Eluru','IND','Andhra Pradesh',212866);
+INSERT INTO `city` VALUES (1148,'Brahmapur','IND','Orissa',210418);
+INSERT INTO `city` VALUES (1149,'Alwar','IND','Rajasthan',205086);
+INSERT INTO `city` VALUES (1150,'Pondicherry','IND','Pondicherry',203065);
+INSERT INTO `city` VALUES (1151,'Thanjavur','IND','Tamil Nadu',202013);
+INSERT INTO `city` VALUES (1152,'Bihar Sharif','IND','Bihar',201323);
+INSERT INTO `city` VALUES (1153,'Tuticorin','IND','Tamil Nadu',199854);
+INSERT INTO `city` VALUES (1154,'Imphal','IND','Manipur',198535);
+INSERT INTO `city` VALUES (1155,'Latur','IND','Maharashtra',197408);
+INSERT INTO `city` VALUES (1156,'Sagar','IND','Madhya Pradesh',195346);
+INSERT INTO `city` VALUES (1157,'Farrukhabad-cum-Fatehgarh','IND','Uttar Pradesh',194567);
+INSERT INTO `city` VALUES (1158,'Sangli','IND','Maharashtra',193197);
+INSERT INTO `city` VALUES (1159,'Parbhani','IND','Maharashtra',190255);
+INSERT INTO `city` VALUES (1160,'Nagar Coil','IND','Tamil Nadu',190084);
+INSERT INTO `city` VALUES (1161,'Bijapur','IND','Karnataka',186939);
+INSERT INTO `city` VALUES (1162,'Kukatpalle','IND','Andhra Pradesh',185378);
+INSERT INTO `city` VALUES (1163,'Bally','IND','West Bengali',184474);
+INSERT INTO `city` VALUES (1164,'Bhilwara','IND','Rajasthan',183965);
+INSERT INTO `city` VALUES (1165,'Ratlam','IND','Madhya Pradesh',183375);
+INSERT INTO `city` VALUES (1166,'Avadi','IND','Tamil Nadu',183215);
+INSERT INTO `city` VALUES (1167,'Dindigul','IND','Tamil Nadu',182477);
+INSERT INTO `city` VALUES (1168,'Ahmadnagar','IND','Maharashtra',181339);
+INSERT INTO `city` VALUES (1169,'Bilaspur','IND','Chhatisgarh',179833);
+INSERT INTO `city` VALUES (1170,'Shimoga','IND','Karnataka',179258);
+INSERT INTO `city` VALUES (1171,'Kharagpur','IND','West Bengali',177989);
+INSERT INTO `city` VALUES (1172,'Mira Bhayandar','IND','Maharashtra',175372);
+INSERT INTO `city` VALUES (1173,'Vellore','IND','Tamil Nadu',175061);
+INSERT INTO `city` VALUES (1174,'Jalna','IND','Maharashtra',174985);
+INSERT INTO `city` VALUES (1175,'Burnpur','IND','West Bengali',174933);
+INSERT INTO `city` VALUES (1176,'Anantapur','IND','Andhra Pradesh',174924);
+INSERT INTO `city` VALUES (1177,'Allappuzha (Alleppey)','IND','Kerala',174666);
+INSERT INTO `city` VALUES (1178,'Tirupati','IND','Andhra Pradesh',174369);
+INSERT INTO `city` VALUES (1179,'Karnal','IND','Haryana',173751);
+INSERT INTO `city` VALUES (1180,'Burhanpur','IND','Madhya Pradesh',172710);
+INSERT INTO `city` VALUES (1181,'Hisar (Hissar)','IND','Haryana',172677);
+INSERT INTO `city` VALUES (1182,'Tiruvottiyur','IND','Tamil Nadu',172562);
+INSERT INTO `city` VALUES (1183,'Mirzapur-cum-Vindhyachal','IND','Uttar Pradesh',169336);
+INSERT INTO `city` VALUES (1184,'Secunderabad','IND','Andhra Pradesh',167461);
+INSERT INTO `city` VALUES (1185,'Nadiad','IND','Gujarat',167051);
+INSERT INTO `city` VALUES (1186,'Dewas','IND','Madhya Pradesh',164364);
+INSERT INTO `city` VALUES (1187,'Murwara (Katni)','IND','Madhya Pradesh',163431);
+INSERT INTO `city` VALUES (1188,'Ganganagar','IND','Rajasthan',161482);
+INSERT INTO `city` VALUES (1189,'Vizianagaram','IND','Andhra Pradesh',160359);
+INSERT INTO `city` VALUES (1190,'Erode','IND','Tamil Nadu',159232);
+INSERT INTO `city` VALUES (1191,'Machilipatnam (Masulipatam)','IND','Andhra Pradesh',159110);
+INSERT INTO `city` VALUES (1192,'Bhatinda (Bathinda)','IND','Punjab',159042);
+INSERT INTO `city` VALUES (1193,'Raichur','IND','Karnataka',157551);
+INSERT INTO `city` VALUES (1194,'Agartala','IND','Tripura',157358);
+INSERT INTO `city` VALUES (1195,'Arrah (Ara)','IND','Bihar',157082);
+INSERT INTO `city` VALUES (1196,'Satna','IND','Madhya Pradesh',156630);
+INSERT INTO `city` VALUES (1197,'Lalbahadur Nagar','IND','Andhra Pradesh',155500);
+INSERT INTO `city` VALUES (1198,'Aizawl','IND','Mizoram',155240);
+INSERT INTO `city` VALUES (1199,'Uluberia','IND','West Bengali',155172);
+INSERT INTO `city` VALUES (1200,'Katihar','IND','Bihar',154367);
+INSERT INTO `city` VALUES (1201,'Cuddalore','IND','Tamil Nadu',153086);
+INSERT INTO `city` VALUES (1202,'Hugli-Chinsurah','IND','West Bengali',151806);
+INSERT INTO `city` VALUES (1203,'Dhanbad','IND','Jharkhand',151789);
+INSERT INTO `city` VALUES (1204,'Raiganj','IND','West Bengali',151045);
+INSERT INTO `city` VALUES (1205,'Sambhal','IND','Uttar Pradesh',150869);
+INSERT INTO `city` VALUES (1206,'Durg','IND','Chhatisgarh',150645);
+INSERT INTO `city` VALUES (1207,'Munger (Monghyr)','IND','Bihar',150112);
+INSERT INTO `city` VALUES (1208,'Kanchipuram','IND','Tamil Nadu',150100);
+INSERT INTO `city` VALUES (1209,'North Dum Dum','IND','West Bengali',149965);
+INSERT INTO `city` VALUES (1210,'Karimnagar','IND','Andhra Pradesh',148583);
+INSERT INTO `city` VALUES (1211,'Bharatpur','IND','Rajasthan',148519);
+INSERT INTO `city` VALUES (1212,'Sikar','IND','Rajasthan',148272);
+INSERT INTO `city` VALUES (1213,'Hardwar (Haridwar)','IND','Uttaranchal',147305);
+INSERT INTO `city` VALUES (1214,'Dabgram','IND','West Bengali',147217);
+INSERT INTO `city` VALUES (1215,'Morena','IND','Madhya Pradesh',147124);
+INSERT INTO `city` VALUES (1216,'Noida','IND','Uttar Pradesh',146514);
+INSERT INTO `city` VALUES (1217,'Hapur','IND','Uttar Pradesh',146262);
+INSERT INTO `city` VALUES (1218,'Bhusawal','IND','Maharashtra',145143);
+INSERT INTO `city` VALUES (1219,'Khandwa','IND','Madhya Pradesh',145133);
+INSERT INTO `city` VALUES (1220,'Yamuna Nagar','IND','Haryana',144346);
+INSERT INTO `city` VALUES (1221,'Sonipat (Sonepat)','IND','Haryana',143922);
+INSERT INTO `city` VALUES (1222,'Tenali','IND','Andhra Pradesh',143726);
+INSERT INTO `city` VALUES (1223,'Raurkela Civil Township','IND','Orissa',140408);
+INSERT INTO `city` VALUES (1224,'Kollam (Quilon)','IND','Kerala',139852);
+INSERT INTO `city` VALUES (1225,'Kumbakonam','IND','Tamil Nadu',139483);
+INSERT INTO `city` VALUES (1226,'Ingraj Bazar (English Bazar)','IND','West Bengali',139204);
+INSERT INTO `city` VALUES (1227,'Timkur','IND','Karnataka',138903);
+INSERT INTO `city` VALUES (1228,'Amroha','IND','Uttar Pradesh',137061);
+INSERT INTO `city` VALUES (1229,'Serampore','IND','West Bengali',137028);
+INSERT INTO `city` VALUES (1230,'Chapra','IND','Bihar',136877);
+INSERT INTO `city` VALUES (1231,'Pali','IND','Rajasthan',136842);
+INSERT INTO `city` VALUES (1232,'Maunath Bhanjan','IND','Uttar Pradesh',136697);
+INSERT INTO `city` VALUES (1233,'Adoni','IND','Andhra Pradesh',136182);
+INSERT INTO `city` VALUES (1234,'Jaunpur','IND','Uttar Pradesh',136062);
+INSERT INTO `city` VALUES (1235,'Tirunelveli','IND','Tamil Nadu',135825);
+INSERT INTO `city` VALUES (1236,'Bahraich','IND','Uttar Pradesh',135400);
+INSERT INTO `city` VALUES (1237,'Gadag Betigeri','IND','Karnataka',134051);
+INSERT INTO `city` VALUES (1238,'Proddatur','IND','Andhra Pradesh',133914);
+INSERT INTO `city` VALUES (1239,'Chittoor','IND','Andhra Pradesh',133462);
+INSERT INTO `city` VALUES (1240,'Barrackpur','IND','West Bengali',133265);
+INSERT INTO `city` VALUES (1241,'Bharuch (Broach)','IND','Gujarat',133102);
+INSERT INTO `city` VALUES (1242,'Naihati','IND','West Bengali',132701);
+INSERT INTO `city` VALUES (1243,'Shillong','IND','Meghalaya',131719);
+INSERT INTO `city` VALUES (1244,'Sambalpur','IND','Orissa',131138);
+INSERT INTO `city` VALUES (1245,'Junagadh','IND','Gujarat',130484);
+INSERT INTO `city` VALUES (1246,'Rae Bareli','IND','Uttar Pradesh',129904);
+INSERT INTO `city` VALUES (1247,'Rewa','IND','Madhya Pradesh',128981);
+INSERT INTO `city` VALUES (1248,'Gurgaon','IND','Haryana',128608);
+INSERT INTO `city` VALUES (1249,'Khammam','IND','Andhra Pradesh',127992);
+INSERT INTO `city` VALUES (1250,'Bulandshahr','IND','Uttar Pradesh',127201);
+INSERT INTO `city` VALUES (1251,'Navsari','IND','Gujarat',126089);
+INSERT INTO `city` VALUES (1252,'Malkajgiri','IND','Andhra Pradesh',126066);
+INSERT INTO `city` VALUES (1253,'Midnapore (Medinipur)','IND','West Bengali',125498);
+INSERT INTO `city` VALUES (1254,'Miraj','IND','Maharashtra',125407);
+INSERT INTO `city` VALUES (1255,'Raj Nandgaon','IND','Chhatisgarh',125371);
+INSERT INTO `city` VALUES (1256,'Alandur','IND','Tamil Nadu',125244);
+INSERT INTO `city` VALUES (1257,'Puri','IND','Orissa',125199);
+INSERT INTO `city` VALUES (1258,'Navadwip','IND','West Bengali',125037);
+INSERT INTO `city` VALUES (1259,'Sirsa','IND','Haryana',125000);
+INSERT INTO `city` VALUES (1260,'Korba','IND','Chhatisgarh',124501);
+INSERT INTO `city` VALUES (1261,'Faizabad','IND','Uttar Pradesh',124437);
+INSERT INTO `city` VALUES (1262,'Etawah','IND','Uttar Pradesh',124072);
+INSERT INTO `city` VALUES (1263,'Pathankot','IND','Punjab',123930);
+INSERT INTO `city` VALUES (1264,'Gandhinagar','IND','Gujarat',123359);
+INSERT INTO `city` VALUES (1265,'Palghat (Palakkad)','IND','Kerala',123289);
+INSERT INTO `city` VALUES (1266,'Veraval','IND','Gujarat',123000);
+INSERT INTO `city` VALUES (1267,'Hoshiarpur','IND','Punjab',122705);
+INSERT INTO `city` VALUES (1268,'Ambala','IND','Haryana',122596);
+INSERT INTO `city` VALUES (1269,'Sitapur','IND','Uttar Pradesh',121842);
+INSERT INTO `city` VALUES (1270,'Bhiwani','IND','Haryana',121629);
+INSERT INTO `city` VALUES (1271,'Cuddapah','IND','Andhra Pradesh',121463);
+INSERT INTO `city` VALUES (1272,'Bhimavaram','IND','Andhra Pradesh',121314);
+INSERT INTO `city` VALUES (1273,'Krishnanagar','IND','West Bengali',121110);
+INSERT INTO `city` VALUES (1274,'Chandannagar','IND','West Bengali',120378);
+INSERT INTO `city` VALUES (1275,'Mandya','IND','Karnataka',120265);
+INSERT INTO `city` VALUES (1276,'Dibrugarh','IND','Assam',120127);
+INSERT INTO `city` VALUES (1277,'Nandyal','IND','Andhra Pradesh',119813);
+INSERT INTO `city` VALUES (1278,'Balurghat','IND','West Bengali',119796);
+INSERT INTO `city` VALUES (1279,'Neyveli','IND','Tamil Nadu',118080);
+INSERT INTO `city` VALUES (1280,'Fatehpur','IND','Uttar Pradesh',117675);
+INSERT INTO `city` VALUES (1281,'Mahbubnagar','IND','Andhra Pradesh',116833);
+INSERT INTO `city` VALUES (1282,'Budaun','IND','Uttar Pradesh',116695);
+INSERT INTO `city` VALUES (1283,'Porbandar','IND','Gujarat',116671);
+INSERT INTO `city` VALUES (1284,'Silchar','IND','Assam',115483);
+INSERT INTO `city` VALUES (1285,'Berhampore (Baharampur)','IND','West Bengali',115144);
+INSERT INTO `city` VALUES (1286,'Purnea (Purnia)','IND','Jharkhand',114912);
+INSERT INTO `city` VALUES (1287,'Bankura','IND','West Bengali',114876);
+INSERT INTO `city` VALUES (1288,'Rajapalaiyam','IND','Tamil Nadu',114202);
+INSERT INTO `city` VALUES (1289,'Titagarh','IND','West Bengali',114085);
+INSERT INTO `city` VALUES (1290,'Halisahar','IND','West Bengali',114028);
+INSERT INTO `city` VALUES (1291,'Hathras','IND','Uttar Pradesh',113285);
+INSERT INTO `city` VALUES (1292,'Bhir (Bid)','IND','Maharashtra',112434);
+INSERT INTO `city` VALUES (1293,'Pallavaram','IND','Tamil Nadu',111866);
+INSERT INTO `city` VALUES (1294,'Anand','IND','Gujarat',110266);
+INSERT INTO `city` VALUES (1295,'Mango','IND','Jharkhand',110024);
+INSERT INTO `city` VALUES (1296,'Santipur','IND','West Bengali',109956);
+INSERT INTO `city` VALUES (1297,'Bhind','IND','Madhya Pradesh',109755);
+INSERT INTO `city` VALUES (1298,'Gondiya','IND','Maharashtra',109470);
+INSERT INTO `city` VALUES (1299,'Tiruvannamalai','IND','Tamil Nadu',109196);
+INSERT INTO `city` VALUES (1300,'Yeotmal (Yavatmal)','IND','Maharashtra',108578);
+INSERT INTO `city` VALUES (1301,'Kulti-Barakar','IND','West Bengali',108518);
+INSERT INTO `city` VALUES (1302,'Moga','IND','Punjab',108304);
+INSERT INTO `city` VALUES (1303,'Shivapuri','IND','Madhya Pradesh',108277);
+INSERT INTO `city` VALUES (1304,'Bidar','IND','Karnataka',108016);
+INSERT INTO `city` VALUES (1305,'Guntakal','IND','Andhra Pradesh',107592);
+INSERT INTO `city` VALUES (1306,'Unnao','IND','Uttar Pradesh',107425);
+INSERT INTO `city` VALUES (1307,'Barasat','IND','West Bengali',107365);
+INSERT INTO `city` VALUES (1308,'Tambaram','IND','Tamil Nadu',107187);
+INSERT INTO `city` VALUES (1309,'Abohar','IND','Punjab',107163);
+INSERT INTO `city` VALUES (1310,'Pilibhit','IND','Uttar Pradesh',106605);
+INSERT INTO `city` VALUES (1311,'Valparai','IND','Tamil Nadu',106523);
+INSERT INTO `city` VALUES (1312,'Gonda','IND','Uttar Pradesh',106078);
+INSERT INTO `city` VALUES (1313,'Surendranagar','IND','Gujarat',105973);
+INSERT INTO `city` VALUES (1314,'Qutubullapur','IND','Andhra Pradesh',105380);
+INSERT INTO `city` VALUES (1315,'Beawar','IND','Rajasthan',105363);
+INSERT INTO `city` VALUES (1316,'Hindupur','IND','Andhra Pradesh',104651);
+INSERT INTO `city` VALUES (1317,'Gandhidham','IND','Gujarat',104585);
+INSERT INTO `city` VALUES (1318,'Haldwani-cum-Kathgodam','IND','Uttaranchal',104195);
+INSERT INTO `city` VALUES (1319,'Tellicherry (Thalassery)','IND','Kerala',103579);
+INSERT INTO `city` VALUES (1320,'Wardha','IND','Maharashtra',102985);
+INSERT INTO `city` VALUES (1321,'Rishra','IND','West Bengali',102649);
+INSERT INTO `city` VALUES (1322,'Bhuj','IND','Gujarat',102176);
+INSERT INTO `city` VALUES (1323,'Modinagar','IND','Uttar Pradesh',101660);
+INSERT INTO `city` VALUES (1324,'Gudivada','IND','Andhra Pradesh',101656);
+INSERT INTO `city` VALUES (1325,'Basirhat','IND','West Bengali',101409);
+INSERT INTO `city` VALUES (1326,'Uttarpara-Kotrung','IND','West Bengali',100867);
+INSERT INTO `city` VALUES (1327,'Ongole','IND','Andhra Pradesh',100836);
+INSERT INTO `city` VALUES (1328,'North Barrackpur','IND','West Bengali',100513);
+INSERT INTO `city` VALUES (1329,'Guna','IND','Madhya Pradesh',100490);
+INSERT INTO `city` VALUES (1330,'Haldia','IND','West Bengali',100347);
+INSERT INTO `city` VALUES (1331,'Habra','IND','West Bengali',100223);
+INSERT INTO `city` VALUES (1332,'Kanchrapara','IND','West Bengali',100194);
+INSERT INTO `city` VALUES (1333,'Tonk','IND','Rajasthan',100079);
+INSERT INTO `city` VALUES (1334,'Champdani','IND','West Bengali',98818);
+INSERT INTO `city` VALUES (1335,'Orai','IND','Uttar Pradesh',98640);
+INSERT INTO `city` VALUES (1336,'Pudukkottai','IND','Tamil Nadu',98619);
+INSERT INTO `city` VALUES (1337,'Sasaram','IND','Bihar',98220);
+INSERT INTO `city` VALUES (1338,'Hazaribag','IND','Jharkhand',97712);
+INSERT INTO `city` VALUES (1339,'Palayankottai','IND','Tamil Nadu',97662);
+INSERT INTO `city` VALUES (1340,'Banda','IND','Uttar Pradesh',97227);
+INSERT INTO `city` VALUES (1341,'Godhra','IND','Gujarat',96813);
+INSERT INTO `city` VALUES (1342,'Hospet','IND','Karnataka',96322);
+INSERT INTO `city` VALUES (1343,'Ashoknagar-Kalyangarh','IND','West Bengali',96315);
+INSERT INTO `city` VALUES (1344,'Achalpur','IND','Maharashtra',96216);
+INSERT INTO `city` VALUES (1345,'Patan','IND','Gujarat',96109);
+INSERT INTO `city` VALUES (1346,'Mandasor','IND','Madhya Pradesh',95758);
+INSERT INTO `city` VALUES (1347,'Damoh','IND','Madhya Pradesh',95661);
+INSERT INTO `city` VALUES (1348,'Satara','IND','Maharashtra',95133);
+INSERT INTO `city` VALUES (1349,'Meerut Cantonment','IND','Uttar Pradesh',94876);
+INSERT INTO `city` VALUES (1350,'Dehri','IND','Bihar',94526);
+INSERT INTO `city` VALUES (1351,'Delhi Cantonment','IND','Delhi',94326);
+INSERT INTO `city` VALUES (1352,'Chhindwara','IND','Madhya Pradesh',93731);
+INSERT INTO `city` VALUES (1353,'Bansberia','IND','West Bengali',93447);
+INSERT INTO `city` VALUES (1354,'Nagaon','IND','Assam',93350);
+INSERT INTO `city` VALUES (1355,'Kanpur Cantonment','IND','Uttar Pradesh',93109);
+INSERT INTO `city` VALUES (1356,'Vidisha','IND','Madhya Pradesh',92917);
+INSERT INTO `city` VALUES (1357,'Bettiah','IND','Bihar',92583);
+INSERT INTO `city` VALUES (1358,'Purulia','IND','Jharkhand',92574);
+INSERT INTO `city` VALUES (1359,'Hassan','IND','Karnataka',90803);
+INSERT INTO `city` VALUES (1360,'Ambala Sadar','IND','Haryana',90712);
+INSERT INTO `city` VALUES (1361,'Baidyabati','IND','West Bengali',90601);
+INSERT INTO `city` VALUES (1362,'Morvi','IND','Gujarat',90357);
+INSERT INTO `city` VALUES (1363,'Raigarh','IND','Chhatisgarh',89166);
+INSERT INTO `city` VALUES (1364,'Vejalpur','IND','Gujarat',89053);
+INSERT INTO `city` VALUES (1365,'Baghdad','IRQ','Baghdad',4336000);
+INSERT INTO `city` VALUES (1366,'Mosul','IRQ','Ninawa',879000);
+INSERT INTO `city` VALUES (1367,'Irbil','IRQ','Irbil',485968);
+INSERT INTO `city` VALUES (1368,'Kirkuk','IRQ','al-Tamim',418624);
+INSERT INTO `city` VALUES (1369,'Basra','IRQ','Basra',406296);
+INSERT INTO `city` VALUES (1370,'al-Sulaymaniya','IRQ','al-Sulaymaniya',364096);
+INSERT INTO `city` VALUES (1371,'al-Najaf','IRQ','al-Najaf',309010);
+INSERT INTO `city` VALUES (1372,'Karbala','IRQ','Karbala',296705);
+INSERT INTO `city` VALUES (1373,'al-Hilla','IRQ','Babil',268834);
+INSERT INTO `city` VALUES (1374,'al-Nasiriya','IRQ','DhiQar',265937);
+INSERT INTO `city` VALUES (1375,'al-Amara','IRQ','Maysan',208797);
+INSERT INTO `city` VALUES (1376,'al-Diwaniya','IRQ','al-Qadisiya',196519);
+INSERT INTO `city` VALUES (1377,'al-Ramadi','IRQ','al-Anbar',192556);
+INSERT INTO `city` VALUES (1378,'al-Kut','IRQ','Wasit',183183);
+INSERT INTO `city` VALUES (1379,'Baquba','IRQ','Diyala',114516);
+INSERT INTO `city` VALUES (1380,'Teheran','IRN','Teheran',6758845);
+INSERT INTO `city` VALUES (1381,'Mashhad','IRN','Khorasan',1887405);
+INSERT INTO `city` VALUES (1382,'Esfahan','IRN','Esfahan',1266072);
+INSERT INTO `city` VALUES (1383,'Tabriz','IRN','East Azerbaidzan',1191043);
+INSERT INTO `city` VALUES (1384,'Shiraz','IRN','Fars',1053025);
+INSERT INTO `city` VALUES (1385,'Karaj','IRN','Teheran',940968);
+INSERT INTO `city` VALUES (1386,'Ahvaz','IRN','Khuzestan',804980);
+INSERT INTO `city` VALUES (1387,'Qom','IRN','Qom',777677);
+INSERT INTO `city` VALUES (1388,'Kermanshah','IRN','Kermanshah',692986);
+INSERT INTO `city` VALUES (1389,'Urmia','IRN','West Azerbaidzan',435200);
+INSERT INTO `city` VALUES (1390,'Zahedan','IRN','Sistan va Baluchesta',419518);
+INSERT INTO `city` VALUES (1391,'Rasht','IRN','Gilan',417748);
+INSERT INTO `city` VALUES (1392,'Hamadan','IRN','Hamadan',401281);
+INSERT INTO `city` VALUES (1393,'Kerman','IRN','Kerman',384991);
+INSERT INTO `city` VALUES (1394,'Arak','IRN','Markazi',380755);
+INSERT INTO `city` VALUES (1395,'Ardebil','IRN','Ardebil',340386);
+INSERT INTO `city` VALUES (1396,'Yazd','IRN','Yazd',326776);
+INSERT INTO `city` VALUES (1397,'Qazvin','IRN','Qazvin',291117);
+INSERT INTO `city` VALUES (1398,'Zanjan','IRN','Zanjan',286295);
+INSERT INTO `city` VALUES (1399,'Sanandaj','IRN','Kordestan',277808);
+INSERT INTO `city` VALUES (1400,'Bandar-e-Abbas','IRN','Hormozgan',273578);
+INSERT INTO `city` VALUES (1401,'Khorramabad','IRN','Lorestan',272815);
+INSERT INTO `city` VALUES (1402,'Eslamshahr','IRN','Teheran',265450);
+INSERT INTO `city` VALUES (1403,'Borujerd','IRN','Lorestan',217804);
+INSERT INTO `city` VALUES (1404,'Abadan','IRN','Khuzestan',206073);
+INSERT INTO `city` VALUES (1405,'Dezful','IRN','Khuzestan',202639);
+INSERT INTO `city` VALUES (1406,'Kashan','IRN','Esfahan',201372);
+INSERT INTO `city` VALUES (1407,'Sari','IRN','Mazandaran',195882);
+INSERT INTO `city` VALUES (1408,'Gorgan','IRN','Golestan',188710);
+INSERT INTO `city` VALUES (1409,'Najafabad','IRN','Esfahan',178498);
+INSERT INTO `city` VALUES (1410,'Sabzevar','IRN','Khorasan',170738);
+INSERT INTO `city` VALUES (1411,'Khomeynishahr','IRN','Esfahan',165888);
+INSERT INTO `city` VALUES (1412,'Amol','IRN','Mazandaran',159092);
+INSERT INTO `city` VALUES (1413,'Neyshabur','IRN','Khorasan',158847);
+INSERT INTO `city` VALUES (1414,'Babol','IRN','Mazandaran',158346);
+INSERT INTO `city` VALUES (1415,'Khoy','IRN','West Azerbaidzan',148944);
+INSERT INTO `city` VALUES (1416,'Malayer','IRN','Hamadan',144373);
+INSERT INTO `city` VALUES (1417,'Bushehr','IRN','Bushehr',143641);
+INSERT INTO `city` VALUES (1418,'Qaemshahr','IRN','Mazandaran',143286);
+INSERT INTO `city` VALUES (1419,'Qarchak','IRN','Teheran',142690);
+INSERT INTO `city` VALUES (1420,'Qods','IRN','Teheran',138278);
+INSERT INTO `city` VALUES (1421,'Sirjan','IRN','Kerman',135024);
+INSERT INTO `city` VALUES (1422,'Bojnurd','IRN','Khorasan',134835);
+INSERT INTO `city` VALUES (1423,'Maragheh','IRN','East Azerbaidzan',132318);
+INSERT INTO `city` VALUES (1424,'Birjand','IRN','Khorasan',127608);
+INSERT INTO `city` VALUES (1425,'Ilam','IRN','Ilam',126346);
+INSERT INTO `city` VALUES (1426,'Bukan','IRN','West Azerbaidzan',120020);
+INSERT INTO `city` VALUES (1427,'Masjed-e-Soleyman','IRN','Khuzestan',116883);
+INSERT INTO `city` VALUES (1428,'Saqqez','IRN','Kordestan',115394);
+INSERT INTO `city` VALUES (1429,'Gonbad-e Qabus','IRN','Mazandaran',111253);
+INSERT INTO `city` VALUES (1430,'Saveh','IRN','Qom',111245);
+INSERT INTO `city` VALUES (1431,'Mahabad','IRN','West Azerbaidzan',107799);
+INSERT INTO `city` VALUES (1432,'Varamin','IRN','Teheran',107233);
+INSERT INTO `city` VALUES (1433,'Andimeshk','IRN','Khuzestan',106923);
+INSERT INTO `city` VALUES (1434,'Khorramshahr','IRN','Khuzestan',105636);
+INSERT INTO `city` VALUES (1435,'Shahrud','IRN','Semnan',104765);
+INSERT INTO `city` VALUES (1436,'Marv Dasht','IRN','Fars',103579);
+INSERT INTO `city` VALUES (1437,'Zabol','IRN','Sistan va Baluchesta',100887);
+INSERT INTO `city` VALUES (1438,'Shahr-e Kord','IRN','Chaharmahal va Bakht',100477);
+INSERT INTO `city` VALUES (1439,'Bandar-e Anzali','IRN','Gilan',98500);
+INSERT INTO `city` VALUES (1440,'Rafsanjan','IRN','Kerman',98300);
+INSERT INTO `city` VALUES (1441,'Marand','IRN','East Azerbaidzan',96400);
+INSERT INTO `city` VALUES (1442,'Torbat-e Heydariyeh','IRN','Khorasan',94600);
+INSERT INTO `city` VALUES (1443,'Jahrom','IRN','Fars',94200);
+INSERT INTO `city` VALUES (1444,'Semnan','IRN','Semnan',91045);
+INSERT INTO `city` VALUES (1445,'Miandoab','IRN','West Azerbaidzan',90100);
+INSERT INTO `city` VALUES (1446,'Qomsheh','IRN','Esfahan',89800);
+INSERT INTO `city` VALUES (1447,'Dublin','IRL','Leinster',481854);
+INSERT INTO `city` VALUES (1448,'Cork','IRL','Munster',127187);
+INSERT INTO `city` VALUES (1449,'Reykjavík','ISL','Höfuðborgarsvæði',109184);
+INSERT INTO `city` VALUES (1450,'Jerusalem','ISR','Jerusalem',633700);
+INSERT INTO `city` VALUES (1451,'Tel Aviv-Jaffa','ISR','Tel Aviv',348100);
+INSERT INTO `city` VALUES (1452,'Haifa','ISR','Haifa',265700);
+INSERT INTO `city` VALUES (1453,'Rishon Le Ziyyon','ISR','Ha Merkaz',188200);
+INSERT INTO `city` VALUES (1454,'Beerseba','ISR','Ha Darom',163700);
+INSERT INTO `city` VALUES (1455,'Holon','ISR','Tel Aviv',163100);
+INSERT INTO `city` VALUES (1456,'Petah Tiqwa','ISR','Ha Merkaz',159400);
+INSERT INTO `city` VALUES (1457,'Ashdod','ISR','Ha Darom',155800);
+INSERT INTO `city` VALUES (1458,'Netanya','ISR','Ha Merkaz',154900);
+INSERT INTO `city` VALUES (1459,'Bat Yam','ISR','Tel Aviv',137000);
+INSERT INTO `city` VALUES (1460,'Bene Beraq','ISR','Tel Aviv',133900);
+INSERT INTO `city` VALUES (1461,'Ramat Gan','ISR','Tel Aviv',126900);
+INSERT INTO `city` VALUES (1462,'Ashqelon','ISR','Ha Darom',92300);
+INSERT INTO `city` VALUES (1463,'Rehovot','ISR','Ha Merkaz',90300);
+INSERT INTO `city` VALUES (1464,'Roma','ITA','Latium',2643581);
+INSERT INTO `city` VALUES (1465,'Milano','ITA','Lombardia',1300977);
+INSERT INTO `city` VALUES (1466,'Napoli','ITA','Campania',1002619);
+INSERT INTO `city` VALUES (1467,'Torino','ITA','Piemonte',903705);
+INSERT INTO `city` VALUES (1468,'Palermo','ITA','Sisilia',683794);
+INSERT INTO `city` VALUES (1469,'Genova','ITA','Liguria',636104);
+INSERT INTO `city` VALUES (1470,'Bologna','ITA','Emilia-Romagna',381161);
+INSERT INTO `city` VALUES (1471,'Firenze','ITA','Toscana',376662);
+INSERT INTO `city` VALUES (1472,'Catania','ITA','Sisilia',337862);
+INSERT INTO `city` VALUES (1473,'Bari','ITA','Apulia',331848);
+INSERT INTO `city` VALUES (1474,'Venezia','ITA','Veneto',277305);
+INSERT INTO `city` VALUES (1475,'Messina','ITA','Sisilia',259156);
+INSERT INTO `city` VALUES (1476,'Verona','ITA','Veneto',255268);
+INSERT INTO `city` VALUES (1477,'Trieste','ITA','Friuli-Venezia Giuli',216459);
+INSERT INTO `city` VALUES (1478,'Padova','ITA','Veneto',211391);
+INSERT INTO `city` VALUES (1479,'Taranto','ITA','Apulia',208214);
+INSERT INTO `city` VALUES (1480,'Brescia','ITA','Lombardia',191317);
+INSERT INTO `city` VALUES (1481,'Reggio di Calabria','ITA','Calabria',179617);
+INSERT INTO `city` VALUES (1482,'Modena','ITA','Emilia-Romagna',176022);
+INSERT INTO `city` VALUES (1483,'Prato','ITA','Toscana',172473);
+INSERT INTO `city` VALUES (1484,'Parma','ITA','Emilia-Romagna',168717);
+INSERT INTO `city` VALUES (1485,'Cagliari','ITA','Sardinia',165926);
+INSERT INTO `city` VALUES (1486,'Livorno','ITA','Toscana',161673);
+INSERT INTO `city` VALUES (1487,'Perugia','ITA','Umbria',156673);
+INSERT INTO `city` VALUES (1488,'Foggia','ITA','Apulia',154891);
+INSERT INTO `city` VALUES (1489,'Reggio nell´ Emilia','ITA','Emilia-Romagna',143664);
+INSERT INTO `city` VALUES (1490,'Salerno','ITA','Campania',142055);
+INSERT INTO `city` VALUES (1491,'Ravenna','ITA','Emilia-Romagna',138418);
+INSERT INTO `city` VALUES (1492,'Ferrara','ITA','Emilia-Romagna',132127);
+INSERT INTO `city` VALUES (1493,'Rimini','ITA','Emilia-Romagna',131062);
+INSERT INTO `city` VALUES (1494,'Syrakusa','ITA','Sisilia',126282);
+INSERT INTO `city` VALUES (1495,'Sassari','ITA','Sardinia',120803);
+INSERT INTO `city` VALUES (1496,'Monza','ITA','Lombardia',119516);
+INSERT INTO `city` VALUES (1497,'Bergamo','ITA','Lombardia',117837);
+INSERT INTO `city` VALUES (1498,'Pescara','ITA','Abruzzit',115698);
+INSERT INTO `city` VALUES (1499,'Latina','ITA','Latium',114099);
+INSERT INTO `city` VALUES (1500,'Vicenza','ITA','Veneto',109738);
+INSERT INTO `city` VALUES (1501,'Terni','ITA','Umbria',107770);
+INSERT INTO `city` VALUES (1502,'Forlì','ITA','Emilia-Romagna',107475);
+INSERT INTO `city` VALUES (1503,'Trento','ITA','Trentino-Alto Adige',104906);
+INSERT INTO `city` VALUES (1504,'Novara','ITA','Piemonte',102037);
+INSERT INTO `city` VALUES (1505,'Piacenza','ITA','Emilia-Romagna',98384);
+INSERT INTO `city` VALUES (1506,'Ancona','ITA','Marche',98329);
+INSERT INTO `city` VALUES (1507,'Lecce','ITA','Apulia',98208);
+INSERT INTO `city` VALUES (1508,'Bolzano','ITA','Trentino-Alto Adige',97232);
+INSERT INTO `city` VALUES (1509,'Catanzaro','ITA','Calabria',96700);
+INSERT INTO `city` VALUES (1510,'La Spezia','ITA','Liguria',95504);
+INSERT INTO `city` VALUES (1511,'Udine','ITA','Friuli-Venezia Giuli',94932);
+INSERT INTO `city` VALUES (1512,'Torre del Greco','ITA','Campania',94505);
+INSERT INTO `city` VALUES (1513,'Andria','ITA','Apulia',94443);
+INSERT INTO `city` VALUES (1514,'Brindisi','ITA','Apulia',93454);
+INSERT INTO `city` VALUES (1515,'Giugliano in Campania','ITA','Campania',93286);
+INSERT INTO `city` VALUES (1516,'Pisa','ITA','Toscana',92379);
+INSERT INTO `city` VALUES (1517,'Barletta','ITA','Apulia',91904);
+INSERT INTO `city` VALUES (1518,'Arezzo','ITA','Toscana',91729);
+INSERT INTO `city` VALUES (1519,'Alessandria','ITA','Piemonte',90289);
+INSERT INTO `city` VALUES (1520,'Cesena','ITA','Emilia-Romagna',89852);
+INSERT INTO `city` VALUES (1521,'Pesaro','ITA','Marche',88987);
+INSERT INTO `city` VALUES (1522,'Dili','TMP','Dili',47900);
+INSERT INTO `city` VALUES (1523,'Wien','AUT','Wien',1608144);
+INSERT INTO `city` VALUES (1524,'Graz','AUT','Steiermark',240967);
+INSERT INTO `city` VALUES (1525,'Linz','AUT','North Austria',188022);
+INSERT INTO `city` VALUES (1526,'Salzburg','AUT','Salzburg',144247);
+INSERT INTO `city` VALUES (1527,'Innsbruck','AUT','Tiroli',111752);
+INSERT INTO `city` VALUES (1528,'Klagenfurt','AUT','Kärnten',91141);
+INSERT INTO `city` VALUES (1529,'Spanish Town','JAM','St. Catherine',110379);
+INSERT INTO `city` VALUES (1530,'Kingston','JAM','St. Andrew',103962);
+INSERT INTO `city` VALUES (1531,'Portmore','JAM','St. Andrew',99799);
+INSERT INTO `city` VALUES (1532,'Tokyo','JPN','Tokyo-to',7980230);
+INSERT INTO `city` VALUES (1533,'Jokohama [Yokohama]','JPN','Kanagawa',3339594);
+INSERT INTO `city` VALUES (1534,'Osaka','JPN','Osaka',2595674);
+INSERT INTO `city` VALUES (1535,'Nagoya','JPN','Aichi',2154376);
+INSERT INTO `city` VALUES (1536,'Sapporo','JPN','Hokkaido',1790886);
+INSERT INTO `city` VALUES (1537,'Kioto','JPN','Kyoto',1461974);
+INSERT INTO `city` VALUES (1538,'Kobe','JPN','Hyogo',1425139);
+INSERT INTO `city` VALUES (1539,'Fukuoka','JPN','Fukuoka',1308379);
+INSERT INTO `city` VALUES (1540,'Kawasaki','JPN','Kanagawa',1217359);
+INSERT INTO `city` VALUES (1541,'Hiroshima','JPN','Hiroshima',1119117);
+INSERT INTO `city` VALUES (1542,'Kitakyushu','JPN','Fukuoka',1016264);
+INSERT INTO `city` VALUES (1543,'Sendai','JPN','Miyagi',989975);
+INSERT INTO `city` VALUES (1544,'Chiba','JPN','Chiba',863930);
+INSERT INTO `city` VALUES (1545,'Sakai','JPN','Osaka',797735);
+INSERT INTO `city` VALUES (1546,'Kumamoto','JPN','Kumamoto',656734);
+INSERT INTO `city` VALUES (1547,'Okayama','JPN','Okayama',624269);
+INSERT INTO `city` VALUES (1548,'Sagamihara','JPN','Kanagawa',586300);
+INSERT INTO `city` VALUES (1549,'Hamamatsu','JPN','Shizuoka',568796);
+INSERT INTO `city` VALUES (1550,'Kagoshima','JPN','Kagoshima',549977);
+INSERT INTO `city` VALUES (1551,'Funabashi','JPN','Chiba',545299);
+INSERT INTO `city` VALUES (1552,'Higashiosaka','JPN','Osaka',517785);
+INSERT INTO `city` VALUES (1553,'Hachioji','JPN','Tokyo-to',513451);
+INSERT INTO `city` VALUES (1554,'Niigata','JPN','Niigata',497464);
+INSERT INTO `city` VALUES (1555,'Amagasaki','JPN','Hyogo',481434);
+INSERT INTO `city` VALUES (1556,'Himeji','JPN','Hyogo',475167);
+INSERT INTO `city` VALUES (1557,'Shizuoka','JPN','Shizuoka',473854);
+INSERT INTO `city` VALUES (1558,'Urawa','JPN','Saitama',469675);
+INSERT INTO `city` VALUES (1559,'Matsuyama','JPN','Ehime',466133);
+INSERT INTO `city` VALUES (1560,'Matsudo','JPN','Chiba',461126);
+INSERT INTO `city` VALUES (1561,'Kanazawa','JPN','Ishikawa',455386);
+INSERT INTO `city` VALUES (1562,'Kawaguchi','JPN','Saitama',452155);
+INSERT INTO `city` VALUES (1563,'Ichikawa','JPN','Chiba',441893);
+INSERT INTO `city` VALUES (1564,'Omiya','JPN','Saitama',441649);
+INSERT INTO `city` VALUES (1565,'Utsunomiya','JPN','Tochigi',440353);
+INSERT INTO `city` VALUES (1566,'Oita','JPN','Oita',433401);
+INSERT INTO `city` VALUES (1567,'Nagasaki','JPN','Nagasaki',432759);
+INSERT INTO `city` VALUES (1568,'Yokosuka','JPN','Kanagawa',430200);
+INSERT INTO `city` VALUES (1569,'Kurashiki','JPN','Okayama',425103);
+INSERT INTO `city` VALUES (1570,'Gifu','JPN','Gifu',408007);
+INSERT INTO `city` VALUES (1571,'Hirakata','JPN','Osaka',403151);
+INSERT INTO `city` VALUES (1572,'Nishinomiya','JPN','Hyogo',397618);
+INSERT INTO `city` VALUES (1573,'Toyonaka','JPN','Osaka',396689);
+INSERT INTO `city` VALUES (1574,'Wakayama','JPN','Wakayama',391233);
+INSERT INTO `city` VALUES (1575,'Fukuyama','JPN','Hiroshima',376921);
+INSERT INTO `city` VALUES (1576,'Fujisawa','JPN','Kanagawa',372840);
+INSERT INTO `city` VALUES (1577,'Asahikawa','JPN','Hokkaido',364813);
+INSERT INTO `city` VALUES (1578,'Machida','JPN','Tokyo-to',364197);
+INSERT INTO `city` VALUES (1579,'Nara','JPN','Nara',362812);
+INSERT INTO `city` VALUES (1580,'Takatsuki','JPN','Osaka',361747);
+INSERT INTO `city` VALUES (1581,'Iwaki','JPN','Fukushima',361737);
+INSERT INTO `city` VALUES (1582,'Nagano','JPN','Nagano',361391);
+INSERT INTO `city` VALUES (1583,'Toyohashi','JPN','Aichi',360066);
+INSERT INTO `city` VALUES (1584,'Toyota','JPN','Aichi',346090);
+INSERT INTO `city` VALUES (1585,'Suita','JPN','Osaka',345750);
+INSERT INTO `city` VALUES (1586,'Takamatsu','JPN','Kagawa',332471);
+INSERT INTO `city` VALUES (1587,'Koriyama','JPN','Fukushima',330335);
+INSERT INTO `city` VALUES (1588,'Okazaki','JPN','Aichi',328711);
+INSERT INTO `city` VALUES (1589,'Kawagoe','JPN','Saitama',327211);
+INSERT INTO `city` VALUES (1590,'Tokorozawa','JPN','Saitama',325809);
+INSERT INTO `city` VALUES (1591,'Toyama','JPN','Toyama',325790);
+INSERT INTO `city` VALUES (1592,'Kochi','JPN','Kochi',324710);
+INSERT INTO `city` VALUES (1593,'Kashiwa','JPN','Chiba',320296);
+INSERT INTO `city` VALUES (1594,'Akita','JPN','Akita',314440);
+INSERT INTO `city` VALUES (1595,'Miyazaki','JPN','Miyazaki',303784);
+INSERT INTO `city` VALUES (1596,'Koshigaya','JPN','Saitama',301446);
+INSERT INTO `city` VALUES (1597,'Naha','JPN','Okinawa',299851);
+INSERT INTO `city` VALUES (1598,'Aomori','JPN','Aomori',295969);
+INSERT INTO `city` VALUES (1599,'Hakodate','JPN','Hokkaido',294788);
+INSERT INTO `city` VALUES (1600,'Akashi','JPN','Hyogo',292253);
+INSERT INTO `city` VALUES (1601,'Yokkaichi','JPN','Mie',288173);
+INSERT INTO `city` VALUES (1602,'Fukushima','JPN','Fukushima',287525);
+INSERT INTO `city` VALUES (1603,'Morioka','JPN','Iwate',287353);
+INSERT INTO `city` VALUES (1604,'Maebashi','JPN','Gumma',284473);
+INSERT INTO `city` VALUES (1605,'Kasugai','JPN','Aichi',282348);
+INSERT INTO `city` VALUES (1606,'Otsu','JPN','Shiga',282070);
+INSERT INTO `city` VALUES (1607,'Ichihara','JPN','Chiba',279280);
+INSERT INTO `city` VALUES (1608,'Yao','JPN','Osaka',276421);
+INSERT INTO `city` VALUES (1609,'Ichinomiya','JPN','Aichi',270828);
+INSERT INTO `city` VALUES (1610,'Tokushima','JPN','Tokushima',269649);
+INSERT INTO `city` VALUES (1611,'Kakogawa','JPN','Hyogo',266281);
+INSERT INTO `city` VALUES (1612,'Ibaraki','JPN','Osaka',261020);
+INSERT INTO `city` VALUES (1613,'Neyagawa','JPN','Osaka',257315);
+INSERT INTO `city` VALUES (1614,'Shimonoseki','JPN','Yamaguchi',257263);
+INSERT INTO `city` VALUES (1615,'Yamagata','JPN','Yamagata',255617);
+INSERT INTO `city` VALUES (1616,'Fukui','JPN','Fukui',254818);
+INSERT INTO `city` VALUES (1617,'Hiratsuka','JPN','Kanagawa',254207);
+INSERT INTO `city` VALUES (1618,'Mito','JPN','Ibaragi',246559);
+INSERT INTO `city` VALUES (1619,'Sasebo','JPN','Nagasaki',244240);
+INSERT INTO `city` VALUES (1620,'Hachinohe','JPN','Aomori',242979);
+INSERT INTO `city` VALUES (1621,'Takasaki','JPN','Gumma',239124);
+INSERT INTO `city` VALUES (1622,'Shimizu','JPN','Shizuoka',239123);
+INSERT INTO `city` VALUES (1623,'Kurume','JPN','Fukuoka',235611);
+INSERT INTO `city` VALUES (1624,'Fuji','JPN','Shizuoka',231527);
+INSERT INTO `city` VALUES (1625,'Soka','JPN','Saitama',222768);
+INSERT INTO `city` VALUES (1626,'Fuchu','JPN','Tokyo-to',220576);
+INSERT INTO `city` VALUES (1627,'Chigasaki','JPN','Kanagawa',216015);
+INSERT INTO `city` VALUES (1628,'Atsugi','JPN','Kanagawa',212407);
+INSERT INTO `city` VALUES (1629,'Numazu','JPN','Shizuoka',211382);
+INSERT INTO `city` VALUES (1630,'Ageo','JPN','Saitama',209442);
+INSERT INTO `city` VALUES (1631,'Yamato','JPN','Kanagawa',208234);
+INSERT INTO `city` VALUES (1632,'Matsumoto','JPN','Nagano',206801);
+INSERT INTO `city` VALUES (1633,'Kure','JPN','Hiroshima',206504);
+INSERT INTO `city` VALUES (1634,'Takarazuka','JPN','Hyogo',205993);
+INSERT INTO `city` VALUES (1635,'Kasukabe','JPN','Saitama',201838);
+INSERT INTO `city` VALUES (1636,'Chofu','JPN','Tokyo-to',201585);
+INSERT INTO `city` VALUES (1637,'Odawara','JPN','Kanagawa',200171);
+INSERT INTO `city` VALUES (1638,'Kofu','JPN','Yamanashi',199753);
+INSERT INTO `city` VALUES (1639,'Kushiro','JPN','Hokkaido',197608);
+INSERT INTO `city` VALUES (1640,'Kishiwada','JPN','Osaka',197276);
+INSERT INTO `city` VALUES (1641,'Hitachi','JPN','Ibaragi',196622);
+INSERT INTO `city` VALUES (1642,'Nagaoka','JPN','Niigata',192407);
+INSERT INTO `city` VALUES (1643,'Itami','JPN','Hyogo',190886);
+INSERT INTO `city` VALUES (1644,'Uji','JPN','Kyoto',188735);
+INSERT INTO `city` VALUES (1645,'Suzuka','JPN','Mie',184061);
+INSERT INTO `city` VALUES (1646,'Hirosaki','JPN','Aomori',177522);
+INSERT INTO `city` VALUES (1647,'Ube','JPN','Yamaguchi',175206);
+INSERT INTO `city` VALUES (1648,'Kodaira','JPN','Tokyo-to',174984);
+INSERT INTO `city` VALUES (1649,'Takaoka','JPN','Toyama',174380);
+INSERT INTO `city` VALUES (1650,'Obihiro','JPN','Hokkaido',173685);
+INSERT INTO `city` VALUES (1651,'Tomakomai','JPN','Hokkaido',171958);
+INSERT INTO `city` VALUES (1652,'Saga','JPN','Saga',170034);
+INSERT INTO `city` VALUES (1653,'Sakura','JPN','Chiba',168072);
+INSERT INTO `city` VALUES (1654,'Kamakura','JPN','Kanagawa',167661);
+INSERT INTO `city` VALUES (1655,'Mitaka','JPN','Tokyo-to',167268);
+INSERT INTO `city` VALUES (1656,'Izumi','JPN','Osaka',166979);
+INSERT INTO `city` VALUES (1657,'Hino','JPN','Tokyo-to',166770);
+INSERT INTO `city` VALUES (1658,'Hadano','JPN','Kanagawa',166512);
+INSERT INTO `city` VALUES (1659,'Ashikaga','JPN','Tochigi',165243);
+INSERT INTO `city` VALUES (1660,'Tsu','JPN','Mie',164543);
+INSERT INTO `city` VALUES (1661,'Sayama','JPN','Saitama',162472);
+INSERT INTO `city` VALUES (1662,'Yachiyo','JPN','Chiba',161222);
+INSERT INTO `city` VALUES (1663,'Tsukuba','JPN','Ibaragi',160768);
+INSERT INTO `city` VALUES (1664,'Tachikawa','JPN','Tokyo-to',159430);
+INSERT INTO `city` VALUES (1665,'Kumagaya','JPN','Saitama',157171);
+INSERT INTO `city` VALUES (1666,'Moriguchi','JPN','Osaka',155941);
+INSERT INTO `city` VALUES (1667,'Otaru','JPN','Hokkaido',155784);
+INSERT INTO `city` VALUES (1668,'Anjo','JPN','Aichi',153823);
+INSERT INTO `city` VALUES (1669,'Narashino','JPN','Chiba',152849);
+INSERT INTO `city` VALUES (1670,'Oyama','JPN','Tochigi',152820);
+INSERT INTO `city` VALUES (1671,'Ogaki','JPN','Gifu',151758);
+INSERT INTO `city` VALUES (1672,'Matsue','JPN','Shimane',149821);
+INSERT INTO `city` VALUES (1673,'Kawanishi','JPN','Hyogo',149794);
+INSERT INTO `city` VALUES (1674,'Hitachinaka','JPN','Tokyo-to',148006);
+INSERT INTO `city` VALUES (1675,'Niiza','JPN','Saitama',147744);
+INSERT INTO `city` VALUES (1676,'Nagareyama','JPN','Chiba',147738);
+INSERT INTO `city` VALUES (1677,'Tottori','JPN','Tottori',147523);
+INSERT INTO `city` VALUES (1678,'Tama','JPN','Ibaragi',146712);
+INSERT INTO `city` VALUES (1679,'Iruma','JPN','Saitama',145922);
+INSERT INTO `city` VALUES (1680,'Ota','JPN','Gumma',145317);
+INSERT INTO `city` VALUES (1681,'Omuta','JPN','Fukuoka',142889);
+INSERT INTO `city` VALUES (1682,'Komaki','JPN','Aichi',139827);
+INSERT INTO `city` VALUES (1683,'Ome','JPN','Tokyo-to',139216);
+INSERT INTO `city` VALUES (1684,'Kadoma','JPN','Osaka',138953);
+INSERT INTO `city` VALUES (1685,'Yamaguchi','JPN','Yamaguchi',138210);
+INSERT INTO `city` VALUES (1686,'Higashimurayama','JPN','Tokyo-to',136970);
+INSERT INTO `city` VALUES (1687,'Yonago','JPN','Tottori',136461);
+INSERT INTO `city` VALUES (1688,'Matsubara','JPN','Osaka',135010);
+INSERT INTO `city` VALUES (1689,'Musashino','JPN','Tokyo-to',134426);
+INSERT INTO `city` VALUES (1690,'Tsuchiura','JPN','Ibaragi',134072);
+INSERT INTO `city` VALUES (1691,'Joetsu','JPN','Niigata',133505);
+INSERT INTO `city` VALUES (1692,'Miyakonojo','JPN','Miyazaki',133183);
+INSERT INTO `city` VALUES (1693,'Misato','JPN','Saitama',132957);
+INSERT INTO `city` VALUES (1694,'Kakamigahara','JPN','Gifu',131831);
+INSERT INTO `city` VALUES (1695,'Daito','JPN','Osaka',130594);
+INSERT INTO `city` VALUES (1696,'Seto','JPN','Aichi',130470);
+INSERT INTO `city` VALUES (1697,'Kariya','JPN','Aichi',127969);
+INSERT INTO `city` VALUES (1698,'Urayasu','JPN','Chiba',127550);
+INSERT INTO `city` VALUES (1699,'Beppu','JPN','Oita',127486);
+INSERT INTO `city` VALUES (1700,'Niihama','JPN','Ehime',127207);
+INSERT INTO `city` VALUES (1701,'Minoo','JPN','Osaka',127026);
+INSERT INTO `city` VALUES (1702,'Fujieda','JPN','Shizuoka',126897);
+INSERT INTO `city` VALUES (1703,'Abiko','JPN','Chiba',126670);
+INSERT INTO `city` VALUES (1704,'Nobeoka','JPN','Miyazaki',125547);
+INSERT INTO `city` VALUES (1705,'Tondabayashi','JPN','Osaka',125094);
+INSERT INTO `city` VALUES (1706,'Ueda','JPN','Nagano',124217);
+INSERT INTO `city` VALUES (1707,'Kashihara','JPN','Nara',124013);
+INSERT INTO `city` VALUES (1708,'Matsusaka','JPN','Mie',123582);
+INSERT INTO `city` VALUES (1709,'Isesaki','JPN','Gumma',123285);
+INSERT INTO `city` VALUES (1710,'Zama','JPN','Kanagawa',122046);
+INSERT INTO `city` VALUES (1711,'Kisarazu','JPN','Chiba',121967);
+INSERT INTO `city` VALUES (1712,'Noda','JPN','Chiba',121030);
+INSERT INTO `city` VALUES (1713,'Ishinomaki','JPN','Miyagi',120963);
+INSERT INTO `city` VALUES (1714,'Fujinomiya','JPN','Shizuoka',119714);
+INSERT INTO `city` VALUES (1715,'Kawachinagano','JPN','Osaka',119666);
+INSERT INTO `city` VALUES (1716,'Imabari','JPN','Ehime',119357);
+INSERT INTO `city` VALUES (1717,'Aizuwakamatsu','JPN','Fukushima',119287);
+INSERT INTO `city` VALUES (1718,'Higashihiroshima','JPN','Hiroshima',119166);
+INSERT INTO `city` VALUES (1719,'Habikino','JPN','Osaka',118968);
+INSERT INTO `city` VALUES (1720,'Ebetsu','JPN','Hokkaido',118805);
+INSERT INTO `city` VALUES (1721,'Hofu','JPN','Yamaguchi',118751);
+INSERT INTO `city` VALUES (1722,'Kiryu','JPN','Gumma',118326);
+INSERT INTO `city` VALUES (1723,'Okinawa','JPN','Okinawa',117748);
+INSERT INTO `city` VALUES (1724,'Yaizu','JPN','Shizuoka',117258);
+INSERT INTO `city` VALUES (1725,'Toyokawa','JPN','Aichi',115781);
+INSERT INTO `city` VALUES (1726,'Ebina','JPN','Kanagawa',115571);
+INSERT INTO `city` VALUES (1727,'Asaka','JPN','Saitama',114815);
+INSERT INTO `city` VALUES (1728,'Higashikurume','JPN','Tokyo-to',111666);
+INSERT INTO `city` VALUES (1729,'Ikoma','JPN','Nara',111645);
+INSERT INTO `city` VALUES (1730,'Kitami','JPN','Hokkaido',111295);
+INSERT INTO `city` VALUES (1731,'Koganei','JPN','Tokyo-to',110969);
+INSERT INTO `city` VALUES (1732,'Iwatsuki','JPN','Saitama',110034);
+INSERT INTO `city` VALUES (1733,'Mishima','JPN','Shizuoka',109699);
+INSERT INTO `city` VALUES (1734,'Handa','JPN','Aichi',108600);
+INSERT INTO `city` VALUES (1735,'Muroran','JPN','Hokkaido',108275);
+INSERT INTO `city` VALUES (1736,'Komatsu','JPN','Ishikawa',107937);
+INSERT INTO `city` VALUES (1737,'Yatsushiro','JPN','Kumamoto',107661);
+INSERT INTO `city` VALUES (1738,'Iida','JPN','Nagano',107583);
+INSERT INTO `city` VALUES (1739,'Tokuyama','JPN','Yamaguchi',107078);
+INSERT INTO `city` VALUES (1740,'Kokubunji','JPN','Tokyo-to',106996);
+INSERT INTO `city` VALUES (1741,'Akishima','JPN','Tokyo-to',106914);
+INSERT INTO `city` VALUES (1742,'Iwakuni','JPN','Yamaguchi',106647);
+INSERT INTO `city` VALUES (1743,'Kusatsu','JPN','Shiga',106232);
+INSERT INTO `city` VALUES (1744,'Kuwana','JPN','Mie',106121);
+INSERT INTO `city` VALUES (1745,'Sanda','JPN','Hyogo',105643);
+INSERT INTO `city` VALUES (1746,'Hikone','JPN','Shiga',105508);
+INSERT INTO `city` VALUES (1747,'Toda','JPN','Saitama',103969);
+INSERT INTO `city` VALUES (1748,'Tajimi','JPN','Gifu',103171);
+INSERT INTO `city` VALUES (1749,'Ikeda','JPN','Osaka',102710);
+INSERT INTO `city` VALUES (1750,'Fukaya','JPN','Saitama',102156);
+INSERT INTO `city` VALUES (1751,'Ise','JPN','Mie',101732);
+INSERT INTO `city` VALUES (1752,'Sakata','JPN','Yamagata',101651);
+INSERT INTO `city` VALUES (1753,'Kasuga','JPN','Fukuoka',101344);
+INSERT INTO `city` VALUES (1754,'Kamagaya','JPN','Chiba',100821);
+INSERT INTO `city` VALUES (1755,'Tsuruoka','JPN','Yamagata',100713);
+INSERT INTO `city` VALUES (1756,'Hoya','JPN','Tokyo-to',100313);
+INSERT INTO `city` VALUES (1757,'Nishio','JPN','Chiba',100032);
+INSERT INTO `city` VALUES (1758,'Tokai','JPN','Aichi',99738);
+INSERT INTO `city` VALUES (1759,'Inazawa','JPN','Aichi',98746);
+INSERT INTO `city` VALUES (1760,'Sakado','JPN','Saitama',98221);
+INSERT INTO `city` VALUES (1761,'Isehara','JPN','Kanagawa',98123);
+INSERT INTO `city` VALUES (1762,'Takasago','JPN','Hyogo',97632);
+INSERT INTO `city` VALUES (1763,'Fujimi','JPN','Saitama',96972);
+INSERT INTO `city` VALUES (1764,'Urasoe','JPN','Okinawa',96002);
+INSERT INTO `city` VALUES (1765,'Yonezawa','JPN','Yamagata',95592);
+INSERT INTO `city` VALUES (1766,'Konan','JPN','Aichi',95521);
+INSERT INTO `city` VALUES (1767,'Yamatokoriyama','JPN','Nara',95165);
+INSERT INTO `city` VALUES (1768,'Maizuru','JPN','Kyoto',94784);
+INSERT INTO `city` VALUES (1769,'Onomichi','JPN','Hiroshima',93756);
+INSERT INTO `city` VALUES (1770,'Higashimatsuyama','JPN','Saitama',93342);
+INSERT INTO `city` VALUES (1771,'Kimitsu','JPN','Chiba',93216);
+INSERT INTO `city` VALUES (1772,'Isahaya','JPN','Nagasaki',93058);
+INSERT INTO `city` VALUES (1773,'Kanuma','JPN','Tochigi',93053);
+INSERT INTO `city` VALUES (1774,'Izumisano','JPN','Osaka',92583);
+INSERT INTO `city` VALUES (1775,'Kameoka','JPN','Kyoto',92398);
+INSERT INTO `city` VALUES (1776,'Mobara','JPN','Chiba',91664);
+INSERT INTO `city` VALUES (1777,'Narita','JPN','Chiba',91470);
+INSERT INTO `city` VALUES (1778,'Kashiwazaki','JPN','Niigata',91229);
+INSERT INTO `city` VALUES (1779,'Tsuyama','JPN','Okayama',91170);
+INSERT INTO `city` VALUES (1780,'Sanaa','YEM','Sanaa',503600);
+INSERT INTO `city` VALUES (1781,'Aden','YEM','Aden',398300);
+INSERT INTO `city` VALUES (1782,'Taizz','YEM','Taizz',317600);
+INSERT INTO `city` VALUES (1783,'Hodeida','YEM','Hodeida',298500);
+INSERT INTO `city` VALUES (1784,'al-Mukalla','YEM','Hadramawt',122400);
+INSERT INTO `city` VALUES (1785,'Ibb','YEM','Ibb',103300);
+INSERT INTO `city` VALUES (1786,'Amman','JOR','Amman',1000000);
+INSERT INTO `city` VALUES (1787,'al-Zarqa','JOR','al-Zarqa',389815);
+INSERT INTO `city` VALUES (1788,'Irbid','JOR','Irbid',231511);
+INSERT INTO `city` VALUES (1789,'al-Rusayfa','JOR','al-Zarqa',137247);
+INSERT INTO `city` VALUES (1790,'Wadi al-Sir','JOR','Amman',89104);
+INSERT INTO `city` VALUES (1791,'Flying Fish Cove','CXR','–',700);
+INSERT INTO `city` VALUES (1792,'Beograd','YUG','Central Serbia',1204000);
+INSERT INTO `city` VALUES (1793,'Novi Sad','YUG','Vojvodina',179626);
+INSERT INTO `city` VALUES (1794,'Niš','YUG','Central Serbia',175391);
+INSERT INTO `city` VALUES (1795,'Priština','YUG','Kosovo and Metohija',155496);
+INSERT INTO `city` VALUES (1796,'Kragujevac','YUG','Central Serbia',147305);
+INSERT INTO `city` VALUES (1797,'Podgorica','YUG','Montenegro',135000);
+INSERT INTO `city` VALUES (1798,'Subotica','YUG','Vojvodina',100386);
+INSERT INTO `city` VALUES (1799,'Prizren','YUG','Kosovo and Metohija',92303);
+INSERT INTO `city` VALUES (1800,'Phnom Penh','KHM','Phnom Penh',570155);
+INSERT INTO `city` VALUES (1801,'Battambang','KHM','Battambang',129800);
+INSERT INTO `city` VALUES (1802,'Siem Reap','KHM','Siem Reap',105100);
+INSERT INTO `city` VALUES (1803,'Douala','CMR','Littoral',1448300);
+INSERT INTO `city` VALUES (1804,'Yaoundé','CMR','Centre',1372800);
+INSERT INTO `city` VALUES (1805,'Garoua','CMR','Nord',177000);
+INSERT INTO `city` VALUES (1806,'Maroua','CMR','Extrême-Nord',143000);
+INSERT INTO `city` VALUES (1807,'Bamenda','CMR','Nord-Ouest',138000);
+INSERT INTO `city` VALUES (1808,'Bafoussam','CMR','Ouest',131000);
+INSERT INTO `city` VALUES (1809,'Nkongsamba','CMR','Littoral',112454);
+INSERT INTO `city` VALUES (1810,'Montréal','CAN','Québec',1016376);
+INSERT INTO `city` VALUES (1811,'Calgary','CAN','Alberta',768082);
+INSERT INTO `city` VALUES (1812,'Toronto','CAN','Ontario',688275);
+INSERT INTO `city` VALUES (1813,'North York','CAN','Ontario',622632);
+INSERT INTO `city` VALUES (1814,'Winnipeg','CAN','Manitoba',618477);
+INSERT INTO `city` VALUES (1815,'Edmonton','CAN','Alberta',616306);
+INSERT INTO `city` VALUES (1816,'Mississauga','CAN','Ontario',608072);
+INSERT INTO `city` VALUES (1817,'Scarborough','CAN','Ontario',594501);
+INSERT INTO `city` VALUES (1818,'Vancouver','CAN','British Colombia',514008);
+INSERT INTO `city` VALUES (1819,'Etobicoke','CAN','Ontario',348845);
+INSERT INTO `city` VALUES (1820,'London','CAN','Ontario',339917);
+INSERT INTO `city` VALUES (1821,'Hamilton','CAN','Ontario',335614);
+INSERT INTO `city` VALUES (1822,'Ottawa','CAN','Ontario',335277);
+INSERT INTO `city` VALUES (1823,'Laval','CAN','Québec',330393);
+INSERT INTO `city` VALUES (1824,'Surrey','CAN','British Colombia',304477);
+INSERT INTO `city` VALUES (1825,'Brampton','CAN','Ontario',296711);
+INSERT INTO `city` VALUES (1826,'Windsor','CAN','Ontario',207588);
+INSERT INTO `city` VALUES (1827,'Saskatoon','CAN','Saskatchewan',193647);
+INSERT INTO `city` VALUES (1828,'Kitchener','CAN','Ontario',189959);
+INSERT INTO `city` VALUES (1829,'Markham','CAN','Ontario',189098);
+INSERT INTO `city` VALUES (1830,'Regina','CAN','Saskatchewan',180400);
+INSERT INTO `city` VALUES (1831,'Burnaby','CAN','British Colombia',179209);
+INSERT INTO `city` VALUES (1832,'Québec','CAN','Québec',167264);
+INSERT INTO `city` VALUES (1833,'York','CAN','Ontario',154980);
+INSERT INTO `city` VALUES (1834,'Richmond','CAN','British Colombia',148867);
+INSERT INTO `city` VALUES (1835,'Vaughan','CAN','Ontario',147889);
+INSERT INTO `city` VALUES (1836,'Burlington','CAN','Ontario',145150);
+INSERT INTO `city` VALUES (1837,'Oshawa','CAN','Ontario',140173);
+INSERT INTO `city` VALUES (1838,'Oakville','CAN','Ontario',139192);
+INSERT INTO `city` VALUES (1839,'Saint Catharines','CAN','Ontario',136216);
+INSERT INTO `city` VALUES (1840,'Longueuil','CAN','Québec',127977);
+INSERT INTO `city` VALUES (1841,'Richmond Hill','CAN','Ontario',116428);
+INSERT INTO `city` VALUES (1842,'Thunder Bay','CAN','Ontario',115913);
+INSERT INTO `city` VALUES (1843,'Nepean','CAN','Ontario',115100);
+INSERT INTO `city` VALUES (1844,'Cape Breton','CAN','Nova Scotia',114733);
+INSERT INTO `city` VALUES (1845,'East York','CAN','Ontario',114034);
+INSERT INTO `city` VALUES (1846,'Halifax','CAN','Nova Scotia',113910);
+INSERT INTO `city` VALUES (1847,'Cambridge','CAN','Ontario',109186);
+INSERT INTO `city` VALUES (1848,'Gloucester','CAN','Ontario',107314);
+INSERT INTO `city` VALUES (1849,'Abbotsford','CAN','British Colombia',105403);
+INSERT INTO `city` VALUES (1850,'Guelph','CAN','Ontario',103593);
+INSERT INTO `city` VALUES (1851,'Saint John´s','CAN','Newfoundland',101936);
+INSERT INTO `city` VALUES (1852,'Coquitlam','CAN','British Colombia',101820);
+INSERT INTO `city` VALUES (1853,'Saanich','CAN','British Colombia',101388);
+INSERT INTO `city` VALUES (1854,'Gatineau','CAN','Québec',100702);
+INSERT INTO `city` VALUES (1855,'Delta','CAN','British Colombia',95411);
+INSERT INTO `city` VALUES (1856,'Sudbury','CAN','Ontario',92686);
+INSERT INTO `city` VALUES (1857,'Kelowna','CAN','British Colombia',89442);
+INSERT INTO `city` VALUES (1858,'Barrie','CAN','Ontario',89269);
+INSERT INTO `city` VALUES (1859,'Praia','CPV','São Tiago',94800);
+INSERT INTO `city` VALUES (1860,'Almaty','KAZ','Almaty Qalasy',1129400);
+INSERT INTO `city` VALUES (1861,'Qaraghandy','KAZ','Qaraghandy',436900);
+INSERT INTO `city` VALUES (1862,'Shymkent','KAZ','South Kazakstan',360100);
+INSERT INTO `city` VALUES (1863,'Taraz','KAZ','Taraz',330100);
+INSERT INTO `city` VALUES (1864,'Astana','KAZ','Astana',311200);
+INSERT INTO `city` VALUES (1865,'Öskemen','KAZ','East Kazakstan',311000);
+INSERT INTO `city` VALUES (1866,'Pavlodar','KAZ','Pavlodar',300500);
+INSERT INTO `city` VALUES (1867,'Semey','KAZ','East Kazakstan',269600);
+INSERT INTO `city` VALUES (1868,'Aqtöbe','KAZ','Aqtöbe',253100);
+INSERT INTO `city` VALUES (1869,'Qostanay','KAZ','Qostanay',221400);
+INSERT INTO `city` VALUES (1870,'Petropavl','KAZ','North Kazakstan',203500);
+INSERT INTO `city` VALUES (1871,'Oral','KAZ','West Kazakstan',195500);
+INSERT INTO `city` VALUES (1872,'Temirtau','KAZ','Qaraghandy',170500);
+INSERT INTO `city` VALUES (1873,'Qyzylorda','KAZ','Qyzylorda',157400);
+INSERT INTO `city` VALUES (1874,'Aqtau','KAZ','Mangghystau',143400);
+INSERT INTO `city` VALUES (1875,'Atyrau','KAZ','Atyrau',142500);
+INSERT INTO `city` VALUES (1876,'Ekibastuz','KAZ','Pavlodar',127200);
+INSERT INTO `city` VALUES (1877,'Kökshetau','KAZ','North Kazakstan',123400);
+INSERT INTO `city` VALUES (1878,'Rudnyy','KAZ','Qostanay',109500);
+INSERT INTO `city` VALUES (1879,'Taldyqorghan','KAZ','Almaty',98000);
+INSERT INTO `city` VALUES (1880,'Zhezqazghan','KAZ','Qaraghandy',90000);
+INSERT INTO `city` VALUES (1881,'Nairobi','KEN','Nairobi',2290000);
+INSERT INTO `city` VALUES (1882,'Mombasa','KEN','Coast',461753);
+INSERT INTO `city` VALUES (1883,'Kisumu','KEN','Nyanza',192733);
+INSERT INTO `city` VALUES (1884,'Nakuru','KEN','Rift Valley',163927);
+INSERT INTO `city` VALUES (1885,'Machakos','KEN','Eastern',116293);
+INSERT INTO `city` VALUES (1886,'Eldoret','KEN','Rift Valley',111882);
+INSERT INTO `city` VALUES (1887,'Meru','KEN','Eastern',94947);
+INSERT INTO `city` VALUES (1888,'Nyeri','KEN','Central',91258);
+INSERT INTO `city` VALUES (1889,'Bangui','CAF','Bangui',524000);
+INSERT INTO `city` VALUES (1890,'Shanghai','CHN','Shanghai',9696300);
+INSERT INTO `city` VALUES (1891,'Peking','CHN','Peking',7472000);
+INSERT INTO `city` VALUES (1892,'Chongqing','CHN','Chongqing',6351600);
+INSERT INTO `city` VALUES (1893,'Tianjin','CHN','Tianjin',5286800);
+INSERT INTO `city` VALUES (1894,'Wuhan','CHN','Hubei',4344600);
+INSERT INTO `city` VALUES (1895,'Harbin','CHN','Heilongjiang',4289800);
+INSERT INTO `city` VALUES (1896,'Shenyang','CHN','Liaoning',4265200);
+INSERT INTO `city` VALUES (1897,'Kanton [Guangzhou]','CHN','Guangdong',4256300);
+INSERT INTO `city` VALUES (1898,'Chengdu','CHN','Sichuan',3361500);
+INSERT INTO `city` VALUES (1899,'Nanking [Nanjing]','CHN','Jiangsu',2870300);
+INSERT INTO `city` VALUES (1900,'Changchun','CHN','Jilin',2812000);
+INSERT INTO `city` VALUES (1901,'Xi´an','CHN','Shaanxi',2761400);
+INSERT INTO `city` VALUES (1902,'Dalian','CHN','Liaoning',2697000);
+INSERT INTO `city` VALUES (1903,'Qingdao','CHN','Shandong',2596000);
+INSERT INTO `city` VALUES (1904,'Jinan','CHN','Shandong',2278100);
+INSERT INTO `city` VALUES (1905,'Hangzhou','CHN','Zhejiang',2190500);
+INSERT INTO `city` VALUES (1906,'Zhengzhou','CHN','Henan',2107200);
+INSERT INTO `city` VALUES (1907,'Shijiazhuang','CHN','Hebei',2041500);
+INSERT INTO `city` VALUES (1908,'Taiyuan','CHN','Shanxi',1968400);
+INSERT INTO `city` VALUES (1909,'Kunming','CHN','Yunnan',1829500);
+INSERT INTO `city` VALUES (1910,'Changsha','CHN','Hunan',1809800);
+INSERT INTO `city` VALUES (1911,'Nanchang','CHN','Jiangxi',1691600);
+INSERT INTO `city` VALUES (1912,'Fuzhou','CHN','Fujian',1593800);
+INSERT INTO `city` VALUES (1913,'Lanzhou','CHN','Gansu',1565800);
+INSERT INTO `city` VALUES (1914,'Guiyang','CHN','Guizhou',1465200);
+INSERT INTO `city` VALUES (1915,'Ningbo','CHN','Zhejiang',1371200);
+INSERT INTO `city` VALUES (1916,'Hefei','CHN','Anhui',1369100);
+INSERT INTO `city` VALUES (1917,'Urumtši [Ürümqi]','CHN','Xinxiang',1310100);
+INSERT INTO `city` VALUES (1918,'Anshan','CHN','Liaoning',1200000);
+INSERT INTO `city` VALUES (1919,'Fushun','CHN','Liaoning',1200000);
+INSERT INTO `city` VALUES (1920,'Nanning','CHN','Guangxi',1161800);
+INSERT INTO `city` VALUES (1921,'Zibo','CHN','Shandong',1140000);
+INSERT INTO `city` VALUES (1922,'Qiqihar','CHN','Heilongjiang',1070000);
+INSERT INTO `city` VALUES (1923,'Jilin','CHN','Jilin',1040000);
+INSERT INTO `city` VALUES (1924,'Tangshan','CHN','Hebei',1040000);
+INSERT INTO `city` VALUES (1925,'Baotou','CHN','Inner Mongolia',980000);
+INSERT INTO `city` VALUES (1926,'Shenzhen','CHN','Guangdong',950500);
+INSERT INTO `city` VALUES (1927,'Hohhot','CHN','Inner Mongolia',916700);
+INSERT INTO `city` VALUES (1928,'Handan','CHN','Hebei',840000);
+INSERT INTO `city` VALUES (1929,'Wuxi','CHN','Jiangsu',830000);
+INSERT INTO `city` VALUES (1930,'Xuzhou','CHN','Jiangsu',810000);
+INSERT INTO `city` VALUES (1931,'Datong','CHN','Shanxi',800000);
+INSERT INTO `city` VALUES (1932,'Yichun','CHN','Heilongjiang',800000);
+INSERT INTO `city` VALUES (1933,'Benxi','CHN','Liaoning',770000);
+INSERT INTO `city` VALUES (1934,'Luoyang','CHN','Henan',760000);
+INSERT INTO `city` VALUES (1935,'Suzhou','CHN','Jiangsu',710000);
+INSERT INTO `city` VALUES (1936,'Xining','CHN','Qinghai',700200);
+INSERT INTO `city` VALUES (1937,'Huainan','CHN','Anhui',700000);
+INSERT INTO `city` VALUES (1938,'Jixi','CHN','Heilongjiang',683885);
+INSERT INTO `city` VALUES (1939,'Daqing','CHN','Heilongjiang',660000);
+INSERT INTO `city` VALUES (1940,'Fuxin','CHN','Liaoning',640000);
+INSERT INTO `city` VALUES (1941,'Amoy [Xiamen]','CHN','Fujian',627500);
+INSERT INTO `city` VALUES (1942,'Liuzhou','CHN','Guangxi',610000);
+INSERT INTO `city` VALUES (1943,'Shantou','CHN','Guangdong',580000);
+INSERT INTO `city` VALUES (1944,'Jinzhou','CHN','Liaoning',570000);
+INSERT INTO `city` VALUES (1945,'Mudanjiang','CHN','Heilongjiang',570000);
+INSERT INTO `city` VALUES (1946,'Yinchuan','CHN','Ningxia',544500);
+INSERT INTO `city` VALUES (1947,'Changzhou','CHN','Jiangsu',530000);
+INSERT INTO `city` VALUES (1948,'Zhangjiakou','CHN','Hebei',530000);
+INSERT INTO `city` VALUES (1949,'Dandong','CHN','Liaoning',520000);
+INSERT INTO `city` VALUES (1950,'Hegang','CHN','Heilongjiang',520000);
+INSERT INTO `city` VALUES (1951,'Kaifeng','CHN','Henan',510000);
+INSERT INTO `city` VALUES (1952,'Jiamusi','CHN','Heilongjiang',493409);
+INSERT INTO `city` VALUES (1953,'Liaoyang','CHN','Liaoning',492559);
+INSERT INTO `city` VALUES (1954,'Hengyang','CHN','Hunan',487148);
+INSERT INTO `city` VALUES (1955,'Baoding','CHN','Hebei',483155);
+INSERT INTO `city` VALUES (1956,'Hunjiang','CHN','Jilin',482043);
+INSERT INTO `city` VALUES (1957,'Xinxiang','CHN','Henan',473762);
+INSERT INTO `city` VALUES (1958,'Huangshi','CHN','Hubei',457601);
+INSERT INTO `city` VALUES (1959,'Haikou','CHN','Hainan',454300);
+INSERT INTO `city` VALUES (1960,'Yantai','CHN','Shandong',452127);
+INSERT INTO `city` VALUES (1961,'Bengbu','CHN','Anhui',449245);
+INSERT INTO `city` VALUES (1962,'Xiangtan','CHN','Hunan',441968);
+INSERT INTO `city` VALUES (1963,'Weifang','CHN','Shandong',428522);
+INSERT INTO `city` VALUES (1964,'Wuhu','CHN','Anhui',425740);
+INSERT INTO `city` VALUES (1965,'Pingxiang','CHN','Jiangxi',425579);
+INSERT INTO `city` VALUES (1966,'Yingkou','CHN','Liaoning',421589);
+INSERT INTO `city` VALUES (1967,'Anyang','CHN','Henan',420332);
+INSERT INTO `city` VALUES (1968,'Panzhihua','CHN','Sichuan',415466);
+INSERT INTO `city` VALUES (1969,'Pingdingshan','CHN','Henan',410775);
+INSERT INTO `city` VALUES (1970,'Xiangfan','CHN','Hubei',410407);
+INSERT INTO `city` VALUES (1971,'Zhuzhou','CHN','Hunan',409924);
+INSERT INTO `city` VALUES (1972,'Jiaozuo','CHN','Henan',409100);
+INSERT INTO `city` VALUES (1973,'Wenzhou','CHN','Zhejiang',401871);
+INSERT INTO `city` VALUES (1974,'Zhangjiang','CHN','Guangdong',400997);
+INSERT INTO `city` VALUES (1975,'Zigong','CHN','Sichuan',393184);
+INSERT INTO `city` VALUES (1976,'Shuangyashan','CHN','Heilongjiang',386081);
+INSERT INTO `city` VALUES (1977,'Zaozhuang','CHN','Shandong',380846);
+INSERT INTO `city` VALUES (1978,'Yakeshi','CHN','Inner Mongolia',377869);
+INSERT INTO `city` VALUES (1979,'Yichang','CHN','Hubei',371601);
+INSERT INTO `city` VALUES (1980,'Zhenjiang','CHN','Jiangsu',368316);
+INSERT INTO `city` VALUES (1981,'Huaibei','CHN','Anhui',366549);
+INSERT INTO `city` VALUES (1982,'Qinhuangdao','CHN','Hebei',364972);
+INSERT INTO `city` VALUES (1983,'Guilin','CHN','Guangxi',364130);
+INSERT INTO `city` VALUES (1984,'Liupanshui','CHN','Guizhou',363954);
+INSERT INTO `city` VALUES (1985,'Panjin','CHN','Liaoning',362773);
+INSERT INTO `city` VALUES (1986,'Yangquan','CHN','Shanxi',362268);
+INSERT INTO `city` VALUES (1987,'Jinxi','CHN','Liaoning',357052);
+INSERT INTO `city` VALUES (1988,'Liaoyuan','CHN','Jilin',354141);
+INSERT INTO `city` VALUES (1989,'Lianyungang','CHN','Jiangsu',354139);
+INSERT INTO `city` VALUES (1990,'Xianyang','CHN','Shaanxi',352125);
+INSERT INTO `city` VALUES (1991,'Tai´an','CHN','Shandong',350696);
+INSERT INTO `city` VALUES (1992,'Chifeng','CHN','Inner Mongolia',350077);
+INSERT INTO `city` VALUES (1993,'Shaoguan','CHN','Guangdong',350043);
+INSERT INTO `city` VALUES (1994,'Nantong','CHN','Jiangsu',343341);
+INSERT INTO `city` VALUES (1995,'Leshan','CHN','Sichuan',341128);
+INSERT INTO `city` VALUES (1996,'Baoji','CHN','Shaanxi',337765);
+INSERT INTO `city` VALUES (1997,'Linyi','CHN','Shandong',324720);
+INSERT INTO `city` VALUES (1998,'Tonghua','CHN','Jilin',324600);
+INSERT INTO `city` VALUES (1999,'Siping','CHN','Jilin',317223);
+INSERT INTO `city` VALUES (2000,'Changzhi','CHN','Shanxi',317144);
+INSERT INTO `city` VALUES (2001,'Tengzhou','CHN','Shandong',315083);
+INSERT INTO `city` VALUES (2002,'Chaozhou','CHN','Guangdong',313469);
+INSERT INTO `city` VALUES (2003,'Yangzhou','CHN','Jiangsu',312892);
+INSERT INTO `city` VALUES (2004,'Dongwan','CHN','Guangdong',308669);
+INSERT INTO `city` VALUES (2005,'Ma´anshan','CHN','Anhui',305421);
+INSERT INTO `city` VALUES (2006,'Foshan','CHN','Guangdong',303160);
+INSERT INTO `city` VALUES (2007,'Yueyang','CHN','Hunan',302800);
+INSERT INTO `city` VALUES (2008,'Xingtai','CHN','Hebei',302789);
+INSERT INTO `city` VALUES (2009,'Changde','CHN','Hunan',301276);
+INSERT INTO `city` VALUES (2010,'Shihezi','CHN','Xinxiang',299676);
+INSERT INTO `city` VALUES (2011,'Yancheng','CHN','Jiangsu',296831);
+INSERT INTO `city` VALUES (2012,'Jiujiang','CHN','Jiangxi',291187);
+INSERT INTO `city` VALUES (2013,'Dongying','CHN','Shandong',281728);
+INSERT INTO `city` VALUES (2014,'Shashi','CHN','Hubei',281352);
+INSERT INTO `city` VALUES (2015,'Xintai','CHN','Shandong',281248);
+INSERT INTO `city` VALUES (2016,'Jingdezhen','CHN','Jiangxi',281183);
+INSERT INTO `city` VALUES (2017,'Tongchuan','CHN','Shaanxi',280657);
+INSERT INTO `city` VALUES (2018,'Zhongshan','CHN','Guangdong',278829);
+INSERT INTO `city` VALUES (2019,'Shiyan','CHN','Hubei',273786);
+INSERT INTO `city` VALUES (2020,'Tieli','CHN','Heilongjiang',265683);
+INSERT INTO `city` VALUES (2021,'Jining','CHN','Shandong',265248);
+INSERT INTO `city` VALUES (2022,'Wuhai','CHN','Inner Mongolia',264081);
+INSERT INTO `city` VALUES (2023,'Mianyang','CHN','Sichuan',262947);
+INSERT INTO `city` VALUES (2024,'Luzhou','CHN','Sichuan',262892);
+INSERT INTO `city` VALUES (2025,'Zunyi','CHN','Guizhou',261862);
+INSERT INTO `city` VALUES (2026,'Shizuishan','CHN','Ningxia',257862);
+INSERT INTO `city` VALUES (2027,'Neijiang','CHN','Sichuan',256012);
+INSERT INTO `city` VALUES (2028,'Tongliao','CHN','Inner Mongolia',255129);
+INSERT INTO `city` VALUES (2029,'Tieling','CHN','Liaoning',254842);
+INSERT INTO `city` VALUES (2030,'Wafangdian','CHN','Liaoning',251733);
+INSERT INTO `city` VALUES (2031,'Anqing','CHN','Anhui',250718);
+INSERT INTO `city` VALUES (2032,'Shaoyang','CHN','Hunan',247227);
+INSERT INTO `city` VALUES (2033,'Laiwu','CHN','Shandong',246833);
+INSERT INTO `city` VALUES (2034,'Chengde','CHN','Hebei',246799);
+INSERT INTO `city` VALUES (2035,'Tianshui','CHN','Gansu',244974);
+INSERT INTO `city` VALUES (2036,'Nanyang','CHN','Henan',243303);
+INSERT INTO `city` VALUES (2037,'Cangzhou','CHN','Hebei',242708);
+INSERT INTO `city` VALUES (2038,'Yibin','CHN','Sichuan',241019);
+INSERT INTO `city` VALUES (2039,'Huaiyin','CHN','Jiangsu',239675);
+INSERT INTO `city` VALUES (2040,'Dunhua','CHN','Jilin',235100);
+INSERT INTO `city` VALUES (2041,'Yanji','CHN','Jilin',230892);
+INSERT INTO `city` VALUES (2042,'Jiangmen','CHN','Guangdong',230587);
+INSERT INTO `city` VALUES (2043,'Tongling','CHN','Anhui',228017);
+INSERT INTO `city` VALUES (2044,'Suihua','CHN','Heilongjiang',227881);
+INSERT INTO `city` VALUES (2045,'Gongziling','CHN','Jilin',226569);
+INSERT INTO `city` VALUES (2046,'Xiantao','CHN','Hubei',222884);
+INSERT INTO `city` VALUES (2047,'Chaoyang','CHN','Liaoning',222394);
+INSERT INTO `city` VALUES (2048,'Ganzhou','CHN','Jiangxi',220129);
+INSERT INTO `city` VALUES (2049,'Huzhou','CHN','Zhejiang',218071);
+INSERT INTO `city` VALUES (2050,'Baicheng','CHN','Jilin',217987);
+INSERT INTO `city` VALUES (2051,'Shangzi','CHN','Heilongjiang',215373);
+INSERT INTO `city` VALUES (2052,'Yangjiang','CHN','Guangdong',215196);
+INSERT INTO `city` VALUES (2053,'Qitaihe','CHN','Heilongjiang',214957);
+INSERT INTO `city` VALUES (2054,'Gejiu','CHN','Yunnan',214294);
+INSERT INTO `city` VALUES (2055,'Jiangyin','CHN','Jiangsu',213659);
+INSERT INTO `city` VALUES (2056,'Hebi','CHN','Henan',212976);
+INSERT INTO `city` VALUES (2057,'Jiaxing','CHN','Zhejiang',211526);
+INSERT INTO `city` VALUES (2058,'Wuzhou','CHN','Guangxi',210452);
+INSERT INTO `city` VALUES (2059,'Meihekou','CHN','Jilin',209038);
+INSERT INTO `city` VALUES (2060,'Xuchang','CHN','Henan',208815);
+INSERT INTO `city` VALUES (2061,'Liaocheng','CHN','Shandong',207844);
+INSERT INTO `city` VALUES (2062,'Haicheng','CHN','Liaoning',205560);
+INSERT INTO `city` VALUES (2063,'Qianjiang','CHN','Hubei',205504);
+INSERT INTO `city` VALUES (2064,'Baiyin','CHN','Gansu',204970);
+INSERT INTO `city` VALUES (2065,'Bei´an','CHN','Heilongjiang',204899);
+INSERT INTO `city` VALUES (2066,'Yixing','CHN','Jiangsu',200824);
+INSERT INTO `city` VALUES (2067,'Laizhou','CHN','Shandong',198664);
+INSERT INTO `city` VALUES (2068,'Qaramay','CHN','Xinxiang',197602);
+INSERT INTO `city` VALUES (2069,'Acheng','CHN','Heilongjiang',197595);
+INSERT INTO `city` VALUES (2070,'Dezhou','CHN','Shandong',195485);
+INSERT INTO `city` VALUES (2071,'Nanping','CHN','Fujian',195064);
+INSERT INTO `city` VALUES (2072,'Zhaoqing','CHN','Guangdong',194784);
+INSERT INTO `city` VALUES (2073,'Beipiao','CHN','Liaoning',194301);
+INSERT INTO `city` VALUES (2074,'Fengcheng','CHN','Jiangxi',193784);
+INSERT INTO `city` VALUES (2075,'Fuyu','CHN','Jilin',192981);
+INSERT INTO `city` VALUES (2076,'Xinyang','CHN','Henan',192509);
+INSERT INTO `city` VALUES (2077,'Dongtai','CHN','Jiangsu',192247);
+INSERT INTO `city` VALUES (2078,'Yuci','CHN','Shanxi',191356);
+INSERT INTO `city` VALUES (2079,'Honghu','CHN','Hubei',190772);
+INSERT INTO `city` VALUES (2080,'Ezhou','CHN','Hubei',190123);
+INSERT INTO `city` VALUES (2081,'Heze','CHN','Shandong',189293);
+INSERT INTO `city` VALUES (2082,'Daxian','CHN','Sichuan',188101);
+INSERT INTO `city` VALUES (2083,'Linfen','CHN','Shanxi',187309);
+INSERT INTO `city` VALUES (2084,'Tianmen','CHN','Hubei',186332);
+INSERT INTO `city` VALUES (2085,'Yiyang','CHN','Hunan',185818);
+INSERT INTO `city` VALUES (2086,'Quanzhou','CHN','Fujian',185154);
+INSERT INTO `city` VALUES (2087,'Rizhao','CHN','Shandong',185048);
+INSERT INTO `city` VALUES (2088,'Deyang','CHN','Sichuan',182488);
+INSERT INTO `city` VALUES (2089,'Guangyuan','CHN','Sichuan',182241);
+INSERT INTO `city` VALUES (2090,'Changshu','CHN','Jiangsu',181805);
+INSERT INTO `city` VALUES (2091,'Zhangzhou','CHN','Fujian',181424);
+INSERT INTO `city` VALUES (2092,'Hailar','CHN','Inner Mongolia',180650);
+INSERT INTO `city` VALUES (2093,'Nanchong','CHN','Sichuan',180273);
+INSERT INTO `city` VALUES (2094,'Jiutai','CHN','Jilin',180130);
+INSERT INTO `city` VALUES (2095,'Zhaodong','CHN','Heilongjiang',179976);
+INSERT INTO `city` VALUES (2096,'Shaoxing','CHN','Zhejiang',179818);
+INSERT INTO `city` VALUES (2097,'Fuyang','CHN','Anhui',179572);
+INSERT INTO `city` VALUES (2098,'Maoming','CHN','Guangdong',178683);
+INSERT INTO `city` VALUES (2099,'Qujing','CHN','Yunnan',178669);
+INSERT INTO `city` VALUES (2100,'Ghulja','CHN','Xinxiang',177193);
+INSERT INTO `city` VALUES (2101,'Jiaohe','CHN','Jilin',176367);
+INSERT INTO `city` VALUES (2102,'Puyang','CHN','Henan',175988);
+INSERT INTO `city` VALUES (2103,'Huadian','CHN','Jilin',175873);
+INSERT INTO `city` VALUES (2104,'Jiangyou','CHN','Sichuan',175753);
+INSERT INTO `city` VALUES (2105,'Qashqar','CHN','Xinxiang',174570);
+INSERT INTO `city` VALUES (2106,'Anshun','CHN','Guizhou',174142);
+INSERT INTO `city` VALUES (2107,'Fuling','CHN','Sichuan',173878);
+INSERT INTO `city` VALUES (2108,'Xinyu','CHN','Jiangxi',173524);
+INSERT INTO `city` VALUES (2109,'Hanzhong','CHN','Shaanxi',169930);
+INSERT INTO `city` VALUES (2110,'Danyang','CHN','Jiangsu',169603);
+INSERT INTO `city` VALUES (2111,'Chenzhou','CHN','Hunan',169400);
+INSERT INTO `city` VALUES (2112,'Xiaogan','CHN','Hubei',166280);
+INSERT INTO `city` VALUES (2113,'Shangqiu','CHN','Henan',164880);
+INSERT INTO `city` VALUES (2114,'Zhuhai','CHN','Guangdong',164747);
+INSERT INTO `city` VALUES (2115,'Qingyuan','CHN','Guangdong',164641);
+INSERT INTO `city` VALUES (2116,'Aqsu','CHN','Xinxiang',164092);
+INSERT INTO `city` VALUES (2117,'Jining','CHN','Inner Mongolia',163552);
+INSERT INTO `city` VALUES (2118,'Xiaoshan','CHN','Zhejiang',162930);
+INSERT INTO `city` VALUES (2119,'Zaoyang','CHN','Hubei',162198);
+INSERT INTO `city` VALUES (2120,'Xinghua','CHN','Jiangsu',161910);
+INSERT INTO `city` VALUES (2121,'Hami','CHN','Xinxiang',161315);
+INSERT INTO `city` VALUES (2122,'Huizhou','CHN','Guangdong',161023);
+INSERT INTO `city` VALUES (2123,'Jinmen','CHN','Hubei',160794);
+INSERT INTO `city` VALUES (2124,'Sanming','CHN','Fujian',160691);
+INSERT INTO `city` VALUES (2125,'Ulanhot','CHN','Inner Mongolia',159538);
+INSERT INTO `city` VALUES (2126,'Korla','CHN','Xinxiang',159344);
+INSERT INTO `city` VALUES (2127,'Wanxian','CHN','Sichuan',156823);
+INSERT INTO `city` VALUES (2128,'Rui´an','CHN','Zhejiang',156468);
+INSERT INTO `city` VALUES (2129,'Zhoushan','CHN','Zhejiang',156317);
+INSERT INTO `city` VALUES (2130,'Liangcheng','CHN','Shandong',156307);
+INSERT INTO `city` VALUES (2131,'Jiaozhou','CHN','Shandong',153364);
+INSERT INTO `city` VALUES (2132,'Taizhou','CHN','Jiangsu',152442);
+INSERT INTO `city` VALUES (2133,'Suzhou','CHN','Anhui',151862);
+INSERT INTO `city` VALUES (2134,'Yichun','CHN','Jiangxi',151585);
+INSERT INTO `city` VALUES (2135,'Taonan','CHN','Jilin',150168);
+INSERT INTO `city` VALUES (2136,'Pingdu','CHN','Shandong',150123);
+INSERT INTO `city` VALUES (2137,'Ji´an','CHN','Jiangxi',148583);
+INSERT INTO `city` VALUES (2138,'Longkou','CHN','Shandong',148362);
+INSERT INTO `city` VALUES (2139,'Langfang','CHN','Hebei',148105);
+INSERT INTO `city` VALUES (2140,'Zhoukou','CHN','Henan',146288);
+INSERT INTO `city` VALUES (2141,'Suining','CHN','Sichuan',146086);
+INSERT INTO `city` VALUES (2142,'Yulin','CHN','Guangxi',144467);
+INSERT INTO `city` VALUES (2143,'Jinhua','CHN','Zhejiang',144280);
+INSERT INTO `city` VALUES (2144,'Liu´an','CHN','Anhui',144248);
+INSERT INTO `city` VALUES (2145,'Shuangcheng','CHN','Heilongjiang',142659);
+INSERT INTO `city` VALUES (2146,'Suizhou','CHN','Hubei',142302);
+INSERT INTO `city` VALUES (2147,'Ankang','CHN','Shaanxi',142170);
+INSERT INTO `city` VALUES (2148,'Weinan','CHN','Shaanxi',140169);
+INSERT INTO `city` VALUES (2149,'Longjing','CHN','Jilin',139417);
+INSERT INTO `city` VALUES (2150,'Da´an','CHN','Jilin',138963);
+INSERT INTO `city` VALUES (2151,'Lengshuijiang','CHN','Hunan',137994);
+INSERT INTO `city` VALUES (2152,'Laiyang','CHN','Shandong',137080);
+INSERT INTO `city` VALUES (2153,'Xianning','CHN','Hubei',136811);
+INSERT INTO `city` VALUES (2154,'Dali','CHN','Yunnan',136554);
+INSERT INTO `city` VALUES (2155,'Anda','CHN','Heilongjiang',136446);
+INSERT INTO `city` VALUES (2156,'Jincheng','CHN','Shanxi',136396);
+INSERT INTO `city` VALUES (2157,'Longyan','CHN','Fujian',134481);
+INSERT INTO `city` VALUES (2158,'Xichang','CHN','Sichuan',134419);
+INSERT INTO `city` VALUES (2159,'Wendeng','CHN','Shandong',133910);
+INSERT INTO `city` VALUES (2160,'Hailun','CHN','Heilongjiang',133565);
+INSERT INTO `city` VALUES (2161,'Binzhou','CHN','Shandong',133555);
+INSERT INTO `city` VALUES (2162,'Linhe','CHN','Inner Mongolia',133183);
+INSERT INTO `city` VALUES (2163,'Wuwei','CHN','Gansu',133101);
+INSERT INTO `city` VALUES (2164,'Duyun','CHN','Guizhou',132971);
+INSERT INTO `city` VALUES (2165,'Mishan','CHN','Heilongjiang',132744);
+INSERT INTO `city` VALUES (2166,'Shangrao','CHN','Jiangxi',132455);
+INSERT INTO `city` VALUES (2167,'Changji','CHN','Xinxiang',132260);
+INSERT INTO `city` VALUES (2168,'Meixian','CHN','Guangdong',132156);
+INSERT INTO `city` VALUES (2169,'Yushu','CHN','Jilin',131861);
+INSERT INTO `city` VALUES (2170,'Tiefa','CHN','Liaoning',131807);
+INSERT INTO `city` VALUES (2171,'Huai´an','CHN','Jiangsu',131149);
+INSERT INTO `city` VALUES (2172,'Leiyang','CHN','Hunan',130115);
+INSERT INTO `city` VALUES (2173,'Zalantun','CHN','Inner Mongolia',130031);
+INSERT INTO `city` VALUES (2174,'Weihai','CHN','Shandong',128888);
+INSERT INTO `city` VALUES (2175,'Loudi','CHN','Hunan',128418);
+INSERT INTO `city` VALUES (2176,'Qingzhou','CHN','Shandong',128258);
+INSERT INTO `city` VALUES (2177,'Qidong','CHN','Jiangsu',126872);
+INSERT INTO `city` VALUES (2178,'Huaihua','CHN','Hunan',126785);
+INSERT INTO `city` VALUES (2179,'Luohe','CHN','Henan',126438);
+INSERT INTO `city` VALUES (2180,'Chuzhou','CHN','Anhui',125341);
+INSERT INTO `city` VALUES (2181,'Kaiyuan','CHN','Liaoning',124219);
+INSERT INTO `city` VALUES (2182,'Linqing','CHN','Shandong',123958);
+INSERT INTO `city` VALUES (2183,'Chaohu','CHN','Anhui',123676);
+INSERT INTO `city` VALUES (2184,'Laohekou','CHN','Hubei',123366);
+INSERT INTO `city` VALUES (2185,'Dujiangyan','CHN','Sichuan',123357);
+INSERT INTO `city` VALUES (2186,'Zhumadian','CHN','Henan',123232);
+INSERT INTO `city` VALUES (2187,'Linchuan','CHN','Jiangxi',121949);
+INSERT INTO `city` VALUES (2188,'Jiaonan','CHN','Shandong',121397);
+INSERT INTO `city` VALUES (2189,'Sanmenxia','CHN','Henan',120523);
+INSERT INTO `city` VALUES (2190,'Heyuan','CHN','Guangdong',120101);
+INSERT INTO `city` VALUES (2191,'Manzhouli','CHN','Inner Mongolia',120023);
+INSERT INTO `city` VALUES (2192,'Lhasa','CHN','Tibet',120000);
+INSERT INTO `city` VALUES (2193,'Lianyuan','CHN','Hunan',118858);
+INSERT INTO `city` VALUES (2194,'Kuytun','CHN','Xinxiang',118553);
+INSERT INTO `city` VALUES (2195,'Puqi','CHN','Hubei',117264);
+INSERT INTO `city` VALUES (2196,'Hongjiang','CHN','Hunan',116188);
+INSERT INTO `city` VALUES (2197,'Qinzhou','CHN','Guangxi',114586);
+INSERT INTO `city` VALUES (2198,'Renqiu','CHN','Hebei',114256);
+INSERT INTO `city` VALUES (2199,'Yuyao','CHN','Zhejiang',114065);
+INSERT INTO `city` VALUES (2200,'Guigang','CHN','Guangxi',114025);
+INSERT INTO `city` VALUES (2201,'Kaili','CHN','Guizhou',113958);
+INSERT INTO `city` VALUES (2202,'Yan´an','CHN','Shaanxi',113277);
+INSERT INTO `city` VALUES (2203,'Beihai','CHN','Guangxi',112673);
+INSERT INTO `city` VALUES (2204,'Xuangzhou','CHN','Anhui',112673);
+INSERT INTO `city` VALUES (2205,'Quzhou','CHN','Zhejiang',112373);
+INSERT INTO `city` VALUES (2206,'Yong´an','CHN','Fujian',111762);
+INSERT INTO `city` VALUES (2207,'Zixing','CHN','Hunan',110048);
+INSERT INTO `city` VALUES (2208,'Liyang','CHN','Jiangsu',109520);
+INSERT INTO `city` VALUES (2209,'Yizheng','CHN','Jiangsu',109268);
+INSERT INTO `city` VALUES (2210,'Yumen','CHN','Gansu',109234);
+INSERT INTO `city` VALUES (2211,'Liling','CHN','Hunan',108504);
+INSERT INTO `city` VALUES (2212,'Yuncheng','CHN','Shanxi',108359);
+INSERT INTO `city` VALUES (2213,'Shanwei','CHN','Guangdong',107847);
+INSERT INTO `city` VALUES (2214,'Cixi','CHN','Zhejiang',107329);
+INSERT INTO `city` VALUES (2215,'Yuanjiang','CHN','Hunan',107004);
+INSERT INTO `city` VALUES (2216,'Bozhou','CHN','Anhui',106346);
+INSERT INTO `city` VALUES (2217,'Jinchang','CHN','Gansu',105287);
+INSERT INTO `city` VALUES (2218,'Fu´an','CHN','Fujian',105265);
+INSERT INTO `city` VALUES (2219,'Suqian','CHN','Jiangsu',105021);
+INSERT INTO `city` VALUES (2220,'Shishou','CHN','Hubei',104571);
+INSERT INTO `city` VALUES (2221,'Hengshui','CHN','Hebei',104269);
+INSERT INTO `city` VALUES (2222,'Danjiangkou','CHN','Hubei',103211);
+INSERT INTO `city` VALUES (2223,'Fujin','CHN','Heilongjiang',103104);
+INSERT INTO `city` VALUES (2224,'Sanya','CHN','Hainan',102820);
+INSERT INTO `city` VALUES (2225,'Guangshui','CHN','Hubei',102770);
+INSERT INTO `city` VALUES (2226,'Huangshan','CHN','Anhui',102628);
+INSERT INTO `city` VALUES (2227,'Xingcheng','CHN','Liaoning',102384);
+INSERT INTO `city` VALUES (2228,'Zhucheng','CHN','Shandong',102134);
+INSERT INTO `city` VALUES (2229,'Kunshan','CHN','Jiangsu',102052);
+INSERT INTO `city` VALUES (2230,'Haining','CHN','Zhejiang',100478);
+INSERT INTO `city` VALUES (2231,'Pingliang','CHN','Gansu',99265);
+INSERT INTO `city` VALUES (2232,'Fuqing','CHN','Fujian',99193);
+INSERT INTO `city` VALUES (2233,'Xinzhou','CHN','Shanxi',98667);
+INSERT INTO `city` VALUES (2234,'Jieyang','CHN','Guangdong',98531);
+INSERT INTO `city` VALUES (2235,'Zhangjiagang','CHN','Jiangsu',97994);
+INSERT INTO `city` VALUES (2236,'Tong Xian','CHN','Peking',97168);
+INSERT INTO `city` VALUES (2237,'Ya´an','CHN','Sichuan',95900);
+INSERT INTO `city` VALUES (2238,'Jinzhou','CHN','Liaoning',95761);
+INSERT INTO `city` VALUES (2239,'Emeishan','CHN','Sichuan',94000);
+INSERT INTO `city` VALUES (2240,'Enshi','CHN','Hubei',93056);
+INSERT INTO `city` VALUES (2241,'Bose','CHN','Guangxi',93009);
+INSERT INTO `city` VALUES (2242,'Yuzhou','CHN','Henan',92889);
+INSERT INTO `city` VALUES (2243,'Kaiyuan','CHN','Yunnan',91999);
+INSERT INTO `city` VALUES (2244,'Tumen','CHN','Jilin',91471);
+INSERT INTO `city` VALUES (2245,'Putian','CHN','Fujian',91030);
+INSERT INTO `city` VALUES (2246,'Linhai','CHN','Zhejiang',90870);
+INSERT INTO `city` VALUES (2247,'Xilin Hot','CHN','Inner Mongolia',90646);
+INSERT INTO `city` VALUES (2248,'Shaowu','CHN','Fujian',90286);
+INSERT INTO `city` VALUES (2249,'Junan','CHN','Shandong',90222);
+INSERT INTO `city` VALUES (2250,'Huaying','CHN','Sichuan',89400);
+INSERT INTO `city` VALUES (2251,'Pingyi','CHN','Shandong',89373);
+INSERT INTO `city` VALUES (2252,'Huangyan','CHN','Zhejiang',89288);
+INSERT INTO `city` VALUES (2253,'Bishkek','KGZ','Bishkek shaary',589400);
+INSERT INTO `city` VALUES (2254,'Osh','KGZ','Osh',222700);
+INSERT INTO `city` VALUES (2255,'Bikenibeu','KIR','South Tarawa',5055);
+INSERT INTO `city` VALUES (2256,'Bairiki','KIR','South Tarawa',2226);
+INSERT INTO `city` VALUES (2257,'Santafé de Bogotá','COL','Santafé de Bogotá',6260862);
+INSERT INTO `city` VALUES (2258,'Cali','COL','Valle',2077386);
+INSERT INTO `city` VALUES (2259,'Medellín','COL','Antioquia',1861265);
+INSERT INTO `city` VALUES (2260,'Barranquilla','COL','Atlántico',1223260);
+INSERT INTO `city` VALUES (2261,'Cartagena','COL','Bolívar',805757);
+INSERT INTO `city` VALUES (2262,'Cúcuta','COL','Norte de Santander',606932);
+INSERT INTO `city` VALUES (2263,'Bucaramanga','COL','Santander',515555);
+INSERT INTO `city` VALUES (2264,'Ibagué','COL','Tolima',393664);
+INSERT INTO `city` VALUES (2265,'Pereira','COL','Risaralda',381725);
+INSERT INTO `city` VALUES (2266,'Santa Marta','COL','Magdalena',359147);
+INSERT INTO `city` VALUES (2267,'Manizales','COL','Caldas',337580);
+INSERT INTO `city` VALUES (2268,'Bello','COL','Antioquia',333470);
+INSERT INTO `city` VALUES (2269,'Pasto','COL','Nariño',332396);
+INSERT INTO `city` VALUES (2270,'Neiva','COL','Huila',300052);
+INSERT INTO `city` VALUES (2271,'Soledad','COL','Atlántico',295058);
+INSERT INTO `city` VALUES (2272,'Armenia','COL','Quindío',288977);
+INSERT INTO `city` VALUES (2273,'Villavicencio','COL','Meta',273140);
+INSERT INTO `city` VALUES (2274,'Soacha','COL','Cundinamarca',272058);
+INSERT INTO `city` VALUES (2275,'Valledupar','COL','Cesar',263247);
+INSERT INTO `city` VALUES (2276,'Montería','COL','Córdoba',248245);
+INSERT INTO `city` VALUES (2277,'Itagüí','COL','Antioquia',228985);
+INSERT INTO `city` VALUES (2278,'Palmira','COL','Valle',226509);
+INSERT INTO `city` VALUES (2279,'Buenaventura','COL','Valle',224336);
+INSERT INTO `city` VALUES (2280,'Floridablanca','COL','Santander',221913);
+INSERT INTO `city` VALUES (2281,'Sincelejo','COL','Sucre',220704);
+INSERT INTO `city` VALUES (2282,'Popayán','COL','Cauca',200719);
+INSERT INTO `city` VALUES (2283,'Barrancabermeja','COL','Santander',178020);
+INSERT INTO `city` VALUES (2284,'Dos Quebradas','COL','Risaralda',159363);
+INSERT INTO `city` VALUES (2285,'Tuluá','COL','Valle',152488);
+INSERT INTO `city` VALUES (2286,'Envigado','COL','Antioquia',135848);
+INSERT INTO `city` VALUES (2287,'Cartago','COL','Valle',125884);
+INSERT INTO `city` VALUES (2288,'Girardot','COL','Cundinamarca',110963);
+INSERT INTO `city` VALUES (2289,'Buga','COL','Valle',110699);
+INSERT INTO `city` VALUES (2290,'Tunja','COL','Boyacá',109740);
+INSERT INTO `city` VALUES (2291,'Florencia','COL','Caquetá',108574);
+INSERT INTO `city` VALUES (2292,'Maicao','COL','La Guajira',108053);
+INSERT INTO `city` VALUES (2293,'Sogamoso','COL','Boyacá',107728);
+INSERT INTO `city` VALUES (2294,'Giron','COL','Santander',90688);
+INSERT INTO `city` VALUES (2295,'Moroni','COM','Njazidja',36000);
+INSERT INTO `city` VALUES (2296,'Brazzaville','COG','Brazzaville',950000);
+INSERT INTO `city` VALUES (2297,'Pointe-Noire','COG','Kouilou',500000);
+INSERT INTO `city` VALUES (2298,'Kinshasa','COD','Kinshasa',5064000);
+INSERT INTO `city` VALUES (2299,'Lubumbashi','COD','Shaba',851381);
+INSERT INTO `city` VALUES (2300,'Mbuji-Mayi','COD','East Kasai',806475);
+INSERT INTO `city` VALUES (2301,'Kolwezi','COD','Shaba',417810);
+INSERT INTO `city` VALUES (2302,'Kisangani','COD','Haute-Zaïre',417517);
+INSERT INTO `city` VALUES (2303,'Kananga','COD','West Kasai',393030);
+INSERT INTO `city` VALUES (2304,'Likasi','COD','Shaba',299118);
+INSERT INTO `city` VALUES (2305,'Bukavu','COD','South Kivu',201569);
+INSERT INTO `city` VALUES (2306,'Kikwit','COD','Bandundu',182142);
+INSERT INTO `city` VALUES (2307,'Tshikapa','COD','West Kasai',180860);
+INSERT INTO `city` VALUES (2308,'Matadi','COD','Bas-Zaïre',172730);
+INSERT INTO `city` VALUES (2309,'Mbandaka','COD','Equateur',169841);
+INSERT INTO `city` VALUES (2310,'Mwene-Ditu','COD','East Kasai',137459);
+INSERT INTO `city` VALUES (2311,'Boma','COD','Bas-Zaïre',135284);
+INSERT INTO `city` VALUES (2312,'Uvira','COD','South Kivu',115590);
+INSERT INTO `city` VALUES (2313,'Butembo','COD','North Kivu',109406);
+INSERT INTO `city` VALUES (2314,'Goma','COD','North Kivu',109094);
+INSERT INTO `city` VALUES (2315,'Kalemie','COD','Shaba',101309);
+INSERT INTO `city` VALUES (2316,'Bantam','CCK','Home Island',503);
+INSERT INTO `city` VALUES (2317,'West Island','CCK','West Island',167);
+INSERT INTO `city` VALUES (2318,'Pyongyang','PRK','Pyongyang-si',2484000);
+INSERT INTO `city` VALUES (2319,'Hamhung','PRK','Hamgyong N',709730);
+INSERT INTO `city` VALUES (2320,'Chongjin','PRK','Hamgyong P',582480);
+INSERT INTO `city` VALUES (2321,'Nampo','PRK','Nampo-si',566200);
+INSERT INTO `city` VALUES (2322,'Sinuiju','PRK','Pyongan P',326011);
+INSERT INTO `city` VALUES (2323,'Wonsan','PRK','Kangwon',300148);
+INSERT INTO `city` VALUES (2324,'Phyongsong','PRK','Pyongan N',272934);
+INSERT INTO `city` VALUES (2325,'Sariwon','PRK','Hwanghae P',254146);
+INSERT INTO `city` VALUES (2326,'Haeju','PRK','Hwanghae N',229172);
+INSERT INTO `city` VALUES (2327,'Kanggye','PRK','Chagang',223410);
+INSERT INTO `city` VALUES (2328,'Kimchaek','PRK','Hamgyong P',179000);
+INSERT INTO `city` VALUES (2329,'Hyesan','PRK','Yanggang',178020);
+INSERT INTO `city` VALUES (2330,'Kaesong','PRK','Kaesong-si',171500);
+INSERT INTO `city` VALUES (2331,'Seoul','KOR','Seoul',9981619);
+INSERT INTO `city` VALUES (2332,'Pusan','KOR','Pusan',3804522);
+INSERT INTO `city` VALUES (2333,'Inchon','KOR','Inchon',2559424);
+INSERT INTO `city` VALUES (2334,'Taegu','KOR','Taegu',2548568);
+INSERT INTO `city` VALUES (2335,'Taejon','KOR','Taejon',1425835);
+INSERT INTO `city` VALUES (2336,'Kwangju','KOR','Kwangju',1368341);
+INSERT INTO `city` VALUES (2337,'Ulsan','KOR','Kyongsangnam',1084891);
+INSERT INTO `city` VALUES (2338,'Songnam','KOR','Kyonggi',869094);
+INSERT INTO `city` VALUES (2339,'Puchon','KOR','Kyonggi',779412);
+INSERT INTO `city` VALUES (2340,'Suwon','KOR','Kyonggi',755550);
+INSERT INTO `city` VALUES (2341,'Anyang','KOR','Kyonggi',591106);
+INSERT INTO `city` VALUES (2342,'Chonju','KOR','Chollabuk',563153);
+INSERT INTO `city` VALUES (2343,'Chongju','KOR','Chungchongbuk',531376);
+INSERT INTO `city` VALUES (2344,'Koyang','KOR','Kyonggi',518282);
+INSERT INTO `city` VALUES (2345,'Ansan','KOR','Kyonggi',510314);
+INSERT INTO `city` VALUES (2346,'Pohang','KOR','Kyongsangbuk',508899);
+INSERT INTO `city` VALUES (2347,'Chang-won','KOR','Kyongsangnam',481694);
+INSERT INTO `city` VALUES (2348,'Masan','KOR','Kyongsangnam',441242);
+INSERT INTO `city` VALUES (2349,'Kwangmyong','KOR','Kyonggi',350914);
+INSERT INTO `city` VALUES (2350,'Chonan','KOR','Chungchongnam',330259);
+INSERT INTO `city` VALUES (2351,'Chinju','KOR','Kyongsangnam',329886);
+INSERT INTO `city` VALUES (2352,'Iksan','KOR','Chollabuk',322685);
+INSERT INTO `city` VALUES (2353,'Pyongtaek','KOR','Kyonggi',312927);
+INSERT INTO `city` VALUES (2354,'Kumi','KOR','Kyongsangbuk',311431);
+INSERT INTO `city` VALUES (2355,'Uijongbu','KOR','Kyonggi',276111);
+INSERT INTO `city` VALUES (2356,'Kyongju','KOR','Kyongsangbuk',272968);
+INSERT INTO `city` VALUES (2357,'Kunsan','KOR','Chollabuk',266569);
+INSERT INTO `city` VALUES (2358,'Cheju','KOR','Cheju',258511);
+INSERT INTO `city` VALUES (2359,'Kimhae','KOR','Kyongsangnam',256370);
+INSERT INTO `city` VALUES (2360,'Sunchon','KOR','Chollanam',249263);
+INSERT INTO `city` VALUES (2361,'Mokpo','KOR','Chollanam',247452);
+INSERT INTO `city` VALUES (2362,'Yong-in','KOR','Kyonggi',242643);
+INSERT INTO `city` VALUES (2363,'Wonju','KOR','Kang-won',237460);
+INSERT INTO `city` VALUES (2364,'Kunpo','KOR','Kyonggi',235233);
+INSERT INTO `city` VALUES (2365,'Chunchon','KOR','Kang-won',234528);
+INSERT INTO `city` VALUES (2366,'Namyangju','KOR','Kyonggi',229060);
+INSERT INTO `city` VALUES (2367,'Kangnung','KOR','Kang-won',220403);
+INSERT INTO `city` VALUES (2368,'Chungju','KOR','Chungchongbuk',205206);
+INSERT INTO `city` VALUES (2369,'Andong','KOR','Kyongsangbuk',188443);
+INSERT INTO `city` VALUES (2370,'Yosu','KOR','Chollanam',183596);
+INSERT INTO `city` VALUES (2371,'Kyongsan','KOR','Kyongsangbuk',173746);
+INSERT INTO `city` VALUES (2372,'Paju','KOR','Kyonggi',163379);
+INSERT INTO `city` VALUES (2373,'Yangsan','KOR','Kyongsangnam',163351);
+INSERT INTO `city` VALUES (2374,'Ichon','KOR','Kyonggi',155332);
+INSERT INTO `city` VALUES (2375,'Asan','KOR','Chungchongnam',154663);
+INSERT INTO `city` VALUES (2376,'Koje','KOR','Kyongsangnam',147562);
+INSERT INTO `city` VALUES (2377,'Kimchon','KOR','Kyongsangbuk',147027);
+INSERT INTO `city` VALUES (2378,'Nonsan','KOR','Chungchongnam',146619);
+INSERT INTO `city` VALUES (2379,'Kuri','KOR','Kyonggi',142173);
+INSERT INTO `city` VALUES (2380,'Chong-up','KOR','Chollabuk',139111);
+INSERT INTO `city` VALUES (2381,'Chechon','KOR','Chungchongbuk',137070);
+INSERT INTO `city` VALUES (2382,'Sosan','KOR','Chungchongnam',134746);
+INSERT INTO `city` VALUES (2383,'Shihung','KOR','Kyonggi',133443);
+INSERT INTO `city` VALUES (2384,'Tong-yong','KOR','Kyongsangnam',131717);
+INSERT INTO `city` VALUES (2385,'Kongju','KOR','Chungchongnam',131229);
+INSERT INTO `city` VALUES (2386,'Yongju','KOR','Kyongsangbuk',131097);
+INSERT INTO `city` VALUES (2387,'Chinhae','KOR','Kyongsangnam',125997);
+INSERT INTO `city` VALUES (2388,'Sangju','KOR','Kyongsangbuk',124116);
+INSERT INTO `city` VALUES (2389,'Poryong','KOR','Chungchongnam',122604);
+INSERT INTO `city` VALUES (2390,'Kwang-yang','KOR','Chollanam',122052);
+INSERT INTO `city` VALUES (2391,'Miryang','KOR','Kyongsangnam',121501);
+INSERT INTO `city` VALUES (2392,'Hanam','KOR','Kyonggi',115812);
+INSERT INTO `city` VALUES (2393,'Kimje','KOR','Chollabuk',115427);
+INSERT INTO `city` VALUES (2394,'Yongchon','KOR','Kyongsangbuk',113511);
+INSERT INTO `city` VALUES (2395,'Sachon','KOR','Kyongsangnam',113494);
+INSERT INTO `city` VALUES (2396,'Uiwang','KOR','Kyonggi',108788);
+INSERT INTO `city` VALUES (2397,'Naju','KOR','Chollanam',107831);
+INSERT INTO `city` VALUES (2398,'Namwon','KOR','Chollabuk',103544);
+INSERT INTO `city` VALUES (2399,'Tonghae','KOR','Kang-won',95472);
+INSERT INTO `city` VALUES (2400,'Mun-gyong','KOR','Kyongsangbuk',92239);
+INSERT INTO `city` VALUES (2401,'Athenai','GRC','Attika',772072);
+INSERT INTO `city` VALUES (2402,'Thessaloniki','GRC','Central Macedonia',383967);
+INSERT INTO `city` VALUES (2403,'Pireus','GRC','Attika',182671);
+INSERT INTO `city` VALUES (2404,'Patras','GRC','West Greece',153344);
+INSERT INTO `city` VALUES (2405,'Peristerion','GRC','Attika',137288);
+INSERT INTO `city` VALUES (2406,'Herakleion','GRC','Crete',116178);
+INSERT INTO `city` VALUES (2407,'Kallithea','GRC','Attika',114233);
+INSERT INTO `city` VALUES (2408,'Larisa','GRC','Thessalia',113090);
+INSERT INTO `city` VALUES (2409,'Zagreb','HRV','Grad Zagreb',706770);
+INSERT INTO `city` VALUES (2410,'Split','HRV','Split-Dalmatia',189388);
+INSERT INTO `city` VALUES (2411,'Rijeka','HRV','Primorje-Gorski Kota',167964);
+INSERT INTO `city` VALUES (2412,'Osijek','HRV','Osijek-Baranja',104761);
+INSERT INTO `city` VALUES (2413,'La Habana','CUB','La Habana',2256000);
+INSERT INTO `city` VALUES (2414,'Santiago de Cuba','CUB','Santiago de Cuba',433180);
+INSERT INTO `city` VALUES (2415,'Camagüey','CUB','Camagüey',298726);
+INSERT INTO `city` VALUES (2416,'Holguín','CUB','Holguín',249492);
+INSERT INTO `city` VALUES (2417,'Santa Clara','CUB','Villa Clara',207350);
+INSERT INTO `city` VALUES (2418,'Guantánamo','CUB','Guantánamo',205078);
+INSERT INTO `city` VALUES (2419,'Pinar del Río','CUB','Pinar del Río',142100);
+INSERT INTO `city` VALUES (2420,'Bayamo','CUB','Granma',141000);
+INSERT INTO `city` VALUES (2421,'Cienfuegos','CUB','Cienfuegos',132770);
+INSERT INTO `city` VALUES (2422,'Victoria de las Tunas','CUB','Las Tunas',132350);
+INSERT INTO `city` VALUES (2423,'Matanzas','CUB','Matanzas',123273);
+INSERT INTO `city` VALUES (2424,'Manzanillo','CUB','Granma',109350);
+INSERT INTO `city` VALUES (2425,'Sancti-Spíritus','CUB','Sancti-Spíritus',100751);
+INSERT INTO `city` VALUES (2426,'Ciego de Ávila','CUB','Ciego de Ávila',98505);
+INSERT INTO `city` VALUES (2427,'al-Salimiya','KWT','Hawalli',130215);
+INSERT INTO `city` VALUES (2428,'Jalib al-Shuyukh','KWT','Hawalli',102178);
+INSERT INTO `city` VALUES (2429,'Kuwait','KWT','al-Asima',28859);
+INSERT INTO `city` VALUES (2430,'Nicosia','CYP','Nicosia',195000);
+INSERT INTO `city` VALUES (2431,'Limassol','CYP','Limassol',154400);
+INSERT INTO `city` VALUES (2432,'Vientiane','LAO','Viangchan',531800);
+INSERT INTO `city` VALUES (2433,'Savannakhet','LAO','Savannakhet',96652);
+INSERT INTO `city` VALUES (2434,'Riga','LVA','Riika',764328);
+INSERT INTO `city` VALUES (2435,'Daugavpils','LVA','Daugavpils',114829);
+INSERT INTO `city` VALUES (2436,'Liepaja','LVA','Liepaja',89439);
+INSERT INTO `city` VALUES (2437,'Maseru','LSO','Maseru',297000);
+INSERT INTO `city` VALUES (2438,'Beirut','LBN','Beirut',1100000);
+INSERT INTO `city` VALUES (2439,'Tripoli','LBN','al-Shamal',240000);
+INSERT INTO `city` VALUES (2440,'Monrovia','LBR','Montserrado',850000);
+INSERT INTO `city` VALUES (2441,'Tripoli','LBY','Tripoli',1682000);
+INSERT INTO `city` VALUES (2442,'Bengasi','LBY','Bengasi',804000);
+INSERT INTO `city` VALUES (2443,'Misrata','LBY','Misrata',121669);
+INSERT INTO `city` VALUES (2444,'al-Zawiya','LBY','al-Zawiya',89338);
+INSERT INTO `city` VALUES (2445,'Schaan','LIE','Schaan',5346);
+INSERT INTO `city` VALUES (2446,'Vaduz','LIE','Vaduz',5043);
+INSERT INTO `city` VALUES (2447,'Vilnius','LTU','Vilna',577969);
+INSERT INTO `city` VALUES (2448,'Kaunas','LTU','Kaunas',412639);
+INSERT INTO `city` VALUES (2449,'Klaipeda','LTU','Klaipeda',202451);
+INSERT INTO `city` VALUES (2450,'Šiauliai','LTU','Šiauliai',146563);
+INSERT INTO `city` VALUES (2451,'Panevezys','LTU','Panevezys',133695);
+INSERT INTO `city` VALUES (2452,'Luxembourg [Luxemburg/Lëtzebuerg]','LUX','Luxembourg',80700);
+INSERT INTO `city` VALUES (2453,'El-Aaiún','ESH','El-Aaiún',169000);
+INSERT INTO `city` VALUES (2454,'Macao','MAC','Macau',437500);
+INSERT INTO `city` VALUES (2455,'Antananarivo','MDG','Antananarivo',675669);
+INSERT INTO `city` VALUES (2456,'Toamasina','MDG','Toamasina',127441);
+INSERT INTO `city` VALUES (2457,'Antsirabé','MDG','Antananarivo',120239);
+INSERT INTO `city` VALUES (2458,'Mahajanga','MDG','Mahajanga',100807);
+INSERT INTO `city` VALUES (2459,'Fianarantsoa','MDG','Fianarantsoa',99005);
+INSERT INTO `city` VALUES (2460,'Skopje','MKD','Skopje',444299);
+INSERT INTO `city` VALUES (2461,'Blantyre','MWI','Blantyre',478155);
+INSERT INTO `city` VALUES (2462,'Lilongwe','MWI','Lilongwe',435964);
+INSERT INTO `city` VALUES (2463,'Male','MDV','Maale',71000);
+INSERT INTO `city` VALUES (2464,'Kuala Lumpur','MYS','Wilayah Persekutuan',1297526);
+INSERT INTO `city` VALUES (2465,'Ipoh','MYS','Perak',382853);
+INSERT INTO `city` VALUES (2466,'Johor Baharu','MYS','Johor',328436);
+INSERT INTO `city` VALUES (2467,'Petaling Jaya','MYS','Selangor',254350);
+INSERT INTO `city` VALUES (2468,'Kelang','MYS','Selangor',243355);
+INSERT INTO `city` VALUES (2469,'Kuala Terengganu','MYS','Terengganu',228119);
+INSERT INTO `city` VALUES (2470,'Pinang','MYS','Pulau Pinang',219603);
+INSERT INTO `city` VALUES (2471,'Kota Bharu','MYS','Kelantan',219582);
+INSERT INTO `city` VALUES (2472,'Kuantan','MYS','Pahang',199484);
+INSERT INTO `city` VALUES (2473,'Taiping','MYS','Perak',183261);
+INSERT INTO `city` VALUES (2474,'Seremban','MYS','Negeri Sembilan',182869);
+INSERT INTO `city` VALUES (2475,'Kuching','MYS','Sarawak',148059);
+INSERT INTO `city` VALUES (2476,'Sibu','MYS','Sarawak',126381);
+INSERT INTO `city` VALUES (2477,'Sandakan','MYS','Sabah',125841);
+INSERT INTO `city` VALUES (2478,'Alor Setar','MYS','Kedah',124412);
+INSERT INTO `city` VALUES (2479,'Selayang Baru','MYS','Selangor',124228);
+INSERT INTO `city` VALUES (2480,'Sungai Petani','MYS','Kedah',114763);
+INSERT INTO `city` VALUES (2481,'Shah Alam','MYS','Selangor',102019);
+INSERT INTO `city` VALUES (2482,'Bamako','MLI','Bamako',809552);
+INSERT INTO `city` VALUES (2483,'Birkirkara','MLT','Outer Harbour',21445);
+INSERT INTO `city` VALUES (2484,'Valletta','MLT','Inner Harbour',7073);
+INSERT INTO `city` VALUES (2485,'Casablanca','MAR','Casablanca',2940623);
+INSERT INTO `city` VALUES (2486,'Rabat','MAR','Rabat-Salé-Zammour-Z',623457);
+INSERT INTO `city` VALUES (2487,'Marrakech','MAR','Marrakech-Tensift-Al',621914);
+INSERT INTO `city` VALUES (2488,'Fès','MAR','Fès-Boulemane',541162);
+INSERT INTO `city` VALUES (2489,'Tanger','MAR','Tanger-Tétouan',521735);
+INSERT INTO `city` VALUES (2490,'Salé','MAR','Rabat-Salé-Zammour-Z',504420);
+INSERT INTO `city` VALUES (2491,'Meknès','MAR','Meknès-Tafilalet',460000);
+INSERT INTO `city` VALUES (2492,'Oujda','MAR','Oriental',365382);
+INSERT INTO `city` VALUES (2493,'Kénitra','MAR','Gharb-Chrarda-Béni H',292600);
+INSERT INTO `city` VALUES (2494,'Tétouan','MAR','Tanger-Tétouan',277516);
+INSERT INTO `city` VALUES (2495,'Safi','MAR','Doukkala-Abda',262300);
+INSERT INTO `city` VALUES (2496,'Agadir','MAR','Souss Massa-Draâ',155244);
+INSERT INTO `city` VALUES (2497,'Mohammedia','MAR','Casablanca',154706);
+INSERT INTO `city` VALUES (2498,'Khouribga','MAR','Chaouia-Ouardigha',152090);
+INSERT INTO `city` VALUES (2499,'Beni-Mellal','MAR','Tadla-Azilal',140212);
+INSERT INTO `city` VALUES (2500,'Témara','MAR','Rabat-Salé-Zammour-Z',126303);
+INSERT INTO `city` VALUES (2501,'El Jadida','MAR','Doukkala-Abda',119083);
+INSERT INTO `city` VALUES (2502,'Nador','MAR','Oriental',112450);
+INSERT INTO `city` VALUES (2503,'Ksar el Kebir','MAR','Tanger-Tétouan',107065);
+INSERT INTO `city` VALUES (2504,'Settat','MAR','Chaouia-Ouardigha',96200);
+INSERT INTO `city` VALUES (2505,'Taza','MAR','Taza-Al Hoceima-Taou',92700);
+INSERT INTO `city` VALUES (2506,'El Araich','MAR','Tanger-Tétouan',90400);
+INSERT INTO `city` VALUES (2507,'Dalap-Uliga-Darrit','MHL','Majuro',28000);
+INSERT INTO `city` VALUES (2508,'Fort-de-France','MTQ','Fort-de-France',94050);
+INSERT INTO `city` VALUES (2509,'Nouakchott','MRT','Nouakchott',667300);
+INSERT INTO `city` VALUES (2510,'Nouâdhibou','MRT','Dakhlet Nouâdhibou',97600);
+INSERT INTO `city` VALUES (2511,'Port-Louis','MUS','Port-Louis',138200);
+INSERT INTO `city` VALUES (2512,'Beau Bassin-Rose Hill','MUS','Plaines Wilhelms',100616);
+INSERT INTO `city` VALUES (2513,'Vacoas-Phoenix','MUS','Plaines Wilhelms',98464);
+INSERT INTO `city` VALUES (2514,'Mamoutzou','MYT','Mamoutzou',12000);
+INSERT INTO `city` VALUES (2515,'Ciudad de México','MEX','Distrito Federal',8591309);
+INSERT INTO `city` VALUES (2516,'Guadalajara','MEX','Jalisco',1647720);
+INSERT INTO `city` VALUES (2517,'Ecatepec de Morelos','MEX','México',1620303);
+INSERT INTO `city` VALUES (2518,'Puebla','MEX','Puebla',1346176);
+INSERT INTO `city` VALUES (2519,'Nezahualcóyotl','MEX','México',1224924);
+INSERT INTO `city` VALUES (2520,'Juárez','MEX','Chihuahua',1217818);
+INSERT INTO `city` VALUES (2521,'Tijuana','MEX','Baja California',1212232);
+INSERT INTO `city` VALUES (2522,'León','MEX','Guanajuato',1133576);
+INSERT INTO `city` VALUES (2523,'Monterrey','MEX','Nuevo León',1108499);
+INSERT INTO `city` VALUES (2524,'Zapopan','MEX','Jalisco',1002239);
+INSERT INTO `city` VALUES (2525,'Naucalpan de Juárez','MEX','México',857511);
+INSERT INTO `city` VALUES (2526,'Mexicali','MEX','Baja California',764902);
+INSERT INTO `city` VALUES (2527,'Culiacán','MEX','Sinaloa',744859);
+INSERT INTO `city` VALUES (2528,'Acapulco de Juárez','MEX','Guerrero',721011);
+INSERT INTO `city` VALUES (2529,'Tlalnepantla de Baz','MEX','México',720755);
+INSERT INTO `city` VALUES (2530,'Mérida','MEX','Yucatán',703324);
+INSERT INTO `city` VALUES (2531,'Chihuahua','MEX','Chihuahua',670208);
+INSERT INTO `city` VALUES (2532,'San Luis Potosí','MEX','San Luis Potosí',669353);
+INSERT INTO `city` VALUES (2533,'Guadalupe','MEX','Nuevo León',668780);
+INSERT INTO `city` VALUES (2534,'Toluca','MEX','México',665617);
+INSERT INTO `city` VALUES (2535,'Aguascalientes','MEX','Aguascalientes',643360);
+INSERT INTO `city` VALUES (2536,'Querétaro','MEX','Querétaro de Arteaga',639839);
+INSERT INTO `city` VALUES (2537,'Morelia','MEX','Michoacán de Ocampo',619958);
+INSERT INTO `city` VALUES (2538,'Hermosillo','MEX','Sonora',608697);
+INSERT INTO `city` VALUES (2539,'Saltillo','MEX','Coahuila de Zaragoza',577352);
+INSERT INTO `city` VALUES (2540,'Torreón','MEX','Coahuila de Zaragoza',529093);
+INSERT INTO `city` VALUES (2541,'Centro (Villahermosa)','MEX','Tabasco',519873);
+INSERT INTO `city` VALUES (2542,'San Nicolás de los Garza','MEX','Nuevo León',495540);
+INSERT INTO `city` VALUES (2543,'Durango','MEX','Durango',490524);
+INSERT INTO `city` VALUES (2544,'Chimalhuacán','MEX','México',490245);
+INSERT INTO `city` VALUES (2545,'Tlaquepaque','MEX','Jalisco',475472);
+INSERT INTO `city` VALUES (2546,'Atizapán de Zaragoza','MEX','México',467262);
+INSERT INTO `city` VALUES (2547,'Veracruz','MEX','Veracruz',457119);
+INSERT INTO `city` VALUES (2548,'Cuautitlán Izcalli','MEX','México',452976);
+INSERT INTO `city` VALUES (2549,'Irapuato','MEX','Guanajuato',440039);
+INSERT INTO `city` VALUES (2550,'Tuxtla Gutiérrez','MEX','Chiapas',433544);
+INSERT INTO `city` VALUES (2551,'Tultitlán','MEX','México',432411);
+INSERT INTO `city` VALUES (2552,'Reynosa','MEX','Tamaulipas',419776);
+INSERT INTO `city` VALUES (2553,'Benito Juárez','MEX','Quintana Roo',419276);
+INSERT INTO `city` VALUES (2554,'Matamoros','MEX','Tamaulipas',416428);
+INSERT INTO `city` VALUES (2555,'Xalapa','MEX','Veracruz',390058);
+INSERT INTO `city` VALUES (2556,'Celaya','MEX','Guanajuato',382140);
+INSERT INTO `city` VALUES (2557,'Mazatlán','MEX','Sinaloa',380265);
+INSERT INTO `city` VALUES (2558,'Ensenada','MEX','Baja California',369573);
+INSERT INTO `city` VALUES (2559,'Ahome','MEX','Sinaloa',358663);
+INSERT INTO `city` VALUES (2560,'Cajeme','MEX','Sonora',355679);
+INSERT INTO `city` VALUES (2561,'Cuernavaca','MEX','Morelos',337966);
+INSERT INTO `city` VALUES (2562,'Tonalá','MEX','Jalisco',336109);
+INSERT INTO `city` VALUES (2563,'Valle de Chalco Solidaridad','MEX','México',323113);
+INSERT INTO `city` VALUES (2564,'Nuevo Laredo','MEX','Tamaulipas',310277);
+INSERT INTO `city` VALUES (2565,'Tepic','MEX','Nayarit',305025);
+INSERT INTO `city` VALUES (2566,'Tampico','MEX','Tamaulipas',294789);
+INSERT INTO `city` VALUES (2567,'Ixtapaluca','MEX','México',293160);
+INSERT INTO `city` VALUES (2568,'Apodaca','MEX','Nuevo León',282941);
+INSERT INTO `city` VALUES (2569,'Guasave','MEX','Sinaloa',277201);
+INSERT INTO `city` VALUES (2570,'Gómez Palacio','MEX','Durango',272806);
+INSERT INTO `city` VALUES (2571,'Tapachula','MEX','Chiapas',271141);
+INSERT INTO `city` VALUES (2572,'Nicolás Romero','MEX','México',269393);
+INSERT INTO `city` VALUES (2573,'Coatzacoalcos','MEX','Veracruz',267037);
+INSERT INTO `city` VALUES (2574,'Uruapan','MEX','Michoacán de Ocampo',265211);
+INSERT INTO `city` VALUES (2575,'Victoria','MEX','Tamaulipas',262686);
+INSERT INTO `city` VALUES (2576,'Oaxaca de Juárez','MEX','Oaxaca',256848);
+INSERT INTO `city` VALUES (2577,'Coacalco de Berriozábal','MEX','México',252270);
+INSERT INTO `city` VALUES (2578,'Pachuca de Soto','MEX','Hidalgo',244688);
+INSERT INTO `city` VALUES (2579,'General Escobedo','MEX','Nuevo León',232961);
+INSERT INTO `city` VALUES (2580,'Salamanca','MEX','Guanajuato',226864);
+INSERT INTO `city` VALUES (2581,'Santa Catarina','MEX','Nuevo León',226573);
+INSERT INTO `city` VALUES (2582,'Tehuacán','MEX','Puebla',225943);
+INSERT INTO `city` VALUES (2583,'Chalco','MEX','México',222201);
+INSERT INTO `city` VALUES (2584,'Cárdenas','MEX','Tabasco',216903);
+INSERT INTO `city` VALUES (2585,'Campeche','MEX','Campeche',216735);
+INSERT INTO `city` VALUES (2586,'La Paz','MEX','México',213045);
+INSERT INTO `city` VALUES (2587,'Othón P. Blanco (Chetumal)','MEX','Quintana Roo',208014);
+INSERT INTO `city` VALUES (2588,'Texcoco','MEX','México',203681);
+INSERT INTO `city` VALUES (2589,'La Paz','MEX','Baja California Sur',196708);
+INSERT INTO `city` VALUES (2590,'Metepec','MEX','México',194265);
+INSERT INTO `city` VALUES (2591,'Monclova','MEX','Coahuila de Zaragoza',193657);
+INSERT INTO `city` VALUES (2592,'Huixquilucan','MEX','México',193156);
+INSERT INTO `city` VALUES (2593,'Chilpancingo de los Bravo','MEX','Guerrero',192509);
+INSERT INTO `city` VALUES (2594,'Puerto Vallarta','MEX','Jalisco',183741);
+INSERT INTO `city` VALUES (2595,'Fresnillo','MEX','Zacatecas',182744);
+INSERT INTO `city` VALUES (2596,'Ciudad Madero','MEX','Tamaulipas',182012);
+INSERT INTO `city` VALUES (2597,'Soledad de Graciano Sánchez','MEX','San Luis Potosí',179956);
+INSERT INTO `city` VALUES (2598,'San Juan del Río','MEX','Querétaro',179300);
+INSERT INTO `city` VALUES (2599,'San Felipe del Progreso','MEX','México',177330);
+INSERT INTO `city` VALUES (2600,'Córdoba','MEX','Veracruz',176952);
+INSERT INTO `city` VALUES (2601,'Tecámac','MEX','México',172410);
+INSERT INTO `city` VALUES (2602,'Ocosingo','MEX','Chiapas',171495);
+INSERT INTO `city` VALUES (2603,'Carmen','MEX','Campeche',171367);
+INSERT INTO `city` VALUES (2604,'Lázaro Cárdenas','MEX','Michoacán de Ocampo',170878);
+INSERT INTO `city` VALUES (2605,'Jiutepec','MEX','Morelos',170428);
+INSERT INTO `city` VALUES (2606,'Papantla','MEX','Veracruz',170123);
+INSERT INTO `city` VALUES (2607,'Comalcalco','MEX','Tabasco',164640);
+INSERT INTO `city` VALUES (2608,'Zamora','MEX','Michoacán de Ocampo',161191);
+INSERT INTO `city` VALUES (2609,'Nogales','MEX','Sonora',159103);
+INSERT INTO `city` VALUES (2610,'Huimanguillo','MEX','Tabasco',158335);
+INSERT INTO `city` VALUES (2611,'Cuautla','MEX','Morelos',153132);
+INSERT INTO `city` VALUES (2612,'Minatitlán','MEX','Veracruz',152983);
+INSERT INTO `city` VALUES (2613,'Poza Rica de Hidalgo','MEX','Veracruz',152678);
+INSERT INTO `city` VALUES (2614,'Ciudad Valles','MEX','San Luis Potosí',146411);
+INSERT INTO `city` VALUES (2615,'Navolato','MEX','Sinaloa',145396);
+INSERT INTO `city` VALUES (2616,'San Luis Río Colorado','MEX','Sonora',145276);
+INSERT INTO `city` VALUES (2617,'Pénjamo','MEX','Guanajuato',143927);
+INSERT INTO `city` VALUES (2618,'San Andrés Tuxtla','MEX','Veracruz',142251);
+INSERT INTO `city` VALUES (2619,'Guanajuato','MEX','Guanajuato',141215);
+INSERT INTO `city` VALUES (2620,'Navojoa','MEX','Sonora',140495);
+INSERT INTO `city` VALUES (2621,'Zitácuaro','MEX','Michoacán de Ocampo',137970);
+INSERT INTO `city` VALUES (2622,'Boca del Río','MEX','Veracruz-Llave',135721);
+INSERT INTO `city` VALUES (2623,'Allende','MEX','Guanajuato',134645);
+INSERT INTO `city` VALUES (2624,'Silao','MEX','Guanajuato',134037);
+INSERT INTO `city` VALUES (2625,'Macuspana','MEX','Tabasco',133795);
+INSERT INTO `city` VALUES (2626,'San Juan Bautista Tuxtepec','MEX','Oaxaca',133675);
+INSERT INTO `city` VALUES (2627,'San Cristóbal de las Casas','MEX','Chiapas',132317);
+INSERT INTO `city` VALUES (2628,'Valle de Santiago','MEX','Guanajuato',130557);
+INSERT INTO `city` VALUES (2629,'Guaymas','MEX','Sonora',130108);
+INSERT INTO `city` VALUES (2630,'Colima','MEX','Colima',129454);
+INSERT INTO `city` VALUES (2631,'Dolores Hidalgo','MEX','Guanajuato',128675);
+INSERT INTO `city` VALUES (2632,'Lagos de Moreno','MEX','Jalisco',127949);
+INSERT INTO `city` VALUES (2633,'Piedras Negras','MEX','Coahuila de Zaragoza',127898);
+INSERT INTO `city` VALUES (2634,'Altamira','MEX','Tamaulipas',127490);
+INSERT INTO `city` VALUES (2635,'Túxpam','MEX','Veracruz',126475);
+INSERT INTO `city` VALUES (2636,'San Pedro Garza García','MEX','Nuevo León',126147);
+INSERT INTO `city` VALUES (2637,'Cuauhtémoc','MEX','Chihuahua',124279);
+INSERT INTO `city` VALUES (2638,'Manzanillo','MEX','Colima',124014);
+INSERT INTO `city` VALUES (2639,'Iguala de la Independencia','MEX','Guerrero',123883);
+INSERT INTO `city` VALUES (2640,'Zacatecas','MEX','Zacatecas',123700);
+INSERT INTO `city` VALUES (2641,'Tlajomulco de Zúñiga','MEX','Jalisco',123220);
+INSERT INTO `city` VALUES (2642,'Tulancingo de Bravo','MEX','Hidalgo',121946);
+INSERT INTO `city` VALUES (2643,'Zinacantepec','MEX','México',121715);
+INSERT INTO `city` VALUES (2644,'San Martín Texmelucan','MEX','Puebla',121093);
+INSERT INTO `city` VALUES (2645,'Tepatitlán de Morelos','MEX','Jalisco',118948);
+INSERT INTO `city` VALUES (2646,'Martínez de la Torre','MEX','Veracruz',118815);
+INSERT INTO `city` VALUES (2647,'Orizaba','MEX','Veracruz',118488);
+INSERT INTO `city` VALUES (2648,'Apatzingán','MEX','Michoacán de Ocampo',117849);
+INSERT INTO `city` VALUES (2649,'Atlixco','MEX','Puebla',117019);
+INSERT INTO `city` VALUES (2650,'Delicias','MEX','Chihuahua',116132);
+INSERT INTO `city` VALUES (2651,'Ixtlahuaca','MEX','México',115548);
+INSERT INTO `city` VALUES (2652,'El Mante','MEX','Tamaulipas',112453);
+INSERT INTO `city` VALUES (2653,'Lerdo','MEX','Durango',112272);
+INSERT INTO `city` VALUES (2654,'Almoloya de Juárez','MEX','México',110550);
+INSERT INTO `city` VALUES (2655,'Acámbaro','MEX','Guanajuato',110487);
+INSERT INTO `city` VALUES (2656,'Acuña','MEX','Coahuila de Zaragoza',110388);
+INSERT INTO `city` VALUES (2657,'Guadalupe','MEX','Zacatecas',108881);
+INSERT INTO `city` VALUES (2658,'Huejutla de Reyes','MEX','Hidalgo',108017);
+INSERT INTO `city` VALUES (2659,'Hidalgo','MEX','Michoacán de Ocampo',106198);
+INSERT INTO `city` VALUES (2660,'Los Cabos','MEX','Baja California Sur',105199);
+INSERT INTO `city` VALUES (2661,'Comitán de Domínguez','MEX','Chiapas',104986);
+INSERT INTO `city` VALUES (2662,'Cunduacán','MEX','Tabasco',104164);
+INSERT INTO `city` VALUES (2663,'Río Bravo','MEX','Tamaulipas',103901);
+INSERT INTO `city` VALUES (2664,'Temapache','MEX','Veracruz',102824);
+INSERT INTO `city` VALUES (2665,'Chilapa de Alvarez','MEX','Guerrero',102716);
+INSERT INTO `city` VALUES (2666,'Hidalgo del Parral','MEX','Chihuahua',100881);
+INSERT INTO `city` VALUES (2667,'San Francisco del Rincón','MEX','Guanajuato',100149);
+INSERT INTO `city` VALUES (2668,'Taxco de Alarcón','MEX','Guerrero',99907);
+INSERT INTO `city` VALUES (2669,'Zumpango','MEX','México',99781);
+INSERT INTO `city` VALUES (2670,'San Pedro Cholula','MEX','Puebla',99734);
+INSERT INTO `city` VALUES (2671,'Lerma','MEX','México',99714);
+INSERT INTO `city` VALUES (2672,'Tecomán','MEX','Colima',99296);
+INSERT INTO `city` VALUES (2673,'Las Margaritas','MEX','Chiapas',97389);
+INSERT INTO `city` VALUES (2674,'Cosoleacaque','MEX','Veracruz',97199);
+INSERT INTO `city` VALUES (2675,'San Luis de la Paz','MEX','Guanajuato',96763);
+INSERT INTO `city` VALUES (2676,'José Azueta','MEX','Guerrero',95448);
+INSERT INTO `city` VALUES (2677,'Santiago Ixcuintla','MEX','Nayarit',95311);
+INSERT INTO `city` VALUES (2678,'San Felipe','MEX','Guanajuato',95305);
+INSERT INTO `city` VALUES (2679,'Tejupilco','MEX','México',94934);
+INSERT INTO `city` VALUES (2680,'Tantoyuca','MEX','Veracruz',94709);
+INSERT INTO `city` VALUES (2681,'Salvatierra','MEX','Guanajuato',94322);
+INSERT INTO `city` VALUES (2682,'Tultepec','MEX','México',93364);
+INSERT INTO `city` VALUES (2683,'Temixco','MEX','Morelos',92686);
+INSERT INTO `city` VALUES (2684,'Matamoros','MEX','Coahuila de Zaragoza',91858);
+INSERT INTO `city` VALUES (2685,'Pánuco','MEX','Veracruz',90551);
+INSERT INTO `city` VALUES (2686,'El Fuerte','MEX','Sinaloa',89556);
+INSERT INTO `city` VALUES (2687,'Tierra Blanca','MEX','Veracruz',89143);
+INSERT INTO `city` VALUES (2688,'Weno','FSM','Chuuk',22000);
+INSERT INTO `city` VALUES (2689,'Palikir','FSM','Pohnpei',8600);
+INSERT INTO `city` VALUES (2690,'Chisinau','MDA','Chisinau',719900);
+INSERT INTO `city` VALUES (2691,'Tiraspol','MDA','Dnjestria',194300);
+INSERT INTO `city` VALUES (2692,'Balti','MDA','Balti',153400);
+INSERT INTO `city` VALUES (2693,'Bender (Tîghina)','MDA','Bender (Tîghina)',125700);
+INSERT INTO `city` VALUES (2694,'Monte-Carlo','MCO','–',13154);
+INSERT INTO `city` VALUES (2695,'Monaco-Ville','MCO','–',1234);
+INSERT INTO `city` VALUES (2696,'Ulan Bator','MNG','Ulaanbaatar',773700);
+INSERT INTO `city` VALUES (2697,'Plymouth','MSR','Plymouth',2000);
+INSERT INTO `city` VALUES (2698,'Maputo','MOZ','Maputo',1018938);
+INSERT INTO `city` VALUES (2699,'Matola','MOZ','Maputo',424662);
+INSERT INTO `city` VALUES (2700,'Beira','MOZ','Sofala',397368);
+INSERT INTO `city` VALUES (2701,'Nampula','MOZ','Nampula',303346);
+INSERT INTO `city` VALUES (2702,'Chimoio','MOZ','Manica',171056);
+INSERT INTO `city` VALUES (2703,'Naçala-Porto','MOZ','Nampula',158248);
+INSERT INTO `city` VALUES (2704,'Quelimane','MOZ','Zambézia',150116);
+INSERT INTO `city` VALUES (2705,'Mocuba','MOZ','Zambézia',124700);
+INSERT INTO `city` VALUES (2706,'Tete','MOZ','Tete',101984);
+INSERT INTO `city` VALUES (2707,'Xai-Xai','MOZ','Gaza',99442);
+INSERT INTO `city` VALUES (2708,'Gurue','MOZ','Zambézia',99300);
+INSERT INTO `city` VALUES (2709,'Maxixe','MOZ','Inhambane',93985);
+INSERT INTO `city` VALUES (2710,'Rangoon (Yangon)','MMR','Rangoon [Yangon]',3361700);
+INSERT INTO `city` VALUES (2711,'Mandalay','MMR','Mandalay',885300);
+INSERT INTO `city` VALUES (2712,'Moulmein (Mawlamyine)','MMR','Mon',307900);
+INSERT INTO `city` VALUES (2713,'Pegu (Bago)','MMR','Pegu [Bago]',190900);
+INSERT INTO `city` VALUES (2714,'Bassein (Pathein)','MMR','Irrawaddy [Ayeyarwad',183900);
+INSERT INTO `city` VALUES (2715,'Monywa','MMR','Sagaing',138600);
+INSERT INTO `city` VALUES (2716,'Sittwe (Akyab)','MMR','Rakhine',137600);
+INSERT INTO `city` VALUES (2717,'Taunggyi (Taunggye)','MMR','Shan',131500);
+INSERT INTO `city` VALUES (2718,'Meikhtila','MMR','Mandalay',129700);
+INSERT INTO `city` VALUES (2719,'Mergui (Myeik)','MMR','Tenasserim [Tanintha',122700);
+INSERT INTO `city` VALUES (2720,'Lashio (Lasho)','MMR','Shan',107600);
+INSERT INTO `city` VALUES (2721,'Prome (Pyay)','MMR','Pegu [Bago]',105700);
+INSERT INTO `city` VALUES (2722,'Henzada (Hinthada)','MMR','Irrawaddy [Ayeyarwad',104700);
+INSERT INTO `city` VALUES (2723,'Myingyan','MMR','Mandalay',103600);
+INSERT INTO `city` VALUES (2724,'Tavoy (Dawei)','MMR','Tenasserim [Tanintha',96800);
+INSERT INTO `city` VALUES (2725,'Pagakku (Pakokku)','MMR','Magwe [Magway]',94800);
+INSERT INTO `city` VALUES (2726,'Windhoek','NAM','Khomas',169000);
+INSERT INTO `city` VALUES (2727,'Yangor','NRU','–',4050);
+INSERT INTO `city` VALUES (2728,'Yaren','NRU','–',559);
+INSERT INTO `city` VALUES (2729,'Kathmandu','NPL','Central',591835);
+INSERT INTO `city` VALUES (2730,'Biratnagar','NPL','Eastern',157764);
+INSERT INTO `city` VALUES (2731,'Pokhara','NPL','Western',146318);
+INSERT INTO `city` VALUES (2732,'Lalitapur','NPL','Central',145847);
+INSERT INTO `city` VALUES (2733,'Birgunj','NPL','Central',90639);
+INSERT INTO `city` VALUES (2734,'Managua','NIC','Managua',959000);
+INSERT INTO `city` VALUES (2735,'León','NIC','León',123865);
+INSERT INTO `city` VALUES (2736,'Chinandega','NIC','Chinandega',97387);
+INSERT INTO `city` VALUES (2737,'Masaya','NIC','Masaya',88971);
+INSERT INTO `city` VALUES (2738,'Niamey','NER','Niamey',420000);
+INSERT INTO `city` VALUES (2739,'Zinder','NER','Zinder',120892);
+INSERT INTO `city` VALUES (2740,'Maradi','NER','Maradi',112965);
+INSERT INTO `city` VALUES (2741,'Lagos','NGA','Lagos',1518000);
+INSERT INTO `city` VALUES (2742,'Ibadan','NGA','Oyo & Osun',1432000);
+INSERT INTO `city` VALUES (2743,'Ogbomosho','NGA','Oyo & Osun',730000);
+INSERT INTO `city` VALUES (2744,'Kano','NGA','Kano & Jigawa',674100);
+INSERT INTO `city` VALUES (2745,'Oshogbo','NGA','Oyo & Osun',476800);
+INSERT INTO `city` VALUES (2746,'Ilorin','NGA','Kwara & Kogi',475800);
+INSERT INTO `city` VALUES (2747,'Abeokuta','NGA','Ogun',427400);
+INSERT INTO `city` VALUES (2748,'Port Harcourt','NGA','Rivers & Bayelsa',410000);
+INSERT INTO `city` VALUES (2749,'Zaria','NGA','Kaduna',379200);
+INSERT INTO `city` VALUES (2750,'Ilesha','NGA','Oyo & Osun',378400);
+INSERT INTO `city` VALUES (2751,'Onitsha','NGA','Anambra & Enugu & Eb',371900);
+INSERT INTO `city` VALUES (2752,'Iwo','NGA','Oyo & Osun',362000);
+INSERT INTO `city` VALUES (2753,'Ado-Ekiti','NGA','Ondo & Ekiti',359400);
+INSERT INTO `city` VALUES (2754,'Abuja','NGA','Federal Capital Dist',350100);
+INSERT INTO `city` VALUES (2755,'Kaduna','NGA','Kaduna',342200);
+INSERT INTO `city` VALUES (2756,'Mushin','NGA','Lagos',333200);
+INSERT INTO `city` VALUES (2757,'Maiduguri','NGA','Borno & Yobe',320000);
+INSERT INTO `city` VALUES (2758,'Enugu','NGA','Anambra & Enugu & Eb',316100);
+INSERT INTO `city` VALUES (2759,'Ede','NGA','Oyo & Osun',307100);
+INSERT INTO `city` VALUES (2760,'Aba','NGA','Imo & Abia',298900);
+INSERT INTO `city` VALUES (2761,'Ife','NGA','Oyo & Osun',296800);
+INSERT INTO `city` VALUES (2762,'Ila','NGA','Oyo & Osun',264000);
+INSERT INTO `city` VALUES (2763,'Oyo','NGA','Oyo & Osun',256400);
+INSERT INTO `city` VALUES (2764,'Ikerre','NGA','Ondo & Ekiti',244600);
+INSERT INTO `city` VALUES (2765,'Benin City','NGA','Edo & Delta',229400);
+INSERT INTO `city` VALUES (2766,'Iseyin','NGA','Oyo & Osun',217300);
+INSERT INTO `city` VALUES (2767,'Katsina','NGA','Katsina',206500);
+INSERT INTO `city` VALUES (2768,'Jos','NGA','Plateau & Nassarawa',206300);
+INSERT INTO `city` VALUES (2769,'Sokoto','NGA','Sokoto & Kebbi & Zam',204900);
+INSERT INTO `city` VALUES (2770,'Ilobu','NGA','Oyo & Osun',199000);
+INSERT INTO `city` VALUES (2771,'Offa','NGA','Kwara & Kogi',197200);
+INSERT INTO `city` VALUES (2772,'Ikorodu','NGA','Lagos',184900);
+INSERT INTO `city` VALUES (2773,'Ilawe-Ekiti','NGA','Ondo & Ekiti',184500);
+INSERT INTO `city` VALUES (2774,'Owo','NGA','Ondo & Ekiti',183500);
+INSERT INTO `city` VALUES (2775,'Ikirun','NGA','Oyo & Osun',181400);
+INSERT INTO `city` VALUES (2776,'Shaki','NGA','Oyo & Osun',174500);
+INSERT INTO `city` VALUES (2777,'Calabar','NGA','Cross River',174400);
+INSERT INTO `city` VALUES (2778,'Ondo','NGA','Ondo & Ekiti',173600);
+INSERT INTO `city` VALUES (2779,'Akure','NGA','Ondo & Ekiti',162300);
+INSERT INTO `city` VALUES (2780,'Gusau','NGA','Sokoto & Kebbi & Zam',158000);
+INSERT INTO `city` VALUES (2781,'Ijebu-Ode','NGA','Ogun',156400);
+INSERT INTO `city` VALUES (2782,'Effon-Alaiye','NGA','Oyo & Osun',153100);
+INSERT INTO `city` VALUES (2783,'Kumo','NGA','Bauchi & Gombe',148000);
+INSERT INTO `city` VALUES (2784,'Shomolu','NGA','Lagos',147700);
+INSERT INTO `city` VALUES (2785,'Oka-Akoko','NGA','Ondo & Ekiti',142900);
+INSERT INTO `city` VALUES (2786,'Ikare','NGA','Ondo & Ekiti',140800);
+INSERT INTO `city` VALUES (2787,'Sapele','NGA','Edo & Delta',139200);
+INSERT INTO `city` VALUES (2788,'Deba Habe','NGA','Bauchi & Gombe',138600);
+INSERT INTO `city` VALUES (2789,'Minna','NGA','Niger',136900);
+INSERT INTO `city` VALUES (2790,'Warri','NGA','Edo & Delta',126100);
+INSERT INTO `city` VALUES (2791,'Bida','NGA','Niger',125500);
+INSERT INTO `city` VALUES (2792,'Ikire','NGA','Oyo & Osun',123300);
+INSERT INTO `city` VALUES (2793,'Makurdi','NGA','Benue',123100);
+INSERT INTO `city` VALUES (2794,'Lafia','NGA','Plateau & Nassarawa',122500);
+INSERT INTO `city` VALUES (2795,'Inisa','NGA','Oyo & Osun',119800);
+INSERT INTO `city` VALUES (2796,'Shagamu','NGA','Ogun',117200);
+INSERT INTO `city` VALUES (2797,'Awka','NGA','Anambra & Enugu & Eb',111200);
+INSERT INTO `city` VALUES (2798,'Gombe','NGA','Bauchi & Gombe',107800);
+INSERT INTO `city` VALUES (2799,'Igboho','NGA','Oyo & Osun',106800);
+INSERT INTO `city` VALUES (2800,'Ejigbo','NGA','Oyo & Osun',105900);
+INSERT INTO `city` VALUES (2801,'Agege','NGA','Lagos',105000);
+INSERT INTO `city` VALUES (2802,'Ise-Ekiti','NGA','Ondo & Ekiti',103400);
+INSERT INTO `city` VALUES (2803,'Ugep','NGA','Cross River',102600);
+INSERT INTO `city` VALUES (2804,'Epe','NGA','Lagos',101000);
+INSERT INTO `city` VALUES (2805,'Alofi','NIU','–',682);
+INSERT INTO `city` VALUES (2806,'Kingston','NFK','–',800);
+INSERT INTO `city` VALUES (2807,'Oslo','NOR','Oslo',508726);
+INSERT INTO `city` VALUES (2808,'Bergen','NOR','Hordaland',230948);
+INSERT INTO `city` VALUES (2809,'Trondheim','NOR','Sør-Trøndelag',150166);
+INSERT INTO `city` VALUES (2810,'Stavanger','NOR','Rogaland',108848);
+INSERT INTO `city` VALUES (2811,'Bærum','NOR','Akershus',101340);
+INSERT INTO `city` VALUES (2812,'Abidjan','CIV','Abidjan',2500000);
+INSERT INTO `city` VALUES (2813,'Bouaké','CIV','Bouaké',329850);
+INSERT INTO `city` VALUES (2814,'Yamoussoukro','CIV','Yamoussoukro',130000);
+INSERT INTO `city` VALUES (2815,'Daloa','CIV','Daloa',121842);
+INSERT INTO `city` VALUES (2816,'Korhogo','CIV','Korhogo',109445);
+INSERT INTO `city` VALUES (2817,'al-Sib','OMN','Masqat',155000);
+INSERT INTO `city` VALUES (2818,'Salala','OMN','Zufar',131813);
+INSERT INTO `city` VALUES (2819,'Bawshar','OMN','Masqat',107500);
+INSERT INTO `city` VALUES (2820,'Suhar','OMN','al-Batina',90814);
+INSERT INTO `city` VALUES (2821,'Masqat','OMN','Masqat',51969);
+INSERT INTO `city` VALUES (2822,'Karachi','PAK','Sindh',9269265);
+INSERT INTO `city` VALUES (2823,'Lahore','PAK','Punjab',5063499);
+INSERT INTO `city` VALUES (2824,'Faisalabad','PAK','Punjab',1977246);
+INSERT INTO `city` VALUES (2825,'Rawalpindi','PAK','Punjab',1406214);
+INSERT INTO `city` VALUES (2826,'Multan','PAK','Punjab',1182441);
+INSERT INTO `city` VALUES (2827,'Hyderabad','PAK','Sindh',1151274);
+INSERT INTO `city` VALUES (2828,'Gujranwala','PAK','Punjab',1124749);
+INSERT INTO `city` VALUES (2829,'Peshawar','PAK','Nothwest Border Prov',988005);
+INSERT INTO `city` VALUES (2830,'Quetta','PAK','Baluchistan',560307);
+INSERT INTO `city` VALUES (2831,'Islamabad','PAK','Islamabad',524500);
+INSERT INTO `city` VALUES (2832,'Sargodha','PAK','Punjab',455360);
+INSERT INTO `city` VALUES (2833,'Sialkot','PAK','Punjab',417597);
+INSERT INTO `city` VALUES (2834,'Bahawalpur','PAK','Punjab',403408);
+INSERT INTO `city` VALUES (2835,'Sukkur','PAK','Sindh',329176);
+INSERT INTO `city` VALUES (2836,'Jhang','PAK','Punjab',292214);
+INSERT INTO `city` VALUES (2837,'Sheikhupura','PAK','Punjab',271875);
+INSERT INTO `city` VALUES (2838,'Larkana','PAK','Sindh',270366);
+INSERT INTO `city` VALUES (2839,'Gujrat','PAK','Punjab',250121);
+INSERT INTO `city` VALUES (2840,'Mardan','PAK','Nothwest Border Prov',244511);
+INSERT INTO `city` VALUES (2841,'Kasur','PAK','Punjab',241649);
+INSERT INTO `city` VALUES (2842,'Rahim Yar Khan','PAK','Punjab',228479);
+INSERT INTO `city` VALUES (2843,'Sahiwal','PAK','Punjab',207388);
+INSERT INTO `city` VALUES (2844,'Okara','PAK','Punjab',200901);
+INSERT INTO `city` VALUES (2845,'Wah','PAK','Punjab',198400);
+INSERT INTO `city` VALUES (2846,'Dera Ghazi Khan','PAK','Punjab',188100);
+INSERT INTO `city` VALUES (2847,'Mirpur Khas','PAK','Sind',184500);
+INSERT INTO `city` VALUES (2848,'Nawabshah','PAK','Sind',183100);
+INSERT INTO `city` VALUES (2849,'Mingora','PAK','Nothwest Border Prov',174500);
+INSERT INTO `city` VALUES (2850,'Chiniot','PAK','Punjab',169300);
+INSERT INTO `city` VALUES (2851,'Kamoke','PAK','Punjab',151000);
+INSERT INTO `city` VALUES (2852,'Mandi Burewala','PAK','Punjab',149900);
+INSERT INTO `city` VALUES (2853,'Jhelum','PAK','Punjab',145800);
+INSERT INTO `city` VALUES (2854,'Sadiqabad','PAK','Punjab',141500);
+INSERT INTO `city` VALUES (2855,'Jacobabad','PAK','Sind',137700);
+INSERT INTO `city` VALUES (2856,'Shikarpur','PAK','Sind',133300);
+INSERT INTO `city` VALUES (2857,'Khanewal','PAK','Punjab',133000);
+INSERT INTO `city` VALUES (2858,'Hafizabad','PAK','Punjab',130200);
+INSERT INTO `city` VALUES (2859,'Kohat','PAK','Nothwest Border Prov',125300);
+INSERT INTO `city` VALUES (2860,'Muzaffargarh','PAK','Punjab',121600);
+INSERT INTO `city` VALUES (2861,'Khanpur','PAK','Punjab',117800);
+INSERT INTO `city` VALUES (2862,'Gojra','PAK','Punjab',115000);
+INSERT INTO `city` VALUES (2863,'Bahawalnagar','PAK','Punjab',109600);
+INSERT INTO `city` VALUES (2864,'Muridke','PAK','Punjab',108600);
+INSERT INTO `city` VALUES (2865,'Pak Pattan','PAK','Punjab',107800);
+INSERT INTO `city` VALUES (2866,'Abottabad','PAK','Nothwest Border Prov',106000);
+INSERT INTO `city` VALUES (2867,'Tando Adam','PAK','Sind',103400);
+INSERT INTO `city` VALUES (2868,'Jaranwala','PAK','Punjab',103300);
+INSERT INTO `city` VALUES (2869,'Khairpur','PAK','Sind',102200);
+INSERT INTO `city` VALUES (2870,'Chishtian Mandi','PAK','Punjab',101700);
+INSERT INTO `city` VALUES (2871,'Daska','PAK','Punjab',101500);
+INSERT INTO `city` VALUES (2872,'Dadu','PAK','Sind',98600);
+INSERT INTO `city` VALUES (2873,'Mandi Bahauddin','PAK','Punjab',97300);
+INSERT INTO `city` VALUES (2874,'Ahmadpur East','PAK','Punjab',96000);
+INSERT INTO `city` VALUES (2875,'Kamalia','PAK','Punjab',95300);
+INSERT INTO `city` VALUES (2876,'Khuzdar','PAK','Baluchistan',93100);
+INSERT INTO `city` VALUES (2877,'Vihari','PAK','Punjab',92300);
+INSERT INTO `city` VALUES (2878,'Dera Ismail Khan','PAK','Nothwest Border Prov',90400);
+INSERT INTO `city` VALUES (2879,'Wazirabad','PAK','Punjab',89700);
+INSERT INTO `city` VALUES (2880,'Nowshera','PAK','Nothwest Border Prov',89400);
+INSERT INTO `city` VALUES (2881,'Koror','PLW','Koror',12000);
+INSERT INTO `city` VALUES (2882,'Ciudad de Panamá','PAN','Panamá',471373);
+INSERT INTO `city` VALUES (2883,'San Miguelito','PAN','San Miguelito',315382);
+INSERT INTO `city` VALUES (2884,'Port Moresby','PNG','National Capital Dis',247000);
+INSERT INTO `city` VALUES (2885,'Asunción','PRY','Asunción',557776);
+INSERT INTO `city` VALUES (2886,'Ciudad del Este','PRY','Alto Paraná',133881);
+INSERT INTO `city` VALUES (2887,'San Lorenzo','PRY','Central',133395);
+INSERT INTO `city` VALUES (2888,'Lambaré','PRY','Central',99681);
+INSERT INTO `city` VALUES (2889,'Fernando de la Mora','PRY','Central',95287);
+INSERT INTO `city` VALUES (2890,'Lima','PER','Lima',6464693);
+INSERT INTO `city` VALUES (2891,'Arequipa','PER','Arequipa',762000);
+INSERT INTO `city` VALUES (2892,'Trujillo','PER','La Libertad',652000);
+INSERT INTO `city` VALUES (2893,'Chiclayo','PER','Lambayeque',517000);
+INSERT INTO `city` VALUES (2894,'Callao','PER','Callao',424294);
+INSERT INTO `city` VALUES (2895,'Iquitos','PER','Loreto',367000);
+INSERT INTO `city` VALUES (2896,'Chimbote','PER','Ancash',336000);
+INSERT INTO `city` VALUES (2897,'Huancayo','PER','Junín',327000);
+INSERT INTO `city` VALUES (2898,'Piura','PER','Piura',325000);
+INSERT INTO `city` VALUES (2899,'Cusco','PER','Cusco',291000);
+INSERT INTO `city` VALUES (2900,'Pucallpa','PER','Ucayali',220866);
+INSERT INTO `city` VALUES (2901,'Tacna','PER','Tacna',215683);
+INSERT INTO `city` VALUES (2902,'Ica','PER','Ica',194820);
+INSERT INTO `city` VALUES (2903,'Sullana','PER','Piura',147361);
+INSERT INTO `city` VALUES (2904,'Juliaca','PER','Puno',142576);
+INSERT INTO `city` VALUES (2905,'Huánuco','PER','Huanuco',129688);
+INSERT INTO `city` VALUES (2906,'Ayacucho','PER','Ayacucho',118960);
+INSERT INTO `city` VALUES (2907,'Chincha Alta','PER','Ica',110016);
+INSERT INTO `city` VALUES (2908,'Cajamarca','PER','Cajamarca',108009);
+INSERT INTO `city` VALUES (2909,'Puno','PER','Puno',101578);
+INSERT INTO `city` VALUES (2910,'Ventanilla','PER','Callao',101056);
+INSERT INTO `city` VALUES (2911,'Castilla','PER','Piura',90642);
+INSERT INTO `city` VALUES (2912,'Adamstown','PCN','–',42);
+INSERT INTO `city` VALUES (2913,'Garapan','MNP','Saipan',9200);
+INSERT INTO `city` VALUES (2914,'Lisboa','PRT','Lisboa',563210);
+INSERT INTO `city` VALUES (2915,'Porto','PRT','Porto',273060);
+INSERT INTO `city` VALUES (2916,'Amadora','PRT','Lisboa',122106);
+INSERT INTO `city` VALUES (2917,'Coímbra','PRT','Coímbra',96100);
+INSERT INTO `city` VALUES (2918,'Braga','PRT','Braga',90535);
+INSERT INTO `city` VALUES (2919,'San Juan','PRI','San Juan',434374);
+INSERT INTO `city` VALUES (2920,'Bayamón','PRI','Bayamón',224044);
+INSERT INTO `city` VALUES (2921,'Ponce','PRI','Ponce',186475);
+INSERT INTO `city` VALUES (2922,'Carolina','PRI','Carolina',186076);
+INSERT INTO `city` VALUES (2923,'Caguas','PRI','Caguas',140502);
+INSERT INTO `city` VALUES (2924,'Arecibo','PRI','Arecibo',100131);
+INSERT INTO `city` VALUES (2925,'Guaynabo','PRI','Guaynabo',100053);
+INSERT INTO `city` VALUES (2926,'Mayagüez','PRI','Mayagüez',98434);
+INSERT INTO `city` VALUES (2927,'Toa Baja','PRI','Toa Baja',94085);
+INSERT INTO `city` VALUES (2928,'Warszawa','POL','Mazowieckie',1615369);
+INSERT INTO `city` VALUES (2929,'Lódz','POL','Lodzkie',800110);
+INSERT INTO `city` VALUES (2930,'Kraków','POL','Malopolskie',738150);
+INSERT INTO `city` VALUES (2931,'Wroclaw','POL','Dolnoslaskie',636765);
+INSERT INTO `city` VALUES (2932,'Poznan','POL','Wielkopolskie',576899);
+INSERT INTO `city` VALUES (2933,'Gdansk','POL','Pomorskie',458988);
+INSERT INTO `city` VALUES (2934,'Szczecin','POL','Zachodnio-Pomorskie',416988);
+INSERT INTO `city` VALUES (2935,'Bydgoszcz','POL','Kujawsko-Pomorskie',386855);
+INSERT INTO `city` VALUES (2936,'Lublin','POL','Lubelskie',356251);
+INSERT INTO `city` VALUES (2937,'Katowice','POL','Slaskie',345934);
+INSERT INTO `city` VALUES (2938,'Bialystok','POL','Podlaskie',283937);
+INSERT INTO `city` VALUES (2939,'Czestochowa','POL','Slaskie',257812);
+INSERT INTO `city` VALUES (2940,'Gdynia','POL','Pomorskie',253521);
+INSERT INTO `city` VALUES (2941,'Sosnowiec','POL','Slaskie',244102);
+INSERT INTO `city` VALUES (2942,'Radom','POL','Mazowieckie',232262);
+INSERT INTO `city` VALUES (2943,'Kielce','POL','Swietokrzyskie',212383);
+INSERT INTO `city` VALUES (2944,'Gliwice','POL','Slaskie',212164);
+INSERT INTO `city` VALUES (2945,'Torun','POL','Kujawsko-Pomorskie',206158);
+INSERT INTO `city` VALUES (2946,'Bytom','POL','Slaskie',205560);
+INSERT INTO `city` VALUES (2947,'Zabrze','POL','Slaskie',200177);
+INSERT INTO `city` VALUES (2948,'Bielsko-Biala','POL','Slaskie',180307);
+INSERT INTO `city` VALUES (2949,'Olsztyn','POL','Warminsko-Mazurskie',170904);
+INSERT INTO `city` VALUES (2950,'Rzeszów','POL','Podkarpackie',162049);
+INSERT INTO `city` VALUES (2951,'Ruda Slaska','POL','Slaskie',159665);
+INSERT INTO `city` VALUES (2952,'Rybnik','POL','Slaskie',144582);
+INSERT INTO `city` VALUES (2953,'Walbrzych','POL','Dolnoslaskie',136923);
+INSERT INTO `city` VALUES (2954,'Tychy','POL','Slaskie',133178);
+INSERT INTO `city` VALUES (2955,'Dabrowa Górnicza','POL','Slaskie',131037);
+INSERT INTO `city` VALUES (2956,'Plock','POL','Mazowieckie',131011);
+INSERT INTO `city` VALUES (2957,'Elblag','POL','Warminsko-Mazurskie',129782);
+INSERT INTO `city` VALUES (2958,'Opole','POL','Opolskie',129553);
+INSERT INTO `city` VALUES (2959,'Gorzów Wielkopolski','POL','Lubuskie',126019);
+INSERT INTO `city` VALUES (2960,'Wloclawek','POL','Kujawsko-Pomorskie',123373);
+INSERT INTO `city` VALUES (2961,'Chorzów','POL','Slaskie',121708);
+INSERT INTO `city` VALUES (2962,'Tarnów','POL','Malopolskie',121494);
+INSERT INTO `city` VALUES (2963,'Zielona Góra','POL','Lubuskie',118182);
+INSERT INTO `city` VALUES (2964,'Koszalin','POL','Zachodnio-Pomorskie',112375);
+INSERT INTO `city` VALUES (2965,'Legnica','POL','Dolnoslaskie',109335);
+INSERT INTO `city` VALUES (2966,'Kalisz','POL','Wielkopolskie',106641);
+INSERT INTO `city` VALUES (2967,'Grudziadz','POL','Kujawsko-Pomorskie',102434);
+INSERT INTO `city` VALUES (2968,'Slupsk','POL','Pomorskie',102370);
+INSERT INTO `city` VALUES (2969,'Jastrzebie-Zdrój','POL','Slaskie',102294);
+INSERT INTO `city` VALUES (2970,'Jaworzno','POL','Slaskie',97929);
+INSERT INTO `city` VALUES (2971,'Jelenia Góra','POL','Dolnoslaskie',93901);
+INSERT INTO `city` VALUES (2972,'Malabo','GNQ','Bioko',40000);
+INSERT INTO `city` VALUES (2973,'Doha','QAT','Doha',355000);
+INSERT INTO `city` VALUES (2974,'Paris','FRA','Île-de-France',2125246);
+INSERT INTO `city` VALUES (2975,'Marseille','FRA','Provence-Alpes-Côte',798430);
+INSERT INTO `city` VALUES (2976,'Lyon','FRA','Rhône-Alpes',445452);
+INSERT INTO `city` VALUES (2977,'Toulouse','FRA','Midi-Pyrénées',390350);
+INSERT INTO `city` VALUES (2978,'Nice','FRA','Provence-Alpes-Côte',342738);
+INSERT INTO `city` VALUES (2979,'Nantes','FRA','Pays de la Loire',270251);
+INSERT INTO `city` VALUES (2980,'Strasbourg','FRA','Alsace',264115);
+INSERT INTO `city` VALUES (2981,'Montpellier','FRA','Languedoc-Roussillon',225392);
+INSERT INTO `city` VALUES (2982,'Bordeaux','FRA','Aquitaine',215363);
+INSERT INTO `city` VALUES (2983,'Rennes','FRA','Haute-Normandie',206229);
+INSERT INTO `city` VALUES (2984,'Le Havre','FRA','Champagne-Ardenne',190905);
+INSERT INTO `city` VALUES (2985,'Reims','FRA','Nord-Pas-de-Calais',187206);
+INSERT INTO `city` VALUES (2986,'Lille','FRA','Rhône-Alpes',184657);
+INSERT INTO `city` VALUES (2987,'St-Étienne','FRA','Bretagne',180210);
+INSERT INTO `city` VALUES (2988,'Toulon','FRA','Provence-Alpes-Côte',160639);
+INSERT INTO `city` VALUES (2989,'Grenoble','FRA','Rhône-Alpes',153317);
+INSERT INTO `city` VALUES (2990,'Angers','FRA','Pays de la Loire',151279);
+INSERT INTO `city` VALUES (2991,'Dijon','FRA','Bourgogne',149867);
+INSERT INTO `city` VALUES (2992,'Brest','FRA','Bretagne',149634);
+INSERT INTO `city` VALUES (2993,'Le Mans','FRA','Pays de la Loire',146105);
+INSERT INTO `city` VALUES (2994,'Clermont-Ferrand','FRA','Auvergne',137140);
+INSERT INTO `city` VALUES (2995,'Amiens','FRA','Picardie',135501);
+INSERT INTO `city` VALUES (2996,'Aix-en-Provence','FRA','Provence-Alpes-Côte',134222);
+INSERT INTO `city` VALUES (2997,'Limoges','FRA','Limousin',133968);
+INSERT INTO `city` VALUES (2998,'Nîmes','FRA','Languedoc-Roussillon',133424);
+INSERT INTO `city` VALUES (2999,'Tours','FRA','Centre',132820);
+INSERT INTO `city` VALUES (3000,'Villeurbanne','FRA','Rhône-Alpes',124215);
+INSERT INTO `city` VALUES (3001,'Metz','FRA','Lorraine',123776);
+INSERT INTO `city` VALUES (3002,'Besançon','FRA','Franche-Comté',117733);
+INSERT INTO `city` VALUES (3003,'Caen','FRA','Basse-Normandie',113987);
+INSERT INTO `city` VALUES (3004,'Orléans','FRA','Centre',113126);
+INSERT INTO `city` VALUES (3005,'Mulhouse','FRA','Alsace',110359);
+INSERT INTO `city` VALUES (3006,'Rouen','FRA','Haute-Normandie',106592);
+INSERT INTO `city` VALUES (3007,'Boulogne-Billancourt','FRA','Île-de-France',106367);
+INSERT INTO `city` VALUES (3008,'Perpignan','FRA','Languedoc-Roussillon',105115);
+INSERT INTO `city` VALUES (3009,'Nancy','FRA','Lorraine',103605);
+INSERT INTO `city` VALUES (3010,'Roubaix','FRA','Nord-Pas-de-Calais',96984);
+INSERT INTO `city` VALUES (3011,'Argenteuil','FRA','Île-de-France',93961);
+INSERT INTO `city` VALUES (3012,'Tourcoing','FRA','Nord-Pas-de-Calais',93540);
+INSERT INTO `city` VALUES (3013,'Montreuil','FRA','Île-de-France',90674);
+INSERT INTO `city` VALUES (3014,'Cayenne','GUF','Cayenne',50699);
+INSERT INTO `city` VALUES (3015,'Faaa','PYF','Tahiti',25888);
+INSERT INTO `city` VALUES (3016,'Papeete','PYF','Tahiti',25553);
+INSERT INTO `city` VALUES (3017,'Saint-Denis','REU','Saint-Denis',131480);
+INSERT INTO `city` VALUES (3018,'Bucuresti','ROM','Bukarest',2016131);
+INSERT INTO `city` VALUES (3019,'Iasi','ROM','Iasi',348070);
+INSERT INTO `city` VALUES (3020,'Constanta','ROM','Constanta',342264);
+INSERT INTO `city` VALUES (3021,'Cluj-Napoca','ROM','Cluj',332498);
+INSERT INTO `city` VALUES (3022,'Galati','ROM','Galati',330276);
+INSERT INTO `city` VALUES (3023,'Timisoara','ROM','Timis',324304);
+INSERT INTO `city` VALUES (3024,'Brasov','ROM','Brasov',314225);
+INSERT INTO `city` VALUES (3025,'Craiova','ROM','Dolj',313530);
+INSERT INTO `city` VALUES (3026,'Ploiesti','ROM','Prahova',251348);
+INSERT INTO `city` VALUES (3027,'Braila','ROM','Braila',233756);
+INSERT INTO `city` VALUES (3028,'Oradea','ROM','Bihor',222239);
+INSERT INTO `city` VALUES (3029,'Bacau','ROM','Bacau',209235);
+INSERT INTO `city` VALUES (3030,'Pitesti','ROM','Arges',187170);
+INSERT INTO `city` VALUES (3031,'Arad','ROM','Arad',184408);
+INSERT INTO `city` VALUES (3032,'Sibiu','ROM','Sibiu',169611);
+INSERT INTO `city` VALUES (3033,'Târgu Mures','ROM','Mures',165153);
+INSERT INTO `city` VALUES (3034,'Baia Mare','ROM','Maramures',149665);
+INSERT INTO `city` VALUES (3035,'Buzau','ROM','Buzau',148372);
+INSERT INTO `city` VALUES (3036,'Satu Mare','ROM','Satu Mare',130059);
+INSERT INTO `city` VALUES (3037,'Botosani','ROM','Botosani',128730);
+INSERT INTO `city` VALUES (3038,'Piatra Neamt','ROM','Neamt',125070);
+INSERT INTO `city` VALUES (3039,'Râmnicu Vâlcea','ROM','Vâlcea',119741);
+INSERT INTO `city` VALUES (3040,'Suceava','ROM','Suceava',118549);
+INSERT INTO `city` VALUES (3041,'Drobeta-Turnu Severin','ROM','Mehedinti',117865);
+INSERT INTO `city` VALUES (3042,'Târgoviste','ROM','Dâmbovita',98980);
+INSERT INTO `city` VALUES (3043,'Focsani','ROM','Vrancea',98979);
+INSERT INTO `city` VALUES (3044,'Târgu Jiu','ROM','Gorj',98524);
+INSERT INTO `city` VALUES (3045,'Tulcea','ROM','Tulcea',96278);
+INSERT INTO `city` VALUES (3046,'Resita','ROM','Caras-Severin',93976);
+INSERT INTO `city` VALUES (3047,'Kigali','RWA','Kigali',286000);
+INSERT INTO `city` VALUES (3048,'Stockholm','SWE','Lisboa',750348);
+INSERT INTO `city` VALUES (3049,'Gothenburg [Göteborg]','SWE','West Götanmaan län',466990);
+INSERT INTO `city` VALUES (3050,'Malmö','SWE','Skåne län',259579);
+INSERT INTO `city` VALUES (3051,'Uppsala','SWE','Uppsala län',189569);
+INSERT INTO `city` VALUES (3052,'Linköping','SWE','East Götanmaan län',133168);
+INSERT INTO `city` VALUES (3053,'Västerås','SWE','Västmanlands län',126328);
+INSERT INTO `city` VALUES (3054,'Örebro','SWE','Örebros län',124207);
+INSERT INTO `city` VALUES (3055,'Norrköping','SWE','East Götanmaan län',122199);
+INSERT INTO `city` VALUES (3056,'Helsingborg','SWE','Skåne län',117737);
+INSERT INTO `city` VALUES (3057,'Jönköping','SWE','Jönköpings län',117095);
+INSERT INTO `city` VALUES (3058,'Umeå','SWE','Västerbottens län',104512);
+INSERT INTO `city` VALUES (3059,'Lund','SWE','Skåne län',98948);
+INSERT INTO `city` VALUES (3060,'Borås','SWE','West Götanmaan län',96883);
+INSERT INTO `city` VALUES (3061,'Sundsvall','SWE','Västernorrlands län',93126);
+INSERT INTO `city` VALUES (3062,'Gävle','SWE','Gävleborgs län',90742);
+INSERT INTO `city` VALUES (3063,'Jamestown','SHN','Saint Helena',1500);
+INSERT INTO `city` VALUES (3064,'Basseterre','KNA','St George Basseterre',11600);
+INSERT INTO `city` VALUES (3065,'Castries','LCA','Castries',2301);
+INSERT INTO `city` VALUES (3066,'Kingstown','VCT','St George',17100);
+INSERT INTO `city` VALUES (3067,'Saint-Pierre','SPM','Saint-Pierre',5808);
+INSERT INTO `city` VALUES (3068,'Berlin','DEU','Berliini',3386667);
+INSERT INTO `city` VALUES (3069,'Hamburg','DEU','Hamburg',1704735);
+INSERT INTO `city` VALUES (3070,'Munich [München]','DEU','Baijeri',1194560);
+INSERT INTO `city` VALUES (3071,'Köln','DEU','Nordrhein-Westfalen',962507);
+INSERT INTO `city` VALUES (3072,'Frankfurt am Main','DEU','Hessen',643821);
+INSERT INTO `city` VALUES (3073,'Essen','DEU','Nordrhein-Westfalen',599515);
+INSERT INTO `city` VALUES (3074,'Dortmund','DEU','Nordrhein-Westfalen',590213);
+INSERT INTO `city` VALUES (3075,'Stuttgart','DEU','Baden-Württemberg',582443);
+INSERT INTO `city` VALUES (3076,'Düsseldorf','DEU','Nordrhein-Westfalen',568855);
+INSERT INTO `city` VALUES (3077,'Bremen','DEU','Bremen',540330);
+INSERT INTO `city` VALUES (3078,'Duisburg','DEU','Nordrhein-Westfalen',519793);
+INSERT INTO `city` VALUES (3079,'Hannover','DEU','Niedersachsen',514718);
+INSERT INTO `city` VALUES (3080,'Leipzig','DEU','Saksi',489532);
+INSERT INTO `city` VALUES (3081,'Nürnberg','DEU','Baijeri',486628);
+INSERT INTO `city` VALUES (3082,'Dresden','DEU','Saksi',476668);
+INSERT INTO `city` VALUES (3083,'Bochum','DEU','Nordrhein-Westfalen',392830);
+INSERT INTO `city` VALUES (3084,'Wuppertal','DEU','Nordrhein-Westfalen',368993);
+INSERT INTO `city` VALUES (3085,'Bielefeld','DEU','Nordrhein-Westfalen',321125);
+INSERT INTO `city` VALUES (3086,'Mannheim','DEU','Baden-Württemberg',307730);
+INSERT INTO `city` VALUES (3087,'Bonn','DEU','Nordrhein-Westfalen',301048);
+INSERT INTO `city` VALUES (3088,'Gelsenkirchen','DEU','Nordrhein-Westfalen',281979);
+INSERT INTO `city` VALUES (3089,'Karlsruhe','DEU','Baden-Württemberg',277204);
+INSERT INTO `city` VALUES (3090,'Wiesbaden','DEU','Hessen',268716);
+INSERT INTO `city` VALUES (3091,'Münster','DEU','Nordrhein-Westfalen',264670);
+INSERT INTO `city` VALUES (3092,'Mönchengladbach','DEU','Nordrhein-Westfalen',263697);
+INSERT INTO `city` VALUES (3093,'Chemnitz','DEU','Saksi',263222);
+INSERT INTO `city` VALUES (3094,'Augsburg','DEU','Baijeri',254867);
+INSERT INTO `city` VALUES (3095,'Halle/Saale','DEU','Anhalt Sachsen',254360);
+INSERT INTO `city` VALUES (3096,'Braunschweig','DEU','Niedersachsen',246322);
+INSERT INTO `city` VALUES (3097,'Aachen','DEU','Nordrhein-Westfalen',243825);
+INSERT INTO `city` VALUES (3098,'Krefeld','DEU','Nordrhein-Westfalen',241769);
+INSERT INTO `city` VALUES (3099,'Magdeburg','DEU','Anhalt Sachsen',235073);
+INSERT INTO `city` VALUES (3100,'Kiel','DEU','Schleswig-Holstein',233795);
+INSERT INTO `city` VALUES (3101,'Oberhausen','DEU','Nordrhein-Westfalen',222349);
+INSERT INTO `city` VALUES (3102,'Lübeck','DEU','Schleswig-Holstein',213326);
+INSERT INTO `city` VALUES (3103,'Hagen','DEU','Nordrhein-Westfalen',205201);
+INSERT INTO `city` VALUES (3104,'Rostock','DEU','Mecklenburg-Vorpomme',203279);
+INSERT INTO `city` VALUES (3105,'Freiburg im Breisgau','DEU','Baden-Württemberg',202455);
+INSERT INTO `city` VALUES (3106,'Erfurt','DEU','Thüringen',201267);
+INSERT INTO `city` VALUES (3107,'Kassel','DEU','Hessen',196211);
+INSERT INTO `city` VALUES (3108,'Saarbrücken','DEU','Saarland',183836);
+INSERT INTO `city` VALUES (3109,'Mainz','DEU','Rheinland-Pfalz',183134);
+INSERT INTO `city` VALUES (3110,'Hamm','DEU','Nordrhein-Westfalen',181804);
+INSERT INTO `city` VALUES (3111,'Herne','DEU','Nordrhein-Westfalen',175661);
+INSERT INTO `city` VALUES (3112,'Mülheim an der Ruhr','DEU','Nordrhein-Westfalen',173895);
+INSERT INTO `city` VALUES (3113,'Solingen','DEU','Nordrhein-Westfalen',165583);
+INSERT INTO `city` VALUES (3114,'Osnabrück','DEU','Niedersachsen',164539);
+INSERT INTO `city` VALUES (3115,'Ludwigshafen am Rhein','DEU','Rheinland-Pfalz',163771);
+INSERT INTO `city` VALUES (3116,'Leverkusen','DEU','Nordrhein-Westfalen',160841);
+INSERT INTO `city` VALUES (3117,'Oldenburg','DEU','Niedersachsen',154125);
+INSERT INTO `city` VALUES (3118,'Neuss','DEU','Nordrhein-Westfalen',149702);
+INSERT INTO `city` VALUES (3119,'Heidelberg','DEU','Baden-Württemberg',139672);
+INSERT INTO `city` VALUES (3120,'Darmstadt','DEU','Hessen',137776);
+INSERT INTO `city` VALUES (3121,'Paderborn','DEU','Nordrhein-Westfalen',137647);
+INSERT INTO `city` VALUES (3122,'Potsdam','DEU','Brandenburg',128983);
+INSERT INTO `city` VALUES (3123,'Würzburg','DEU','Baijeri',127350);
+INSERT INTO `city` VALUES (3124,'Regensburg','DEU','Baijeri',125236);
+INSERT INTO `city` VALUES (3125,'Recklinghausen','DEU','Nordrhein-Westfalen',125022);
+INSERT INTO `city` VALUES (3126,'Göttingen','DEU','Niedersachsen',124775);
+INSERT INTO `city` VALUES (3127,'Bremerhaven','DEU','Bremen',122735);
+INSERT INTO `city` VALUES (3128,'Wolfsburg','DEU','Niedersachsen',121954);
+INSERT INTO `city` VALUES (3129,'Bottrop','DEU','Nordrhein-Westfalen',121097);
+INSERT INTO `city` VALUES (3130,'Remscheid','DEU','Nordrhein-Westfalen',120125);
+INSERT INTO `city` VALUES (3131,'Heilbronn','DEU','Baden-Württemberg',119526);
+INSERT INTO `city` VALUES (3132,'Pforzheim','DEU','Baden-Württemberg',117227);
+INSERT INTO `city` VALUES (3133,'Offenbach am Main','DEU','Hessen',116627);
+INSERT INTO `city` VALUES (3134,'Ulm','DEU','Baden-Württemberg',116103);
+INSERT INTO `city` VALUES (3135,'Ingolstadt','DEU','Baijeri',114826);
+INSERT INTO `city` VALUES (3136,'Gera','DEU','Thüringen',114718);
+INSERT INTO `city` VALUES (3137,'Salzgitter','DEU','Niedersachsen',112934);
+INSERT INTO `city` VALUES (3138,'Cottbus','DEU','Brandenburg',110894);
+INSERT INTO `city` VALUES (3139,'Reutlingen','DEU','Baden-Württemberg',110343);
+INSERT INTO `city` VALUES (3140,'Fürth','DEU','Baijeri',109771);
+INSERT INTO `city` VALUES (3141,'Siegen','DEU','Nordrhein-Westfalen',109225);
+INSERT INTO `city` VALUES (3142,'Koblenz','DEU','Rheinland-Pfalz',108003);
+INSERT INTO `city` VALUES (3143,'Moers','DEU','Nordrhein-Westfalen',106837);
+INSERT INTO `city` VALUES (3144,'Bergisch Gladbach','DEU','Nordrhein-Westfalen',106150);
+INSERT INTO `city` VALUES (3145,'Zwickau','DEU','Saksi',104146);
+INSERT INTO `city` VALUES (3146,'Hildesheim','DEU','Niedersachsen',104013);
+INSERT INTO `city` VALUES (3147,'Witten','DEU','Nordrhein-Westfalen',103384);
+INSERT INTO `city` VALUES (3148,'Schwerin','DEU','Mecklenburg-Vorpomme',102878);
+INSERT INTO `city` VALUES (3149,'Erlangen','DEU','Baijeri',100750);
+INSERT INTO `city` VALUES (3150,'Kaiserslautern','DEU','Rheinland-Pfalz',100025);
+INSERT INTO `city` VALUES (3151,'Trier','DEU','Rheinland-Pfalz',99891);
+INSERT INTO `city` VALUES (3152,'Jena','DEU','Thüringen',99779);
+INSERT INTO `city` VALUES (3153,'Iserlohn','DEU','Nordrhein-Westfalen',99474);
+INSERT INTO `city` VALUES (3154,'Gütersloh','DEU','Nordrhein-Westfalen',95028);
+INSERT INTO `city` VALUES (3155,'Marl','DEU','Nordrhein-Westfalen',93735);
+INSERT INTO `city` VALUES (3156,'Lünen','DEU','Nordrhein-Westfalen',92044);
+INSERT INTO `city` VALUES (3157,'Düren','DEU','Nordrhein-Westfalen',91092);
+INSERT INTO `city` VALUES (3158,'Ratingen','DEU','Nordrhein-Westfalen',90951);
+INSERT INTO `city` VALUES (3159,'Velbert','DEU','Nordrhein-Westfalen',89881);
+INSERT INTO `city` VALUES (3160,'Esslingen am Neckar','DEU','Baden-Württemberg',89667);
+INSERT INTO `city` VALUES (3161,'Honiara','SLB','Honiara',50100);
+INSERT INTO `city` VALUES (3162,'Lusaka','ZMB','Lusaka',1317000);
+INSERT INTO `city` VALUES (3163,'Ndola','ZMB','Copperbelt',329200);
+INSERT INTO `city` VALUES (3164,'Kitwe','ZMB','Copperbelt',288600);
+INSERT INTO `city` VALUES (3165,'Kabwe','ZMB','Central',154300);
+INSERT INTO `city` VALUES (3166,'Chingola','ZMB','Copperbelt',142400);
+INSERT INTO `city` VALUES (3167,'Mufulira','ZMB','Copperbelt',123900);
+INSERT INTO `city` VALUES (3168,'Luanshya','ZMB','Copperbelt',118100);
+INSERT INTO `city` VALUES (3169,'Apia','WSM','Upolu',35900);
+INSERT INTO `city` VALUES (3170,'Serravalle','SMR','Serravalle/Dogano',4802);
+INSERT INTO `city` VALUES (3171,'San Marino','SMR','San Marino',2294);
+INSERT INTO `city` VALUES (3172,'São Tomé','STP','Aqua Grande',49541);
+INSERT INTO `city` VALUES (3173,'Riyadh','SAU','Riyadh',3324000);
+INSERT INTO `city` VALUES (3174,'Jedda','SAU','Mekka',2046300);
+INSERT INTO `city` VALUES (3175,'Mekka','SAU','Mekka',965700);
+INSERT INTO `city` VALUES (3176,'Medina','SAU','Medina',608300);
+INSERT INTO `city` VALUES (3177,'al-Dammam','SAU','al-Sharqiya',482300);
+INSERT INTO `city` VALUES (3178,'al-Taif','SAU','Mekka',416100);
+INSERT INTO `city` VALUES (3179,'Tabuk','SAU','Tabuk',292600);
+INSERT INTO `city` VALUES (3180,'Burayda','SAU','al-Qasim',248600);
+INSERT INTO `city` VALUES (3181,'al-Hufuf','SAU','al-Sharqiya',225800);
+INSERT INTO `city` VALUES (3182,'al-Mubarraz','SAU','al-Sharqiya',219100);
+INSERT INTO `city` VALUES (3183,'Khamis Mushayt','SAU','Asir',217900);
+INSERT INTO `city` VALUES (3184,'Hail','SAU','Hail',176800);
+INSERT INTO `city` VALUES (3185,'al-Kharj','SAU','Riad',152100);
+INSERT INTO `city` VALUES (3186,'al-Khubar','SAU','al-Sharqiya',141700);
+INSERT INTO `city` VALUES (3187,'Jubayl','SAU','al-Sharqiya',140800);
+INSERT INTO `city` VALUES (3188,'Hafar al-Batin','SAU','al-Sharqiya',137800);
+INSERT INTO `city` VALUES (3189,'al-Tuqba','SAU','al-Sharqiya',125700);
+INSERT INTO `city` VALUES (3190,'Yanbu','SAU','Medina',119800);
+INSERT INTO `city` VALUES (3191,'Abha','SAU','Asir',112300);
+INSERT INTO `city` VALUES (3192,'Ara´ar','SAU','al-Khudud al-Samaliy',108100);
+INSERT INTO `city` VALUES (3193,'al-Qatif','SAU','al-Sharqiya',98900);
+INSERT INTO `city` VALUES (3194,'al-Hawiya','SAU','Mekka',93900);
+INSERT INTO `city` VALUES (3195,'Unayza','SAU','Qasim',91100);
+INSERT INTO `city` VALUES (3196,'Najran','SAU','Najran',91000);
+INSERT INTO `city` VALUES (3197,'Pikine','SEN','Cap-Vert',855287);
+INSERT INTO `city` VALUES (3198,'Dakar','SEN','Cap-Vert',785071);
+INSERT INTO `city` VALUES (3199,'Thiès','SEN','Thiès',248000);
+INSERT INTO `city` VALUES (3200,'Kaolack','SEN','Kaolack',199000);
+INSERT INTO `city` VALUES (3201,'Ziguinchor','SEN','Ziguinchor',192000);
+INSERT INTO `city` VALUES (3202,'Rufisque','SEN','Cap-Vert',150000);
+INSERT INTO `city` VALUES (3203,'Saint-Louis','SEN','Saint-Louis',132400);
+INSERT INTO `city` VALUES (3204,'Mbour','SEN','Thiès',109300);
+INSERT INTO `city` VALUES (3205,'Diourbel','SEN','Diourbel',99400);
+INSERT INTO `city` VALUES (3206,'Victoria','SYC','Mahé',41000);
+INSERT INTO `city` VALUES (3207,'Freetown','SLE','Western',850000);
+INSERT INTO `city` VALUES (3208,'Singapore','SGP','–',4017733);
+INSERT INTO `city` VALUES (3209,'Bratislava','SVK','Bratislava',448292);
+INSERT INTO `city` VALUES (3210,'Košice','SVK','Východné Slovensko',241874);
+INSERT INTO `city` VALUES (3211,'Prešov','SVK','Východné Slovensko',93977);
+INSERT INTO `city` VALUES (3212,'Ljubljana','SVN','Osrednjeslovenska',270986);
+INSERT INTO `city` VALUES (3213,'Maribor','SVN','Podravska',115532);
+INSERT INTO `city` VALUES (3214,'Mogadishu','SOM','Banaadir',997000);
+INSERT INTO `city` VALUES (3215,'Hargeysa','SOM','Woqooyi Galbeed',90000);
+INSERT INTO `city` VALUES (3216,'Kismaayo','SOM','Jubbada Hoose',90000);
+INSERT INTO `city` VALUES (3217,'Colombo','LKA','Western',645000);
+INSERT INTO `city` VALUES (3218,'Dehiwala','LKA','Western',203000);
+INSERT INTO `city` VALUES (3219,'Moratuwa','LKA','Western',190000);
+INSERT INTO `city` VALUES (3220,'Jaffna','LKA','Northern',149000);
+INSERT INTO `city` VALUES (3221,'Kandy','LKA','Central',140000);
+INSERT INTO `city` VALUES (3222,'Sri Jayawardenepura Kotte','LKA','Western',118000);
+INSERT INTO `city` VALUES (3223,'Negombo','LKA','Western',100000);
+INSERT INTO `city` VALUES (3224,'Omdurman','SDN','Khartum',1271403);
+INSERT INTO `city` VALUES (3225,'Khartum','SDN','Khartum',947483);
+INSERT INTO `city` VALUES (3226,'Sharq al-Nil','SDN','Khartum',700887);
+INSERT INTO `city` VALUES (3227,'Port Sudan','SDN','al-Bahr al-Ahmar',308195);
+INSERT INTO `city` VALUES (3228,'Kassala','SDN','Kassala',234622);
+INSERT INTO `city` VALUES (3229,'Obeid','SDN','Kurdufan al-Shamaliy',229425);
+INSERT INTO `city` VALUES (3230,'Nyala','SDN','Darfur al-Janubiya',227183);
+INSERT INTO `city` VALUES (3231,'Wad Madani','SDN','al-Jazira',211362);
+INSERT INTO `city` VALUES (3232,'al-Qadarif','SDN','al-Qadarif',191164);
+INSERT INTO `city` VALUES (3233,'Kusti','SDN','al-Bahr al-Abyad',173599);
+INSERT INTO `city` VALUES (3234,'al-Fashir','SDN','Darfur al-Shamaliya',141884);
+INSERT INTO `city` VALUES (3235,'Juba','SDN','Bahr al-Jabal',114980);
+INSERT INTO `city` VALUES (3236,'Helsinki [Helsingfors]','FIN','Newmaa',555474);
+INSERT INTO `city` VALUES (3237,'Espoo','FIN','Newmaa',213271);
+INSERT INTO `city` VALUES (3238,'Tampere','FIN','Pirkanmaa',195468);
+INSERT INTO `city` VALUES (3239,'Vantaa','FIN','Newmaa',178471);
+INSERT INTO `city` VALUES (3240,'Turku [Åbo]','FIN','Varsinais-Suomi',172561);
+INSERT INTO `city` VALUES (3241,'Oulu','FIN','Pohjois-Pohjanmaa',120753);
+INSERT INTO `city` VALUES (3242,'Lahti','FIN','Päijät-Häme',96921);
+INSERT INTO `city` VALUES (3243,'Paramaribo','SUR','Paramaribo',112000);
+INSERT INTO `city` VALUES (3244,'Mbabane','SWZ','Hhohho',61000);
+INSERT INTO `city` VALUES (3245,'Zürich','CHE','Zürich',336800);
+INSERT INTO `city` VALUES (3246,'Geneve','CHE','Geneve',173500);
+INSERT INTO `city` VALUES (3247,'Basel','CHE','Basel-Stadt',166700);
+INSERT INTO `city` VALUES (3248,'Bern','CHE','Bern',122700);
+INSERT INTO `city` VALUES (3249,'Lausanne','CHE','Vaud',114500);
+INSERT INTO `city` VALUES (3250,'Damascus','SYR','Damascus',1347000);
+INSERT INTO `city` VALUES (3251,'Aleppo','SYR','Aleppo',1261983);
+INSERT INTO `city` VALUES (3252,'Hims','SYR','Hims',507404);
+INSERT INTO `city` VALUES (3253,'Hama','SYR','Hama',343361);
+INSERT INTO `city` VALUES (3254,'Latakia','SYR','Latakia',264563);
+INSERT INTO `city` VALUES (3255,'al-Qamishliya','SYR','al-Hasaka',144286);
+INSERT INTO `city` VALUES (3256,'Dayr al-Zawr','SYR','Dayr al-Zawr',140459);
+INSERT INTO `city` VALUES (3257,'Jaramana','SYR','Damaskos',138469);
+INSERT INTO `city` VALUES (3258,'Duma','SYR','Damaskos',131158);
+INSERT INTO `city` VALUES (3259,'al-Raqqa','SYR','al-Raqqa',108020);
+INSERT INTO `city` VALUES (3260,'Idlib','SYR','Idlib',91081);
+INSERT INTO `city` VALUES (3261,'Dushanbe','TJK','Karotegin',524000);
+INSERT INTO `city` VALUES (3262,'Khujand','TJK','Khujand',161500);
+INSERT INTO `city` VALUES (3263,'Taipei','TWN','Taipei',2641312);
+INSERT INTO `city` VALUES (3264,'Kaohsiung','TWN','Kaohsiung',1475505);
+INSERT INTO `city` VALUES (3265,'Taichung','TWN','Taichung',940589);
+INSERT INTO `city` VALUES (3266,'Tainan','TWN','Tainan',728060);
+INSERT INTO `city` VALUES (3267,'Panchiao','TWN','Taipei',523850);
+INSERT INTO `city` VALUES (3268,'Chungho','TWN','Taipei',392176);
+INSERT INTO `city` VALUES (3269,'Keelung (Chilung)','TWN','Keelung',385201);
+INSERT INTO `city` VALUES (3270,'Sanchung','TWN','Taipei',380084);
+INSERT INTO `city` VALUES (3271,'Hsinchuang','TWN','Taipei',365048);
+INSERT INTO `city` VALUES (3272,'Hsinchu','TWN','Hsinchu',361958);
+INSERT INTO `city` VALUES (3273,'Chungli','TWN','Taoyuan',318649);
+INSERT INTO `city` VALUES (3274,'Fengshan','TWN','Kaohsiung',318562);
+INSERT INTO `city` VALUES (3275,'Taoyuan','TWN','Taoyuan',316438);
+INSERT INTO `city` VALUES (3276,'Chiayi','TWN','Chiayi',265109);
+INSERT INTO `city` VALUES (3277,'Hsintien','TWN','Taipei',263603);
+INSERT INTO `city` VALUES (3278,'Changhwa','TWN','Changhwa',227715);
+INSERT INTO `city` VALUES (3279,'Yungho','TWN','Taipei',227700);
+INSERT INTO `city` VALUES (3280,'Tucheng','TWN','Taipei',224897);
+INSERT INTO `city` VALUES (3281,'Pingtung','TWN','Pingtung',214727);
+INSERT INTO `city` VALUES (3282,'Yungkang','TWN','Tainan',193005);
+INSERT INTO `city` VALUES (3283,'Pingchen','TWN','Taoyuan',188344);
+INSERT INTO `city` VALUES (3284,'Tali','TWN','Taichung',171940);
+INSERT INTO `city` VALUES (3285,'Taiping','TWN','',165524);
+INSERT INTO `city` VALUES (3286,'Pate','TWN','Taoyuan',161700);
+INSERT INTO `city` VALUES (3287,'Fengyuan','TWN','Taichung',161032);
+INSERT INTO `city` VALUES (3288,'Luchou','TWN','Taipei',160516);
+INSERT INTO `city` VALUES (3289,'Hsichuh','TWN','Taipei',154976);
+INSERT INTO `city` VALUES (3290,'Shulin','TWN','Taipei',151260);
+INSERT INTO `city` VALUES (3291,'Yuanlin','TWN','Changhwa',126402);
+INSERT INTO `city` VALUES (3292,'Yangmei','TWN','Taoyuan',126323);
+INSERT INTO `city` VALUES (3293,'Taliao','TWN','',115897);
+INSERT INTO `city` VALUES (3294,'Kueishan','TWN','',112195);
+INSERT INTO `city` VALUES (3295,'Tanshui','TWN','Taipei',111882);
+INSERT INTO `city` VALUES (3296,'Taitung','TWN','Taitung',111039);
+INSERT INTO `city` VALUES (3297,'Hualien','TWN','Hualien',108407);
+INSERT INTO `city` VALUES (3298,'Nantou','TWN','Nantou',104723);
+INSERT INTO `city` VALUES (3299,'Lungtan','TWN','Taipei',103088);
+INSERT INTO `city` VALUES (3300,'Touliu','TWN','Yünlin',98900);
+INSERT INTO `city` VALUES (3301,'Tsaotun','TWN','Nantou',96800);
+INSERT INTO `city` VALUES (3302,'Kangshan','TWN','Kaohsiung',92200);
+INSERT INTO `city` VALUES (3303,'Ilan','TWN','Ilan',92000);
+INSERT INTO `city` VALUES (3304,'Miaoli','TWN','Miaoli',90000);
+INSERT INTO `city` VALUES (3305,'Dar es Salaam','TZA','Dar es Salaam',1747000);
+INSERT INTO `city` VALUES (3306,'Dodoma','TZA','Dodoma',189000);
+INSERT INTO `city` VALUES (3307,'Mwanza','TZA','Mwanza',172300);
+INSERT INTO `city` VALUES (3308,'Zanzibar','TZA','Zanzibar West',157634);
+INSERT INTO `city` VALUES (3309,'Tanga','TZA','Tanga',137400);
+INSERT INTO `city` VALUES (3310,'Mbeya','TZA','Mbeya',130800);
+INSERT INTO `city` VALUES (3311,'Morogoro','TZA','Morogoro',117800);
+INSERT INTO `city` VALUES (3312,'Arusha','TZA','Arusha',102500);
+INSERT INTO `city` VALUES (3313,'Moshi','TZA','Kilimanjaro',96800);
+INSERT INTO `city` VALUES (3314,'Tabora','TZA','Tabora',92800);
+INSERT INTO `city` VALUES (3315,'København','DNK','København',495699);
+INSERT INTO `city` VALUES (3316,'Århus','DNK','Århus',284846);
+INSERT INTO `city` VALUES (3317,'Odense','DNK','Fyn',183912);
+INSERT INTO `city` VALUES (3318,'Aalborg','DNK','Nordjylland',161161);
+INSERT INTO `city` VALUES (3319,'Frederiksberg','DNK','Frederiksberg',90327);
+INSERT INTO `city` VALUES (3320,'Bangkok','THA','Bangkok',6320174);
+INSERT INTO `city` VALUES (3321,'Nonthaburi','THA','Nonthaburi',292100);
+INSERT INTO `city` VALUES (3322,'Nakhon Ratchasima','THA','Nakhon Ratchasima',181400);
+INSERT INTO `city` VALUES (3323,'Chiang Mai','THA','Chiang Mai',171100);
+INSERT INTO `city` VALUES (3324,'Udon Thani','THA','Udon Thani',158100);
+INSERT INTO `city` VALUES (3325,'Hat Yai','THA','Songkhla',148632);
+INSERT INTO `city` VALUES (3326,'Khon Kaen','THA','Khon Kaen',126500);
+INSERT INTO `city` VALUES (3327,'Pak Kret','THA','Nonthaburi',126055);
+INSERT INTO `city` VALUES (3328,'Nakhon Sawan','THA','Nakhon Sawan',123800);
+INSERT INTO `city` VALUES (3329,'Ubon Ratchathani','THA','Ubon Ratchathani',116300);
+INSERT INTO `city` VALUES (3330,'Songkhla','THA','Songkhla',94900);
+INSERT INTO `city` VALUES (3331,'Nakhon Pathom','THA','Nakhon Pathom',94100);
+INSERT INTO `city` VALUES (3332,'Lomé','TGO','Maritime',375000);
+INSERT INTO `city` VALUES (3333,'Fakaofo','TKL','Fakaofo',300);
+INSERT INTO `city` VALUES (3334,'Nuku´alofa','TON','Tongatapu',22400);
+INSERT INTO `city` VALUES (3335,'Chaguanas','TTO','Caroni',56601);
+INSERT INTO `city` VALUES (3336,'Port-of-Spain','TTO','Port-of-Spain',43396);
+INSERT INTO `city` VALUES (3337,'N´Djaména','TCD','Chari-Baguirmi',530965);
+INSERT INTO `city` VALUES (3338,'Moundou','TCD','Logone Occidental',99500);
+INSERT INTO `city` VALUES (3339,'Praha','CZE','Hlavní mesto Praha',1181126);
+INSERT INTO `city` VALUES (3340,'Brno','CZE','Jizní Morava',381862);
+INSERT INTO `city` VALUES (3341,'Ostrava','CZE','Severní Morava',320041);
+INSERT INTO `city` VALUES (3342,'Plzen','CZE','Zapadní Cechy',166759);
+INSERT INTO `city` VALUES (3343,'Olomouc','CZE','Severní Morava',102702);
+INSERT INTO `city` VALUES (3344,'Liberec','CZE','Severní Cechy',99155);
+INSERT INTO `city` VALUES (3345,'Ceské Budejovice','CZE','Jizní Cechy',98186);
+INSERT INTO `city` VALUES (3346,'Hradec Králové','CZE','Východní Cechy',98080);
+INSERT INTO `city` VALUES (3347,'Ústí nad Labem','CZE','Severní Cechy',95491);
+INSERT INTO `city` VALUES (3348,'Pardubice','CZE','Východní Cechy',91309);
+INSERT INTO `city` VALUES (3349,'Tunis','TUN','Tunis',690600);
+INSERT INTO `city` VALUES (3350,'Sfax','TUN','Sfax',257800);
+INSERT INTO `city` VALUES (3351,'Ariana','TUN','Ariana',197000);
+INSERT INTO `city` VALUES (3352,'Ettadhamen','TUN','Ariana',178600);
+INSERT INTO `city` VALUES (3353,'Sousse','TUN','Sousse',145900);
+INSERT INTO `city` VALUES (3354,'Kairouan','TUN','Kairouan',113100);
+INSERT INTO `city` VALUES (3355,'Biserta','TUN','Biserta',108900);
+INSERT INTO `city` VALUES (3356,'Gabès','TUN','Gabès',106600);
+INSERT INTO `city` VALUES (3357,'Istanbul','TUR','Istanbul',8787958);
+INSERT INTO `city` VALUES (3358,'Ankara','TUR','Ankara',3038159);
+INSERT INTO `city` VALUES (3359,'Izmir','TUR','Izmir',2130359);
+INSERT INTO `city` VALUES (3360,'Adana','TUR','Adana',1131198);
+INSERT INTO `city` VALUES (3361,'Bursa','TUR','Bursa',1095842);
+INSERT INTO `city` VALUES (3362,'Gaziantep','TUR','Gaziantep',789056);
+INSERT INTO `city` VALUES (3363,'Konya','TUR','Konya',628364);
+INSERT INTO `city` VALUES (3364,'Mersin (Içel)','TUR','Içel',587212);
+INSERT INTO `city` VALUES (3365,'Antalya','TUR','Antalya',564914);
+INSERT INTO `city` VALUES (3366,'Diyarbakir','TUR','Diyarbakir',479884);
+INSERT INTO `city` VALUES (3367,'Kayseri','TUR','Kayseri',475657);
+INSERT INTO `city` VALUES (3368,'Eskisehir','TUR','Eskisehir',470781);
+INSERT INTO `city` VALUES (3369,'Sanliurfa','TUR','Sanliurfa',405905);
+INSERT INTO `city` VALUES (3370,'Samsun','TUR','Samsun',339871);
+INSERT INTO `city` VALUES (3371,'Malatya','TUR','Malatya',330312);
+INSERT INTO `city` VALUES (3372,'Gebze','TUR','Kocaeli',264170);
+INSERT INTO `city` VALUES (3373,'Denizli','TUR','Denizli',253848);
+INSERT INTO `city` VALUES (3374,'Sivas','TUR','Sivas',246642);
+INSERT INTO `city` VALUES (3375,'Erzurum','TUR','Erzurum',246535);
+INSERT INTO `city` VALUES (3376,'Tarsus','TUR','Adana',246206);
+INSERT INTO `city` VALUES (3377,'Kahramanmaras','TUR','Kahramanmaras',245772);
+INSERT INTO `city` VALUES (3378,'Elâzig','TUR','Elâzig',228815);
+INSERT INTO `city` VALUES (3379,'Van','TUR','Van',219319);
+INSERT INTO `city` VALUES (3380,'Sultanbeyli','TUR','Istanbul',211068);
+INSERT INTO `city` VALUES (3381,'Izmit (Kocaeli)','TUR','Kocaeli',210068);
+INSERT INTO `city` VALUES (3382,'Manisa','TUR','Manisa',207148);
+INSERT INTO `city` VALUES (3383,'Batman','TUR','Batman',203793);
+INSERT INTO `city` VALUES (3384,'Balikesir','TUR','Balikesir',196382);
+INSERT INTO `city` VALUES (3385,'Sakarya (Adapazari)','TUR','Sakarya',190641);
+INSERT INTO `city` VALUES (3386,'Iskenderun','TUR','Hatay',153022);
+INSERT INTO `city` VALUES (3387,'Osmaniye','TUR','Osmaniye',146003);
+INSERT INTO `city` VALUES (3388,'Çorum','TUR','Çorum',145495);
+INSERT INTO `city` VALUES (3389,'Kütahya','TUR','Kütahya',144761);
+INSERT INTO `city` VALUES (3390,'Hatay (Antakya)','TUR','Hatay',143982);
+INSERT INTO `city` VALUES (3391,'Kirikkale','TUR','Kirikkale',142044);
+INSERT INTO `city` VALUES (3392,'Adiyaman','TUR','Adiyaman',141529);
+INSERT INTO `city` VALUES (3393,'Trabzon','TUR','Trabzon',138234);
+INSERT INTO `city` VALUES (3394,'Ordu','TUR','Ordu',133642);
+INSERT INTO `city` VALUES (3395,'Aydin','TUR','Aydin',128651);
+INSERT INTO `city` VALUES (3396,'Usak','TUR','Usak',128162);
+INSERT INTO `city` VALUES (3397,'Edirne','TUR','Edirne',123383);
+INSERT INTO `city` VALUES (3398,'Çorlu','TUR','Tekirdag',123300);
+INSERT INTO `city` VALUES (3399,'Isparta','TUR','Isparta',121911);
+INSERT INTO `city` VALUES (3400,'Karabük','TUR','Karabük',118285);
+INSERT INTO `city` VALUES (3401,'Kilis','TUR','Kilis',118245);
+INSERT INTO `city` VALUES (3402,'Alanya','TUR','Antalya',117300);
+INSERT INTO `city` VALUES (3403,'Kiziltepe','TUR','Mardin',112000);
+INSERT INTO `city` VALUES (3404,'Zonguldak','TUR','Zonguldak',111542);
+INSERT INTO `city` VALUES (3405,'Siirt','TUR','Siirt',107100);
+INSERT INTO `city` VALUES (3406,'Viransehir','TUR','Sanliurfa',106400);
+INSERT INTO `city` VALUES (3407,'Tekirdag','TUR','Tekirdag',106077);
+INSERT INTO `city` VALUES (3408,'Karaman','TUR','Karaman',104200);
+INSERT INTO `city` VALUES (3409,'Afyon','TUR','Afyon',103984);
+INSERT INTO `city` VALUES (3410,'Aksaray','TUR','Aksaray',102681);
+INSERT INTO `city` VALUES (3411,'Ceyhan','TUR','Adana',102412);
+INSERT INTO `city` VALUES (3412,'Erzincan','TUR','Erzincan',102304);
+INSERT INTO `city` VALUES (3413,'Bismil','TUR','Diyarbakir',101400);
+INSERT INTO `city` VALUES (3414,'Nazilli','TUR','Aydin',99900);
+INSERT INTO `city` VALUES (3415,'Tokat','TUR','Tokat',99500);
+INSERT INTO `city` VALUES (3416,'Kars','TUR','Kars',93000);
+INSERT INTO `city` VALUES (3417,'Inegöl','TUR','Bursa',90500);
+INSERT INTO `city` VALUES (3418,'Bandirma','TUR','Balikesir',90200);
+INSERT INTO `city` VALUES (3419,'Ashgabat','TKM','Ahal',540600);
+INSERT INTO `city` VALUES (3420,'Chärjew','TKM','Lebap',189200);
+INSERT INTO `city` VALUES (3421,'Dashhowuz','TKM','Dashhowuz',141800);
+INSERT INTO `city` VALUES (3422,'Mary','TKM','Mary',101000);
+INSERT INTO `city` VALUES (3423,'Cockburn Town','TCA','Grand Turk',4800);
+INSERT INTO `city` VALUES (3424,'Funafuti','TUV','Funafuti',4600);
+INSERT INTO `city` VALUES (3425,'Kampala','UGA','Central',890800);
+INSERT INTO `city` VALUES (3426,'Kyiv','UKR','Kiova',2624000);
+INSERT INTO `city` VALUES (3427,'Harkova [Harkiv]','UKR','Harkova',1500000);
+INSERT INTO `city` VALUES (3428,'Dnipropetrovsk','UKR','Dnipropetrovsk',1103000);
+INSERT INTO `city` VALUES (3429,'Donetsk','UKR','Donetsk',1050000);
+INSERT INTO `city` VALUES (3430,'Odesa','UKR','Odesa',1011000);
+INSERT INTO `city` VALUES (3431,'Zaporizzja','UKR','Zaporizzja',848000);
+INSERT INTO `city` VALUES (3432,'Lviv','UKR','Lviv',788000);
+INSERT INTO `city` VALUES (3433,'Kryvyi Rig','UKR','Dnipropetrovsk',703000);
+INSERT INTO `city` VALUES (3434,'Mykolajiv','UKR','Mykolajiv',508000);
+INSERT INTO `city` VALUES (3435,'Mariupol','UKR','Donetsk',490000);
+INSERT INTO `city` VALUES (3436,'Lugansk','UKR','Lugansk',469000);
+INSERT INTO `city` VALUES (3437,'Vinnytsja','UKR','Vinnytsja',391000);
+INSERT INTO `city` VALUES (3438,'Makijivka','UKR','Donetsk',384000);
+INSERT INTO `city` VALUES (3439,'Herson','UKR','Herson',353000);
+INSERT INTO `city` VALUES (3440,'Sevastopol','UKR','Krim',348000);
+INSERT INTO `city` VALUES (3441,'Simferopol','UKR','Krim',339000);
+INSERT INTO `city` VALUES (3442,'Pultava [Poltava]','UKR','Pultava',313000);
+INSERT INTO `city` VALUES (3443,'Tšernigiv','UKR','Tšernigiv',313000);
+INSERT INTO `city` VALUES (3444,'Tšerkasy','UKR','Tšerkasy',309000);
+INSERT INTO `city` VALUES (3445,'Gorlivka','UKR','Donetsk',299000);
+INSERT INTO `city` VALUES (3446,'Zytomyr','UKR','Zytomyr',297000);
+INSERT INTO `city` VALUES (3447,'Sumy','UKR','Sumy',294000);
+INSERT INTO `city` VALUES (3448,'Dniprodzerzynsk','UKR','Dnipropetrovsk',270000);
+INSERT INTO `city` VALUES (3449,'Kirovograd','UKR','Kirovograd',265000);
+INSERT INTO `city` VALUES (3450,'Hmelnytskyi','UKR','Hmelnytskyi',262000);
+INSERT INTO `city` VALUES (3451,'Tšernivtsi','UKR','Tšernivtsi',259000);
+INSERT INTO `city` VALUES (3452,'Rivne','UKR','Rivne',245000);
+INSERT INTO `city` VALUES (3453,'Krementšuk','UKR','Pultava',239000);
+INSERT INTO `city` VALUES (3454,'Ivano-Frankivsk','UKR','Ivano-Frankivsk',237000);
+INSERT INTO `city` VALUES (3455,'Ternopil','UKR','Ternopil',236000);
+INSERT INTO `city` VALUES (3456,'Lutsk','UKR','Volynia',217000);
+INSERT INTO `city` VALUES (3457,'Bila Tserkva','UKR','Kiova',215000);
+INSERT INTO `city` VALUES (3458,'Kramatorsk','UKR','Donetsk',186000);
+INSERT INTO `city` VALUES (3459,'Melitopol','UKR','Zaporizzja',169000);
+INSERT INTO `city` VALUES (3460,'Kertš','UKR','Krim',162000);
+INSERT INTO `city` VALUES (3461,'Nikopol','UKR','Dnipropetrovsk',149000);
+INSERT INTO `city` VALUES (3462,'Berdjansk','UKR','Zaporizzja',130000);
+INSERT INTO `city` VALUES (3463,'Pavlograd','UKR','Dnipropetrovsk',127000);
+INSERT INTO `city` VALUES (3464,'Sjeverodonetsk','UKR','Lugansk',127000);
+INSERT INTO `city` VALUES (3465,'Slovjansk','UKR','Donetsk',127000);
+INSERT INTO `city` VALUES (3466,'Uzgorod','UKR','Taka-Karpatia',127000);
+INSERT INTO `city` VALUES (3467,'Altševsk','UKR','Lugansk',119000);
+INSERT INTO `city` VALUES (3468,'Lysytšansk','UKR','Lugansk',116000);
+INSERT INTO `city` VALUES (3469,'Jevpatorija','UKR','Krim',112000);
+INSERT INTO `city` VALUES (3470,'Kamjanets-Podilskyi','UKR','Hmelnytskyi',109000);
+INSERT INTO `city` VALUES (3471,'Jenakijeve','UKR','Donetsk',105000);
+INSERT INTO `city` VALUES (3472,'Krasnyi Lutš','UKR','Lugansk',101000);
+INSERT INTO `city` VALUES (3473,'Stahanov','UKR','Lugansk',101000);
+INSERT INTO `city` VALUES (3474,'Oleksandrija','UKR','Kirovograd',99000);
+INSERT INTO `city` VALUES (3475,'Konotop','UKR','Sumy',96000);
+INSERT INTO `city` VALUES (3476,'Kostjantynivka','UKR','Donetsk',95000);
+INSERT INTO `city` VALUES (3477,'Berdytšiv','UKR','Zytomyr',90000);
+INSERT INTO `city` VALUES (3478,'Izmajil','UKR','Odesa',90000);
+INSERT INTO `city` VALUES (3479,'Šostka','UKR','Sumy',90000);
+INSERT INTO `city` VALUES (3480,'Uman','UKR','Tšerkasy',90000);
+INSERT INTO `city` VALUES (3481,'Brovary','UKR','Kiova',89000);
+INSERT INTO `city` VALUES (3482,'Mukatševe','UKR','Taka-Karpatia',89000);
+INSERT INTO `city` VALUES (3483,'Budapest','HUN','Budapest',1811552);
+INSERT INTO `city` VALUES (3484,'Debrecen','HUN','Hajdú-Bihar',203648);
+INSERT INTO `city` VALUES (3485,'Miskolc','HUN','Borsod-Abaúj-Zemplén',172357);
+INSERT INTO `city` VALUES (3486,'Szeged','HUN','Csongrád',158158);
+INSERT INTO `city` VALUES (3487,'Pécs','HUN','Baranya',157332);
+INSERT INTO `city` VALUES (3488,'Györ','HUN','Györ-Moson-Sopron',127119);
+INSERT INTO `city` VALUES (3489,'Nyiregyháza','HUN','Szabolcs-Szatmár-Ber',112419);
+INSERT INTO `city` VALUES (3490,'Kecskemét','HUN','Bács-Kiskun',105606);
+INSERT INTO `city` VALUES (3491,'Székesfehérvár','HUN','Fejér',105119);
+INSERT INTO `city` VALUES (3492,'Montevideo','URY','Montevideo',1236000);
+INSERT INTO `city` VALUES (3493,'Nouméa','NCL','–',76293);
+INSERT INTO `city` VALUES (3494,'Auckland','NZL','Auckland',381800);
+INSERT INTO `city` VALUES (3495,'Christchurch','NZL','Canterbury',324200);
+INSERT INTO `city` VALUES (3496,'Manukau','NZL','Auckland',281800);
+INSERT INTO `city` VALUES (3497,'North Shore','NZL','Auckland',187700);
+INSERT INTO `city` VALUES (3498,'Waitakere','NZL','Auckland',170600);
+INSERT INTO `city` VALUES (3499,'Wellington','NZL','Wellington',166700);
+INSERT INTO `city` VALUES (3500,'Dunedin','NZL','Dunedin',119600);
+INSERT INTO `city` VALUES (3501,'Hamilton','NZL','Hamilton',117100);
+INSERT INTO `city` VALUES (3502,'Lower Hutt','NZL','Wellington',98100);
+INSERT INTO `city` VALUES (3503,'Toskent','UZB','Toskent Shahri',2117500);
+INSERT INTO `city` VALUES (3504,'Namangan','UZB','Namangan',370500);
+INSERT INTO `city` VALUES (3505,'Samarkand','UZB','Samarkand',361800);
+INSERT INTO `city` VALUES (3506,'Andijon','UZB','Andijon',318600);
+INSERT INTO `city` VALUES (3507,'Buhoro','UZB','Buhoro',237100);
+INSERT INTO `city` VALUES (3508,'Karsi','UZB','Qashqadaryo',194100);
+INSERT INTO `city` VALUES (3509,'Nukus','UZB','Karakalpakistan',194100);
+INSERT INTO `city` VALUES (3510,'Kükon','UZB','Fargona',190100);
+INSERT INTO `city` VALUES (3511,'Fargona','UZB','Fargona',180500);
+INSERT INTO `city` VALUES (3512,'Circik','UZB','Toskent',146400);
+INSERT INTO `city` VALUES (3513,'Margilon','UZB','Fargona',140800);
+INSERT INTO `city` VALUES (3514,'Ürgenc','UZB','Khorazm',138900);
+INSERT INTO `city` VALUES (3515,'Angren','UZB','Toskent',128000);
+INSERT INTO `city` VALUES (3516,'Cizah','UZB','Cizah',124800);
+INSERT INTO `city` VALUES (3517,'Navoi','UZB','Navoi',116300);
+INSERT INTO `city` VALUES (3518,'Olmalik','UZB','Toskent',114900);
+INSERT INTO `city` VALUES (3519,'Termiz','UZB','Surkhondaryo',109500);
+INSERT INTO `city` VALUES (3520,'Minsk','BLR','Horad Minsk',1674000);
+INSERT INTO `city` VALUES (3521,'Gomel','BLR','Gomel',475000);
+INSERT INTO `city` VALUES (3522,'Mogiljov','BLR','Mogiljov',356000);
+INSERT INTO `city` VALUES (3523,'Vitebsk','BLR','Vitebsk',340000);
+INSERT INTO `city` VALUES (3524,'Grodno','BLR','Grodno',302000);
+INSERT INTO `city` VALUES (3525,'Brest','BLR','Brest',286000);
+INSERT INTO `city` VALUES (3526,'Bobruisk','BLR','Mogiljov',221000);
+INSERT INTO `city` VALUES (3527,'Baranovitši','BLR','Brest',167000);
+INSERT INTO `city` VALUES (3528,'Borisov','BLR','Minsk',151000);
+INSERT INTO `city` VALUES (3529,'Pinsk','BLR','Brest',130000);
+INSERT INTO `city` VALUES (3530,'Orša','BLR','Vitebsk',124000);
+INSERT INTO `city` VALUES (3531,'Mozyr','BLR','Gomel',110000);
+INSERT INTO `city` VALUES (3532,'Novopolotsk','BLR','Vitebsk',106000);
+INSERT INTO `city` VALUES (3533,'Lida','BLR','Grodno',101000);
+INSERT INTO `city` VALUES (3534,'Soligorsk','BLR','Minsk',101000);
+INSERT INTO `city` VALUES (3535,'Molodetšno','BLR','Minsk',97000);
+INSERT INTO `city` VALUES (3536,'Mata-Utu','WLF','Wallis',1137);
+INSERT INTO `city` VALUES (3537,'Port-Vila','VUT','Shefa',33700);
+INSERT INTO `city` VALUES (3538,'Città del Vaticano','VAT','–',455);
+INSERT INTO `city` VALUES (3539,'Caracas','VEN','Distrito Federal',1975294);
+INSERT INTO `city` VALUES (3540,'Maracaíbo','VEN','Zulia',1304776);
+INSERT INTO `city` VALUES (3541,'Barquisimeto','VEN','Lara',877239);
+INSERT INTO `city` VALUES (3542,'Valencia','VEN','Carabobo',794246);
+INSERT INTO `city` VALUES (3543,'Ciudad Guayana','VEN','Bolívar',663713);
+INSERT INTO `city` VALUES (3544,'Petare','VEN','Miranda',488868);
+INSERT INTO `city` VALUES (3545,'Maracay','VEN','Aragua',444443);
+INSERT INTO `city` VALUES (3546,'Barcelona','VEN','Anzoátegui',322267);
+INSERT INTO `city` VALUES (3547,'Maturín','VEN','Monagas',319726);
+INSERT INTO `city` VALUES (3548,'San Cristóbal','VEN','Táchira',319373);
+INSERT INTO `city` VALUES (3549,'Ciudad Bolívar','VEN','Bolívar',301107);
+INSERT INTO `city` VALUES (3550,'Cumaná','VEN','Sucre',293105);
+INSERT INTO `city` VALUES (3551,'Mérida','VEN','Mérida',224887);
+INSERT INTO `city` VALUES (3552,'Cabimas','VEN','Zulia',221329);
+INSERT INTO `city` VALUES (3553,'Barinas','VEN','Barinas',217831);
+INSERT INTO `city` VALUES (3554,'Turmero','VEN','Aragua',217499);
+INSERT INTO `city` VALUES (3555,'Baruta','VEN','Miranda',207290);
+INSERT INTO `city` VALUES (3556,'Puerto Cabello','VEN','Carabobo',187722);
+INSERT INTO `city` VALUES (3557,'Santa Ana de Coro','VEN','Falcón',185766);
+INSERT INTO `city` VALUES (3558,'Los Teques','VEN','Miranda',178784);
+INSERT INTO `city` VALUES (3559,'Punto Fijo','VEN','Falcón',167215);
+INSERT INTO `city` VALUES (3560,'Guarenas','VEN','Miranda',165889);
+INSERT INTO `city` VALUES (3561,'Acarigua','VEN','Portuguesa',158954);
+INSERT INTO `city` VALUES (3562,'Puerto La Cruz','VEN','Anzoátegui',155700);
+INSERT INTO `city` VALUES (3563,'Ciudad Losada','VEN','',134501);
+INSERT INTO `city` VALUES (3564,'Guacara','VEN','Carabobo',131334);
+INSERT INTO `city` VALUES (3565,'Valera','VEN','Trujillo',130281);
+INSERT INTO `city` VALUES (3566,'Guanare','VEN','Portuguesa',125621);
+INSERT INTO `city` VALUES (3567,'Carúpano','VEN','Sucre',119639);
+INSERT INTO `city` VALUES (3568,'Catia La Mar','VEN','Distrito Federal',117012);
+INSERT INTO `city` VALUES (3569,'El Tigre','VEN','Anzoátegui',116256);
+INSERT INTO `city` VALUES (3570,'Guatire','VEN','Miranda',109121);
+INSERT INTO `city` VALUES (3571,'Calabozo','VEN','Guárico',107146);
+INSERT INTO `city` VALUES (3572,'Pozuelos','VEN','Anzoátegui',105690);
+INSERT INTO `city` VALUES (3573,'Ciudad Ojeda','VEN','Zulia',99354);
+INSERT INTO `city` VALUES (3574,'Ocumare del Tuy','VEN','Miranda',97168);
+INSERT INTO `city` VALUES (3575,'Valle de la Pascua','VEN','Guárico',95927);
+INSERT INTO `city` VALUES (3576,'Araure','VEN','Portuguesa',94269);
+INSERT INTO `city` VALUES (3577,'San Fernando de Apure','VEN','Apure',93809);
+INSERT INTO `city` VALUES (3578,'San Felipe','VEN','Yaracuy',90940);
+INSERT INTO `city` VALUES (3579,'El Limón','VEN','Aragua',90000);
+INSERT INTO `city` VALUES (3580,'Moscow','RUS','Moscow (City)',8389200);
+INSERT INTO `city` VALUES (3581,'St Petersburg','RUS','Pietari',4694000);
+INSERT INTO `city` VALUES (3582,'Novosibirsk','RUS','Novosibirsk',1398800);
+INSERT INTO `city` VALUES (3583,'Nizni Novgorod','RUS','Nizni Novgorod',1357000);
+INSERT INTO `city` VALUES (3584,'Jekaterinburg','RUS','Sverdlovsk',1266300);
+INSERT INTO `city` VALUES (3585,'Samara','RUS','Samara',1156100);
+INSERT INTO `city` VALUES (3586,'Omsk','RUS','Omsk',1148900);
+INSERT INTO `city` VALUES (3587,'Kazan','RUS','Tatarstan',1101000);
+INSERT INTO `city` VALUES (3588,'Ufa','RUS','Baškortostan',1091200);
+INSERT INTO `city` VALUES (3589,'Tšeljabinsk','RUS','Tšeljabinsk',1083200);
+INSERT INTO `city` VALUES (3590,'Rostov-na-Donu','RUS','Rostov-na-Donu',1012700);
+INSERT INTO `city` VALUES (3591,'Perm','RUS','Perm',1009700);
+INSERT INTO `city` VALUES (3592,'Volgograd','RUS','Volgograd',993400);
+INSERT INTO `city` VALUES (3593,'Voronez','RUS','Voronez',907700);
+INSERT INTO `city` VALUES (3594,'Krasnojarsk','RUS','Krasnojarsk',875500);
+INSERT INTO `city` VALUES (3595,'Saratov','RUS','Saratov',874000);
+INSERT INTO `city` VALUES (3596,'Toljatti','RUS','Samara',722900);
+INSERT INTO `city` VALUES (3597,'Uljanovsk','RUS','Uljanovsk',667400);
+INSERT INTO `city` VALUES (3598,'Izevsk','RUS','Udmurtia',652800);
+INSERT INTO `city` VALUES (3599,'Krasnodar','RUS','Krasnodar',639000);
+INSERT INTO `city` VALUES (3600,'Jaroslavl','RUS','Jaroslavl',616700);
+INSERT INTO `city` VALUES (3601,'Habarovsk','RUS','Habarovsk',609400);
+INSERT INTO `city` VALUES (3602,'Vladivostok','RUS','Primorje',606200);
+INSERT INTO `city` VALUES (3603,'Irkutsk','RUS','Irkutsk',593700);
+INSERT INTO `city` VALUES (3604,'Barnaul','RUS','Altai',580100);
+INSERT INTO `city` VALUES (3605,'Novokuznetsk','RUS','Kemerovo',561600);
+INSERT INTO `city` VALUES (3606,'Penza','RUS','Penza',532200);
+INSERT INTO `city` VALUES (3607,'Rjazan','RUS','Rjazan',529900);
+INSERT INTO `city` VALUES (3608,'Orenburg','RUS','Orenburg',523600);
+INSERT INTO `city` VALUES (3609,'Lipetsk','RUS','Lipetsk',521000);
+INSERT INTO `city` VALUES (3610,'Nabereznyje Tšelny','RUS','Tatarstan',514700);
+INSERT INTO `city` VALUES (3611,'Tula','RUS','Tula',506100);
+INSERT INTO `city` VALUES (3612,'Tjumen','RUS','Tjumen',503400);
+INSERT INTO `city` VALUES (3613,'Kemerovo','RUS','Kemerovo',492700);
+INSERT INTO `city` VALUES (3614,'Astrahan','RUS','Astrahan',486100);
+INSERT INTO `city` VALUES (3615,'Tomsk','RUS','Tomsk',482100);
+INSERT INTO `city` VALUES (3616,'Kirov','RUS','Kirov',466200);
+INSERT INTO `city` VALUES (3617,'Ivanovo','RUS','Ivanovo',459200);
+INSERT INTO `city` VALUES (3618,'Tšeboksary','RUS','Tšuvassia',459200);
+INSERT INTO `city` VALUES (3619,'Brjansk','RUS','Brjansk',457400);
+INSERT INTO `city` VALUES (3620,'Tver','RUS','Tver',454900);
+INSERT INTO `city` VALUES (3621,'Kursk','RUS','Kursk',443500);
+INSERT INTO `city` VALUES (3622,'Magnitogorsk','RUS','Tšeljabinsk',427900);
+INSERT INTO `city` VALUES (3623,'Kaliningrad','RUS','Kaliningrad',424400);
+INSERT INTO `city` VALUES (3624,'Nizni Tagil','RUS','Sverdlovsk',390900);
+INSERT INTO `city` VALUES (3625,'Murmansk','RUS','Murmansk',376300);
+INSERT INTO `city` VALUES (3626,'Ulan-Ude','RUS','Burjatia',370400);
+INSERT INTO `city` VALUES (3627,'Kurgan','RUS','Kurgan',364700);
+INSERT INTO `city` VALUES (3628,'Arkangeli','RUS','Arkangeli',361800);
+INSERT INTO `city` VALUES (3629,'Sotši','RUS','Krasnodar',358600);
+INSERT INTO `city` VALUES (3630,'Smolensk','RUS','Smolensk',353400);
+INSERT INTO `city` VALUES (3631,'Orjol','RUS','Orjol',344500);
+INSERT INTO `city` VALUES (3632,'Stavropol','RUS','Stavropol',343300);
+INSERT INTO `city` VALUES (3633,'Belgorod','RUS','Belgorod',342000);
+INSERT INTO `city` VALUES (3634,'Kaluga','RUS','Kaluga',339300);
+INSERT INTO `city` VALUES (3635,'Vladimir','RUS','Vladimir',337100);
+INSERT INTO `city` VALUES (3636,'Mahatškala','RUS','Dagestan',332800);
+INSERT INTO `city` VALUES (3637,'Tšerepovets','RUS','Vologda',324400);
+INSERT INTO `city` VALUES (3638,'Saransk','RUS','Mordva',314800);
+INSERT INTO `city` VALUES (3639,'Tambov','RUS','Tambov',312000);
+INSERT INTO `city` VALUES (3640,'Vladikavkaz','RUS','North Ossetia-Alania',310100);
+INSERT INTO `city` VALUES (3641,'Tšita','RUS','Tšita',309900);
+INSERT INTO `city` VALUES (3642,'Vologda','RUS','Vologda',302500);
+INSERT INTO `city` VALUES (3643,'Veliki Novgorod','RUS','Novgorod',299500);
+INSERT INTO `city` VALUES (3644,'Komsomolsk-na-Amure','RUS','Habarovsk',291600);
+INSERT INTO `city` VALUES (3645,'Kostroma','RUS','Kostroma',288100);
+INSERT INTO `city` VALUES (3646,'Volzski','RUS','Volgograd',286900);
+INSERT INTO `city` VALUES (3647,'Taganrog','RUS','Rostov-na-Donu',284400);
+INSERT INTO `city` VALUES (3648,'Petroskoi','RUS','Karjala',282100);
+INSERT INTO `city` VALUES (3649,'Bratsk','RUS','Irkutsk',277600);
+INSERT INTO `city` VALUES (3650,'Dzerzinsk','RUS','Nizni Novgorod',277100);
+INSERT INTO `city` VALUES (3651,'Surgut','RUS','Hanti-Mansia',274900);
+INSERT INTO `city` VALUES (3652,'Orsk','RUS','Orenburg',273900);
+INSERT INTO `city` VALUES (3653,'Sterlitamak','RUS','Baškortostan',265200);
+INSERT INTO `city` VALUES (3654,'Angarsk','RUS','Irkutsk',264700);
+INSERT INTO `city` VALUES (3655,'Joškar-Ola','RUS','Marinmaa',249200);
+INSERT INTO `city` VALUES (3656,'Rybinsk','RUS','Jaroslavl',239600);
+INSERT INTO `city` VALUES (3657,'Prokopjevsk','RUS','Kemerovo',237300);
+INSERT INTO `city` VALUES (3658,'Niznevartovsk','RUS','Hanti-Mansia',233900);
+INSERT INTO `city` VALUES (3659,'Naltšik','RUS','Kabardi-Balkaria',233400);
+INSERT INTO `city` VALUES (3660,'Syktyvkar','RUS','Komi',229700);
+INSERT INTO `city` VALUES (3661,'Severodvinsk','RUS','Arkangeli',229300);
+INSERT INTO `city` VALUES (3662,'Bijsk','RUS','Altai',225000);
+INSERT INTO `city` VALUES (3663,'Niznekamsk','RUS','Tatarstan',223400);
+INSERT INTO `city` VALUES (3664,'Blagoveštšensk','RUS','Amur',222000);
+INSERT INTO `city` VALUES (3665,'Šahty','RUS','Rostov-na-Donu',221800);
+INSERT INTO `city` VALUES (3666,'Staryi Oskol','RUS','Belgorod',213800);
+INSERT INTO `city` VALUES (3667,'Zelenograd','RUS','Moscow (City)',207100);
+INSERT INTO `city` VALUES (3668,'Balakovo','RUS','Saratov',206000);
+INSERT INTO `city` VALUES (3669,'Novorossijsk','RUS','Krasnodar',203300);
+INSERT INTO `city` VALUES (3670,'Pihkova','RUS','Pihkova',201500);
+INSERT INTO `city` VALUES (3671,'Zlatoust','RUS','Tšeljabinsk',196900);
+INSERT INTO `city` VALUES (3672,'Jakutsk','RUS','Saha (Jakutia)',195400);
+INSERT INTO `city` VALUES (3673,'Podolsk','RUS','Moskova',194300);
+INSERT INTO `city` VALUES (3674,'Petropavlovsk-Kamtšatski','RUS','Kamtšatka',194100);
+INSERT INTO `city` VALUES (3675,'Kamensk-Uralski','RUS','Sverdlovsk',190600);
+INSERT INTO `city` VALUES (3676,'Engels','RUS','Saratov',189000);
+INSERT INTO `city` VALUES (3677,'Syzran','RUS','Samara',186900);
+INSERT INTO `city` VALUES (3678,'Grozny','RUS','Tšetšenia',186000);
+INSERT INTO `city` VALUES (3679,'Novotšerkassk','RUS','Rostov-na-Donu',184400);
+INSERT INTO `city` VALUES (3680,'Berezniki','RUS','Perm',181900);
+INSERT INTO `city` VALUES (3681,'Juzno-Sahalinsk','RUS','Sahalin',179200);
+INSERT INTO `city` VALUES (3682,'Volgodonsk','RUS','Rostov-na-Donu',178200);
+INSERT INTO `city` VALUES (3683,'Abakan','RUS','Hakassia',169200);
+INSERT INTO `city` VALUES (3684,'Maikop','RUS','Adygea',167300);
+INSERT INTO `city` VALUES (3685,'Miass','RUS','Tšeljabinsk',166200);
+INSERT INTO `city` VALUES (3686,'Armavir','RUS','Krasnodar',164900);
+INSERT INTO `city` VALUES (3687,'Ljubertsy','RUS','Moskova',163900);
+INSERT INTO `city` VALUES (3688,'Rubtsovsk','RUS','Altai',162600);
+INSERT INTO `city` VALUES (3689,'Kovrov','RUS','Vladimir',159900);
+INSERT INTO `city` VALUES (3690,'Nahodka','RUS','Primorje',157700);
+INSERT INTO `city` VALUES (3691,'Ussurijsk','RUS','Primorje',157300);
+INSERT INTO `city` VALUES (3692,'Salavat','RUS','Baškortostan',156800);
+INSERT INTO `city` VALUES (3693,'Mytištši','RUS','Moskova',155700);
+INSERT INTO `city` VALUES (3694,'Kolomna','RUS','Moskova',150700);
+INSERT INTO `city` VALUES (3695,'Elektrostal','RUS','Moskova',147000);
+INSERT INTO `city` VALUES (3696,'Murom','RUS','Vladimir',142400);
+INSERT INTO `city` VALUES (3697,'Kolpino','RUS','Pietari',141200);
+INSERT INTO `city` VALUES (3698,'Norilsk','RUS','Krasnojarsk',140800);
+INSERT INTO `city` VALUES (3699,'Almetjevsk','RUS','Tatarstan',140700);
+INSERT INTO `city` VALUES (3700,'Novomoskovsk','RUS','Tula',138100);
+INSERT INTO `city` VALUES (3701,'Dimitrovgrad','RUS','Uljanovsk',137000);
+INSERT INTO `city` VALUES (3702,'Pervouralsk','RUS','Sverdlovsk',136100);
+INSERT INTO `city` VALUES (3703,'Himki','RUS','Moskova',133700);
+INSERT INTO `city` VALUES (3704,'Balašiha','RUS','Moskova',132900);
+INSERT INTO `city` VALUES (3705,'Nevinnomyssk','RUS','Stavropol',132600);
+INSERT INTO `city` VALUES (3706,'Pjatigorsk','RUS','Stavropol',132500);
+INSERT INTO `city` VALUES (3707,'Korolev','RUS','Moskova',132400);
+INSERT INTO `city` VALUES (3708,'Serpuhov','RUS','Moskova',132000);
+INSERT INTO `city` VALUES (3709,'Odintsovo','RUS','Moskova',127400);
+INSERT INTO `city` VALUES (3710,'Orehovo-Zujevo','RUS','Moskova',124900);
+INSERT INTO `city` VALUES (3711,'Kamyšin','RUS','Volgograd',124600);
+INSERT INTO `city` VALUES (3712,'Novotšeboksarsk','RUS','Tšuvassia',123400);
+INSERT INTO `city` VALUES (3713,'Tšerkessk','RUS','Karatšai-Tšerkessia',121700);
+INSERT INTO `city` VALUES (3714,'Atšinsk','RUS','Krasnojarsk',121600);
+INSERT INTO `city` VALUES (3715,'Magadan','RUS','Magadan',121000);
+INSERT INTO `city` VALUES (3716,'Mitšurinsk','RUS','Tambov',120700);
+INSERT INTO `city` VALUES (3717,'Kislovodsk','RUS','Stavropol',120400);
+INSERT INTO `city` VALUES (3718,'Jelets','RUS','Lipetsk',119400);
+INSERT INTO `city` VALUES (3719,'Seversk','RUS','Tomsk',118600);
+INSERT INTO `city` VALUES (3720,'Noginsk','RUS','Moskova',117200);
+INSERT INTO `city` VALUES (3721,'Velikije Luki','RUS','Pihkova',116300);
+INSERT INTO `city` VALUES (3722,'Novokuibyševsk','RUS','Samara',116200);
+INSERT INTO `city` VALUES (3723,'Neftekamsk','RUS','Baškortostan',115700);
+INSERT INTO `city` VALUES (3724,'Leninsk-Kuznetski','RUS','Kemerovo',113800);
+INSERT INTO `city` VALUES (3725,'Oktjabrski','RUS','Baškortostan',111500);
+INSERT INTO `city` VALUES (3726,'Sergijev Posad','RUS','Moskova',111100);
+INSERT INTO `city` VALUES (3727,'Arzamas','RUS','Nizni Novgorod',110700);
+INSERT INTO `city` VALUES (3728,'Kiseljovsk','RUS','Kemerovo',110000);
+INSERT INTO `city` VALUES (3729,'Novotroitsk','RUS','Orenburg',109600);
+INSERT INTO `city` VALUES (3730,'Obninsk','RUS','Kaluga',108300);
+INSERT INTO `city` VALUES (3731,'Kansk','RUS','Krasnojarsk',107400);
+INSERT INTO `city` VALUES (3732,'Glazov','RUS','Udmurtia',106300);
+INSERT INTO `city` VALUES (3733,'Solikamsk','RUS','Perm',106000);
+INSERT INTO `city` VALUES (3734,'Sarapul','RUS','Udmurtia',105700);
+INSERT INTO `city` VALUES (3735,'Ust-Ilimsk','RUS','Irkutsk',105200);
+INSERT INTO `city` VALUES (3736,'Štšolkovo','RUS','Moskova',104900);
+INSERT INTO `city` VALUES (3737,'Mezduretšensk','RUS','Kemerovo',104400);
+INSERT INTO `city` VALUES (3738,'Usolje-Sibirskoje','RUS','Irkutsk',103500);
+INSERT INTO `city` VALUES (3739,'Elista','RUS','Kalmykia',103300);
+INSERT INTO `city` VALUES (3740,'Novošahtinsk','RUS','Rostov-na-Donu',101900);
+INSERT INTO `city` VALUES (3741,'Votkinsk','RUS','Udmurtia',101700);
+INSERT INTO `city` VALUES (3742,'Kyzyl','RUS','Tyva',101100);
+INSERT INTO `city` VALUES (3743,'Serov','RUS','Sverdlovsk',100400);
+INSERT INTO `city` VALUES (3744,'Zelenodolsk','RUS','Tatarstan',100200);
+INSERT INTO `city` VALUES (3745,'Zeleznodoroznyi','RUS','Moskova',100100);
+INSERT INTO `city` VALUES (3746,'Kinešma','RUS','Ivanovo',100000);
+INSERT INTO `city` VALUES (3747,'Kuznetsk','RUS','Penza',98200);
+INSERT INTO `city` VALUES (3748,'Uhta','RUS','Komi',98000);
+INSERT INTO `city` VALUES (3749,'Jessentuki','RUS','Stavropol',97900);
+INSERT INTO `city` VALUES (3750,'Tobolsk','RUS','Tjumen',97600);
+INSERT INTO `city` VALUES (3751,'Neftejugansk','RUS','Hanti-Mansia',97400);
+INSERT INTO `city` VALUES (3752,'Bataisk','RUS','Rostov-na-Donu',97300);
+INSERT INTO `city` VALUES (3753,'Nojabrsk','RUS','Yamalin Nenetsia',97300);
+INSERT INTO `city` VALUES (3754,'Balašov','RUS','Saratov',97100);
+INSERT INTO `city` VALUES (3755,'Zeleznogorsk','RUS','Kursk',96900);
+INSERT INTO `city` VALUES (3756,'Zukovski','RUS','Moskova',96500);
+INSERT INTO `city` VALUES (3757,'Anzero-Sudzensk','RUS','Kemerovo',96100);
+INSERT INTO `city` VALUES (3758,'Bugulma','RUS','Tatarstan',94100);
+INSERT INTO `city` VALUES (3759,'Zeleznogorsk','RUS','Krasnojarsk',94000);
+INSERT INTO `city` VALUES (3760,'Novouralsk','RUS','Sverdlovsk',93300);
+INSERT INTO `city` VALUES (3761,'Puškin','RUS','Pietari',92900);
+INSERT INTO `city` VALUES (3762,'Vorkuta','RUS','Komi',92600);
+INSERT INTO `city` VALUES (3763,'Derbent','RUS','Dagestan',92300);
+INSERT INTO `city` VALUES (3764,'Kirovo-Tšepetsk','RUS','Kirov',91600);
+INSERT INTO `city` VALUES (3765,'Krasnogorsk','RUS','Moskova',91000);
+INSERT INTO `city` VALUES (3766,'Klin','RUS','Moskova',90000);
+INSERT INTO `city` VALUES (3767,'Tšaikovski','RUS','Perm',90000);
+INSERT INTO `city` VALUES (3768,'Novyi Urengoi','RUS','Yamalin Nenetsia',89800);
+INSERT INTO `city` VALUES (3769,'Ho Chi Minh City','VNM','Ho Chi Minh City',3980000);
+INSERT INTO `city` VALUES (3770,'Hanoi','VNM','Hanoi',1410000);
+INSERT INTO `city` VALUES (3771,'Haiphong','VNM','Haiphong',783133);
+INSERT INTO `city` VALUES (3772,'Da Nang','VNM','Quang Nam-Da Nang',382674);
+INSERT INTO `city` VALUES (3773,'Biên Hoa','VNM','Dong Nai',282095);
+INSERT INTO `city` VALUES (3774,'Nha Trang','VNM','Khanh Hoa',221331);
+INSERT INTO `city` VALUES (3775,'Hue','VNM','Thua Thien-Hue',219149);
+INSERT INTO `city` VALUES (3776,'Can Tho','VNM','Can Tho',215587);
+INSERT INTO `city` VALUES (3777,'Cam Pha','VNM','Quang Binh',209086);
+INSERT INTO `city` VALUES (3778,'Nam Dinh','VNM','Nam Ha',171699);
+INSERT INTO `city` VALUES (3779,'Quy Nhon','VNM','Binh Dinh',163385);
+INSERT INTO `city` VALUES (3780,'Vung Tau','VNM','Ba Ria-Vung Tau',145145);
+INSERT INTO `city` VALUES (3781,'Rach Gia','VNM','Kien Giang',141132);
+INSERT INTO `city` VALUES (3782,'Long Xuyen','VNM','An Giang',132681);
+INSERT INTO `city` VALUES (3783,'Thai Nguyen','VNM','Bac Thai',127643);
+INSERT INTO `city` VALUES (3784,'Hong Gai','VNM','Quang Ninh',127484);
+INSERT INTO `city` VALUES (3785,'Phan Thiêt','VNM','Binh Thuan',114236);
+INSERT INTO `city` VALUES (3786,'Cam Ranh','VNM','Khanh Hoa',114041);
+INSERT INTO `city` VALUES (3787,'Vinh','VNM','Nghe An',112455);
+INSERT INTO `city` VALUES (3788,'My Tho','VNM','Tien Giang',108404);
+INSERT INTO `city` VALUES (3789,'Da Lat','VNM','Lam Dong',106409);
+INSERT INTO `city` VALUES (3790,'Buon Ma Thuot','VNM','Dac Lac',97044);
+INSERT INTO `city` VALUES (3791,'Tallinn','EST','Harjumaa',403981);
+INSERT INTO `city` VALUES (3792,'Tartu','EST','Tartumaa',101246);
+INSERT INTO `city` VALUES (3793,'New York','USA','New York',8008278);
+INSERT INTO `city` VALUES (3794,'Los Angeles','USA','California',3694820);
+INSERT INTO `city` VALUES (3795,'Chicago','USA','Illinois',2896016);
+INSERT INTO `city` VALUES (3796,'Houston','USA','Texas',1953631);
+INSERT INTO `city` VALUES (3797,'Philadelphia','USA','Pennsylvania',1517550);
+INSERT INTO `city` VALUES (3798,'Phoenix','USA','Arizona',1321045);
+INSERT INTO `city` VALUES (3799,'San Diego','USA','California',1223400);
+INSERT INTO `city` VALUES (3800,'Dallas','USA','Texas',1188580);
+INSERT INTO `city` VALUES (3801,'San Antonio','USA','Texas',1144646);
+INSERT INTO `city` VALUES (3802,'Detroit','USA','Michigan',951270);
+INSERT INTO `city` VALUES (3803,'San Jose','USA','California',894943);
+INSERT INTO `city` VALUES (3804,'Indianapolis','USA','Indiana',791926);
+INSERT INTO `city` VALUES (3805,'San Francisco','USA','California',776733);
+INSERT INTO `city` VALUES (3806,'Jacksonville','USA','Florida',735167);
+INSERT INTO `city` VALUES (3807,'Columbus','USA','Ohio',711470);
+INSERT INTO `city` VALUES (3808,'Austin','USA','Texas',656562);
+INSERT INTO `city` VALUES (3809,'Baltimore','USA','Maryland',651154);
+INSERT INTO `city` VALUES (3810,'Memphis','USA','Tennessee',650100);
+INSERT INTO `city` VALUES (3811,'Milwaukee','USA','Wisconsin',596974);
+INSERT INTO `city` VALUES (3812,'Boston','USA','Massachusetts',589141);
+INSERT INTO `city` VALUES (3813,'Washington','USA','District of Columbia',572059);
+INSERT INTO `city` VALUES (3814,'Nashville-Davidson','USA','Tennessee',569891);
+INSERT INTO `city` VALUES (3815,'El Paso','USA','Texas',563662);
+INSERT INTO `city` VALUES (3816,'Seattle','USA','Washington',563374);
+INSERT INTO `city` VALUES (3817,'Denver','USA','Colorado',554636);
+INSERT INTO `city` VALUES (3818,'Charlotte','USA','North Carolina',540828);
+INSERT INTO `city` VALUES (3819,'Fort Worth','USA','Texas',534694);
+INSERT INTO `city` VALUES (3820,'Portland','USA','Oregon',529121);
+INSERT INTO `city` VALUES (3821,'Oklahoma City','USA','Oklahoma',506132);
+INSERT INTO `city` VALUES (3822,'Tucson','USA','Arizona',486699);
+INSERT INTO `city` VALUES (3823,'New Orleans','USA','Louisiana',484674);
+INSERT INTO `city` VALUES (3824,'Las Vegas','USA','Nevada',478434);
+INSERT INTO `city` VALUES (3825,'Cleveland','USA','Ohio',478403);
+INSERT INTO `city` VALUES (3826,'Long Beach','USA','California',461522);
+INSERT INTO `city` VALUES (3827,'Albuquerque','USA','New Mexico',448607);
+INSERT INTO `city` VALUES (3828,'Kansas City','USA','Missouri',441545);
+INSERT INTO `city` VALUES (3829,'Fresno','USA','California',427652);
+INSERT INTO `city` VALUES (3830,'Virginia Beach','USA','Virginia',425257);
+INSERT INTO `city` VALUES (3831,'Atlanta','USA','Georgia',416474);
+INSERT INTO `city` VALUES (3832,'Sacramento','USA','California',407018);
+INSERT INTO `city` VALUES (3833,'Oakland','USA','California',399484);
+INSERT INTO `city` VALUES (3834,'Mesa','USA','Arizona',396375);
+INSERT INTO `city` VALUES (3835,'Tulsa','USA','Oklahoma',393049);
+INSERT INTO `city` VALUES (3836,'Omaha','USA','Nebraska',390007);
+INSERT INTO `city` VALUES (3837,'Minneapolis','USA','Minnesota',382618);
+INSERT INTO `city` VALUES (3838,'Honolulu','USA','Hawaii',371657);
+INSERT INTO `city` VALUES (3839,'Miami','USA','Florida',362470);
+INSERT INTO `city` VALUES (3840,'Colorado Springs','USA','Colorado',360890);
+INSERT INTO `city` VALUES (3841,'Saint Louis','USA','Missouri',348189);
+INSERT INTO `city` VALUES (3842,'Wichita','USA','Kansas',344284);
+INSERT INTO `city` VALUES (3843,'Santa Ana','USA','California',337977);
+INSERT INTO `city` VALUES (3844,'Pittsburgh','USA','Pennsylvania',334563);
+INSERT INTO `city` VALUES (3845,'Arlington','USA','Texas',332969);
+INSERT INTO `city` VALUES (3846,'Cincinnati','USA','Ohio',331285);
+INSERT INTO `city` VALUES (3847,'Anaheim','USA','California',328014);
+INSERT INTO `city` VALUES (3848,'Toledo','USA','Ohio',313619);
+INSERT INTO `city` VALUES (3849,'Tampa','USA','Florida',303447);
+INSERT INTO `city` VALUES (3850,'Buffalo','USA','New York',292648);
+INSERT INTO `city` VALUES (3851,'Saint Paul','USA','Minnesota',287151);
+INSERT INTO `city` VALUES (3852,'Corpus Christi','USA','Texas',277454);
+INSERT INTO `city` VALUES (3853,'Aurora','USA','Colorado',276393);
+INSERT INTO `city` VALUES (3854,'Raleigh','USA','North Carolina',276093);
+INSERT INTO `city` VALUES (3855,'Newark','USA','New Jersey',273546);
+INSERT INTO `city` VALUES (3856,'Lexington-Fayette','USA','Kentucky',260512);
+INSERT INTO `city` VALUES (3857,'Anchorage','USA','Alaska',260283);
+INSERT INTO `city` VALUES (3858,'Louisville','USA','Kentucky',256231);
+INSERT INTO `city` VALUES (3859,'Riverside','USA','California',255166);
+INSERT INTO `city` VALUES (3860,'Saint Petersburg','USA','Florida',248232);
+INSERT INTO `city` VALUES (3861,'Bakersfield','USA','California',247057);
+INSERT INTO `city` VALUES (3862,'Stockton','USA','California',243771);
+INSERT INTO `city` VALUES (3863,'Birmingham','USA','Alabama',242820);
+INSERT INTO `city` VALUES (3864,'Jersey City','USA','New Jersey',240055);
+INSERT INTO `city` VALUES (3865,'Norfolk','USA','Virginia',234403);
+INSERT INTO `city` VALUES (3866,'Baton Rouge','USA','Louisiana',227818);
+INSERT INTO `city` VALUES (3867,'Hialeah','USA','Florida',226419);
+INSERT INTO `city` VALUES (3868,'Lincoln','USA','Nebraska',225581);
+INSERT INTO `city` VALUES (3869,'Greensboro','USA','North Carolina',223891);
+INSERT INTO `city` VALUES (3870,'Plano','USA','Texas',222030);
+INSERT INTO `city` VALUES (3871,'Rochester','USA','New York',219773);
+INSERT INTO `city` VALUES (3872,'Glendale','USA','Arizona',218812);
+INSERT INTO `city` VALUES (3873,'Akron','USA','Ohio',217074);
+INSERT INTO `city` VALUES (3874,'Garland','USA','Texas',215768);
+INSERT INTO `city` VALUES (3875,'Madison','USA','Wisconsin',208054);
+INSERT INTO `city` VALUES (3876,'Fort Wayne','USA','Indiana',205727);
+INSERT INTO `city` VALUES (3877,'Fremont','USA','California',203413);
+INSERT INTO `city` VALUES (3878,'Scottsdale','USA','Arizona',202705);
+INSERT INTO `city` VALUES (3879,'Montgomery','USA','Alabama',201568);
+INSERT INTO `city` VALUES (3880,'Shreveport','USA','Louisiana',200145);
+INSERT INTO `city` VALUES (3881,'Augusta-Richmond County','USA','Georgia',199775);
+INSERT INTO `city` VALUES (3882,'Lubbock','USA','Texas',199564);
+INSERT INTO `city` VALUES (3883,'Chesapeake','USA','Virginia',199184);
+INSERT INTO `city` VALUES (3884,'Mobile','USA','Alabama',198915);
+INSERT INTO `city` VALUES (3885,'Des Moines','USA','Iowa',198682);
+INSERT INTO `city` VALUES (3886,'Grand Rapids','USA','Michigan',197800);
+INSERT INTO `city` VALUES (3887,'Richmond','USA','Virginia',197790);
+INSERT INTO `city` VALUES (3888,'Yonkers','USA','New York',196086);
+INSERT INTO `city` VALUES (3889,'Spokane','USA','Washington',195629);
+INSERT INTO `city` VALUES (3890,'Glendale','USA','California',194973);
+INSERT INTO `city` VALUES (3891,'Tacoma','USA','Washington',193556);
+INSERT INTO `city` VALUES (3892,'Irving','USA','Texas',191615);
+INSERT INTO `city` VALUES (3893,'Huntington Beach','USA','California',189594);
+INSERT INTO `city` VALUES (3894,'Modesto','USA','California',188856);
+INSERT INTO `city` VALUES (3895,'Durham','USA','North Carolina',187035);
+INSERT INTO `city` VALUES (3896,'Columbus','USA','Georgia',186291);
+INSERT INTO `city` VALUES (3897,'Orlando','USA','Florida',185951);
+INSERT INTO `city` VALUES (3898,'Boise City','USA','Idaho',185787);
+INSERT INTO `city` VALUES (3899,'Winston-Salem','USA','North Carolina',185776);
+INSERT INTO `city` VALUES (3900,'San Bernardino','USA','California',185401);
+INSERT INTO `city` VALUES (3901,'Jackson','USA','Mississippi',184256);
+INSERT INTO `city` VALUES (3902,'Little Rock','USA','Arkansas',183133);
+INSERT INTO `city` VALUES (3903,'Salt Lake City','USA','Utah',181743);
+INSERT INTO `city` VALUES (3904,'Reno','USA','Nevada',180480);
+INSERT INTO `city` VALUES (3905,'Newport News','USA','Virginia',180150);
+INSERT INTO `city` VALUES (3906,'Chandler','USA','Arizona',176581);
+INSERT INTO `city` VALUES (3907,'Laredo','USA','Texas',176576);
+INSERT INTO `city` VALUES (3908,'Henderson','USA','Nevada',175381);
+INSERT INTO `city` VALUES (3909,'Arlington','USA','Virginia',174838);
+INSERT INTO `city` VALUES (3910,'Knoxville','USA','Tennessee',173890);
+INSERT INTO `city` VALUES (3911,'Amarillo','USA','Texas',173627);
+INSERT INTO `city` VALUES (3912,'Providence','USA','Rhode Island',173618);
+INSERT INTO `city` VALUES (3913,'Chula Vista','USA','California',173556);
+INSERT INTO `city` VALUES (3914,'Worcester','USA','Massachusetts',172648);
+INSERT INTO `city` VALUES (3915,'Oxnard','USA','California',170358);
+INSERT INTO `city` VALUES (3916,'Dayton','USA','Ohio',166179);
+INSERT INTO `city` VALUES (3917,'Garden Grove','USA','California',165196);
+INSERT INTO `city` VALUES (3918,'Oceanside','USA','California',161029);
+INSERT INTO `city` VALUES (3919,'Tempe','USA','Arizona',158625);
+INSERT INTO `city` VALUES (3920,'Huntsville','USA','Alabama',158216);
+INSERT INTO `city` VALUES (3921,'Ontario','USA','California',158007);
+INSERT INTO `city` VALUES (3922,'Chattanooga','USA','Tennessee',155554);
+INSERT INTO `city` VALUES (3923,'Fort Lauderdale','USA','Florida',152397);
+INSERT INTO `city` VALUES (3924,'Springfield','USA','Massachusetts',152082);
+INSERT INTO `city` VALUES (3925,'Springfield','USA','Missouri',151580);
+INSERT INTO `city` VALUES (3926,'Santa Clarita','USA','California',151088);
+INSERT INTO `city` VALUES (3927,'Salinas','USA','California',151060);
+INSERT INTO `city` VALUES (3928,'Tallahassee','USA','Florida',150624);
+INSERT INTO `city` VALUES (3929,'Rockford','USA','Illinois',150115);
+INSERT INTO `city` VALUES (3930,'Pomona','USA','California',149473);
+INSERT INTO `city` VALUES (3931,'Metairie','USA','Louisiana',149428);
+INSERT INTO `city` VALUES (3932,'Paterson','USA','New Jersey',149222);
+INSERT INTO `city` VALUES (3933,'Overland Park','USA','Kansas',149080);
+INSERT INTO `city` VALUES (3934,'Santa Rosa','USA','California',147595);
+INSERT INTO `city` VALUES (3935,'Syracuse','USA','New York',147306);
+INSERT INTO `city` VALUES (3936,'Kansas City','USA','Kansas',146866);
+INSERT INTO `city` VALUES (3937,'Hampton','USA','Virginia',146437);
+INSERT INTO `city` VALUES (3938,'Lakewood','USA','Colorado',144126);
+INSERT INTO `city` VALUES (3939,'Vancouver','USA','Washington',143560);
+INSERT INTO `city` VALUES (3940,'Irvine','USA','California',143072);
+INSERT INTO `city` VALUES (3941,'Aurora','USA','Illinois',142990);
+INSERT INTO `city` VALUES (3942,'Moreno Valley','USA','California',142381);
+INSERT INTO `city` VALUES (3943,'Pasadena','USA','California',141674);
+INSERT INTO `city` VALUES (3944,'Hayward','USA','California',140030);
+INSERT INTO `city` VALUES (3945,'Brownsville','USA','Texas',139722);
+INSERT INTO `city` VALUES (3946,'Bridgeport','USA','Connecticut',139529);
+INSERT INTO `city` VALUES (3947,'Hollywood','USA','Florida',139357);
+INSERT INTO `city` VALUES (3948,'Warren','USA','Michigan',138247);
+INSERT INTO `city` VALUES (3949,'Torrance','USA','California',137946);
+INSERT INTO `city` VALUES (3950,'Eugene','USA','Oregon',137893);
+INSERT INTO `city` VALUES (3951,'Pembroke Pines','USA','Florida',137427);
+INSERT INTO `city` VALUES (3952,'Salem','USA','Oregon',136924);
+INSERT INTO `city` VALUES (3953,'Pasadena','USA','Texas',133936);
+INSERT INTO `city` VALUES (3954,'Escondido','USA','California',133559);
+INSERT INTO `city` VALUES (3955,'Sunnyvale','USA','California',131760);
+INSERT INTO `city` VALUES (3956,'Savannah','USA','Georgia',131510);
+INSERT INTO `city` VALUES (3957,'Fontana','USA','California',128929);
+INSERT INTO `city` VALUES (3958,'Orange','USA','California',128821);
+INSERT INTO `city` VALUES (3959,'Naperville','USA','Illinois',128358);
+INSERT INTO `city` VALUES (3960,'Alexandria','USA','Virginia',128283);
+INSERT INTO `city` VALUES (3961,'Rancho Cucamonga','USA','California',127743);
+INSERT INTO `city` VALUES (3962,'Grand Prairie','USA','Texas',127427);
+INSERT INTO `city` VALUES (3963,'East Los Angeles','USA','California',126379);
+INSERT INTO `city` VALUES (3964,'Fullerton','USA','California',126003);
+INSERT INTO `city` VALUES (3965,'Corona','USA','California',124966);
+INSERT INTO `city` VALUES (3966,'Flint','USA','Michigan',124943);
+INSERT INTO `city` VALUES (3967,'Paradise','USA','Nevada',124682);
+INSERT INTO `city` VALUES (3968,'Mesquite','USA','Texas',124523);
+INSERT INTO `city` VALUES (3969,'Sterling Heights','USA','Michigan',124471);
+INSERT INTO `city` VALUES (3970,'Sioux Falls','USA','South Dakota',123975);
+INSERT INTO `city` VALUES (3971,'New Haven','USA','Connecticut',123626);
+INSERT INTO `city` VALUES (3972,'Topeka','USA','Kansas',122377);
+INSERT INTO `city` VALUES (3973,'Concord','USA','California',121780);
+INSERT INTO `city` VALUES (3974,'Evansville','USA','Indiana',121582);
+INSERT INTO `city` VALUES (3975,'Hartford','USA','Connecticut',121578);
+INSERT INTO `city` VALUES (3976,'Fayetteville','USA','North Carolina',121015);
+INSERT INTO `city` VALUES (3977,'Cedar Rapids','USA','Iowa',120758);
+INSERT INTO `city` VALUES (3978,'Elizabeth','USA','New Jersey',120568);
+INSERT INTO `city` VALUES (3979,'Lansing','USA','Michigan',119128);
+INSERT INTO `city` VALUES (3980,'Lancaster','USA','California',118718);
+INSERT INTO `city` VALUES (3981,'Fort Collins','USA','Colorado',118652);
+INSERT INTO `city` VALUES (3982,'Coral Springs','USA','Florida',117549);
+INSERT INTO `city` VALUES (3983,'Stamford','USA','Connecticut',117083);
+INSERT INTO `city` VALUES (3984,'Thousand Oaks','USA','California',117005);
+INSERT INTO `city` VALUES (3985,'Vallejo','USA','California',116760);
+INSERT INTO `city` VALUES (3986,'Palmdale','USA','California',116670);
+INSERT INTO `city` VALUES (3987,'Columbia','USA','South Carolina',116278);
+INSERT INTO `city` VALUES (3988,'El Monte','USA','California',115965);
+INSERT INTO `city` VALUES (3989,'Abilene','USA','Texas',115930);
+INSERT INTO `city` VALUES (3990,'North Las Vegas','USA','Nevada',115488);
+INSERT INTO `city` VALUES (3991,'Ann Arbor','USA','Michigan',114024);
+INSERT INTO `city` VALUES (3992,'Beaumont','USA','Texas',113866);
+INSERT INTO `city` VALUES (3993,'Waco','USA','Texas',113726);
+INSERT INTO `city` VALUES (3994,'Macon','USA','Georgia',113336);
+INSERT INTO `city` VALUES (3995,'Independence','USA','Missouri',113288);
+INSERT INTO `city` VALUES (3996,'Peoria','USA','Illinois',112936);
+INSERT INTO `city` VALUES (3997,'Inglewood','USA','California',112580);
+INSERT INTO `city` VALUES (3998,'Springfield','USA','Illinois',111454);
+INSERT INTO `city` VALUES (3999,'Simi Valley','USA','California',111351);
+INSERT INTO `city` VALUES (4000,'Lafayette','USA','Louisiana',110257);
+INSERT INTO `city` VALUES (4001,'Gilbert','USA','Arizona',109697);
+INSERT INTO `city` VALUES (4002,'Carrollton','USA','Texas',109576);
+INSERT INTO `city` VALUES (4003,'Bellevue','USA','Washington',109569);
+INSERT INTO `city` VALUES (4004,'West Valley City','USA','Utah',108896);
+INSERT INTO `city` VALUES (4005,'Clarksville','USA','Tennessee',108787);
+INSERT INTO `city` VALUES (4006,'Costa Mesa','USA','California',108724);
+INSERT INTO `city` VALUES (4007,'Peoria','USA','Arizona',108364);
+INSERT INTO `city` VALUES (4008,'South Bend','USA','Indiana',107789);
+INSERT INTO `city` VALUES (4009,'Downey','USA','California',107323);
+INSERT INTO `city` VALUES (4010,'Waterbury','USA','Connecticut',107271);
+INSERT INTO `city` VALUES (4011,'Manchester','USA','New Hampshire',107006);
+INSERT INTO `city` VALUES (4012,'Allentown','USA','Pennsylvania',106632);
+INSERT INTO `city` VALUES (4013,'McAllen','USA','Texas',106414);
+INSERT INTO `city` VALUES (4014,'Joliet','USA','Illinois',106221);
+INSERT INTO `city` VALUES (4015,'Lowell','USA','Massachusetts',105167);
+INSERT INTO `city` VALUES (4016,'Provo','USA','Utah',105166);
+INSERT INTO `city` VALUES (4017,'West Covina','USA','California',105080);
+INSERT INTO `city` VALUES (4018,'Wichita Falls','USA','Texas',104197);
+INSERT INTO `city` VALUES (4019,'Erie','USA','Pennsylvania',103717);
+INSERT INTO `city` VALUES (4020,'Daly City','USA','California',103621);
+INSERT INTO `city` VALUES (4021,'Citrus Heights','USA','California',103455);
+INSERT INTO `city` VALUES (4022,'Norwalk','USA','California',103298);
+INSERT INTO `city` VALUES (4023,'Gary','USA','Indiana',102746);
+INSERT INTO `city` VALUES (4024,'Berkeley','USA','California',102743);
+INSERT INTO `city` VALUES (4025,'Santa Clara','USA','California',102361);
+INSERT INTO `city` VALUES (4026,'Green Bay','USA','Wisconsin',102313);
+INSERT INTO `city` VALUES (4027,'Cape Coral','USA','Florida',102286);
+INSERT INTO `city` VALUES (4028,'Arvada','USA','Colorado',102153);
+INSERT INTO `city` VALUES (4029,'Pueblo','USA','Colorado',102121);
+INSERT INTO `city` VALUES (4030,'Sandy','USA','Utah',101853);
+INSERT INTO `city` VALUES (4031,'Athens-Clarke County','USA','Georgia',101489);
+INSERT INTO `city` VALUES (4032,'Cambridge','USA','Massachusetts',101355);
+INSERT INTO `city` VALUES (4033,'Westminster','USA','Colorado',100940);
+INSERT INTO `city` VALUES (4034,'San Buenaventura','USA','California',100916);
+INSERT INTO `city` VALUES (4035,'Portsmouth','USA','Virginia',100565);
+INSERT INTO `city` VALUES (4036,'Livonia','USA','Michigan',100545);
+INSERT INTO `city` VALUES (4037,'Burbank','USA','California',100316);
+INSERT INTO `city` VALUES (4038,'Clearwater','USA','Florida',99936);
+INSERT INTO `city` VALUES (4039,'Midland','USA','Texas',98293);
+INSERT INTO `city` VALUES (4040,'Davenport','USA','Iowa',98256);
+INSERT INTO `city` VALUES (4041,'Mission Viejo','USA','California',98049);
+INSERT INTO `city` VALUES (4042,'Miami Beach','USA','Florida',97855);
+INSERT INTO `city` VALUES (4043,'Sunrise Manor','USA','Nevada',95362);
+INSERT INTO `city` VALUES (4044,'New Bedford','USA','Massachusetts',94780);
+INSERT INTO `city` VALUES (4045,'El Cajon','USA','California',94578);
+INSERT INTO `city` VALUES (4046,'Norman','USA','Oklahoma',94193);
+INSERT INTO `city` VALUES (4047,'Richmond','USA','California',94100);
+INSERT INTO `city` VALUES (4048,'Albany','USA','New York',93994);
+INSERT INTO `city` VALUES (4049,'Brockton','USA','Massachusetts',93653);
+INSERT INTO `city` VALUES (4050,'Roanoke','USA','Virginia',93357);
+INSERT INTO `city` VALUES (4051,'Billings','USA','Montana',92988);
+INSERT INTO `city` VALUES (4052,'Compton','USA','California',92864);
+INSERT INTO `city` VALUES (4053,'Gainesville','USA','Florida',92291);
+INSERT INTO `city` VALUES (4054,'Fairfield','USA','California',92256);
+INSERT INTO `city` VALUES (4055,'Arden-Arcade','USA','California',92040);
+INSERT INTO `city` VALUES (4056,'San Mateo','USA','California',91799);
+INSERT INTO `city` VALUES (4057,'Visalia','USA','California',91762);
+INSERT INTO `city` VALUES (4058,'Boulder','USA','Colorado',91238);
+INSERT INTO `city` VALUES (4059,'Cary','USA','North Carolina',91213);
+INSERT INTO `city` VALUES (4060,'Santa Monica','USA','California',91084);
+INSERT INTO `city` VALUES (4061,'Fall River','USA','Massachusetts',90555);
+INSERT INTO `city` VALUES (4062,'Kenosha','USA','Wisconsin',89447);
+INSERT INTO `city` VALUES (4063,'Elgin','USA','Illinois',89408);
+INSERT INTO `city` VALUES (4064,'Odessa','USA','Texas',89293);
+INSERT INTO `city` VALUES (4065,'Carson','USA','California',89089);
+INSERT INTO `city` VALUES (4066,'Charleston','USA','South Carolina',89063);
+INSERT INTO `city` VALUES (4067,'Charlotte Amalie','VIR','St Thomas',13000);
+INSERT INTO `city` VALUES (4068,'Harare','ZWE','Harare',1410000);
+INSERT INTO `city` VALUES (4069,'Bulawayo','ZWE','Bulawayo',621742);
+INSERT INTO `city` VALUES (4070,'Chitungwiza','ZWE','Harare',274912);
+INSERT INTO `city` VALUES (4071,'Mount Darwin','ZWE','Harare',164362);
+INSERT INTO `city` VALUES (4072,'Mutare','ZWE','Manicaland',131367);
+INSERT INTO `city` VALUES (4073,'Gweru','ZWE','Midlands',128037);
+INSERT INTO `city` VALUES (4074,'Gaza','PSE','Gaza',353632);
+INSERT INTO `city` VALUES (4075,'Khan Yunis','PSE','Khan Yunis',123175);
+INSERT INTO `city` VALUES (4076,'Hebron','PSE','Hebron',119401);
+INSERT INTO `city` VALUES (4077,'Jabaliya','PSE','North Gaza',113901);
+INSERT INTO `city` VALUES (4078,'Nablus','PSE','Nablus',100231);
+INSERT INTO `city` VALUES (4079,'Rafah','PSE','Rafah',92020);
+commit;
+
+--
+-- Table structure for table `country`
+--
+
+DROP TABLE IF EXISTS `country`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `country` (
+  `Code` char(3) NOT NULL DEFAULT '',
+  `Name` char(52) NOT NULL DEFAULT '',
+  `Continent` enum('Asia','Europe','North America','Africa','Oceania','Antarctica','South America') NOT NULL DEFAULT 'Asia',
+  `Region` char(26) NOT NULL DEFAULT '',
+  `SurfaceArea` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `IndepYear` smallint DEFAULT NULL,
+  `Population` int NOT NULL DEFAULT '0',
+  `LifeExpectancy` decimal(3,1) DEFAULT NULL,
+  `GNP` decimal(10,2) DEFAULT NULL,
+  `GNPOld` decimal(10,2) DEFAULT NULL,
+  `LocalName` char(45) NOT NULL DEFAULT '',
+  `GovernmentForm` char(45) NOT NULL DEFAULT '',
+  `HeadOfState` char(60) DEFAULT NULL,
+  `Capital` int DEFAULT NULL,
+  `Code2` char(2) NOT NULL DEFAULT '',
+  PRIMARY KEY (`Code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `country`
+--
+-- ORDER BY:  `Code`
+
+set autocommit=0;
+INSERT INTO `country` VALUES ('ABW','Aruba','North America','Caribbean',193.00,NULL,103000,78.4,828.00,793.00,'Aruba','Nonmetropolitan Territory of The Netherlands','Beatrix',129,'AW');
+INSERT INTO `country` VALUES ('AFG','Afghanistan','Asia','Southern and Central Asia',652090.00,1919,22720000,45.9,5976.00,NULL,'Afganistan/Afqanestan','Islamic Emirate','Mohammad Omar',1,'AF');
+INSERT INTO `country` VALUES ('AGO','Angola','Africa','Central Africa',1246700.00,1975,12878000,38.3,6648.00,7984.00,'Angola','Republic','José Eduardo dos Santos',56,'AO');
+INSERT INTO `country` VALUES ('AIA','Anguilla','North America','Caribbean',96.00,NULL,8000,76.1,63.20,NULL,'Anguilla','Dependent Territory of the UK','Elisabeth II',62,'AI');
+INSERT INTO `country` VALUES ('ALB','Albania','Europe','Southern Europe',28748.00,1912,3401200,71.6,3205.00,2500.00,'Shqipëria','Republic','Rexhep Mejdani',34,'AL');
+INSERT INTO `country` VALUES ('AND','Andorra','Europe','Southern Europe',468.00,1278,78000,83.5,1630.00,NULL,'Andorra','Parliamentary Coprincipality','',55,'AD');
+INSERT INTO `country` VALUES ('ANT','Netherlands Antilles','North America','Caribbean',800.00,NULL,217000,74.7,1941.00,NULL,'Nederlandse Antillen','Nonmetropolitan Territory of The Netherlands','Beatrix',33,'AN');
+INSERT INTO `country` VALUES ('ARE','United Arab Emirates','Asia','Middle East',83600.00,1971,2441000,74.1,37966.00,36846.00,'Al-Imarat al-´Arabiya al-Muttahida','Emirate Federation','Zayid bin Sultan al-Nahayan',65,'AE');
+INSERT INTO `country` VALUES ('ARG','Argentina','South America','South America',2780400.00,1816,37032000,75.1,340238.00,323310.00,'Argentina','Federal Republic','Fernando de la Rúa',69,'AR');
+INSERT INTO `country` VALUES ('ARM','Armenia','Asia','Middle East',29800.00,1991,3520000,66.4,1813.00,1627.00,'Hajastan','Republic','Robert Kotšarjan',126,'AM');
+INSERT INTO `country` VALUES ('ASM','American Samoa','Oceania','Polynesia',199.00,NULL,68000,75.1,334.00,NULL,'Amerika Samoa','US Territory','George W. Bush',54,'AS');
+INSERT INTO `country` VALUES ('ATA','Antarctica','Antarctica','Antarctica',13120000.00,NULL,0,NULL,0.00,NULL,'–','Co-administrated','',NULL,'AQ');
+INSERT INTO `country` VALUES ('ATF','French Southern territories','Antarctica','Antarctica',7780.00,NULL,0,NULL,0.00,NULL,'Terres australes françaises','Nonmetropolitan Territory of France','Jacques Chirac',NULL,'TF');
+INSERT INTO `country` VALUES ('ATG','Antigua and Barbuda','North America','Caribbean',442.00,1981,68000,70.5,612.00,584.00,'Antigua and Barbuda','Constitutional Monarchy','Elisabeth II',63,'AG');
+INSERT INTO `country` VALUES ('AUS','Australia','Oceania','Australia and New Zealand',7741220.00,1901,18886000,79.8,351182.00,392911.00,'Australia','Constitutional Monarchy, Federation','Elisabeth II',135,'AU');
+INSERT INTO `country` VALUES ('AUT','Austria','Europe','Western Europe',83859.00,1918,8091800,77.7,211860.00,206025.00,'Österreich','Federal Republic','Thomas Klestil',1523,'AT');
+INSERT INTO `country` VALUES ('AZE','Azerbaijan','Asia','Middle East',86600.00,1991,7734000,62.9,4127.00,4100.00,'Azärbaycan','Federal Republic','Heydär Äliyev',144,'AZ');
+INSERT INTO `country` VALUES ('BDI','Burundi','Africa','Eastern Africa',27834.00,1962,6695000,46.2,903.00,982.00,'Burundi/Uburundi','Republic','Pierre Buyoya',552,'BI');
+INSERT INTO `country` VALUES ('BEL','Belgium','Europe','Western Europe',30518.00,1830,10239000,77.8,249704.00,243948.00,'België/Belgique','Constitutional Monarchy, Federation','Albert II',179,'BE');
+INSERT INTO `country` VALUES ('BEN','Benin','Africa','Western Africa',112622.00,1960,6097000,50.2,2357.00,2141.00,'Bénin','Republic','Mathieu Kérékou',187,'BJ');
+INSERT INTO `country` VALUES ('BFA','Burkina Faso','Africa','Western Africa',274000.00,1960,11937000,46.7,2425.00,2201.00,'Burkina Faso','Republic','Blaise Compaoré',549,'BF');
+INSERT INTO `country` VALUES ('BGD','Bangladesh','Asia','Southern and Central Asia',143998.00,1971,129155000,60.2,32852.00,31966.00,'Bangladesh','Republic','Shahabuddin Ahmad',150,'BD');
+INSERT INTO `country` VALUES ('BGR','Bulgaria','Europe','Eastern Europe',110994.00,1908,8190900,70.9,12178.00,10169.00,'Balgarija','Republic','Petar Stojanov',539,'BG');
+INSERT INTO `country` VALUES ('BHR','Bahrain','Asia','Middle East',694.00,1971,617000,73.0,6366.00,6097.00,'Al-Bahrayn','Monarchy (Emirate)','Hamad ibn Isa al-Khalifa',149,'BH');
+INSERT INTO `country` VALUES ('BHS','Bahamas','North America','Caribbean',13878.00,1973,307000,71.1,3527.00,3347.00,'The Bahamas','Constitutional Monarchy','Elisabeth II',148,'BS');
+INSERT INTO `country` VALUES ('BIH','Bosnia and Herzegovina','Europe','Southern Europe',51197.00,1992,3972000,71.5,2841.00,NULL,'Bosna i Hercegovina','Federal Republic','Ante Jelavic',201,'BA');
+INSERT INTO `country` VALUES ('BLR','Belarus','Europe','Eastern Europe',207600.00,1991,10236000,68.0,13714.00,NULL,'Belarus','Republic','Aljaksandr Lukašenka',3520,'BY');
+INSERT INTO `country` VALUES ('BLZ','Belize','North America','Central America',22696.00,1981,241000,70.9,630.00,616.00,'Belize','Constitutional Monarchy','Elisabeth II',185,'BZ');
+INSERT INTO `country` VALUES ('BMU','Bermuda','North America','North America',53.00,NULL,65000,76.9,2328.00,2190.00,'Bermuda','Dependent Territory of the UK','Elisabeth II',191,'BM');
+INSERT INTO `country` VALUES ('BOL','Bolivia','South America','South America',1098581.00,1825,8329000,63.7,8571.00,7967.00,'Bolivia','Republic','Hugo Bánzer Suárez',194,'BO');
+INSERT INTO `country` VALUES ('BRA','Brazil','South America','South America',8547403.00,1822,170115000,62.9,776739.00,804108.00,'Brasil','Federal Republic','Fernando Henrique Cardoso',211,'BR');
+INSERT INTO `country` VALUES ('BRB','Barbados','North America','Caribbean',430.00,1966,270000,73.0,2223.00,2186.00,'Barbados','Constitutional Monarchy','Elisabeth II',174,'BB');
+INSERT INTO `country` VALUES ('BRN','Brunei','Asia','Southeast Asia',5765.00,1984,328000,73.6,11705.00,12460.00,'Brunei Darussalam','Monarchy (Sultanate)','Haji Hassan al-Bolkiah',538,'BN');
+INSERT INTO `country` VALUES ('BTN','Bhutan','Asia','Southern and Central Asia',47000.00,1910,2124000,52.4,372.00,383.00,'Druk-Yul','Monarchy','Jigme Singye Wangchuk',192,'BT');
+INSERT INTO `country` VALUES ('BVT','Bouvet Island','Antarctica','Antarctica',59.00,NULL,0,NULL,0.00,NULL,'Bouvetøya','Dependent Territory of Norway','Harald V',NULL,'BV');
+INSERT INTO `country` VALUES ('BWA','Botswana','Africa','Southern Africa',581730.00,1966,1622000,39.3,4834.00,4935.00,'Botswana','Republic','Festus G. Mogae',204,'BW');
+INSERT INTO `country` VALUES ('CAF','Central African Republic','Africa','Central Africa',622984.00,1960,3615000,44.0,1054.00,993.00,'Centrafrique/Bê-Afrîka','Republic','Ange-Félix Patassé',1889,'CF');
+INSERT INTO `country` VALUES ('CAN','Canada','North America','North America',9970610.00,1867,31147000,79.4,598862.00,625626.00,'Canada','Constitutional Monarchy, Federation','Elisabeth II',1822,'CA');
+INSERT INTO `country` VALUES ('CCK','Cocos (Keeling) Islands','Oceania','Australia and New Zealand',14.00,NULL,600,NULL,0.00,NULL,'Cocos (Keeling) Islands','Territory of Australia','Elisabeth II',2317,'CC');
+INSERT INTO `country` VALUES ('CHE','Switzerland','Europe','Western Europe',41284.00,1499,7160400,79.6,264478.00,256092.00,'Schweiz/Suisse/Svizzera/Svizra','Federation','Adolf Ogi',3248,'CH');
+INSERT INTO `country` VALUES ('CHL','Chile','South America','South America',756626.00,1810,15211000,75.7,72949.00,75780.00,'Chile','Republic','Ricardo Lagos Escobar',554,'CL');
+INSERT INTO `country` VALUES ('CHN','China','Asia','Eastern Asia',9572900.00,-1523,1277558000,71.4,982268.00,917719.00,'Zhongquo','People\'sRepublic','Jiang Zemin',1891,'CN');
+INSERT INTO `country` VALUES ('CIV','Côte d’Ivoire','Africa','Western Africa',322463.00,1960,14786000,45.2,11345.00,10285.00,'Côte d’Ivoire','Republic','Laurent Gbagbo',2814,'CI');
+INSERT INTO `country` VALUES ('CMR','Cameroon','Africa','Central Africa',475442.00,1960,15085000,54.8,9174.00,8596.00,'Cameroun/Cameroon','Republic','Paul Biya',1804,'CM');
+INSERT INTO `country` VALUES ('COD','Congo, The Democratic Republic of the','Africa','Central Africa',2344858.00,1960,51654000,48.8,6964.00,2474.00,'République Démocratique du Congo','Republic','Joseph Kabila',2298,'CD');
+INSERT INTO `country` VALUES ('COG','Congo','Africa','Central Africa',342000.00,1960,2943000,47.4,2108.00,2287.00,'Congo','Republic','Denis Sassou-Nguesso',2296,'CG');
+INSERT INTO `country` VALUES ('COK','Cook Islands','Oceania','Polynesia',236.00,NULL,20000,71.1,100.00,NULL,'The Cook Islands','Nonmetropolitan Territory of New Zealand','Elisabeth II',583,'CK');
+INSERT INTO `country` VALUES ('COL','Colombia','South America','South America',1138914.00,1810,42321000,70.3,102896.00,105116.00,'Colombia','Republic','Andrés Pastrana Arango',2257,'CO');
+INSERT INTO `country` VALUES ('COM','Comoros','Africa','Eastern Africa',1862.00,1975,578000,60.0,4401.00,4361.00,'Komori/Comores','Republic','Azali Assoumani',2295,'KM');
+INSERT INTO `country` VALUES ('CPV','Cape Verde','Africa','Western Africa',4033.00,1975,428000,68.9,435.00,420.00,'Cabo Verde','Republic','António Mascarenhas Monteiro',1859,'CV');
+INSERT INTO `country` VALUES ('CRI','Costa Rica','North America','Central America',51100.00,1821,4023000,75.8,10226.00,9757.00,'Costa Rica','Republic','Miguel Ángel Rodríguez Echeverría',584,'CR');
+INSERT INTO `country` VALUES ('CUB','Cuba','North America','Caribbean',110861.00,1902,11201000,76.2,17843.00,18862.00,'Cuba','Socialistic Republic','Fidel Castro Ruz',2413,'CU');
+INSERT INTO `country` VALUES ('CXR','Christmas Island','Oceania','Australia and New Zealand',135.00,NULL,2500,NULL,0.00,NULL,'Christmas Island','Territory of Australia','Elisabeth II',1791,'CX');
+INSERT INTO `country` VALUES ('CYM','Cayman Islands','North America','Caribbean',264.00,NULL,38000,78.9,1263.00,1186.00,'Cayman Islands','Dependent Territory of the UK','Elisabeth II',553,'KY');
+INSERT INTO `country` VALUES ('CYP','Cyprus','Asia','Middle East',9251.00,1960,754700,76.7,9333.00,8246.00,'Kýpros/Kibris','Republic','Glafkos Klerides',2430,'CY');
+INSERT INTO `country` VALUES ('CZE','Czech Republic','Europe','Eastern Europe',78866.00,1993,10278100,74.5,55017.00,52037.00,'¸esko','Republic','Václav Havel',3339,'CZ');
+INSERT INTO `country` VALUES ('DEU','Germany','Europe','Western Europe',357022.00,1955,82164700,77.4,2133367.00,2102826.00,'Deutschland','Federal Republic','Johannes Rau',3068,'DE');
+INSERT INTO `country` VALUES ('DJI','Djibouti','Africa','Eastern Africa',23200.00,1977,638000,50.8,382.00,373.00,'Djibouti/Jibuti','Republic','Ismail Omar Guelleh',585,'DJ');
+INSERT INTO `country` VALUES ('DMA','Dominica','North America','Caribbean',751.00,1978,71000,73.4,256.00,243.00,'Dominica','Republic','Vernon Shaw',586,'DM');
+INSERT INTO `country` VALUES ('DNK','Denmark','Europe','Nordic Countries',43094.00,800,5330000,76.5,174099.00,169264.00,'Danmark','Constitutional Monarchy','Margrethe II',3315,'DK');
+INSERT INTO `country` VALUES ('DOM','Dominican Republic','North America','Caribbean',48511.00,1844,8495000,73.2,15846.00,15076.00,'República Dominicana','Republic','Hipólito Mejía Domínguez',587,'DO');
+INSERT INTO `country` VALUES ('DZA','Algeria','Africa','Northern Africa',2381741.00,1962,31471000,69.7,49982.00,46966.00,'Al-Jaza’ir/Algérie','Republic','Abdelaziz Bouteflika',35,'DZ');
+INSERT INTO `country` VALUES ('ECU','Ecuador','South America','South America',283561.00,1822,12646000,71.1,19770.00,19769.00,'Ecuador','Republic','Gustavo Noboa Bejarano',594,'EC');
+INSERT INTO `country` VALUES ('EGY','Egypt','Africa','Northern Africa',1001449.00,1922,68470000,63.3,82710.00,75617.00,'Misr','Republic','Hosni Mubarak',608,'EG');
+INSERT INTO `country` VALUES ('ERI','Eritrea','Africa','Eastern Africa',117600.00,1993,3850000,55.8,650.00,755.00,'Ertra','Republic','Isayas Afewerki [Isaias Afwerki]',652,'ER');
+INSERT INTO `country` VALUES ('ESH','Western Sahara','Africa','Northern Africa',266000.00,NULL,293000,49.8,60.00,NULL,'As-Sahrawiya','Occupied by Marocco','Mohammed Abdel Aziz',2453,'EH');
+INSERT INTO `country` VALUES ('ESP','Spain','Europe','Southern Europe',505992.00,1492,39441700,78.8,553233.00,532031.00,'España','Constitutional Monarchy','Juan Carlos I',653,'ES');
+INSERT INTO `country` VALUES ('EST','Estonia','Europe','Baltic Countries',45227.00,1991,1439200,69.5,5328.00,3371.00,'Eesti','Republic','Lennart Meri',3791,'EE');
+INSERT INTO `country` VALUES ('ETH','Ethiopia','Africa','Eastern Africa',1104300.00,-1000,62565000,45.2,6353.00,6180.00,'YeItyop´iya','Republic','Negasso Gidada',756,'ET');
+INSERT INTO `country` VALUES ('FIN','Finland','Europe','Nordic Countries',338145.00,1917,5171300,77.4,121914.00,119833.00,'Suomi','Republic','Tarja Halonen',3236,'FI');
+INSERT INTO `country` VALUES ('FJI','Fiji Islands','Oceania','Melanesia',18274.00,1970,817000,67.9,1536.00,2149.00,'Fiji Islands','Republic','Josefa Iloilo',764,'FJ');
+INSERT INTO `country` VALUES ('FLK','Falkland Islands','South America','South America',12173.00,NULL,2000,NULL,0.00,NULL,'Falkland Islands','Dependent Territory of the UK','Elisabeth II',763,'FK');
+INSERT INTO `country` VALUES ('FRA','France','Europe','Western Europe',551500.00,843,59225700,78.8,1424285.00,1392448.00,'France','Republic','Jacques Chirac',2974,'FR');
+INSERT INTO `country` VALUES ('FRO','Faroe Islands','Europe','Nordic Countries',1399.00,NULL,43000,78.4,0.00,NULL,'Føroyar','Part of Denmark','Margrethe II',901,'FO');
+INSERT INTO `country` VALUES ('FSM','Micronesia, Federated States of','Oceania','Micronesia',702.00,1990,119000,68.6,212.00,NULL,'Micronesia','Federal Republic','Leo A. Falcam',2689,'FM');
+INSERT INTO `country` VALUES ('GAB','Gabon','Africa','Central Africa',267668.00,1960,1226000,50.1,5493.00,5279.00,'Le Gabon','Republic','Omar Bongo',902,'GA');
+INSERT INTO `country` VALUES ('GBR','United Kingdom','Europe','British Islands',242900.00,1066,59623400,77.7,1378330.00,1296830.00,'United Kingdom','Constitutional Monarchy','Elisabeth II',456,'GB');
+INSERT INTO `country` VALUES ('GEO','Georgia','Asia','Middle East',69700.00,1991,4968000,64.5,6064.00,5924.00,'Sakartvelo','Republic','Eduard Ševardnadze',905,'GE');
+INSERT INTO `country` VALUES ('GHA','Ghana','Africa','Western Africa',238533.00,1957,20212000,57.4,7137.00,6884.00,'Ghana','Republic','John Kufuor',910,'GH');
+INSERT INTO `country` VALUES ('GIB','Gibraltar','Europe','Southern Europe',6.00,NULL,25000,79.0,258.00,NULL,'Gibraltar','Dependent Territory of the UK','Elisabeth II',915,'GI');
+INSERT INTO `country` VALUES ('GIN','Guinea','Africa','Western Africa',245857.00,1958,7430000,45.6,2352.00,2383.00,'Guinée','Republic','Lansana Conté',926,'GN');
+INSERT INTO `country` VALUES ('GLP','Guadeloupe','North America','Caribbean',1705.00,NULL,456000,77.0,3501.00,NULL,'Guadeloupe','Overseas Department of France','Jacques Chirac',919,'GP');
+INSERT INTO `country` VALUES ('GMB','Gambia','Africa','Western Africa',11295.00,1965,1305000,53.2,320.00,325.00,'The Gambia','Republic','Yahya Jammeh',904,'GM');
+INSERT INTO `country` VALUES ('GNB','Guinea-Bissau','Africa','Western Africa',36125.00,1974,1213000,49.0,293.00,272.00,'Guiné-Bissau','Republic','Kumba Ialá',927,'GW');
+INSERT INTO `country` VALUES ('GNQ','Equatorial Guinea','Africa','Central Africa',28051.00,1968,453000,53.6,283.00,542.00,'Guinea Ecuatorial','Republic','Teodoro Obiang Nguema Mbasogo',2972,'GQ');
+INSERT INTO `country` VALUES ('GRC','Greece','Europe','Southern Europe',131626.00,1830,10545700,78.4,120724.00,119946.00,'Elláda','Republic','Kostis Stefanopoulos',2401,'GR');
+INSERT INTO `country` VALUES ('GRD','Grenada','North America','Caribbean',344.00,1974,94000,64.5,318.00,NULL,'Grenada','Constitutional Monarchy','Elisabeth II',916,'GD');
+INSERT INTO `country` VALUES ('GRL','Greenland','North America','North America',2166090.00,NULL,56000,68.1,0.00,NULL,'Kalaallit Nunaat/Grønland','Part of Denmark','Margrethe II',917,'GL');
+INSERT INTO `country` VALUES ('GTM','Guatemala','North America','Central America',108889.00,1821,11385000,66.2,19008.00,17797.00,'Guatemala','Republic','Alfonso Portillo Cabrera',922,'GT');
+INSERT INTO `country` VALUES ('GUF','French Guiana','South America','South America',90000.00,NULL,181000,76.1,681.00,NULL,'Guyane française','Overseas Department of France','Jacques Chirac',3014,'GF');
+INSERT INTO `country` VALUES ('GUM','Guam','Oceania','Micronesia',549.00,NULL,168000,77.8,1197.00,1136.00,'Guam','US Territory','George W. Bush',921,'GU');
+INSERT INTO `country` VALUES ('GUY','Guyana','South America','South America',214969.00,1966,861000,64.0,722.00,743.00,'Guyana','Republic','Bharrat Jagdeo',928,'GY');
+INSERT INTO `country` VALUES ('HKG','Hong Kong','Asia','Eastern Asia',1075.00,NULL,6782000,79.5,166448.00,173610.00,'Xianggang/Hong Kong','Special Administrative Region of China','Jiang Zemin',937,'HK');
+INSERT INTO `country` VALUES ('HMD','Heard Island and McDonald Islands','Antarctica','Antarctica',359.00,NULL,0,NULL,0.00,NULL,'Heard and McDonald Islands','Territory of Australia','Elisabeth II',NULL,'HM');
+INSERT INTO `country` VALUES ('HND','Honduras','North America','Central America',112088.00,1838,6485000,69.9,5333.00,4697.00,'Honduras','Republic','Carlos Roberto Flores Facussé',933,'HN');
+INSERT INTO `country` VALUES ('HRV','Croatia','Europe','Southern Europe',56538.00,1991,4473000,73.7,20208.00,19300.00,'Hrvatska','Republic','Štipe Mesic',2409,'HR');
+INSERT INTO `country` VALUES ('HTI','Haiti','North America','Caribbean',27750.00,1804,8222000,49.2,3459.00,3107.00,'Haïti/Dayti','Republic','Jean-Bertrand Aristide',929,'HT');
+INSERT INTO `country` VALUES ('HUN','Hungary','Europe','Eastern Europe',93030.00,1918,10043200,71.4,48267.00,45914.00,'Magyarország','Republic','Ferenc Mádl',3483,'HU');
+INSERT INTO `country` VALUES ('IDN','Indonesia','Asia','Southeast Asia',1904569.00,1945,212107000,68.0,84982.00,215002.00,'Indonesia','Republic','Abdurrahman Wahid',939,'ID');
+INSERT INTO `country` VALUES ('IND','India','Asia','Southern and Central Asia',3287263.00,1947,1013662000,62.5,447114.00,430572.00,'Bharat/India','Federal Republic','Kocheril Raman Narayanan',1109,'IN');
+INSERT INTO `country` VALUES ('IOT','British Indian Ocean Territory','Africa','Eastern Africa',78.00,NULL,0,NULL,0.00,NULL,'British Indian Ocean Territory','Dependent Territory of the UK','Elisabeth II',NULL,'IO');
+INSERT INTO `country` VALUES ('IRL','Ireland','Europe','British Islands',70273.00,1921,3775100,76.8,75921.00,73132.00,'Ireland/Éire','Republic','Mary McAleese',1447,'IE');
+INSERT INTO `country` VALUES ('IRN','Iran','Asia','Southern and Central Asia',1648195.00,1906,67702000,69.7,195746.00,160151.00,'Iran','Islamic Republic','Ali Mohammad Khatami-Ardakani',1380,'IR');
+INSERT INTO `country` VALUES ('IRQ','Iraq','Asia','Middle East',438317.00,1932,23115000,66.5,11500.00,NULL,'Al-´Iraq','Republic','Saddam Hussein al-Takriti',1365,'IQ');
+INSERT INTO `country` VALUES ('ISL','Iceland','Europe','Nordic Countries',103000.00,1944,279000,79.4,8255.00,7474.00,'Ísland','Republic','Ólafur Ragnar Grímsson',1449,'IS');
+INSERT INTO `country` VALUES ('ISR','Israel','Asia','Middle East',21056.00,1948,6217000,78.6,97477.00,98577.00,'Yisra’el/Isra’il','Republic','Moshe Katzav',1450,'IL');
+INSERT INTO `country` VALUES ('ITA','Italy','Europe','Southern Europe',301316.00,1861,57680000,79.0,1161755.00,1145372.00,'Italia','Republic','Carlo Azeglio Ciampi',1464,'IT');
+INSERT INTO `country` VALUES ('JAM','Jamaica','North America','Caribbean',10990.00,1962,2583000,75.2,6871.00,6722.00,'Jamaica','Constitutional Monarchy','Elisabeth II',1530,'JM');
+INSERT INTO `country` VALUES ('JOR','Jordan','Asia','Middle East',88946.00,1946,5083000,77.4,7526.00,7051.00,'Al-Urdunn','Constitutional Monarchy','Abdullah II',1786,'JO');
+INSERT INTO `country` VALUES ('JPN','Japan','Asia','Eastern Asia',377829.00,-660,126714000,80.7,3787042.00,4192638.00,'Nihon/Nippon','Constitutional Monarchy','Akihito',1532,'JP');
+INSERT INTO `country` VALUES ('KAZ','Kazakstan','Asia','Southern and Central Asia',2724900.00,1991,16223000,63.2,24375.00,23383.00,'Qazaqstan','Republic','Nursultan Nazarbajev',1864,'KZ');
+INSERT INTO `country` VALUES ('KEN','Kenya','Africa','Eastern Africa',580367.00,1963,30080000,48.0,9217.00,10241.00,'Kenya','Republic','Daniel arap Moi',1881,'KE');
+INSERT INTO `country` VALUES ('KGZ','Kyrgyzstan','Asia','Southern and Central Asia',199900.00,1991,4699000,63.4,1626.00,1767.00,'Kyrgyzstan','Republic','Askar Akajev',2253,'KG');
+INSERT INTO `country` VALUES ('KHM','Cambodia','Asia','Southeast Asia',181035.00,1953,11168000,56.5,5121.00,5670.00,'Kâmpuchéa','Constitutional Monarchy','Norodom Sihanouk',1800,'KH');
+INSERT INTO `country` VALUES ('KIR','Kiribati','Oceania','Micronesia',726.00,1979,83000,59.8,40.70,NULL,'Kiribati','Republic','Teburoro Tito',2256,'KI');
+INSERT INTO `country` VALUES ('KNA','Saint Kitts and Nevis','North America','Caribbean',261.00,1983,38000,70.7,299.00,NULL,'Saint Kitts and Nevis','Constitutional Monarchy','Elisabeth II',3064,'KN');
+INSERT INTO `country` VALUES ('KOR','South Korea','Asia','Eastern Asia',99434.00,1948,46844000,74.4,320749.00,442544.00,'Taehan Min’guk (Namhan)','Republic','Kim Dae-jung',2331,'KR');
+INSERT INTO `country` VALUES ('KWT','Kuwait','Asia','Middle East',17818.00,1961,1972000,76.1,27037.00,30373.00,'Al-Kuwayt','Constitutional Monarchy (Emirate)','Jabir al-Ahmad al-Jabir al-Sabah',2429,'KW');
+INSERT INTO `country` VALUES ('LAO','Laos','Asia','Southeast Asia',236800.00,1953,5433000,53.1,1292.00,1746.00,'Lao','Republic','Khamtay Siphandone',2432,'LA');
+INSERT INTO `country` VALUES ('LBN','Lebanon','Asia','Middle East',10400.00,1941,3282000,71.3,17121.00,15129.00,'Lubnan','Republic','Émile Lahoud',2438,'LB');
+INSERT INTO `country` VALUES ('LBR','Liberia','Africa','Western Africa',111369.00,1847,3154000,51.0,2012.00,NULL,'Liberia','Republic','Charles Taylor',2440,'LR');
+INSERT INTO `country` VALUES ('LBY','Libyan Arab Jamahiriya','Africa','Northern Africa',1759540.00,1951,5605000,75.5,44806.00,40562.00,'Libiya','Socialistic State','Muammar al-Qadhafi',2441,'LY');
+INSERT INTO `country` VALUES ('LCA','Saint Lucia','North America','Caribbean',622.00,1979,154000,72.3,571.00,NULL,'Saint Lucia','Constitutional Monarchy','Elisabeth II',3065,'LC');
+INSERT INTO `country` VALUES ('LIE','Liechtenstein','Europe','Western Europe',160.00,1806,32300,78.8,1119.00,1084.00,'Liechtenstein','Constitutional Monarchy','Hans-Adam II',2446,'LI');
+INSERT INTO `country` VALUES ('LKA','Sri Lanka','Asia','Southern and Central Asia',65610.00,1948,18827000,71.8,15706.00,15091.00,'Sri Lanka/Ilankai','Republic','Chandrika Kumaratunga',3217,'LK');
+INSERT INTO `country` VALUES ('LSO','Lesotho','Africa','Southern Africa',30355.00,1966,2153000,50.8,1061.00,1161.00,'Lesotho','Constitutional Monarchy','Letsie III',2437,'LS');
+INSERT INTO `country` VALUES ('LTU','Lithuania','Europe','Baltic Countries',65301.00,1991,3698500,69.1,10692.00,9585.00,'Lietuva','Republic','Valdas Adamkus',2447,'LT');
+INSERT INTO `country` VALUES ('LUX','Luxembourg','Europe','Western Europe',2586.00,1867,435700,77.1,16321.00,15519.00,'Luxembourg/Lëtzebuerg','Constitutional Monarchy','Henri',2452,'LU');
+INSERT INTO `country` VALUES ('LVA','Latvia','Europe','Baltic Countries',64589.00,1991,2424200,68.4,6398.00,5639.00,'Latvija','Republic','Vaira Vike-Freiberga',2434,'LV');
+INSERT INTO `country` VALUES ('MAC','Macao','Asia','Eastern Asia',18.00,NULL,473000,81.6,5749.00,5940.00,'Macau/Aomen','Special Administrative Region of China','Jiang Zemin',2454,'MO');
+INSERT INTO `country` VALUES ('MAR','Morocco','Africa','Northern Africa',446550.00,1956,28351000,69.1,36124.00,33514.00,'Al-Maghrib','Constitutional Monarchy','Mohammed VI',2486,'MA');
+INSERT INTO `country` VALUES ('MCO','Monaco','Europe','Western Europe',1.50,1861,34000,78.8,776.00,NULL,'Monaco','Constitutional Monarchy','Rainier III',2695,'MC');
+INSERT INTO `country` VALUES ('MDA','Moldova','Europe','Eastern Europe',33851.00,1991,4380000,64.5,1579.00,1872.00,'Moldova','Republic','Vladimir Voronin',2690,'MD');
+INSERT INTO `country` VALUES ('MDG','Madagascar','Africa','Eastern Africa',587041.00,1960,15942000,55.0,3750.00,3545.00,'Madagasikara/Madagascar','Federal Republic','Didier Ratsiraka',2455,'MG');
+INSERT INTO `country` VALUES ('MDV','Maldives','Asia','Southern and Central Asia',298.00,1965,286000,62.2,199.00,NULL,'Dhivehi Raajje/Maldives','Republic','Maumoon Abdul Gayoom',2463,'MV');
+INSERT INTO `country` VALUES ('MEX','Mexico','North America','Central America',1958201.00,1810,98881000,71.5,414972.00,401461.00,'México','Federal Republic','Vicente Fox Quesada',2515,'MX');
+INSERT INTO `country` VALUES ('MHL','Marshall Islands','Oceania','Micronesia',181.00,1990,64000,65.5,97.00,NULL,'Marshall Islands/Majol','Republic','Kessai Note',2507,'MH');
+INSERT INTO `country` VALUES ('MKD','Macedonia','Europe','Southern Europe',25713.00,1991,2024000,73.8,1694.00,1915.00,'Makedonija','Republic','Boris Trajkovski',2460,'MK');
+INSERT INTO `country` VALUES ('MLI','Mali','Africa','Western Africa',1240192.00,1960,11234000,46.7,2642.00,2453.00,'Mali','Republic','Alpha Oumar Konaré',2482,'ML');
+INSERT INTO `country` VALUES ('MLT','Malta','Europe','Southern Europe',316.00,1964,380200,77.9,3512.00,3338.00,'Malta','Republic','Guido de Marco',2484,'MT');
+INSERT INTO `country` VALUES ('MMR','Myanmar','Asia','Southeast Asia',676578.00,1948,45611000,54.9,180375.00,171028.00,'Myanma Pye','Republic','kenraali Than Shwe',2710,'MM');
+INSERT INTO `country` VALUES ('MNG','Mongolia','Asia','Eastern Asia',1566500.00,1921,2662000,67.3,1043.00,933.00,'Mongol Uls','Republic','Natsagiin Bagabandi',2696,'MN');
+INSERT INTO `country` VALUES ('MNP','Northern Mariana Islands','Oceania','Micronesia',464.00,NULL,78000,75.5,0.00,NULL,'Northern Mariana Islands','Commonwealth of the US','George W. Bush',2913,'MP');
+INSERT INTO `country` VALUES ('MOZ','Mozambique','Africa','Eastern Africa',801590.00,1975,19680000,37.5,2891.00,2711.00,'Moçambique','Republic','Joaquím A. Chissano',2698,'MZ');
+INSERT INTO `country` VALUES ('MRT','Mauritania','Africa','Western Africa',1025520.00,1960,2670000,50.8,998.00,1081.00,'Muritaniya/Mauritanie','Republic','Maaouiya Ould Sid´Ahmad Taya',2509,'MR');
+INSERT INTO `country` VALUES ('MSR','Montserrat','North America','Caribbean',102.00,NULL,11000,78.0,109.00,NULL,'Montserrat','Dependent Territory of the UK','Elisabeth II',2697,'MS');
+INSERT INTO `country` VALUES ('MTQ','Martinique','North America','Caribbean',1102.00,NULL,395000,78.3,2731.00,2559.00,'Martinique','Overseas Department of France','Jacques Chirac',2508,'MQ');
+INSERT INTO `country` VALUES ('MUS','Mauritius','Africa','Eastern Africa',2040.00,1968,1158000,71.0,4251.00,4186.00,'Mauritius','Republic','Cassam Uteem',2511,'MU');
+INSERT INTO `country` VALUES ('MWI','Malawi','Africa','Eastern Africa',118484.00,1964,10925000,37.6,1687.00,2527.00,'Malawi','Republic','Bakili Muluzi',2462,'MW');
+INSERT INTO `country` VALUES ('MYS','Malaysia','Asia','Southeast Asia',329758.00,1957,22244000,70.8,69213.00,97884.00,'Malaysia','Constitutional Monarchy, Federation','Salahuddin Abdul Aziz Shah Alhaj',2464,'MY');
+INSERT INTO `country` VALUES ('MYT','Mayotte','Africa','Eastern Africa',373.00,NULL,149000,59.5,0.00,NULL,'Mayotte','Territorial Collectivity of France','Jacques Chirac',2514,'YT');
+INSERT INTO `country` VALUES ('NAM','Namibia','Africa','Southern Africa',824292.00,1990,1726000,42.5,3101.00,3384.00,'Namibia','Republic','Sam Nujoma',2726,'NA');
+INSERT INTO `country` VALUES ('NCL','New Caledonia','Oceania','Melanesia',18575.00,NULL,214000,72.8,3563.00,NULL,'Nouvelle-Calédonie','Nonmetropolitan Territory of France','Jacques Chirac',3493,'NC');
+INSERT INTO `country` VALUES ('NER','Niger','Africa','Western Africa',1267000.00,1960,10730000,41.3,1706.00,1580.00,'Niger','Republic','Mamadou Tandja',2738,'NE');
+INSERT INTO `country` VALUES ('NFK','Norfolk Island','Oceania','Australia and New Zealand',36.00,NULL,2000,NULL,0.00,NULL,'Norfolk Island','Territory of Australia','Elisabeth II',2806,'NF');
+INSERT INTO `country` VALUES ('NGA','Nigeria','Africa','Western Africa',923768.00,1960,111506000,51.6,65707.00,58623.00,'Nigeria','Federal Republic','Olusegun Obasanjo',2754,'NG');
+INSERT INTO `country` VALUES ('NIC','Nicaragua','North America','Central America',130000.00,1838,5074000,68.7,1988.00,2023.00,'Nicaragua','Republic','Arnoldo Alemán Lacayo',2734,'NI');
+INSERT INTO `country` VALUES ('NIU','Niue','Oceania','Polynesia',260.00,NULL,2000,NULL,0.00,NULL,'Niue','Nonmetropolitan Territory of New Zealand','Elisabeth II',2805,'NU');
+INSERT INTO `country` VALUES ('NLD','Netherlands','Europe','Western Europe',41526.00,1581,15864000,78.3,371362.00,360478.00,'Nederland','Constitutional Monarchy','Beatrix',5,'NL');
+INSERT INTO `country` VALUES ('NOR','Norway','Europe','Nordic Countries',323877.00,1905,4478500,78.7,145895.00,153370.00,'Norge','Constitutional Monarchy','Harald V',2807,'NO');
+INSERT INTO `country` VALUES ('NPL','Nepal','Asia','Southern and Central Asia',147181.00,1769,23930000,57.8,4768.00,4837.00,'Nepal','Constitutional Monarchy','Gyanendra Bir Bikram',2729,'NP');
+INSERT INTO `country` VALUES ('NRU','Nauru','Oceania','Micronesia',21.00,1968,12000,60.8,197.00,NULL,'Naoero/Nauru','Republic','Bernard Dowiyogo',2728,'NR');
+INSERT INTO `country` VALUES ('NZL','New Zealand','Oceania','Australia and New Zealand',270534.00,1907,3862000,77.8,54669.00,64960.00,'New Zealand/Aotearoa','Constitutional Monarchy','Elisabeth II',3499,'NZ');
+INSERT INTO `country` VALUES ('OMN','Oman','Asia','Middle East',309500.00,1951,2542000,71.8,16904.00,16153.00,'´Uman','Monarchy (Sultanate)','Qabus ibn Sa´id',2821,'OM');
+INSERT INTO `country` VALUES ('PAK','Pakistan','Asia','Southern and Central Asia',796095.00,1947,156483000,61.1,61289.00,58549.00,'Pakistan','Republic','Mohammad Rafiq Tarar',2831,'PK');
+INSERT INTO `country` VALUES ('PAN','Panama','North America','Central America',75517.00,1903,2856000,75.5,9131.00,8700.00,'Panamá','Republic','Mireya Elisa Moscoso Rodríguez',2882,'PA');
+INSERT INTO `country` VALUES ('PCN','Pitcairn','Oceania','Polynesia',49.00,NULL,50,NULL,0.00,NULL,'Pitcairn','Dependent Territory of the UK','Elisabeth II',2912,'PN');
+INSERT INTO `country` VALUES ('PER','Peru','South America','South America',1285216.00,1821,25662000,70.0,64140.00,65186.00,'Perú/Piruw','Republic','Valentin Paniagua Corazao',2890,'PE');
+INSERT INTO `country` VALUES ('PHL','Philippines','Asia','Southeast Asia',300000.00,1946,75967000,67.5,65107.00,82239.00,'Pilipinas','Republic','Gloria Macapagal-Arroyo',766,'PH');
+INSERT INTO `country` VALUES ('PLW','Palau','Oceania','Micronesia',459.00,1994,19000,68.6,105.00,NULL,'Belau/Palau','Republic','Kuniwo Nakamura',2881,'PW');
+INSERT INTO `country` VALUES ('PNG','Papua New Guinea','Oceania','Melanesia',462840.00,1975,4807000,63.1,4988.00,6328.00,'Papua New Guinea/Papua Niugini','Constitutional Monarchy','Elisabeth II',2884,'PG');
+INSERT INTO `country` VALUES ('POL','Poland','Europe','Eastern Europe',323250.00,1918,38653600,73.2,151697.00,135636.00,'Polska','Republic','Aleksander Kwasniewski',2928,'PL');
+INSERT INTO `country` VALUES ('PRI','Puerto Rico','North America','Caribbean',8875.00,NULL,3869000,75.6,34100.00,32100.00,'Puerto Rico','Commonwealth of the US','George W. Bush',2919,'PR');
+INSERT INTO `country` VALUES ('PRK','North Korea','Asia','Eastern Asia',120538.00,1948,24039000,70.7,5332.00,NULL,'Choson Minjujuui In´min Konghwaguk (Bukhan)','Socialistic Republic','Kim Jong-il',2318,'KP');
+INSERT INTO `country` VALUES ('PRT','Portugal','Europe','Southern Europe',91982.00,1143,9997600,75.8,105954.00,102133.00,'Portugal','Republic','Jorge Sampãio',2914,'PT');
+INSERT INTO `country` VALUES ('PRY','Paraguay','South America','South America',406752.00,1811,5496000,73.7,8444.00,9555.00,'Paraguay','Republic','Luis Ángel González Macchi',2885,'PY');
+INSERT INTO `country` VALUES ('PSE','Palestine','Asia','Middle East',6257.00,NULL,3101000,71.4,4173.00,NULL,'Filastin','Autonomous Area','Yasser (Yasir) Arafat',4074,'PS');
+INSERT INTO `country` VALUES ('PYF','French Polynesia','Oceania','Polynesia',4000.00,NULL,235000,74.8,818.00,781.00,'Polynésie française','Nonmetropolitan Territory of France','Jacques Chirac',3016,'PF');
+INSERT INTO `country` VALUES ('QAT','Qatar','Asia','Middle East',11000.00,1971,599000,72.4,9472.00,8920.00,'Qatar','Monarchy','Hamad ibn Khalifa al-Thani',2973,'QA');
+INSERT INTO `country` VALUES ('REU','Réunion','Africa','Eastern Africa',2510.00,NULL,699000,72.7,8287.00,7988.00,'Réunion','Overseas Department of France','Jacques Chirac',3017,'RE');
+INSERT INTO `country` VALUES ('ROM','Romania','Europe','Eastern Europe',238391.00,1878,22455500,69.9,38158.00,34843.00,'România','Republic','Ion Iliescu',3018,'RO');
+INSERT INTO `country` VALUES ('RUS','Russian Federation','Europe','Eastern Europe',17075400.00,1991,146934000,67.2,276608.00,442989.00,'Rossija','Federal Republic','Vladimir Putin',3580,'RU');
+INSERT INTO `country` VALUES ('RWA','Rwanda','Africa','Eastern Africa',26338.00,1962,7733000,39.3,2036.00,1863.00,'Rwanda/Urwanda','Republic','Paul Kagame',3047,'RW');
+INSERT INTO `country` VALUES ('SAU','Saudi Arabia','Asia','Middle East',2149690.00,1932,21607000,67.8,137635.00,146171.00,'Al-´Arabiya as-Sa´udiya','Monarchy','Fahd ibn Abdul-Aziz al-Sa´ud',3173,'SA');
+INSERT INTO `country` VALUES ('SDN','Sudan','Africa','Northern Africa',2505813.00,1956,29490000,56.6,10162.00,NULL,'As-Sudan','Islamic Republic','Omar Hassan Ahmad al-Bashir',3225,'SD');
+INSERT INTO `country` VALUES ('SEN','Senegal','Africa','Western Africa',196722.00,1960,9481000,62.2,4787.00,4542.00,'Sénégal/Sounougal','Republic','Abdoulaye Wade',3198,'SN');
+INSERT INTO `country` VALUES ('SGP','Singapore','Asia','Southeast Asia',618.00,1965,3567000,80.1,86503.00,96318.00,'Singapore/Singapura/Xinjiapo/Singapur','Republic','Sellapan Rama Nathan',3208,'SG');
+INSERT INTO `country` VALUES ('SGS','South Georgia and the South Sandwich Islands','Antarctica','Antarctica',3903.00,NULL,0,NULL,0.00,NULL,'South Georgia and the South Sandwich Islands','Dependent Territory of the UK','Elisabeth II',NULL,'GS');
+INSERT INTO `country` VALUES ('SHN','Saint Helena','Africa','Western Africa',314.00,NULL,6000,76.8,0.00,NULL,'Saint Helena','Dependent Territory of the UK','Elisabeth II',3063,'SH');
+INSERT INTO `country` VALUES ('SJM','Svalbard and Jan Mayen','Europe','Nordic Countries',62422.00,NULL,3200,NULL,0.00,NULL,'Svalbard og Jan Mayen','Dependent Territory of Norway','Harald V',938,'SJ');
+INSERT INTO `country` VALUES ('SLB','Solomon Islands','Oceania','Melanesia',28896.00,1978,444000,71.3,182.00,220.00,'Solomon Islands','Constitutional Monarchy','Elisabeth II',3161,'SB');
+INSERT INTO `country` VALUES ('SLE','Sierra Leone','Africa','Western Africa',71740.00,1961,4854000,45.3,746.00,858.00,'Sierra Leone','Republic','Ahmed Tejan Kabbah',3207,'SL');
+INSERT INTO `country` VALUES ('SLV','El Salvador','North America','Central America',21041.00,1841,6276000,69.7,11863.00,11203.00,'El Salvador','Republic','Francisco Guillermo Flores Pérez',645,'SV');
+INSERT INTO `country` VALUES ('SMR','San Marino','Europe','Southern Europe',61.00,885,27000,81.1,510.00,NULL,'San Marino','Republic',NULL,3171,'SM');
+INSERT INTO `country` VALUES ('SOM','Somalia','Africa','Eastern Africa',637657.00,1960,10097000,46.2,935.00,NULL,'Soomaaliya','Republic','Abdiqassim Salad Hassan',3214,'SO');
+INSERT INTO `country` VALUES ('SPM','Saint Pierre and Miquelon','North America','North America',242.00,NULL,7000,77.6,0.00,NULL,'Saint-Pierre-et-Miquelon','Territorial Collectivity of France','Jacques Chirac',3067,'PM');
+INSERT INTO `country` VALUES ('STP','Sao Tome and Principe','Africa','Central Africa',964.00,1975,147000,65.3,6.00,NULL,'São Tomé e Príncipe','Republic','Miguel Trovoada',3172,'ST');
+INSERT INTO `country` VALUES ('SUR','Suriname','South America','South America',163265.00,1975,417000,71.4,870.00,706.00,'Suriname','Republic','Ronald Venetiaan',3243,'SR');
+INSERT INTO `country` VALUES ('SVK','Slovakia','Europe','Eastern Europe',49012.00,1993,5398700,73.7,20594.00,19452.00,'Slovensko','Republic','Rudolf Schuster',3209,'SK');
+INSERT INTO `country` VALUES ('SVN','Slovenia','Europe','Southern Europe',20256.00,1991,1987800,74.9,19756.00,18202.00,'Slovenija','Republic','Milan Kucan',3212,'SI');
+INSERT INTO `country` VALUES ('SWE','Sweden','Europe','Nordic Countries',449964.00,836,8861400,79.6,226492.00,227757.00,'Sverige','Constitutional Monarchy','Carl XVI Gustaf',3048,'SE');
+INSERT INTO `country` VALUES ('SWZ','Swaziland','Africa','Southern Africa',17364.00,1968,1008000,40.4,1206.00,1312.00,'kaNgwane','Monarchy','Mswati III',3244,'SZ');
+INSERT INTO `country` VALUES ('SYC','Seychelles','Africa','Eastern Africa',455.00,1976,77000,70.4,536.00,539.00,'Sesel/Seychelles','Republic','France-Albert René',3206,'SC');
+INSERT INTO `country` VALUES ('SYR','Syria','Asia','Middle East',185180.00,1941,16125000,68.5,65984.00,64926.00,'Suriya','Republic','Bashar al-Assad',3250,'SY');
+INSERT INTO `country` VALUES ('TCA','Turks and Caicos Islands','North America','Caribbean',430.00,NULL,17000,73.3,96.00,NULL,'The Turks and Caicos Islands','Dependent Territory of the UK','Elisabeth II',3423,'TC');
+INSERT INTO `country` VALUES ('TCD','Chad','Africa','Central Africa',1284000.00,1960,7651000,50.5,1208.00,1102.00,'Tchad/Tshad','Republic','Idriss Déby',3337,'TD');
+INSERT INTO `country` VALUES ('TGO','Togo','Africa','Western Africa',56785.00,1960,4629000,54.7,1449.00,1400.00,'Togo','Republic','Gnassingbé Eyadéma',3332,'TG');
+INSERT INTO `country` VALUES ('THA','Thailand','Asia','Southeast Asia',513115.00,1350,61399000,68.6,116416.00,153907.00,'Prathet Thai','Constitutional Monarchy','Bhumibol Adulyadej',3320,'TH');
+INSERT INTO `country` VALUES ('TJK','Tajikistan','Asia','Southern and Central Asia',143100.00,1991,6188000,64.1,1990.00,1056.00,'Toçikiston','Republic','Emomali Rahmonov',3261,'TJ');
+INSERT INTO `country` VALUES ('TKL','Tokelau','Oceania','Polynesia',12.00,NULL,2000,NULL,0.00,NULL,'Tokelau','Nonmetropolitan Territory of New Zealand','Elisabeth II',3333,'TK');
+INSERT INTO `country` VALUES ('TKM','Turkmenistan','Asia','Southern and Central Asia',488100.00,1991,4459000,60.9,4397.00,2000.00,'Türkmenostan','Republic','Saparmurad Nijazov',3419,'TM');
+INSERT INTO `country` VALUES ('TMP','East Timor','Asia','Southeast Asia',14874.00,NULL,885000,46.0,0.00,NULL,'Timor Timur','Administrated by the UN','José Alexandre Gusmão',1522,'TP');
+INSERT INTO `country` VALUES ('TON','Tonga','Oceania','Polynesia',650.00,1970,99000,67.9,146.00,170.00,'Tonga','Monarchy','Taufa\'ahau Tupou IV',3334,'TO');
+INSERT INTO `country` VALUES ('TTO','Trinidad and Tobago','North America','Caribbean',5130.00,1962,1295000,68.0,6232.00,5867.00,'Trinidad and Tobago','Republic','Arthur N. R. Robinson',3336,'TT');
+INSERT INTO `country` VALUES ('TUN','Tunisia','Africa','Northern Africa',163610.00,1956,9586000,73.7,20026.00,18898.00,'Tunis/Tunisie','Republic','Zine al-Abidine Ben Ali',3349,'TN');
+INSERT INTO `country` VALUES ('TUR','Turkey','Asia','Middle East',774815.00,1923,66591000,71.0,210721.00,189122.00,'Türkiye','Republic','Ahmet Necdet Sezer',3358,'TR');
+INSERT INTO `country` VALUES ('TUV','Tuvalu','Oceania','Polynesia',26.00,1978,12000,66.3,6.00,NULL,'Tuvalu','Constitutional Monarchy','Elisabeth II',3424,'TV');
+INSERT INTO `country` VALUES ('TWN','Taiwan','Asia','Eastern Asia',36188.00,1945,22256000,76.4,256254.00,263451.00,'T’ai-wan','Republic','Chen Shui-bian',3263,'TW');
+INSERT INTO `country` VALUES ('TZA','Tanzania','Africa','Eastern Africa',883749.00,1961,33517000,52.3,8005.00,7388.00,'Tanzania','Republic','Benjamin William Mkapa',3306,'TZ');
+INSERT INTO `country` VALUES ('UGA','Uganda','Africa','Eastern Africa',241038.00,1962,21778000,42.9,6313.00,6887.00,'Uganda','Republic','Yoweri Museveni',3425,'UG');
+INSERT INTO `country` VALUES ('UKR','Ukraine','Europe','Eastern Europe',603700.00,1991,50456000,66.0,42168.00,49677.00,'Ukrajina','Republic','Leonid Kutšma',3426,'UA');
+INSERT INTO `country` VALUES ('UMI','United States Minor Outlying Islands','Oceania','Micronesia/Caribbean',16.00,NULL,0,NULL,0.00,NULL,'United States Minor Outlying Islands','Dependent Territory of the US','George W. Bush',NULL,'UM');
+INSERT INTO `country` VALUES ('URY','Uruguay','South America','South America',175016.00,1828,3337000,75.2,20831.00,19967.00,'Uruguay','Republic','Jorge Batlle Ibáñez',3492,'UY');
+INSERT INTO `country` VALUES ('USA','United States','North America','North America',9363520.00,1776,278357000,77.1,8510700.00,8110900.00,'United States','Federal Republic','George W. Bush',3813,'US');
+INSERT INTO `country` VALUES ('UZB','Uzbekistan','Asia','Southern and Central Asia',447400.00,1991,24318000,63.7,14194.00,21300.00,'Uzbekiston','Republic','Islam Karimov',3503,'UZ');
+INSERT INTO `country` VALUES ('VAT','Holy See (Vatican City State)','Europe','Southern Europe',0.40,1929,1000,NULL,9.00,NULL,'Santa Sede/Città del Vaticano','Independent Church State','Johannes Paavali II',3538,'VA');
+INSERT INTO `country` VALUES ('VCT','Saint Vincent and the Grenadines','North America','Caribbean',388.00,1979,114000,72.3,285.00,NULL,'Saint Vincent and the Grenadines','Constitutional Monarchy','Elisabeth II',3066,'VC');
+INSERT INTO `country` VALUES ('VEN','Venezuela','South America','South America',912050.00,1811,24170000,73.1,95023.00,88434.00,'Venezuela','Federal Republic','Hugo Chávez Frías',3539,'VE');
+INSERT INTO `country` VALUES ('VGB','Virgin Islands, British','North America','Caribbean',151.00,NULL,21000,75.4,612.00,573.00,'British Virgin Islands','Dependent Territory of the UK','Elisabeth II',537,'VG');
+INSERT INTO `country` VALUES ('VIR','Virgin Islands, U.S.','North America','Caribbean',347.00,NULL,93000,78.1,0.00,NULL,'Virgin Islands of the United States','US Territory','George W. Bush',4067,'VI');
+INSERT INTO `country` VALUES ('VNM','Vietnam','Asia','Southeast Asia',331689.00,1945,79832000,69.3,21929.00,22834.00,'Viêt Nam','Socialistic Republic','Trân Duc Luong',3770,'VN');
+INSERT INTO `country` VALUES ('VUT','Vanuatu','Oceania','Melanesia',12189.00,1980,190000,60.6,261.00,246.00,'Vanuatu','Republic','John Bani',3537,'VU');
+INSERT INTO `country` VALUES ('WLF','Wallis and Futuna','Oceania','Polynesia',200.00,NULL,15000,NULL,0.00,NULL,'Wallis-et-Futuna','Nonmetropolitan Territory of France','Jacques Chirac',3536,'WF');
+INSERT INTO `country` VALUES ('WSM','Samoa','Oceania','Polynesia',2831.00,1962,180000,69.2,141.00,157.00,'Samoa','Parlementary Monarchy','Malietoa Tanumafili II',3169,'WS');
+INSERT INTO `country` VALUES ('YEM','Yemen','Asia','Middle East',527968.00,1918,18112000,59.8,6041.00,5729.00,'Al-Yaman','Republic','Ali Abdallah Salih',1780,'YE');
+INSERT INTO `country` VALUES ('YUG','Yugoslavia','Europe','Southern Europe',102173.00,1918,10640000,72.4,17000.00,NULL,'Jugoslavija','Federal Republic','Vojislav Koštunica',1792,'YU');
+INSERT INTO `country` VALUES ('ZAF','South Africa','Africa','Southern Africa',1221037.00,1910,40377000,51.1,116729.00,129092.00,'South Africa','Republic','Thabo Mbeki',716,'ZA');
+INSERT INTO `country` VALUES ('ZMB','Zambia','Africa','Eastern Africa',752618.00,1964,9169000,37.2,3377.00,3922.00,'Zambia','Republic','Frederick Chiluba',3162,'ZM');
+INSERT INTO `country` VALUES ('ZWE','Zimbabwe','Africa','Eastern Africa',390757.00,1980,11669000,37.8,5951.00,8670.00,'Zimbabwe','Republic','Robert G. Mugabe',4068,'ZW');
+commit;
+
+--
+-- Table structure for table `countrylanguage`
+--
+
+DROP TABLE IF EXISTS `countrylanguage`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `countrylanguage` (
+  `CountryCode` char(3) NOT NULL DEFAULT '',
+  `Language` char(30) NOT NULL DEFAULT '',
+  `IsOfficial` enum('T','F') NOT NULL DEFAULT 'F',
+  `Percentage` decimal(4,1) NOT NULL DEFAULT '0.0',
+  PRIMARY KEY (`CountryCode`,`Language`),
+  KEY `CountryCode` (`CountryCode`),
+  CONSTRAINT `countryLanguage_ibfk_1` FOREIGN KEY (`CountryCode`) REFERENCES `country` (`Code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `countrylanguage`
+--
+-- ORDER BY:  `CountryCode`,`Language`
+
+set autocommit=0;
+INSERT INTO `countrylanguage` VALUES ('ABW','Dutch','T',5.3);
+INSERT INTO `countrylanguage` VALUES ('ABW','English','F',9.5);
+INSERT INTO `countrylanguage` VALUES ('ABW','Papiamento','F',76.7);
+INSERT INTO `countrylanguage` VALUES ('ABW','Spanish','F',7.4);
+INSERT INTO `countrylanguage` VALUES ('AFG','Balochi','F',0.9);
+INSERT INTO `countrylanguage` VALUES ('AFG','Dari','T',32.1);
+INSERT INTO `countrylanguage` VALUES ('AFG','Pashto','T',52.4);
+INSERT INTO `countrylanguage` VALUES ('AFG','Turkmenian','F',1.9);
+INSERT INTO `countrylanguage` VALUES ('AFG','Uzbek','F',8.8);
+INSERT INTO `countrylanguage` VALUES ('AGO','Ambo','F',2.4);
+INSERT INTO `countrylanguage` VALUES ('AGO','Chokwe','F',4.2);
+INSERT INTO `countrylanguage` VALUES ('AGO','Kongo','F',13.2);
+INSERT INTO `countrylanguage` VALUES ('AGO','Luchazi','F',2.4);
+INSERT INTO `countrylanguage` VALUES ('AGO','Luimbe-nganguela','F',5.4);
+INSERT INTO `countrylanguage` VALUES ('AGO','Luvale','F',3.6);
+INSERT INTO `countrylanguage` VALUES ('AGO','Mbundu','F',21.6);
+INSERT INTO `countrylanguage` VALUES ('AGO','Nyaneka-nkhumbi','F',5.4);
+INSERT INTO `countrylanguage` VALUES ('AGO','Ovimbundu','F',37.2);
+INSERT INTO `countrylanguage` VALUES ('AIA','English','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('ALB','Albaniana','T',97.9);
+INSERT INTO `countrylanguage` VALUES ('ALB','Greek','F',1.8);
+INSERT INTO `countrylanguage` VALUES ('ALB','Macedonian','F',0.1);
+INSERT INTO `countrylanguage` VALUES ('AND','Catalan','T',32.3);
+INSERT INTO `countrylanguage` VALUES ('AND','French','F',6.2);
+INSERT INTO `countrylanguage` VALUES ('AND','Portuguese','F',10.8);
+INSERT INTO `countrylanguage` VALUES ('AND','Spanish','F',44.6);
+INSERT INTO `countrylanguage` VALUES ('ANT','Dutch','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('ANT','English','F',7.8);
+INSERT INTO `countrylanguage` VALUES ('ANT','Papiamento','T',86.2);
+INSERT INTO `countrylanguage` VALUES ('ARE','Arabic','T',42.0);
+INSERT INTO `countrylanguage` VALUES ('ARE','Hindi','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('ARG','Indian Languages','F',0.3);
+INSERT INTO `countrylanguage` VALUES ('ARG','Italian','F',1.7);
+INSERT INTO `countrylanguage` VALUES ('ARG','Spanish','T',96.8);
+INSERT INTO `countrylanguage` VALUES ('ARM','Armenian','T',93.4);
+INSERT INTO `countrylanguage` VALUES ('ARM','Azerbaijani','F',2.6);
+INSERT INTO `countrylanguage` VALUES ('ASM','English','T',3.1);
+INSERT INTO `countrylanguage` VALUES ('ASM','Samoan','T',90.6);
+INSERT INTO `countrylanguage` VALUES ('ASM','Tongan','F',3.1);
+INSERT INTO `countrylanguage` VALUES ('ATG','Creole English','F',95.7);
+INSERT INTO `countrylanguage` VALUES ('ATG','English','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('AUS','Arabic','F',1.0);
+INSERT INTO `countrylanguage` VALUES ('AUS','Canton Chinese','F',1.1);
+INSERT INTO `countrylanguage` VALUES ('AUS','English','T',81.2);
+INSERT INTO `countrylanguage` VALUES ('AUS','German','F',0.6);
+INSERT INTO `countrylanguage` VALUES ('AUS','Greek','F',1.6);
+INSERT INTO `countrylanguage` VALUES ('AUS','Italian','F',2.2);
+INSERT INTO `countrylanguage` VALUES ('AUS','Serbo-Croatian','F',0.6);
+INSERT INTO `countrylanguage` VALUES ('AUS','Vietnamese','F',0.8);
+INSERT INTO `countrylanguage` VALUES ('AUT','Czech','F',0.2);
+INSERT INTO `countrylanguage` VALUES ('AUT','German','T',92.0);
+INSERT INTO `countrylanguage` VALUES ('AUT','Hungarian','F',0.4);
+INSERT INTO `countrylanguage` VALUES ('AUT','Polish','F',0.2);
+INSERT INTO `countrylanguage` VALUES ('AUT','Romanian','F',0.2);
+INSERT INTO `countrylanguage` VALUES ('AUT','Serbo-Croatian','F',2.2);
+INSERT INTO `countrylanguage` VALUES ('AUT','Slovene','F',0.4);
+INSERT INTO `countrylanguage` VALUES ('AUT','Turkish','F',1.5);
+INSERT INTO `countrylanguage` VALUES ('AZE','Armenian','F',2.0);
+INSERT INTO `countrylanguage` VALUES ('AZE','Azerbaijani','T',89.0);
+INSERT INTO `countrylanguage` VALUES ('AZE','Lezgian','F',2.3);
+INSERT INTO `countrylanguage` VALUES ('AZE','Russian','F',3.0);
+INSERT INTO `countrylanguage` VALUES ('BDI','French','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('BDI','Kirundi','T',98.1);
+INSERT INTO `countrylanguage` VALUES ('BDI','Swahili','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('BEL','Arabic','F',1.6);
+INSERT INTO `countrylanguage` VALUES ('BEL','Dutch','T',59.2);
+INSERT INTO `countrylanguage` VALUES ('BEL','French','T',32.6);
+INSERT INTO `countrylanguage` VALUES ('BEL','German','T',1.0);
+INSERT INTO `countrylanguage` VALUES ('BEL','Italian','F',2.4);
+INSERT INTO `countrylanguage` VALUES ('BEL','Turkish','F',0.9);
+INSERT INTO `countrylanguage` VALUES ('BEN','Adja','F',11.1);
+INSERT INTO `countrylanguage` VALUES ('BEN','Aizo','F',8.7);
+INSERT INTO `countrylanguage` VALUES ('BEN','Bariba','F',8.7);
+INSERT INTO `countrylanguage` VALUES ('BEN','Fon','F',39.8);
+INSERT INTO `countrylanguage` VALUES ('BEN','Ful','F',5.6);
+INSERT INTO `countrylanguage` VALUES ('BEN','Joruba','F',12.2);
+INSERT INTO `countrylanguage` VALUES ('BEN','Somba','F',6.7);
+INSERT INTO `countrylanguage` VALUES ('BFA','Busansi','F',3.5);
+INSERT INTO `countrylanguage` VALUES ('BFA','Dagara','F',3.1);
+INSERT INTO `countrylanguage` VALUES ('BFA','Dyula','F',2.6);
+INSERT INTO `countrylanguage` VALUES ('BFA','Ful','F',9.7);
+INSERT INTO `countrylanguage` VALUES ('BFA','Gurma','F',5.7);
+INSERT INTO `countrylanguage` VALUES ('BFA','Mossi','F',50.2);
+INSERT INTO `countrylanguage` VALUES ('BGD','Bengali','T',97.7);
+INSERT INTO `countrylanguage` VALUES ('BGD','Chakma','F',0.4);
+INSERT INTO `countrylanguage` VALUES ('BGD','Garo','F',0.1);
+INSERT INTO `countrylanguage` VALUES ('BGD','Khasi','F',0.1);
+INSERT INTO `countrylanguage` VALUES ('BGD','Marma','F',0.2);
+INSERT INTO `countrylanguage` VALUES ('BGD','Santhali','F',0.1);
+INSERT INTO `countrylanguage` VALUES ('BGD','Tripuri','F',0.1);
+INSERT INTO `countrylanguage` VALUES ('BGR','Bulgariana','T',83.2);
+INSERT INTO `countrylanguage` VALUES ('BGR','Macedonian','F',2.6);
+INSERT INTO `countrylanguage` VALUES ('BGR','Romani','F',3.7);
+INSERT INTO `countrylanguage` VALUES ('BGR','Turkish','F',9.4);
+INSERT INTO `countrylanguage` VALUES ('BHR','Arabic','T',67.7);
+INSERT INTO `countrylanguage` VALUES ('BHR','English','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('BHS','Creole English','F',89.7);
+INSERT INTO `countrylanguage` VALUES ('BHS','Creole French','F',10.3);
+INSERT INTO `countrylanguage` VALUES ('BIH','Serbo-Croatian','T',99.2);
+INSERT INTO `countrylanguage` VALUES ('BLR','Belorussian','T',65.6);
+INSERT INTO `countrylanguage` VALUES ('BLR','Polish','F',0.6);
+INSERT INTO `countrylanguage` VALUES ('BLR','Russian','T',32.0);
+INSERT INTO `countrylanguage` VALUES ('BLR','Ukrainian','F',1.3);
+INSERT INTO `countrylanguage` VALUES ('BLZ','English','T',50.8);
+INSERT INTO `countrylanguage` VALUES ('BLZ','Garifuna','F',6.8);
+INSERT INTO `countrylanguage` VALUES ('BLZ','Maya Languages','F',9.6);
+INSERT INTO `countrylanguage` VALUES ('BLZ','Spanish','F',31.6);
+INSERT INTO `countrylanguage` VALUES ('BMU','English','T',100.0);
+INSERT INTO `countrylanguage` VALUES ('BOL','Aimará','T',3.2);
+INSERT INTO `countrylanguage` VALUES ('BOL','Guaraní','F',0.1);
+INSERT INTO `countrylanguage` VALUES ('BOL','Ketšua','T',8.1);
+INSERT INTO `countrylanguage` VALUES ('BOL','Spanish','T',87.7);
+INSERT INTO `countrylanguage` VALUES ('BRA','German','F',0.5);
+INSERT INTO `countrylanguage` VALUES ('BRA','Indian Languages','F',0.2);
+INSERT INTO `countrylanguage` VALUES ('BRA','Italian','F',0.4);
+INSERT INTO `countrylanguage` VALUES ('BRA','Japanese','F',0.4);
+INSERT INTO `countrylanguage` VALUES ('BRA','Portuguese','T',97.5);
+INSERT INTO `countrylanguage` VALUES ('BRB','Bajan','F',95.1);
+INSERT INTO `countrylanguage` VALUES ('BRB','English','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('BRN','Chinese','F',9.3);
+INSERT INTO `countrylanguage` VALUES ('BRN','English','F',3.1);
+INSERT INTO `countrylanguage` VALUES ('BRN','Malay','T',45.5);
+INSERT INTO `countrylanguage` VALUES ('BRN','Malay-English','F',28.8);
+INSERT INTO `countrylanguage` VALUES ('BTN','Asami','F',15.2);
+INSERT INTO `countrylanguage` VALUES ('BTN','Dzongkha','T',50.0);
+INSERT INTO `countrylanguage` VALUES ('BTN','Nepali','F',34.8);
+INSERT INTO `countrylanguage` VALUES ('BWA','Khoekhoe','F',2.5);
+INSERT INTO `countrylanguage` VALUES ('BWA','Ndebele','F',1.3);
+INSERT INTO `countrylanguage` VALUES ('BWA','San','F',3.5);
+INSERT INTO `countrylanguage` VALUES ('BWA','Shona','F',12.3);
+INSERT INTO `countrylanguage` VALUES ('BWA','Tswana','F',75.5);
+INSERT INTO `countrylanguage` VALUES ('CAF','Banda','F',23.5);
+INSERT INTO `countrylanguage` VALUES ('CAF','Gbaya','F',23.8);
+INSERT INTO `countrylanguage` VALUES ('CAF','Mandjia','F',14.8);
+INSERT INTO `countrylanguage` VALUES ('CAF','Mbum','F',6.4);
+INSERT INTO `countrylanguage` VALUES ('CAF','Ngbaka','F',7.5);
+INSERT INTO `countrylanguage` VALUES ('CAF','Sara','F',6.4);
+INSERT INTO `countrylanguage` VALUES ('CAN','Chinese','F',2.5);
+INSERT INTO `countrylanguage` VALUES ('CAN','Dutch','F',0.5);
+INSERT INTO `countrylanguage` VALUES ('CAN','English','T',60.4);
+INSERT INTO `countrylanguage` VALUES ('CAN','Eskimo Languages','F',0.1);
+INSERT INTO `countrylanguage` VALUES ('CAN','French','T',23.4);
+INSERT INTO `countrylanguage` VALUES ('CAN','German','F',1.6);
+INSERT INTO `countrylanguage` VALUES ('CAN','Italian','F',1.7);
+INSERT INTO `countrylanguage` VALUES ('CAN','Polish','F',0.7);
+INSERT INTO `countrylanguage` VALUES ('CAN','Portuguese','F',0.7);
+INSERT INTO `countrylanguage` VALUES ('CAN','Punjabi','F',0.7);
+INSERT INTO `countrylanguage` VALUES ('CAN','Spanish','F',0.7);
+INSERT INTO `countrylanguage` VALUES ('CAN','Ukrainian','F',0.6);
+INSERT INTO `countrylanguage` VALUES ('CCK','English','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('CCK','Malay','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('CHE','French','T',19.2);
+INSERT INTO `countrylanguage` VALUES ('CHE','German','T',63.6);
+INSERT INTO `countrylanguage` VALUES ('CHE','Italian','T',7.7);
+INSERT INTO `countrylanguage` VALUES ('CHE','Romansh','T',0.6);
+INSERT INTO `countrylanguage` VALUES ('CHL','Aimará','F',0.5);
+INSERT INTO `countrylanguage` VALUES ('CHL','Araucan','F',9.6);
+INSERT INTO `countrylanguage` VALUES ('CHL','Rapa nui','F',0.2);
+INSERT INTO `countrylanguage` VALUES ('CHL','Spanish','T',89.7);
+INSERT INTO `countrylanguage` VALUES ('CHN','Chinese','T',92.0);
+INSERT INTO `countrylanguage` VALUES ('CHN','Dong','F',0.2);
+INSERT INTO `countrylanguage` VALUES ('CHN','Hui','F',0.8);
+INSERT INTO `countrylanguage` VALUES ('CHN','Mantšu','F',0.9);
+INSERT INTO `countrylanguage` VALUES ('CHN','Miao','F',0.7);
+INSERT INTO `countrylanguage` VALUES ('CHN','Mongolian','F',0.4);
+INSERT INTO `countrylanguage` VALUES ('CHN','Puyi','F',0.2);
+INSERT INTO `countrylanguage` VALUES ('CHN','Tibetan','F',0.4);
+INSERT INTO `countrylanguage` VALUES ('CHN','Tujia','F',0.5);
+INSERT INTO `countrylanguage` VALUES ('CHN','Uighur','F',0.6);
+INSERT INTO `countrylanguage` VALUES ('CHN','Yi','F',0.6);
+INSERT INTO `countrylanguage` VALUES ('CHN','Zhuang','F',1.4);
+INSERT INTO `countrylanguage` VALUES ('CIV','[South]Mande','F',7.7);
+INSERT INTO `countrylanguage` VALUES ('CIV','Akan','F',30.0);
+INSERT INTO `countrylanguage` VALUES ('CIV','Gur','F',11.7);
+INSERT INTO `countrylanguage` VALUES ('CIV','Kru','F',10.5);
+INSERT INTO `countrylanguage` VALUES ('CIV','Malinke','F',11.4);
+INSERT INTO `countrylanguage` VALUES ('CMR','Bamileke-bamum','F',18.6);
+INSERT INTO `countrylanguage` VALUES ('CMR','Duala','F',10.9);
+INSERT INTO `countrylanguage` VALUES ('CMR','Fang','F',19.7);
+INSERT INTO `countrylanguage` VALUES ('CMR','Ful','F',9.6);
+INSERT INTO `countrylanguage` VALUES ('CMR','Maka','F',4.9);
+INSERT INTO `countrylanguage` VALUES ('CMR','Mandara','F',5.7);
+INSERT INTO `countrylanguage` VALUES ('CMR','Masana','F',3.9);
+INSERT INTO `countrylanguage` VALUES ('CMR','Tikar','F',7.4);
+INSERT INTO `countrylanguage` VALUES ('COD','Boa','F',2.3);
+INSERT INTO `countrylanguage` VALUES ('COD','Chokwe','F',1.8);
+INSERT INTO `countrylanguage` VALUES ('COD','Kongo','F',16.0);
+INSERT INTO `countrylanguage` VALUES ('COD','Luba','F',18.0);
+INSERT INTO `countrylanguage` VALUES ('COD','Mongo','F',13.5);
+INSERT INTO `countrylanguage` VALUES ('COD','Ngala and Bangi','F',5.8);
+INSERT INTO `countrylanguage` VALUES ('COD','Rundi','F',3.8);
+INSERT INTO `countrylanguage` VALUES ('COD','Rwanda','F',10.3);
+INSERT INTO `countrylanguage` VALUES ('COD','Teke','F',2.7);
+INSERT INTO `countrylanguage` VALUES ('COD','Zande','F',6.1);
+INSERT INTO `countrylanguage` VALUES ('COG','Kongo','F',51.5);
+INSERT INTO `countrylanguage` VALUES ('COG','Mbete','F',4.8);
+INSERT INTO `countrylanguage` VALUES ('COG','Mboshi','F',11.4);
+INSERT INTO `countrylanguage` VALUES ('COG','Punu','F',2.9);
+INSERT INTO `countrylanguage` VALUES ('COG','Sango','F',2.6);
+INSERT INTO `countrylanguage` VALUES ('COG','Teke','F',17.3);
+INSERT INTO `countrylanguage` VALUES ('COK','English','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('COK','Maori','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('COL','Arawakan','F',0.1);
+INSERT INTO `countrylanguage` VALUES ('COL','Caribbean','F',0.1);
+INSERT INTO `countrylanguage` VALUES ('COL','Chibcha','F',0.4);
+INSERT INTO `countrylanguage` VALUES ('COL','Creole English','F',0.1);
+INSERT INTO `countrylanguage` VALUES ('COL','Spanish','T',99.0);
+INSERT INTO `countrylanguage` VALUES ('COM','Comorian','T',75.0);
+INSERT INTO `countrylanguage` VALUES ('COM','Comorian-Arabic','F',1.6);
+INSERT INTO `countrylanguage` VALUES ('COM','Comorian-French','F',12.9);
+INSERT INTO `countrylanguage` VALUES ('COM','Comorian-madagassi','F',5.5);
+INSERT INTO `countrylanguage` VALUES ('COM','Comorian-Swahili','F',0.5);
+INSERT INTO `countrylanguage` VALUES ('CPV','Crioulo','F',100.0);
+INSERT INTO `countrylanguage` VALUES ('CPV','Portuguese','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('CRI','Chibcha','F',0.3);
+INSERT INTO `countrylanguage` VALUES ('CRI','Chinese','F',0.2);
+INSERT INTO `countrylanguage` VALUES ('CRI','Creole English','F',2.0);
+INSERT INTO `countrylanguage` VALUES ('CRI','Spanish','T',97.5);
+INSERT INTO `countrylanguage` VALUES ('CUB','Spanish','T',100.0);
+INSERT INTO `countrylanguage` VALUES ('CXR','Chinese','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('CXR','English','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('CYM','English','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('CYP','Greek','T',74.1);
+INSERT INTO `countrylanguage` VALUES ('CYP','Turkish','T',22.4);
+INSERT INTO `countrylanguage` VALUES ('CZE','Czech','T',81.2);
+INSERT INTO `countrylanguage` VALUES ('CZE','German','F',0.5);
+INSERT INTO `countrylanguage` VALUES ('CZE','Hungarian','F',0.2);
+INSERT INTO `countrylanguage` VALUES ('CZE','Moravian','F',12.9);
+INSERT INTO `countrylanguage` VALUES ('CZE','Polish','F',0.6);
+INSERT INTO `countrylanguage` VALUES ('CZE','Romani','F',0.3);
+INSERT INTO `countrylanguage` VALUES ('CZE','Silesiana','F',0.4);
+INSERT INTO `countrylanguage` VALUES ('CZE','Slovak','F',3.1);
+INSERT INTO `countrylanguage` VALUES ('DEU','German','T',91.3);
+INSERT INTO `countrylanguage` VALUES ('DEU','Greek','F',0.4);
+INSERT INTO `countrylanguage` VALUES ('DEU','Italian','F',0.7);
+INSERT INTO `countrylanguage` VALUES ('DEU','Polish','F',0.3);
+INSERT INTO `countrylanguage` VALUES ('DEU','Southern Slavic Languages','F',1.4);
+INSERT INTO `countrylanguage` VALUES ('DEU','Turkish','F',2.6);
+INSERT INTO `countrylanguage` VALUES ('DJI','Afar','F',34.8);
+INSERT INTO `countrylanguage` VALUES ('DJI','Arabic','T',10.6);
+INSERT INTO `countrylanguage` VALUES ('DJI','Somali','F',43.9);
+INSERT INTO `countrylanguage` VALUES ('DMA','Creole English','F',100.0);
+INSERT INTO `countrylanguage` VALUES ('DMA','Creole French','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('DNK','Arabic','F',0.7);
+INSERT INTO `countrylanguage` VALUES ('DNK','Danish','T',93.5);
+INSERT INTO `countrylanguage` VALUES ('DNK','English','F',0.3);
+INSERT INTO `countrylanguage` VALUES ('DNK','German','F',0.5);
+INSERT INTO `countrylanguage` VALUES ('DNK','Norwegian','F',0.3);
+INSERT INTO `countrylanguage` VALUES ('DNK','Swedish','F',0.3);
+INSERT INTO `countrylanguage` VALUES ('DNK','Turkish','F',0.8);
+INSERT INTO `countrylanguage` VALUES ('DOM','Creole French','F',2.0);
+INSERT INTO `countrylanguage` VALUES ('DOM','Spanish','T',98.0);
+INSERT INTO `countrylanguage` VALUES ('DZA','Arabic','T',86.0);
+INSERT INTO `countrylanguage` VALUES ('DZA','Berberi','F',14.0);
+INSERT INTO `countrylanguage` VALUES ('ECU','Ketšua','F',7.0);
+INSERT INTO `countrylanguage` VALUES ('ECU','Spanish','T',93.0);
+INSERT INTO `countrylanguage` VALUES ('EGY','Arabic','T',98.8);
+INSERT INTO `countrylanguage` VALUES ('EGY','Sinaberberi','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('ERI','Afar','F',4.3);
+INSERT INTO `countrylanguage` VALUES ('ERI','Bilin','F',3.0);
+INSERT INTO `countrylanguage` VALUES ('ERI','Hadareb','F',3.8);
+INSERT INTO `countrylanguage` VALUES ('ERI','Saho','F',3.0);
+INSERT INTO `countrylanguage` VALUES ('ERI','Tigre','F',31.7);
+INSERT INTO `countrylanguage` VALUES ('ERI','Tigrinja','T',49.1);
+INSERT INTO `countrylanguage` VALUES ('ESH','Arabic','T',100.0);
+INSERT INTO `countrylanguage` VALUES ('ESP','Basque','F',1.6);
+INSERT INTO `countrylanguage` VALUES ('ESP','Catalan','F',16.9);
+INSERT INTO `countrylanguage` VALUES ('ESP','Galecian','F',6.4);
+INSERT INTO `countrylanguage` VALUES ('ESP','Spanish','T',74.4);
+INSERT INTO `countrylanguage` VALUES ('EST','Belorussian','F',1.4);
+INSERT INTO `countrylanguage` VALUES ('EST','Estonian','T',65.3);
+INSERT INTO `countrylanguage` VALUES ('EST','Finnish','F',0.7);
+INSERT INTO `countrylanguage` VALUES ('EST','Russian','F',27.8);
+INSERT INTO `countrylanguage` VALUES ('EST','Ukrainian','F',2.8);
+INSERT INTO `countrylanguage` VALUES ('ETH','Amhara','F',30.0);
+INSERT INTO `countrylanguage` VALUES ('ETH','Gurage','F',4.7);
+INSERT INTO `countrylanguage` VALUES ('ETH','Oromo','F',31.0);
+INSERT INTO `countrylanguage` VALUES ('ETH','Sidamo','F',3.2);
+INSERT INTO `countrylanguage` VALUES ('ETH','Somali','F',4.1);
+INSERT INTO `countrylanguage` VALUES ('ETH','Tigrinja','F',7.2);
+INSERT INTO `countrylanguage` VALUES ('ETH','Walaita','F',2.8);
+INSERT INTO `countrylanguage` VALUES ('FIN','Estonian','F',0.2);
+INSERT INTO `countrylanguage` VALUES ('FIN','Finnish','T',92.7);
+INSERT INTO `countrylanguage` VALUES ('FIN','Russian','F',0.4);
+INSERT INTO `countrylanguage` VALUES ('FIN','Saame','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('FIN','Swedish','T',5.7);
+INSERT INTO `countrylanguage` VALUES ('FJI','Fijian','T',50.8);
+INSERT INTO `countrylanguage` VALUES ('FJI','Hindi','F',43.7);
+INSERT INTO `countrylanguage` VALUES ('FLK','English','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('FRA','Arabic','F',2.5);
+INSERT INTO `countrylanguage` VALUES ('FRA','French','T',93.6);
+INSERT INTO `countrylanguage` VALUES ('FRA','Italian','F',0.4);
+INSERT INTO `countrylanguage` VALUES ('FRA','Portuguese','F',1.2);
+INSERT INTO `countrylanguage` VALUES ('FRA','Spanish','F',0.4);
+INSERT INTO `countrylanguage` VALUES ('FRA','Turkish','F',0.4);
+INSERT INTO `countrylanguage` VALUES ('FRO','Danish','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('FRO','Faroese','T',100.0);
+INSERT INTO `countrylanguage` VALUES ('FSM','Kosrean','F',7.3);
+INSERT INTO `countrylanguage` VALUES ('FSM','Mortlock','F',7.6);
+INSERT INTO `countrylanguage` VALUES ('FSM','Pohnpei','F',23.8);
+INSERT INTO `countrylanguage` VALUES ('FSM','Trukese','F',41.6);
+INSERT INTO `countrylanguage` VALUES ('FSM','Wolea','F',3.7);
+INSERT INTO `countrylanguage` VALUES ('FSM','Yap','F',5.8);
+INSERT INTO `countrylanguage` VALUES ('GAB','Fang','F',35.8);
+INSERT INTO `countrylanguage` VALUES ('GAB','Mbete','F',13.8);
+INSERT INTO `countrylanguage` VALUES ('GAB','Mpongwe','F',14.6);
+INSERT INTO `countrylanguage` VALUES ('GAB','Punu-sira-nzebi','F',17.1);
+INSERT INTO `countrylanguage` VALUES ('GBR','English','T',97.3);
+INSERT INTO `countrylanguage` VALUES ('GBR','Gaeli','F',0.1);
+INSERT INTO `countrylanguage` VALUES ('GBR','Kymri','F',0.9);
+INSERT INTO `countrylanguage` VALUES ('GEO','Abhyasi','F',1.7);
+INSERT INTO `countrylanguage` VALUES ('GEO','Armenian','F',6.8);
+INSERT INTO `countrylanguage` VALUES ('GEO','Azerbaijani','F',5.5);
+INSERT INTO `countrylanguage` VALUES ('GEO','Georgiana','T',71.7);
+INSERT INTO `countrylanguage` VALUES ('GEO','Osseetti','F',2.4);
+INSERT INTO `countrylanguage` VALUES ('GEO','Russian','F',8.8);
+INSERT INTO `countrylanguage` VALUES ('GHA','Akan','F',52.4);
+INSERT INTO `countrylanguage` VALUES ('GHA','Ewe','F',11.9);
+INSERT INTO `countrylanguage` VALUES ('GHA','Ga-adangme','F',7.8);
+INSERT INTO `countrylanguage` VALUES ('GHA','Gurma','F',3.3);
+INSERT INTO `countrylanguage` VALUES ('GHA','Joruba','F',1.3);
+INSERT INTO `countrylanguage` VALUES ('GHA','Mossi','F',15.8);
+INSERT INTO `countrylanguage` VALUES ('GIB','Arabic','F',7.4);
+INSERT INTO `countrylanguage` VALUES ('GIB','English','T',88.9);
+INSERT INTO `countrylanguage` VALUES ('GIN','Ful','F',38.6);
+INSERT INTO `countrylanguage` VALUES ('GIN','Kissi','F',6.0);
+INSERT INTO `countrylanguage` VALUES ('GIN','Kpelle','F',4.6);
+INSERT INTO `countrylanguage` VALUES ('GIN','Loma','F',2.3);
+INSERT INTO `countrylanguage` VALUES ('GIN','Malinke','F',23.2);
+INSERT INTO `countrylanguage` VALUES ('GIN','Susu','F',11.0);
+INSERT INTO `countrylanguage` VALUES ('GIN','Yalunka','F',2.9);
+INSERT INTO `countrylanguage` VALUES ('GLP','Creole French','F',95.0);
+INSERT INTO `countrylanguage` VALUES ('GLP','French','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('GMB','Diola','F',9.2);
+INSERT INTO `countrylanguage` VALUES ('GMB','Ful','F',16.2);
+INSERT INTO `countrylanguage` VALUES ('GMB','Malinke','F',34.1);
+INSERT INTO `countrylanguage` VALUES ('GMB','Soninke','F',7.6);
+INSERT INTO `countrylanguage` VALUES ('GMB','Wolof','F',12.6);
+INSERT INTO `countrylanguage` VALUES ('GNB','Balante','F',14.6);
+INSERT INTO `countrylanguage` VALUES ('GNB','Crioulo','F',36.4);
+INSERT INTO `countrylanguage` VALUES ('GNB','Ful','F',16.6);
+INSERT INTO `countrylanguage` VALUES ('GNB','Malinke','F',6.9);
+INSERT INTO `countrylanguage` VALUES ('GNB','Mandyako','F',4.9);
+INSERT INTO `countrylanguage` VALUES ('GNB','Portuguese','T',8.1);
+INSERT INTO `countrylanguage` VALUES ('GNQ','Bubi','F',8.7);
+INSERT INTO `countrylanguage` VALUES ('GNQ','Fang','F',84.8);
+INSERT INTO `countrylanguage` VALUES ('GRC','Greek','T',98.5);
+INSERT INTO `countrylanguage` VALUES ('GRC','Turkish','F',0.9);
+INSERT INTO `countrylanguage` VALUES ('GRD','Creole English','F',100.0);
+INSERT INTO `countrylanguage` VALUES ('GRL','Danish','T',12.5);
+INSERT INTO `countrylanguage` VALUES ('GRL','Greenlandic','T',87.5);
+INSERT INTO `countrylanguage` VALUES ('GTM','Cakchiquel','F',8.9);
+INSERT INTO `countrylanguage` VALUES ('GTM','Kekchí','F',4.9);
+INSERT INTO `countrylanguage` VALUES ('GTM','Mam','F',2.7);
+INSERT INTO `countrylanguage` VALUES ('GTM','Quiché','F',10.1);
+INSERT INTO `countrylanguage` VALUES ('GTM','Spanish','T',64.7);
+INSERT INTO `countrylanguage` VALUES ('GUF','Creole French','F',94.3);
+INSERT INTO `countrylanguage` VALUES ('GUF','Indian Languages','F',1.9);
+INSERT INTO `countrylanguage` VALUES ('GUM','Chamorro','T',29.6);
+INSERT INTO `countrylanguage` VALUES ('GUM','English','T',37.5);
+INSERT INTO `countrylanguage` VALUES ('GUM','Japanese','F',2.0);
+INSERT INTO `countrylanguage` VALUES ('GUM','Korean','F',3.3);
+INSERT INTO `countrylanguage` VALUES ('GUM','Philippene Languages','F',19.7);
+INSERT INTO `countrylanguage` VALUES ('GUY','Arawakan','F',1.4);
+INSERT INTO `countrylanguage` VALUES ('GUY','Caribbean','F',2.2);
+INSERT INTO `countrylanguage` VALUES ('GUY','Creole English','F',96.4);
+INSERT INTO `countrylanguage` VALUES ('HKG','Canton Chinese','F',88.7);
+INSERT INTO `countrylanguage` VALUES ('HKG','Chiu chau','F',1.4);
+INSERT INTO `countrylanguage` VALUES ('HKG','English','T',2.2);
+INSERT INTO `countrylanguage` VALUES ('HKG','Fukien','F',1.9);
+INSERT INTO `countrylanguage` VALUES ('HKG','Hakka','F',1.6);
+INSERT INTO `countrylanguage` VALUES ('HND','Creole English','F',0.2);
+INSERT INTO `countrylanguage` VALUES ('HND','Garifuna','F',1.3);
+INSERT INTO `countrylanguage` VALUES ('HND','Miskito','F',0.2);
+INSERT INTO `countrylanguage` VALUES ('HND','Spanish','T',97.2);
+INSERT INTO `countrylanguage` VALUES ('HRV','Serbo-Croatian','T',95.9);
+INSERT INTO `countrylanguage` VALUES ('HRV','Slovene','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('HTI','French','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('HTI','Haiti Creole','F',100.0);
+INSERT INTO `countrylanguage` VALUES ('HUN','German','F',0.4);
+INSERT INTO `countrylanguage` VALUES ('HUN','Hungarian','T',98.5);
+INSERT INTO `countrylanguage` VALUES ('HUN','Romani','F',0.5);
+INSERT INTO `countrylanguage` VALUES ('HUN','Romanian','F',0.1);
+INSERT INTO `countrylanguage` VALUES ('HUN','Serbo-Croatian','F',0.2);
+INSERT INTO `countrylanguage` VALUES ('HUN','Slovak','F',0.1);
+INSERT INTO `countrylanguage` VALUES ('IDN','Bali','F',1.7);
+INSERT INTO `countrylanguage` VALUES ('IDN','Banja','F',1.8);
+INSERT INTO `countrylanguage` VALUES ('IDN','Batakki','F',2.2);
+INSERT INTO `countrylanguage` VALUES ('IDN','Bugi','F',2.2);
+INSERT INTO `countrylanguage` VALUES ('IDN','Javanese','F',39.4);
+INSERT INTO `countrylanguage` VALUES ('IDN','Madura','F',4.3);
+INSERT INTO `countrylanguage` VALUES ('IDN','Malay','T',12.1);
+INSERT INTO `countrylanguage` VALUES ('IDN','Minangkabau','F',2.4);
+INSERT INTO `countrylanguage` VALUES ('IDN','Sunda','F',15.8);
+INSERT INTO `countrylanguage` VALUES ('IND','Asami','F',1.5);
+INSERT INTO `countrylanguage` VALUES ('IND','Bengali','F',8.2);
+INSERT INTO `countrylanguage` VALUES ('IND','Gujarati','F',4.8);
+INSERT INTO `countrylanguage` VALUES ('IND','Hindi','T',39.9);
+INSERT INTO `countrylanguage` VALUES ('IND','Kannada','F',3.9);
+INSERT INTO `countrylanguage` VALUES ('IND','Malajalam','F',3.6);
+INSERT INTO `countrylanguage` VALUES ('IND','Marathi','F',7.4);
+INSERT INTO `countrylanguage` VALUES ('IND','Orija','F',3.3);
+INSERT INTO `countrylanguage` VALUES ('IND','Punjabi','F',2.8);
+INSERT INTO `countrylanguage` VALUES ('IND','Tamil','F',6.3);
+INSERT INTO `countrylanguage` VALUES ('IND','Telugu','F',7.8);
+INSERT INTO `countrylanguage` VALUES ('IND','Urdu','F',5.1);
+INSERT INTO `countrylanguage` VALUES ('IRL','English','T',98.4);
+INSERT INTO `countrylanguage` VALUES ('IRL','Irish','T',1.6);
+INSERT INTO `countrylanguage` VALUES ('IRN','Arabic','F',2.2);
+INSERT INTO `countrylanguage` VALUES ('IRN','Azerbaijani','F',16.8);
+INSERT INTO `countrylanguage` VALUES ('IRN','Bakhtyari','F',1.7);
+INSERT INTO `countrylanguage` VALUES ('IRN','Balochi','F',2.3);
+INSERT INTO `countrylanguage` VALUES ('IRN','Gilaki','F',5.3);
+INSERT INTO `countrylanguage` VALUES ('IRN','Kurdish','F',9.1);
+INSERT INTO `countrylanguage` VALUES ('IRN','Luri','F',4.3);
+INSERT INTO `countrylanguage` VALUES ('IRN','Mazandarani','F',3.6);
+INSERT INTO `countrylanguage` VALUES ('IRN','Persian','T',45.7);
+INSERT INTO `countrylanguage` VALUES ('IRN','Turkmenian','F',1.6);
+INSERT INTO `countrylanguage` VALUES ('IRQ','Arabic','T',77.2);
+INSERT INTO `countrylanguage` VALUES ('IRQ','Assyrian','F',0.8);
+INSERT INTO `countrylanguage` VALUES ('IRQ','Azerbaijani','F',1.7);
+INSERT INTO `countrylanguage` VALUES ('IRQ','Kurdish','F',19.0);
+INSERT INTO `countrylanguage` VALUES ('IRQ','Persian','F',0.8);
+INSERT INTO `countrylanguage` VALUES ('ISL','English','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('ISL','Icelandic','T',95.7);
+INSERT INTO `countrylanguage` VALUES ('ISR','Arabic','T',18.0);
+INSERT INTO `countrylanguage` VALUES ('ISR','Hebrew','T',63.1);
+INSERT INTO `countrylanguage` VALUES ('ISR','Russian','F',8.9);
+INSERT INTO `countrylanguage` VALUES ('ITA','Albaniana','F',0.2);
+INSERT INTO `countrylanguage` VALUES ('ITA','French','F',0.5);
+INSERT INTO `countrylanguage` VALUES ('ITA','Friuli','F',1.2);
+INSERT INTO `countrylanguage` VALUES ('ITA','German','F',0.5);
+INSERT INTO `countrylanguage` VALUES ('ITA','Italian','T',94.1);
+INSERT INTO `countrylanguage` VALUES ('ITA','Romani','F',0.2);
+INSERT INTO `countrylanguage` VALUES ('ITA','Sardinian','F',2.7);
+INSERT INTO `countrylanguage` VALUES ('ITA','Slovene','F',0.2);
+INSERT INTO `countrylanguage` VALUES ('JAM','Creole English','F',94.2);
+INSERT INTO `countrylanguage` VALUES ('JAM','Hindi','F',1.9);
+INSERT INTO `countrylanguage` VALUES ('JOR','Arabic','T',97.9);
+INSERT INTO `countrylanguage` VALUES ('JOR','Armenian','F',1.0);
+INSERT INTO `countrylanguage` VALUES ('JOR','Circassian','F',1.0);
+INSERT INTO `countrylanguage` VALUES ('JPN','Ainu','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('JPN','Chinese','F',0.2);
+INSERT INTO `countrylanguage` VALUES ('JPN','English','F',0.1);
+INSERT INTO `countrylanguage` VALUES ('JPN','Japanese','T',99.1);
+INSERT INTO `countrylanguage` VALUES ('JPN','Korean','F',0.5);
+INSERT INTO `countrylanguage` VALUES ('JPN','Philippene Languages','F',0.1);
+INSERT INTO `countrylanguage` VALUES ('KAZ','German','F',3.1);
+INSERT INTO `countrylanguage` VALUES ('KAZ','Kazakh','T',46.0);
+INSERT INTO `countrylanguage` VALUES ('KAZ','Russian','F',34.7);
+INSERT INTO `countrylanguage` VALUES ('KAZ','Tatar','F',2.0);
+INSERT INTO `countrylanguage` VALUES ('KAZ','Ukrainian','F',5.0);
+INSERT INTO `countrylanguage` VALUES ('KAZ','Uzbek','F',2.3);
+INSERT INTO `countrylanguage` VALUES ('KEN','Gusii','F',6.1);
+INSERT INTO `countrylanguage` VALUES ('KEN','Kalenjin','F',10.8);
+INSERT INTO `countrylanguage` VALUES ('KEN','Kamba','F',11.2);
+INSERT INTO `countrylanguage` VALUES ('KEN','Kikuyu','F',20.9);
+INSERT INTO `countrylanguage` VALUES ('KEN','Luhya','F',13.8);
+INSERT INTO `countrylanguage` VALUES ('KEN','Luo','F',12.8);
+INSERT INTO `countrylanguage` VALUES ('KEN','Masai','F',1.6);
+INSERT INTO `countrylanguage` VALUES ('KEN','Meru','F',5.5);
+INSERT INTO `countrylanguage` VALUES ('KEN','Nyika','F',4.8);
+INSERT INTO `countrylanguage` VALUES ('KEN','Turkana','F',1.4);
+INSERT INTO `countrylanguage` VALUES ('KGZ','Kazakh','F',0.8);
+INSERT INTO `countrylanguage` VALUES ('KGZ','Kirgiz','T',59.7);
+INSERT INTO `countrylanguage` VALUES ('KGZ','Russian','T',16.2);
+INSERT INTO `countrylanguage` VALUES ('KGZ','Tadzhik','F',0.8);
+INSERT INTO `countrylanguage` VALUES ('KGZ','Tatar','F',1.3);
+INSERT INTO `countrylanguage` VALUES ('KGZ','Ukrainian','F',1.7);
+INSERT INTO `countrylanguage` VALUES ('KGZ','Uzbek','F',14.1);
+INSERT INTO `countrylanguage` VALUES ('KHM','Chinese','F',3.1);
+INSERT INTO `countrylanguage` VALUES ('KHM','Khmer','T',88.6);
+INSERT INTO `countrylanguage` VALUES ('KHM','Tšam','F',2.4);
+INSERT INTO `countrylanguage` VALUES ('KHM','Vietnamese','F',5.5);
+INSERT INTO `countrylanguage` VALUES ('KIR','Kiribati','T',98.9);
+INSERT INTO `countrylanguage` VALUES ('KIR','Tuvalu','F',0.5);
+INSERT INTO `countrylanguage` VALUES ('KNA','Creole English','F',100.0);
+INSERT INTO `countrylanguage` VALUES ('KNA','English','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('KOR','Chinese','F',0.1);
+INSERT INTO `countrylanguage` VALUES ('KOR','Korean','T',99.9);
+INSERT INTO `countrylanguage` VALUES ('KWT','Arabic','T',78.1);
+INSERT INTO `countrylanguage` VALUES ('KWT','English','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('LAO','Lao','T',67.2);
+INSERT INTO `countrylanguage` VALUES ('LAO','Lao-Soung','F',5.2);
+INSERT INTO `countrylanguage` VALUES ('LAO','Mon-khmer','F',16.5);
+INSERT INTO `countrylanguage` VALUES ('LAO','Thai','F',7.8);
+INSERT INTO `countrylanguage` VALUES ('LBN','Arabic','T',93.0);
+INSERT INTO `countrylanguage` VALUES ('LBN','Armenian','F',5.9);
+INSERT INTO `countrylanguage` VALUES ('LBN','French','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('LBR','Bassa','F',13.7);
+INSERT INTO `countrylanguage` VALUES ('LBR','Gio','F',7.9);
+INSERT INTO `countrylanguage` VALUES ('LBR','Grebo','F',8.9);
+INSERT INTO `countrylanguage` VALUES ('LBR','Kpelle','F',19.5);
+INSERT INTO `countrylanguage` VALUES ('LBR','Kru','F',7.2);
+INSERT INTO `countrylanguage` VALUES ('LBR','Loma','F',5.8);
+INSERT INTO `countrylanguage` VALUES ('LBR','Malinke','F',5.1);
+INSERT INTO `countrylanguage` VALUES ('LBR','Mano','F',7.2);
+INSERT INTO `countrylanguage` VALUES ('LBY','Arabic','T',96.0);
+INSERT INTO `countrylanguage` VALUES ('LBY','Berberi','F',1.0);
+INSERT INTO `countrylanguage` VALUES ('LCA','Creole French','F',80.0);
+INSERT INTO `countrylanguage` VALUES ('LCA','English','T',20.0);
+INSERT INTO `countrylanguage` VALUES ('LIE','German','T',89.0);
+INSERT INTO `countrylanguage` VALUES ('LIE','Italian','F',2.5);
+INSERT INTO `countrylanguage` VALUES ('LIE','Turkish','F',2.5);
+INSERT INTO `countrylanguage` VALUES ('LKA','Mixed Languages','F',19.6);
+INSERT INTO `countrylanguage` VALUES ('LKA','Singali','T',60.3);
+INSERT INTO `countrylanguage` VALUES ('LKA','Tamil','T',19.6);
+INSERT INTO `countrylanguage` VALUES ('LSO','English','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('LSO','Sotho','T',85.0);
+INSERT INTO `countrylanguage` VALUES ('LSO','Zulu','F',15.0);
+INSERT INTO `countrylanguage` VALUES ('LTU','Belorussian','F',1.4);
+INSERT INTO `countrylanguage` VALUES ('LTU','Lithuanian','T',81.6);
+INSERT INTO `countrylanguage` VALUES ('LTU','Polish','F',7.0);
+INSERT INTO `countrylanguage` VALUES ('LTU','Russian','F',8.1);
+INSERT INTO `countrylanguage` VALUES ('LTU','Ukrainian','F',1.1);
+INSERT INTO `countrylanguage` VALUES ('LUX','French','T',4.2);
+INSERT INTO `countrylanguage` VALUES ('LUX','German','T',2.3);
+INSERT INTO `countrylanguage` VALUES ('LUX','Italian','F',4.6);
+INSERT INTO `countrylanguage` VALUES ('LUX','Luxembourgish','T',64.4);
+INSERT INTO `countrylanguage` VALUES ('LUX','Portuguese','F',13.0);
+INSERT INTO `countrylanguage` VALUES ('LVA','Belorussian','F',4.1);
+INSERT INTO `countrylanguage` VALUES ('LVA','Latvian','T',55.1);
+INSERT INTO `countrylanguage` VALUES ('LVA','Lithuanian','F',1.2);
+INSERT INTO `countrylanguage` VALUES ('LVA','Polish','F',2.1);
+INSERT INTO `countrylanguage` VALUES ('LVA','Russian','F',32.5);
+INSERT INTO `countrylanguage` VALUES ('LVA','Ukrainian','F',2.9);
+INSERT INTO `countrylanguage` VALUES ('MAC','Canton Chinese','F',85.6);
+INSERT INTO `countrylanguage` VALUES ('MAC','English','F',0.5);
+INSERT INTO `countrylanguage` VALUES ('MAC','Mandarin Chinese','F',1.2);
+INSERT INTO `countrylanguage` VALUES ('MAC','Portuguese','T',2.3);
+INSERT INTO `countrylanguage` VALUES ('MAR','Arabic','T',65.0);
+INSERT INTO `countrylanguage` VALUES ('MAR','Berberi','F',33.0);
+INSERT INTO `countrylanguage` VALUES ('MCO','English','F',6.5);
+INSERT INTO `countrylanguage` VALUES ('MCO','French','T',41.9);
+INSERT INTO `countrylanguage` VALUES ('MCO','Italian','F',16.1);
+INSERT INTO `countrylanguage` VALUES ('MCO','Monegasque','F',16.1);
+INSERT INTO `countrylanguage` VALUES ('MDA','Bulgariana','F',1.6);
+INSERT INTO `countrylanguage` VALUES ('MDA','Gagauzi','F',3.2);
+INSERT INTO `countrylanguage` VALUES ('MDA','Romanian','T',61.9);
+INSERT INTO `countrylanguage` VALUES ('MDA','Russian','F',23.2);
+INSERT INTO `countrylanguage` VALUES ('MDA','Ukrainian','F',8.6);
+INSERT INTO `countrylanguage` VALUES ('MDG','French','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('MDG','Malagasy','T',98.9);
+INSERT INTO `countrylanguage` VALUES ('MDV','Dhivehi','T',100.0);
+INSERT INTO `countrylanguage` VALUES ('MDV','English','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('MEX','Mixtec','F',0.6);
+INSERT INTO `countrylanguage` VALUES ('MEX','Náhuatl','F',1.8);
+INSERT INTO `countrylanguage` VALUES ('MEX','Otomí','F',0.4);
+INSERT INTO `countrylanguage` VALUES ('MEX','Spanish','T',92.1);
+INSERT INTO `countrylanguage` VALUES ('MEX','Yucatec','F',1.1);
+INSERT INTO `countrylanguage` VALUES ('MEX','Zapotec','F',0.6);
+INSERT INTO `countrylanguage` VALUES ('MHL','English','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('MHL','Marshallese','T',96.8);
+INSERT INTO `countrylanguage` VALUES ('MKD','Albaniana','F',22.9);
+INSERT INTO `countrylanguage` VALUES ('MKD','Macedonian','T',66.5);
+INSERT INTO `countrylanguage` VALUES ('MKD','Romani','F',2.3);
+INSERT INTO `countrylanguage` VALUES ('MKD','Serbo-Croatian','F',2.0);
+INSERT INTO `countrylanguage` VALUES ('MKD','Turkish','F',4.0);
+INSERT INTO `countrylanguage` VALUES ('MLI','Bambara','F',31.8);
+INSERT INTO `countrylanguage` VALUES ('MLI','Ful','F',13.9);
+INSERT INTO `countrylanguage` VALUES ('MLI','Senufo and Minianka','F',12.0);
+INSERT INTO `countrylanguage` VALUES ('MLI','Songhai','F',6.9);
+INSERT INTO `countrylanguage` VALUES ('MLI','Soninke','F',8.7);
+INSERT INTO `countrylanguage` VALUES ('MLI','Tamashek','F',7.3);
+INSERT INTO `countrylanguage` VALUES ('MLT','English','T',2.1);
+INSERT INTO `countrylanguage` VALUES ('MLT','Maltese','T',95.8);
+INSERT INTO `countrylanguage` VALUES ('MMR','Burmese','T',69.0);
+INSERT INTO `countrylanguage` VALUES ('MMR','Chin','F',2.2);
+INSERT INTO `countrylanguage` VALUES ('MMR','Kachin','F',1.4);
+INSERT INTO `countrylanguage` VALUES ('MMR','Karen','F',6.2);
+INSERT INTO `countrylanguage` VALUES ('MMR','Kayah','F',0.4);
+INSERT INTO `countrylanguage` VALUES ('MMR','Mon','F',2.4);
+INSERT INTO `countrylanguage` VALUES ('MMR','Rakhine','F',4.5);
+INSERT INTO `countrylanguage` VALUES ('MMR','Shan','F',8.5);
+INSERT INTO `countrylanguage` VALUES ('MNG','Bajad','F',1.9);
+INSERT INTO `countrylanguage` VALUES ('MNG','Buryat','F',1.7);
+INSERT INTO `countrylanguage` VALUES ('MNG','Dariganga','F',1.4);
+INSERT INTO `countrylanguage` VALUES ('MNG','Dorbet','F',2.7);
+INSERT INTO `countrylanguage` VALUES ('MNG','Kazakh','F',5.9);
+INSERT INTO `countrylanguage` VALUES ('MNG','Mongolian','T',78.8);
+INSERT INTO `countrylanguage` VALUES ('MNP','Carolinian','F',4.8);
+INSERT INTO `countrylanguage` VALUES ('MNP','Chamorro','F',30.0);
+INSERT INTO `countrylanguage` VALUES ('MNP','Chinese','F',7.1);
+INSERT INTO `countrylanguage` VALUES ('MNP','English','T',4.8);
+INSERT INTO `countrylanguage` VALUES ('MNP','Korean','F',6.5);
+INSERT INTO `countrylanguage` VALUES ('MNP','Philippene Languages','F',34.1);
+INSERT INTO `countrylanguage` VALUES ('MOZ','Chuabo','F',5.7);
+INSERT INTO `countrylanguage` VALUES ('MOZ','Lomwe','F',7.8);
+INSERT INTO `countrylanguage` VALUES ('MOZ','Makua','F',27.8);
+INSERT INTO `countrylanguage` VALUES ('MOZ','Marendje','F',3.5);
+INSERT INTO `countrylanguage` VALUES ('MOZ','Nyanja','F',3.3);
+INSERT INTO `countrylanguage` VALUES ('MOZ','Ronga','F',3.7);
+INSERT INTO `countrylanguage` VALUES ('MOZ','Sena','F',9.4);
+INSERT INTO `countrylanguage` VALUES ('MOZ','Shona','F',6.5);
+INSERT INTO `countrylanguage` VALUES ('MOZ','Tsonga','F',12.4);
+INSERT INTO `countrylanguage` VALUES ('MOZ','Tswa','F',6.0);
+INSERT INTO `countrylanguage` VALUES ('MRT','Ful','F',1.2);
+INSERT INTO `countrylanguage` VALUES ('MRT','Hassaniya','F',81.7);
+INSERT INTO `countrylanguage` VALUES ('MRT','Soninke','F',2.7);
+INSERT INTO `countrylanguage` VALUES ('MRT','Tukulor','F',5.4);
+INSERT INTO `countrylanguage` VALUES ('MRT','Wolof','F',6.6);
+INSERT INTO `countrylanguage` VALUES ('MRT','Zenaga','F',1.2);
+INSERT INTO `countrylanguage` VALUES ('MSR','English','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('MTQ','Creole French','F',96.6);
+INSERT INTO `countrylanguage` VALUES ('MTQ','French','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('MUS','Bhojpuri','F',21.1);
+INSERT INTO `countrylanguage` VALUES ('MUS','Creole French','F',70.6);
+INSERT INTO `countrylanguage` VALUES ('MUS','French','F',3.4);
+INSERT INTO `countrylanguage` VALUES ('MUS','Hindi','F',1.2);
+INSERT INTO `countrylanguage` VALUES ('MUS','Marathi','F',0.7);
+INSERT INTO `countrylanguage` VALUES ('MUS','Tamil','F',0.8);
+INSERT INTO `countrylanguage` VALUES ('MWI','Chichewa','T',58.3);
+INSERT INTO `countrylanguage` VALUES ('MWI','Lomwe','F',18.4);
+INSERT INTO `countrylanguage` VALUES ('MWI','Ngoni','F',6.7);
+INSERT INTO `countrylanguage` VALUES ('MWI','Yao','F',13.2);
+INSERT INTO `countrylanguage` VALUES ('MYS','Chinese','F',9.0);
+INSERT INTO `countrylanguage` VALUES ('MYS','Dusun','F',1.1);
+INSERT INTO `countrylanguage` VALUES ('MYS','English','F',1.6);
+INSERT INTO `countrylanguage` VALUES ('MYS','Iban','F',2.8);
+INSERT INTO `countrylanguage` VALUES ('MYS','Malay','T',58.4);
+INSERT INTO `countrylanguage` VALUES ('MYS','Tamil','F',3.9);
+INSERT INTO `countrylanguage` VALUES ('MYT','French','T',20.3);
+INSERT INTO `countrylanguage` VALUES ('MYT','Mahoré','F',41.9);
+INSERT INTO `countrylanguage` VALUES ('MYT','Malagasy','F',16.1);
+INSERT INTO `countrylanguage` VALUES ('NAM','Afrikaans','F',9.5);
+INSERT INTO `countrylanguage` VALUES ('NAM','Caprivi','F',4.7);
+INSERT INTO `countrylanguage` VALUES ('NAM','German','F',0.9);
+INSERT INTO `countrylanguage` VALUES ('NAM','Herero','F',8.0);
+INSERT INTO `countrylanguage` VALUES ('NAM','Kavango','F',9.7);
+INSERT INTO `countrylanguage` VALUES ('NAM','Nama','F',12.4);
+INSERT INTO `countrylanguage` VALUES ('NAM','Ovambo','F',50.7);
+INSERT INTO `countrylanguage` VALUES ('NAM','San','F',1.9);
+INSERT INTO `countrylanguage` VALUES ('NCL','French','T',34.3);
+INSERT INTO `countrylanguage` VALUES ('NCL','Malenasian Languages','F',45.4);
+INSERT INTO `countrylanguage` VALUES ('NCL','Polynesian Languages','F',11.6);
+INSERT INTO `countrylanguage` VALUES ('NER','Ful','F',9.7);
+INSERT INTO `countrylanguage` VALUES ('NER','Hausa','F',53.1);
+INSERT INTO `countrylanguage` VALUES ('NER','Kanuri','F',4.4);
+INSERT INTO `countrylanguage` VALUES ('NER','Songhai-zerma','F',21.2);
+INSERT INTO `countrylanguage` VALUES ('NER','Tamashek','F',10.4);
+INSERT INTO `countrylanguage` VALUES ('NFK','English','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('NGA','Bura','F',1.6);
+INSERT INTO `countrylanguage` VALUES ('NGA','Edo','F',3.3);
+INSERT INTO `countrylanguage` VALUES ('NGA','Ful','F',11.3);
+INSERT INTO `countrylanguage` VALUES ('NGA','Hausa','F',21.1);
+INSERT INTO `countrylanguage` VALUES ('NGA','Ibibio','F',5.6);
+INSERT INTO `countrylanguage` VALUES ('NGA','Ibo','F',18.1);
+INSERT INTO `countrylanguage` VALUES ('NGA','Ijo','F',1.8);
+INSERT INTO `countrylanguage` VALUES ('NGA','Joruba','F',21.4);
+INSERT INTO `countrylanguage` VALUES ('NGA','Kanuri','F',4.1);
+INSERT INTO `countrylanguage` VALUES ('NGA','Tiv','F',2.3);
+INSERT INTO `countrylanguage` VALUES ('NIC','Creole English','F',0.5);
+INSERT INTO `countrylanguage` VALUES ('NIC','Miskito','F',1.6);
+INSERT INTO `countrylanguage` VALUES ('NIC','Spanish','T',97.6);
+INSERT INTO `countrylanguage` VALUES ('NIC','Sumo','F',0.2);
+INSERT INTO `countrylanguage` VALUES ('NIU','English','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('NIU','Niue','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('NLD','Arabic','F',0.9);
+INSERT INTO `countrylanguage` VALUES ('NLD','Dutch','T',95.6);
+INSERT INTO `countrylanguage` VALUES ('NLD','Fries','F',3.7);
+INSERT INTO `countrylanguage` VALUES ('NLD','Turkish','F',0.8);
+INSERT INTO `countrylanguage` VALUES ('NOR','Danish','F',0.4);
+INSERT INTO `countrylanguage` VALUES ('NOR','English','F',0.5);
+INSERT INTO `countrylanguage` VALUES ('NOR','Norwegian','T',96.6);
+INSERT INTO `countrylanguage` VALUES ('NOR','Saame','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('NOR','Swedish','F',0.3);
+INSERT INTO `countrylanguage` VALUES ('NPL','Bhojpuri','F',7.5);
+INSERT INTO `countrylanguage` VALUES ('NPL','Hindi','F',3.0);
+INSERT INTO `countrylanguage` VALUES ('NPL','Maithili','F',11.9);
+INSERT INTO `countrylanguage` VALUES ('NPL','Nepali','T',50.4);
+INSERT INTO `countrylanguage` VALUES ('NPL','Newari','F',3.7);
+INSERT INTO `countrylanguage` VALUES ('NPL','Tamang','F',4.9);
+INSERT INTO `countrylanguage` VALUES ('NPL','Tharu','F',5.4);
+INSERT INTO `countrylanguage` VALUES ('NRU','Chinese','F',8.5);
+INSERT INTO `countrylanguage` VALUES ('NRU','English','T',7.5);
+INSERT INTO `countrylanguage` VALUES ('NRU','Kiribati','F',17.9);
+INSERT INTO `countrylanguage` VALUES ('NRU','Nauru','T',57.5);
+INSERT INTO `countrylanguage` VALUES ('NRU','Tuvalu','F',8.5);
+INSERT INTO `countrylanguage` VALUES ('NZL','English','T',87.0);
+INSERT INTO `countrylanguage` VALUES ('NZL','Maori','F',4.3);
+INSERT INTO `countrylanguage` VALUES ('OMN','Arabic','T',76.7);
+INSERT INTO `countrylanguage` VALUES ('OMN','Balochi','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('PAK','Balochi','F',3.0);
+INSERT INTO `countrylanguage` VALUES ('PAK','Brahui','F',1.2);
+INSERT INTO `countrylanguage` VALUES ('PAK','Hindko','F',2.4);
+INSERT INTO `countrylanguage` VALUES ('PAK','Pashto','F',13.1);
+INSERT INTO `countrylanguage` VALUES ('PAK','Punjabi','F',48.2);
+INSERT INTO `countrylanguage` VALUES ('PAK','Saraiki','F',9.8);
+INSERT INTO `countrylanguage` VALUES ('PAK','Sindhi','F',11.8);
+INSERT INTO `countrylanguage` VALUES ('PAK','Urdu','T',7.6);
+INSERT INTO `countrylanguage` VALUES ('PAN','Arabic','F',0.6);
+INSERT INTO `countrylanguage` VALUES ('PAN','Creole English','F',14.0);
+INSERT INTO `countrylanguage` VALUES ('PAN','Cuna','F',2.0);
+INSERT INTO `countrylanguage` VALUES ('PAN','Embera','F',0.6);
+INSERT INTO `countrylanguage` VALUES ('PAN','Guaymí','F',5.3);
+INSERT INTO `countrylanguage` VALUES ('PAN','Spanish','T',76.8);
+INSERT INTO `countrylanguage` VALUES ('PCN','Pitcairnese','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('PER','Aimará','T',2.3);
+INSERT INTO `countrylanguage` VALUES ('PER','Ketšua','T',16.4);
+INSERT INTO `countrylanguage` VALUES ('PER','Spanish','T',79.8);
+INSERT INTO `countrylanguage` VALUES ('PHL','Bicol','F',5.7);
+INSERT INTO `countrylanguage` VALUES ('PHL','Cebuano','F',23.3);
+INSERT INTO `countrylanguage` VALUES ('PHL','Hiligaynon','F',9.1);
+INSERT INTO `countrylanguage` VALUES ('PHL','Ilocano','F',9.3);
+INSERT INTO `countrylanguage` VALUES ('PHL','Maguindanao','F',1.4);
+INSERT INTO `countrylanguage` VALUES ('PHL','Maranao','F',1.3);
+INSERT INTO `countrylanguage` VALUES ('PHL','Pampango','F',3.0);
+INSERT INTO `countrylanguage` VALUES ('PHL','Pangasinan','F',1.8);
+INSERT INTO `countrylanguage` VALUES ('PHL','Pilipino','T',29.3);
+INSERT INTO `countrylanguage` VALUES ('PHL','Waray-waray','F',3.8);
+INSERT INTO `countrylanguage` VALUES ('PLW','Chinese','F',1.6);
+INSERT INTO `countrylanguage` VALUES ('PLW','English','T',3.2);
+INSERT INTO `countrylanguage` VALUES ('PLW','Palau','T',82.2);
+INSERT INTO `countrylanguage` VALUES ('PLW','Philippene Languages','F',9.2);
+INSERT INTO `countrylanguage` VALUES ('PNG','Malenasian Languages','F',20.0);
+INSERT INTO `countrylanguage` VALUES ('PNG','Papuan Languages','F',78.1);
+INSERT INTO `countrylanguage` VALUES ('POL','Belorussian','F',0.5);
+INSERT INTO `countrylanguage` VALUES ('POL','German','F',1.3);
+INSERT INTO `countrylanguage` VALUES ('POL','Polish','T',97.6);
+INSERT INTO `countrylanguage` VALUES ('POL','Ukrainian','F',0.6);
+INSERT INTO `countrylanguage` VALUES ('PRI','English','F',47.4);
+INSERT INTO `countrylanguage` VALUES ('PRI','Spanish','T',51.3);
+INSERT INTO `countrylanguage` VALUES ('PRK','Chinese','F',0.1);
+INSERT INTO `countrylanguage` VALUES ('PRK','Korean','T',99.9);
+INSERT INTO `countrylanguage` VALUES ('PRT','Portuguese','T',99.0);
+INSERT INTO `countrylanguage` VALUES ('PRY','German','F',0.9);
+INSERT INTO `countrylanguage` VALUES ('PRY','Guaraní','T',40.1);
+INSERT INTO `countrylanguage` VALUES ('PRY','Portuguese','F',3.2);
+INSERT INTO `countrylanguage` VALUES ('PRY','Spanish','T',55.1);
+INSERT INTO `countrylanguage` VALUES ('PSE','Arabic','F',95.9);
+INSERT INTO `countrylanguage` VALUES ('PSE','Hebrew','F',4.1);
+INSERT INTO `countrylanguage` VALUES ('PYF','Chinese','F',2.9);
+INSERT INTO `countrylanguage` VALUES ('PYF','French','T',40.8);
+INSERT INTO `countrylanguage` VALUES ('PYF','Tahitian','F',46.4);
+INSERT INTO `countrylanguage` VALUES ('QAT','Arabic','T',40.7);
+INSERT INTO `countrylanguage` VALUES ('QAT','Urdu','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('REU','Chinese','F',2.8);
+INSERT INTO `countrylanguage` VALUES ('REU','Comorian','F',2.8);
+INSERT INTO `countrylanguage` VALUES ('REU','Creole French','F',91.5);
+INSERT INTO `countrylanguage` VALUES ('REU','Malagasy','F',1.4);
+INSERT INTO `countrylanguage` VALUES ('REU','Tamil','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('ROM','German','F',0.4);
+INSERT INTO `countrylanguage` VALUES ('ROM','Hungarian','F',7.2);
+INSERT INTO `countrylanguage` VALUES ('ROM','Romani','T',0.7);
+INSERT INTO `countrylanguage` VALUES ('ROM','Romanian','T',90.7);
+INSERT INTO `countrylanguage` VALUES ('ROM','Serbo-Croatian','F',0.1);
+INSERT INTO `countrylanguage` VALUES ('ROM','Ukrainian','F',0.3);
+INSERT INTO `countrylanguage` VALUES ('RUS','Avarian','F',0.4);
+INSERT INTO `countrylanguage` VALUES ('RUS','Bashkir','F',0.7);
+INSERT INTO `countrylanguage` VALUES ('RUS','Belorussian','F',0.3);
+INSERT INTO `countrylanguage` VALUES ('RUS','Chechen','F',0.6);
+INSERT INTO `countrylanguage` VALUES ('RUS','Chuvash','F',0.9);
+INSERT INTO `countrylanguage` VALUES ('RUS','Kazakh','F',0.4);
+INSERT INTO `countrylanguage` VALUES ('RUS','Mari','F',0.4);
+INSERT INTO `countrylanguage` VALUES ('RUS','Mordva','F',0.5);
+INSERT INTO `countrylanguage` VALUES ('RUS','Russian','T',86.6);
+INSERT INTO `countrylanguage` VALUES ('RUS','Tatar','F',3.2);
+INSERT INTO `countrylanguage` VALUES ('RUS','Udmur','F',0.3);
+INSERT INTO `countrylanguage` VALUES ('RUS','Ukrainian','F',1.3);
+INSERT INTO `countrylanguage` VALUES ('RWA','French','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('RWA','Rwanda','T',100.0);
+INSERT INTO `countrylanguage` VALUES ('SAU','Arabic','T',95.0);
+INSERT INTO `countrylanguage` VALUES ('SDN','Arabic','T',49.4);
+INSERT INTO `countrylanguage` VALUES ('SDN','Bari','F',2.5);
+INSERT INTO `countrylanguage` VALUES ('SDN','Beja','F',6.4);
+INSERT INTO `countrylanguage` VALUES ('SDN','Chilluk','F',1.7);
+INSERT INTO `countrylanguage` VALUES ('SDN','Dinka','F',11.5);
+INSERT INTO `countrylanguage` VALUES ('SDN','Fur','F',2.1);
+INSERT INTO `countrylanguage` VALUES ('SDN','Lotuko','F',1.5);
+INSERT INTO `countrylanguage` VALUES ('SDN','Nubian Languages','F',8.1);
+INSERT INTO `countrylanguage` VALUES ('SDN','Nuer','F',4.9);
+INSERT INTO `countrylanguage` VALUES ('SDN','Zande','F',2.7);
+INSERT INTO `countrylanguage` VALUES ('SEN','Diola','F',5.0);
+INSERT INTO `countrylanguage` VALUES ('SEN','Ful','F',21.7);
+INSERT INTO `countrylanguage` VALUES ('SEN','Malinke','F',3.8);
+INSERT INTO `countrylanguage` VALUES ('SEN','Serer','F',12.5);
+INSERT INTO `countrylanguage` VALUES ('SEN','Soninke','F',1.3);
+INSERT INTO `countrylanguage` VALUES ('SEN','Wolof','T',48.1);
+INSERT INTO `countrylanguage` VALUES ('SGP','Chinese','T',77.1);
+INSERT INTO `countrylanguage` VALUES ('SGP','Malay','T',14.1);
+INSERT INTO `countrylanguage` VALUES ('SGP','Tamil','T',7.4);
+INSERT INTO `countrylanguage` VALUES ('SHN','English','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('SJM','Norwegian','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('SJM','Russian','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('SLB','Malenasian Languages','F',85.6);
+INSERT INTO `countrylanguage` VALUES ('SLB','Papuan Languages','F',8.6);
+INSERT INTO `countrylanguage` VALUES ('SLB','Polynesian Languages','F',3.8);
+INSERT INTO `countrylanguage` VALUES ('SLE','Bullom-sherbro','F',3.8);
+INSERT INTO `countrylanguage` VALUES ('SLE','Ful','F',3.8);
+INSERT INTO `countrylanguage` VALUES ('SLE','Kono-vai','F',5.1);
+INSERT INTO `countrylanguage` VALUES ('SLE','Kuranko','F',3.4);
+INSERT INTO `countrylanguage` VALUES ('SLE','Limba','F',8.3);
+INSERT INTO `countrylanguage` VALUES ('SLE','Mende','F',34.8);
+INSERT INTO `countrylanguage` VALUES ('SLE','Temne','F',31.8);
+INSERT INTO `countrylanguage` VALUES ('SLE','Yalunka','F',3.4);
+INSERT INTO `countrylanguage` VALUES ('SLV','Nahua','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('SLV','Spanish','T',100.0);
+INSERT INTO `countrylanguage` VALUES ('SMR','Italian','T',100.0);
+INSERT INTO `countrylanguage` VALUES ('SOM','Arabic','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('SOM','Somali','T',98.3);
+INSERT INTO `countrylanguage` VALUES ('SPM','French','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('STP','Crioulo','F',86.3);
+INSERT INTO `countrylanguage` VALUES ('STP','French','F',0.7);
+INSERT INTO `countrylanguage` VALUES ('SUR','Hindi','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('SUR','Sranantonga','F',81.0);
+INSERT INTO `countrylanguage` VALUES ('SVK','Czech and Moravian','F',1.1);
+INSERT INTO `countrylanguage` VALUES ('SVK','Hungarian','F',10.5);
+INSERT INTO `countrylanguage` VALUES ('SVK','Romani','F',1.7);
+INSERT INTO `countrylanguage` VALUES ('SVK','Slovak','T',85.6);
+INSERT INTO `countrylanguage` VALUES ('SVK','Ukrainian and Russian','F',0.6);
+INSERT INTO `countrylanguage` VALUES ('SVN','Hungarian','F',0.5);
+INSERT INTO `countrylanguage` VALUES ('SVN','Serbo-Croatian','F',7.9);
+INSERT INTO `countrylanguage` VALUES ('SVN','Slovene','T',87.9);
+INSERT INTO `countrylanguage` VALUES ('SWE','Arabic','F',0.8);
+INSERT INTO `countrylanguage` VALUES ('SWE','Finnish','F',2.4);
+INSERT INTO `countrylanguage` VALUES ('SWE','Norwegian','F',0.5);
+INSERT INTO `countrylanguage` VALUES ('SWE','Southern Slavic Languages','F',1.3);
+INSERT INTO `countrylanguage` VALUES ('SWE','Spanish','F',0.6);
+INSERT INTO `countrylanguage` VALUES ('SWE','Swedish','T',89.5);
+INSERT INTO `countrylanguage` VALUES ('SWZ','Swazi','T',89.9);
+INSERT INTO `countrylanguage` VALUES ('SWZ','Zulu','F',2.0);
+INSERT INTO `countrylanguage` VALUES ('SYC','English','T',3.8);
+INSERT INTO `countrylanguage` VALUES ('SYC','French','T',1.3);
+INSERT INTO `countrylanguage` VALUES ('SYC','Seselwa','F',91.3);
+INSERT INTO `countrylanguage` VALUES ('SYR','Arabic','T',90.0);
+INSERT INTO `countrylanguage` VALUES ('SYR','Kurdish','F',9.0);
+INSERT INTO `countrylanguage` VALUES ('TCA','English','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('TCD','Arabic','T',12.3);
+INSERT INTO `countrylanguage` VALUES ('TCD','Gorane','F',6.2);
+INSERT INTO `countrylanguage` VALUES ('TCD','Hadjarai','F',6.7);
+INSERT INTO `countrylanguage` VALUES ('TCD','Kanem-bornu','F',9.0);
+INSERT INTO `countrylanguage` VALUES ('TCD','Mayo-kebbi','F',11.5);
+INSERT INTO `countrylanguage` VALUES ('TCD','Ouaddai','F',8.7);
+INSERT INTO `countrylanguage` VALUES ('TCD','Sara','F',27.7);
+INSERT INTO `countrylanguage` VALUES ('TCD','Tandjile','F',6.5);
+INSERT INTO `countrylanguage` VALUES ('TGO','Ane','F',5.7);
+INSERT INTO `countrylanguage` VALUES ('TGO','Ewe','T',23.2);
+INSERT INTO `countrylanguage` VALUES ('TGO','Gurma','F',3.4);
+INSERT INTO `countrylanguage` VALUES ('TGO','Kabyé','T',13.8);
+INSERT INTO `countrylanguage` VALUES ('TGO','Kotokoli','F',5.7);
+INSERT INTO `countrylanguage` VALUES ('TGO','Moba','F',5.4);
+INSERT INTO `countrylanguage` VALUES ('TGO','Naudemba','F',4.1);
+INSERT INTO `countrylanguage` VALUES ('TGO','Watyi','F',10.3);
+INSERT INTO `countrylanguage` VALUES ('THA','Chinese','F',12.1);
+INSERT INTO `countrylanguage` VALUES ('THA','Khmer','F',1.3);
+INSERT INTO `countrylanguage` VALUES ('THA','Kuy','F',1.1);
+INSERT INTO `countrylanguage` VALUES ('THA','Lao','F',26.9);
+INSERT INTO `countrylanguage` VALUES ('THA','Malay','F',3.6);
+INSERT INTO `countrylanguage` VALUES ('THA','Thai','T',52.6);
+INSERT INTO `countrylanguage` VALUES ('TJK','Russian','F',9.7);
+INSERT INTO `countrylanguage` VALUES ('TJK','Tadzhik','T',62.2);
+INSERT INTO `countrylanguage` VALUES ('TJK','Uzbek','F',23.2);
+INSERT INTO `countrylanguage` VALUES ('TKL','English','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('TKL','Tokelau','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('TKM','Kazakh','F',2.0);
+INSERT INTO `countrylanguage` VALUES ('TKM','Russian','F',6.7);
+INSERT INTO `countrylanguage` VALUES ('TKM','Turkmenian','T',76.7);
+INSERT INTO `countrylanguage` VALUES ('TKM','Uzbek','F',9.2);
+INSERT INTO `countrylanguage` VALUES ('TMP','Portuguese','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('TMP','Sunda','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('TON','English','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('TON','Tongan','T',98.3);
+INSERT INTO `countrylanguage` VALUES ('TTO','Creole English','F',2.9);
+INSERT INTO `countrylanguage` VALUES ('TTO','English','F',93.5);
+INSERT INTO `countrylanguage` VALUES ('TTO','Hindi','F',3.4);
+INSERT INTO `countrylanguage` VALUES ('TUN','Arabic','T',69.9);
+INSERT INTO `countrylanguage` VALUES ('TUN','Arabic-French','F',26.3);
+INSERT INTO `countrylanguage` VALUES ('TUN','Arabic-French-English','F',3.2);
+INSERT INTO `countrylanguage` VALUES ('TUR','Arabic','F',1.4);
+INSERT INTO `countrylanguage` VALUES ('TUR','Kurdish','F',10.6);
+INSERT INTO `countrylanguage` VALUES ('TUR','Turkish','T',87.6);
+INSERT INTO `countrylanguage` VALUES ('TUV','English','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('TUV','Kiribati','F',7.5);
+INSERT INTO `countrylanguage` VALUES ('TUV','Tuvalu','T',92.5);
+INSERT INTO `countrylanguage` VALUES ('TWN','Ami','F',0.6);
+INSERT INTO `countrylanguage` VALUES ('TWN','Atayal','F',0.4);
+INSERT INTO `countrylanguage` VALUES ('TWN','Hakka','F',11.0);
+INSERT INTO `countrylanguage` VALUES ('TWN','Mandarin Chinese','T',20.1);
+INSERT INTO `countrylanguage` VALUES ('TWN','Min','F',66.7);
+INSERT INTO `countrylanguage` VALUES ('TWN','Paiwan','F',0.3);
+INSERT INTO `countrylanguage` VALUES ('TZA','Chaga and Pare','F',4.9);
+INSERT INTO `countrylanguage` VALUES ('TZA','Gogo','F',3.9);
+INSERT INTO `countrylanguage` VALUES ('TZA','Ha','F',3.5);
+INSERT INTO `countrylanguage` VALUES ('TZA','Haya','F',5.9);
+INSERT INTO `countrylanguage` VALUES ('TZA','Hehet','F',6.9);
+INSERT INTO `countrylanguage` VALUES ('TZA','Luguru','F',4.9);
+INSERT INTO `countrylanguage` VALUES ('TZA','Makonde','F',5.9);
+INSERT INTO `countrylanguage` VALUES ('TZA','Nyakusa','F',5.4);
+INSERT INTO `countrylanguage` VALUES ('TZA','Nyamwesi','F',21.1);
+INSERT INTO `countrylanguage` VALUES ('TZA','Shambala','F',4.3);
+INSERT INTO `countrylanguage` VALUES ('TZA','Swahili','T',8.8);
+INSERT INTO `countrylanguage` VALUES ('UGA','Acholi','F',4.4);
+INSERT INTO `countrylanguage` VALUES ('UGA','Ganda','F',18.1);
+INSERT INTO `countrylanguage` VALUES ('UGA','Gisu','F',4.5);
+INSERT INTO `countrylanguage` VALUES ('UGA','Kiga','F',8.3);
+INSERT INTO `countrylanguage` VALUES ('UGA','Lango','F',5.9);
+INSERT INTO `countrylanguage` VALUES ('UGA','Lugbara','F',4.7);
+INSERT INTO `countrylanguage` VALUES ('UGA','Nkole','F',10.7);
+INSERT INTO `countrylanguage` VALUES ('UGA','Rwanda','F',3.2);
+INSERT INTO `countrylanguage` VALUES ('UGA','Soga','F',8.2);
+INSERT INTO `countrylanguage` VALUES ('UGA','Teso','F',6.0);
+INSERT INTO `countrylanguage` VALUES ('UKR','Belorussian','F',0.3);
+INSERT INTO `countrylanguage` VALUES ('UKR','Bulgariana','F',0.3);
+INSERT INTO `countrylanguage` VALUES ('UKR','Hungarian','F',0.3);
+INSERT INTO `countrylanguage` VALUES ('UKR','Polish','F',0.1);
+INSERT INTO `countrylanguage` VALUES ('UKR','Romanian','F',0.7);
+INSERT INTO `countrylanguage` VALUES ('UKR','Russian','F',32.9);
+INSERT INTO `countrylanguage` VALUES ('UKR','Ukrainian','T',64.7);
+INSERT INTO `countrylanguage` VALUES ('UMI','English','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('URY','Spanish','T',95.7);
+INSERT INTO `countrylanguage` VALUES ('USA','Chinese','F',0.6);
+INSERT INTO `countrylanguage` VALUES ('USA','English','T',86.2);
+INSERT INTO `countrylanguage` VALUES ('USA','French','F',0.7);
+INSERT INTO `countrylanguage` VALUES ('USA','German','F',0.7);
+INSERT INTO `countrylanguage` VALUES ('USA','Italian','F',0.6);
+INSERT INTO `countrylanguage` VALUES ('USA','Japanese','F',0.2);
+INSERT INTO `countrylanguage` VALUES ('USA','Korean','F',0.3);
+INSERT INTO `countrylanguage` VALUES ('USA','Polish','F',0.3);
+INSERT INTO `countrylanguage` VALUES ('USA','Portuguese','F',0.2);
+INSERT INTO `countrylanguage` VALUES ('USA','Spanish','F',7.5);
+INSERT INTO `countrylanguage` VALUES ('USA','Tagalog','F',0.4);
+INSERT INTO `countrylanguage` VALUES ('USA','Vietnamese','F',0.2);
+INSERT INTO `countrylanguage` VALUES ('UZB','Karakalpak','F',2.0);
+INSERT INTO `countrylanguage` VALUES ('UZB','Kazakh','F',3.8);
+INSERT INTO `countrylanguage` VALUES ('UZB','Russian','F',10.9);
+INSERT INTO `countrylanguage` VALUES ('UZB','Tadzhik','F',4.4);
+INSERT INTO `countrylanguage` VALUES ('UZB','Tatar','F',1.8);
+INSERT INTO `countrylanguage` VALUES ('UZB','Uzbek','T',72.6);
+INSERT INTO `countrylanguage` VALUES ('VAT','Italian','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('VCT','Creole English','F',99.1);
+INSERT INTO `countrylanguage` VALUES ('VCT','English','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('VEN','Goajiro','F',0.4);
+INSERT INTO `countrylanguage` VALUES ('VEN','Spanish','T',96.9);
+INSERT INTO `countrylanguage` VALUES ('VEN','Warrau','F',0.1);
+INSERT INTO `countrylanguage` VALUES ('VGB','English','T',0.0);
+INSERT INTO `countrylanguage` VALUES ('VIR','English','T',81.7);
+INSERT INTO `countrylanguage` VALUES ('VIR','French','F',2.5);
+INSERT INTO `countrylanguage` VALUES ('VIR','Spanish','F',13.3);
+INSERT INTO `countrylanguage` VALUES ('VNM','Chinese','F',1.4);
+INSERT INTO `countrylanguage` VALUES ('VNM','Khmer','F',1.4);
+INSERT INTO `countrylanguage` VALUES ('VNM','Man','F',0.7);
+INSERT INTO `countrylanguage` VALUES ('VNM','Miao','F',0.9);
+INSERT INTO `countrylanguage` VALUES ('VNM','Muong','F',1.5);
+INSERT INTO `countrylanguage` VALUES ('VNM','Nung','F',1.1);
+INSERT INTO `countrylanguage` VALUES ('VNM','Thai','F',1.6);
+INSERT INTO `countrylanguage` VALUES ('VNM','Tho','F',1.8);
+INSERT INTO `countrylanguage` VALUES ('VNM','Vietnamese','T',86.8);
+INSERT INTO `countrylanguage` VALUES ('VUT','Bislama','T',56.6);
+INSERT INTO `countrylanguage` VALUES ('VUT','English','T',28.3);
+INSERT INTO `countrylanguage` VALUES ('VUT','French','T',14.2);
+INSERT INTO `countrylanguage` VALUES ('WLF','Futuna','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('WLF','Wallis','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('WSM','English','T',0.6);
+INSERT INTO `countrylanguage` VALUES ('WSM','Samoan','T',47.5);
+INSERT INTO `countrylanguage` VALUES ('WSM','Samoan-English','F',52.0);
+INSERT INTO `countrylanguage` VALUES ('YEM','Arabic','T',99.6);
+INSERT INTO `countrylanguage` VALUES ('YEM','Soqutri','F',0.0);
+INSERT INTO `countrylanguage` VALUES ('YUG','Albaniana','F',16.5);
+INSERT INTO `countrylanguage` VALUES ('YUG','Hungarian','F',3.4);
+INSERT INTO `countrylanguage` VALUES ('YUG','Macedonian','F',0.5);
+INSERT INTO `countrylanguage` VALUES ('YUG','Romani','F',1.4);
+INSERT INTO `countrylanguage` VALUES ('YUG','Serbo-Croatian','T',75.2);
+INSERT INTO `countrylanguage` VALUES ('YUG','Slovak','F',0.7);
+INSERT INTO `countrylanguage` VALUES ('ZAF','Afrikaans','T',14.3);
+INSERT INTO `countrylanguage` VALUES ('ZAF','English','T',8.5);
+INSERT INTO `countrylanguage` VALUES ('ZAF','Ndebele','F',1.5);
+INSERT INTO `countrylanguage` VALUES ('ZAF','Northsotho','F',9.1);
+INSERT INTO `countrylanguage` VALUES ('ZAF','Southsotho','F',7.6);
+INSERT INTO `countrylanguage` VALUES ('ZAF','Swazi','F',2.5);
+INSERT INTO `countrylanguage` VALUES ('ZAF','Tsonga','F',4.3);
+INSERT INTO `countrylanguage` VALUES ('ZAF','Tswana','F',8.1);
+INSERT INTO `countrylanguage` VALUES ('ZAF','Venda','F',2.2);
+INSERT INTO `countrylanguage` VALUES ('ZAF','Xhosa','T',17.7);
+INSERT INTO `countrylanguage` VALUES ('ZAF','Zulu','T',22.7);
+INSERT INTO `countrylanguage` VALUES ('ZMB','Bemba','F',29.7);
+INSERT INTO `countrylanguage` VALUES ('ZMB','Chewa','F',5.7);
+INSERT INTO `countrylanguage` VALUES ('ZMB','Lozi','F',6.4);
+INSERT INTO `countrylanguage` VALUES ('ZMB','Nsenga','F',4.3);
+INSERT INTO `countrylanguage` VALUES ('ZMB','Nyanja','F',7.8);
+INSERT INTO `countrylanguage` VALUES ('ZMB','Tongan','F',11.0);
+INSERT INTO `countrylanguage` VALUES ('ZWE','English','T',2.2);
+INSERT INTO `countrylanguage` VALUES ('ZWE','Ndebele','F',16.2);
+INSERT INTO `countrylanguage` VALUES ('ZWE','Nyanja','F',2.2);
+INSERT INTO `countrylanguage` VALUES ('ZWE','Shona','F',72.1);
+commit;
+
+--
+-- Dumping events for database 'world'
+--
+
+--
+-- Dumping routines for database 'world'
+--
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+SET autocommit=@old_autocommit;
+
+-- Dump completed on 2020-01-22  9:56:18
